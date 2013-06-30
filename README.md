@@ -73,5 +73,5 @@ Please see [CONTRIBUTING.md](https://github.com/activecell/restful-etl/blob/mast
 ## Anything we missed?
 
 If there's anything at all that you need or want to know, please log an 
-[issue](https://github.com/activecell/restful-etl/isssues) and we will 
+[issue](https://github.com/activecell/restful-etl/issues) and we will 
 try to get you sorted out straight away.
