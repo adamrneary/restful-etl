@@ -8,17 +8,16 @@ then please make sure the appropriate flags are added to script/bootstrap.
 
 ## Style
 
-We want to keep styles simple and consistent so that anyone 
+We want to keep styles simple and consistent so that anyone
 can drop in and out of the project seamlessly.
 
 * All javascript should be written in coffeescript
-* All markup should be in templates
-* All templates should be written in handlebars
+* All markup should be in templates (and all templates written in handlebars)
 * All css should be written in scss
 
 ## Tests
 
-Please make sure all pull requests include tests that fail 
+Please make sure all pull requests include tests that fail
 without your new functionality and pass with it.
 
 * All functionality should be unit tested with mocha/chai
