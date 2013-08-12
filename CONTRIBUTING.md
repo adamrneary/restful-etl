@@ -21,11 +21,12 @@ Please make sure all pull requests include tests that fail
 without your new functionality and pass with it.
 
 * All functionality should be unit tested with mocha/chai
-* All integration tests should be written in casper
+* All api functionality should be tested with supertest
 
 ## Documentation
 
-* Please please please document your code in place.
+* Please please please document your code in place. This will compile into our annotated source code automatically.
+* Please update gh-pages to explain functionality as it's built.
 * To document external data sources, please create a README in the directory of that
 data source that explains:
     1. any authentication requirements
