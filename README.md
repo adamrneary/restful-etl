@@ -1,242 +1,181 @@
-# RESTful ETL
+activecell notes:
+=================
 
-> A promising asynchronous, non-blocking data integration library
-> written in javascript.
+We have adapted the ActiveWarehouse-ETL gem to our needs. At the time, the project was getting very little attention and update, and we needed to move fast, so the decision (right or wrong) was made to plow ahead without focusing on getting our enhancements back into the master gem.
 
-RESTful ETL is an extract, transform, and load (ETL) library that interprets
-classic Kimball Method data warehouse and ETL patterns with the modern
-asynchronous, non-blocking advantages of node.js.
+If it makes sense in the future to rebase our enhancements, merge their current progress, and contribute back, I am **VERY** enthusiastic about that, but we are under incredible time/budget constraints in the near term.
 
-Designed for applications small enough that bulk loading is not required, the
-library relies on RESTful API interfaces for data sources, destinations, and
-its own operation.
+getting started: terminology
+----------------------------
 
-## Terminology:
+* ETL: Extract, Transform, and Load, which is the process of moving data from one place to another with an changes to the data (transformations) that may be required. http://en.wikipedia.org/wiki/Extract,_transform,_load
+* Kimball Method: A best practice pattern for data warehousing and ETL employed by the ActiveWarehouse-ETL toolkit and employed (with some modifications) to activecell
+* Job: An ETL "job" is a small and contained task such as loading a table. It may or may not correspond to a "job" in a queuing system such as delayedjob or resque. In our context, jobs are defined by control files (*.ctl) in the core application's ETL config. These control files are parsed as ruby but follow a DSL that is specific to profitably-etl
+* Batch: An ETL "batch" is just a collection of jobs that represent a standard pathway or workflow, such as a full data refresh or an incremental refresh. Batches may be enqueued as jobs in a queuing system such as delayedjob or resque, so don't that let terminology confuse you. In our context, batches are defined by batch files (*.ebf) in the core application's ETL config. The control files are parsed as ruby but follow a DSL that is specific to profitably-etl
 
-* A **connection** is an object containing credentials for a known data source/destination.
-* A **task** is the most atomic type of action that can be taken in the system, and tasks are either of type extract, transform, or load
-    * **Extract tasks** retrieve data from the source. They do not change depending on the destination. Given a valid connection, extract jobs use `GET` requests to extract data without concern for how the data will be transformed or loaded.
-    * **Load tasks** use `GET`, `POST`, and `PUT` requests to append, update, and delete records in the destination without concern for how the data was extracted or loaded.
-    * Thusly, the **transformation task** that sits between the two need only provide a means of transforming data rows from the source interface to the destination. A library of common data transformations facilitates this process, though most transformations required are simple data manipulations easily handled by rudimentary javascript.
-* A **job** is an array of tasks--a single flow of data through the system--and it typically consists of an extract, a transform, and a load task (though in the request, the transform task is generally inferred from the extract and load tasks)
-* A **batch** is an array of jobs to be performed at the same time. They can maintain dependencies to ensure that data from one job is available for subsequent jobs.
-* A **schedule** is an array of batches along with metadata about how frequently to execute future batches. Note, a new batch can be triggered manually within a schedule, and that batch will be associated with all other batches in the schedule.
+getting started: typical process/flow
+-------------------------------------
 
-## Usage
+* in our core application (activecell), it is the Company class that owns ETL processes
+* therefore, in our core application a company will have an instance method to process an etl batch, with a "type" specifying which batch control file to run
+* because the etl processes are long-running, etl processes should always be enqueued and run by job workers (resque or delayedjob) in production
+* when the batch is picked up for execution by profitably-etl, it is run by the "engine" a la `ETL::Engine.process()`
+* at the outset, the engine parses the control files recursively using batch.rb and control.rb and their supporting files
+* there are various types of source and destination systems/formats, each a subclass of Source or Destination
+* once parsed successful, the engine processes the batch/controls sequentially, pulling data from the source and getting ready to insert into the destination
+* along the data "pipeline" there are many possible transformations, pre-processors, post-processors, etc. some of these are part of the standard profitably-etl tool, and custom processors are defined in core application
+* data is processed on a row-by-row basis and then buffered in the destination object until flushed into the destination
 
-A user or application sends `POST`s to the connection endpoint to establish connections to be used in future batches.
+notes about the profitably repo
+-------------------------------
 
-Example JSON request:
+in the previous repo (profitably/profitably) we followed the convention of:
 
-```json
+* extracting from QBD directly into mongo, using mongo as a staging destination for the extracted data
+* extracting from mongo, transforming row by row
+* inserting into postgres using ActiveRecord
+  
+in activecell, we use mongo for our primary storage, so we will want a similar process:
 
-{
-  name: 'Quickbooks Desktop',
-  provider: 'QBD',
-  realm: '12345',
-  oauth\_consumer\_key: '',
-  oauth\_consumer\_secret: ''
-}
+* extract from QBD directly into mongo, using mongo as a staging destination for the extracted data
+* extract from mongo, transforming row by row
+* inserting into mongo using a modified version of the ActiveRecord destination (ideally) or a new Mongo destination
 
-```
+Helpful dev tricks:
+===================
+    
+```ruby
 
-A valid connection will return a connection object that can be used for future batches.
-
-Example JSON response:
-
-```json
-
-{
-  id: '51b4ac524c9bfd8f2d000002'
-  name: 'Quickbooks Desktop',
-  provider: 'QBD',
-  realm: '12345',
-  oauth\_consumer\_key: '',
-  oauth\_consumer\_secret: ''
-}
-
-```
-
-A user or application may then send a `POST` to the batch endpoint with the configuration required.
-Example JSON request:
-
-```json
-
-{
-  source: {
-    name: 'Quickbooks Desktop',
-    connection_id: '51b4ac524c9bfd8f2d000002'
-  },
-  destination: {
-    name: 'Activecell',
-    connection_id: '51acded6a60c22e94d000004'
-  },
-  since: '2010-01-01',
-  jobs: [
-    {
-      extract: {
-        object: 'Bills',
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }, {
-      extract: {
-        object: 'Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
-  ]
-}
-```
-
-In the above case, it is presumed that either:
-
-1. The library has a transformation job converting the output of QuickBooks Desktop bills to Activecell financial history, or
-2. No transformation is required, and that posting the QuickBooks desktop bills data to Activecell financial history will achieve the desired results
-
-In addition, the above case presumes that valid connection objects have been established to both QuickBooks Desktop and Activecell, and that these connections can be used for `GET`, `POST`, and `PUT` requests as required.
-
-A new ETL "batch" is created based on the template specified in the batch type.
-
-Example JSON response:
-```json
-
-{
-  name: 'Daily QBD to Activecell refresh',
-  frequency: "daiy",
-  batch: {
-    source: {
-      name: 'Quickbooks Desktop',
-      connection: '51b4ac524c9bfd8f2d000002'
-    },
-    destination: {
-      name: 'Activecell',
-      connection: '51acded6a60c22e94d000004'
-    },
-    since: '2010-01-01'
-    # ...etc...
-  }
-}
-```
-
-As the server executes the batch, the user or application can ping the batch
-endpoint for updated status or establish a socket connection for a real time
-status feed.
-
-If the user or app wants to set up a recurring schedule for batches, a simple `POST` can manage this:
-
-Example JSON request:
-```json
-
+# turn on console messages
+ETL::Engine::realtime_activity = true
+# locate a valid intuit company (ids vary--find a method locally)
+ic = Company.find('5010008bfd1108e08d000003').intuit_company
+# run the full etl batch to hunt for errors
+ic.process_etl_batch(:full)
+# run a specific job that's causing problems
+# note: ETL:Engine stores the current batch, so running a job will leverage data pulled by the most recent batch!
+control = (Rails.root + 'config/etl/qbd/jobs/load_qbd_bills.ctl').to_s
+ETL::Engine.process(control)
 
 ```
+    
+    
 
-## Server features
 
-* Fully RESTful api
-* Audit table and quality screens
-* Error table
-* Schedules
-* Batches and individual jobs
-* Socket broadcasts for real time status consumption
-* Multi-tenant architecture
+ActiveWarehouse-ETL
+===================
 
-## ETL execution
+ActiveWarehouse-ETL is a Ruby Extract-Transform-Load (ETL) tool.
 
-### Batches
+This tool is both usable and used in production under its current form - but be aware the project is under reorganization: a new team is shaping up and we're working mostly on making it easier for people to contribute first. Up-to-date documentation will only come later.
 
-#### Batches vs streaming
+Usage
+-----
 
-In a real-time data integration environment, data is continuously fed from source systems to destination systems. In our case, the use of "batches" is intended to provide a periodically (hourly, daily, weekly) update. However, since the data flow is managed on a record-at-a-time basis and not with bulk loading, the "batch" concept is partially semantic.
+The documentation is sparse and not everything is up to date, too, but here are useful bits to get you started:
 
-As endpoints for webhooks are added to this library, the user will be able to process streaming real time data with or without an initial batch data load.
+* read the "Introduction":https://github.com/activewarehouse/activewarehouse-etl/wiki/Documentation
+* later on, refer to the "RDoc":http://rdoc.info/github/activewarehouse/activewarehouse-etl/master/frames (be sure to check out Processor and Transform)
+* read the "source":https://github.com/activewarehouse/activewarehouse-etl/tree/master/lib/etl
 
-Example real time JSON request:
+If you're lost, please ask questions on the "Google Group":http://groups.google.com/group/activewarehouse-discuss and we'll take care of it.
 
-```json
+One thing to keep in mind is that ActiveWarehouse-ETL is highly hackable: you can pretty much create all you need with extra ruby code, even if it's not currently supported.
 
-{
-  source: {
-    name: 'Quickbooks Desktop',
-  },
-  destination: {
-    name: 'Activecell',
-    connection_id: '51acded6a60c22e94d000004'
-  },
-  jobs: [
-    {
-      extract: {
-        object: 'Bills',
-        data: [data object to transform and load]
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: false
-      }
-    }
-  ]
-}
+Compatibility
+-------------
 
-### Extract jobs
+Current code should work with any combination of Rails 2, Rails 3, Ruby 1.8.7, Ruby 1.9.2, MySQL and Postgresql. If you meet any issue, drop a line on the "Google Group":http://groups.google.com/group/activewarehouse-discuss and/or "create an issue on github":https://github.com/activewarehouse/activewarehouse-etl/issues.
 
-e.g. Extract QuickBooks bills
+Contributing
+------------
 
-* full or incremental
-* links to metadata
-* consolidates paged data
-* stages in memory, redis, or mongo
-* ends with promise/callback/notification
+Fork on GitHub and after you've committed tested patches, send a pull request.
 
-### Transform jobs
+If you meet any error while trying to run the tests, or any failure, please drop a line on the "Google Group":http://groups.google.com/group/activewarehouse-discuss.
 
-e.g. Quickbooks bills to Activecell financial history
+h3. Pre-requisites to running the tests
 
-* simple transforms
-* lookups
-* stages in memory, redis, or mongo
-* ends with promise/callback/notification
+* install RVM and Bundler
+* install MySQL and/or Postgresql (you can use brew for that)
+* create test/config/database.mysql.yml and test/config/database.postgresql.yml based on "test/config/database.example.yml":https://github.com/activewarehouse/activewarehouse-etl/blob/master/test/config/database.example.yml
+* create databases 'etl_unittest' and 'etl_unittest_execution' in each database, with access to the user given in the yml files
 
-### Load jobs
+If you don't install both MySQL and Postgresql, edit "test/config/common.rb":https://github.com/activewarehouse/activewarehouse-etl/blob/master/test/config/common.rb to comment out either 'mysql' or 'pg', or the test task will raise errors.
 
-e.g. Load Activecell financial history
+h3. Run the tests
 
-* pull destination dataset
-* append, update, delete
-* scd
-* links to destination api metadata
+You can run the tests on a "combination of environments":https://github.com/activewarehouse/activewarehouse-etl/blob/master/test-matrix.yml using:
 
-## Client features
+<pre>
+  rake test:matrix
+</pre>
 
-### When batches are not running
+h2. Contributors
 
-* last sync
-* connected since
-* button to initiate full re-sync of data
-* sync history
-* audit, data quality screens output
+ActiveWarehouse-ETL is the work of many people since late 2006 - here is a list, in no particular order:
 
-### When batches are running
+* Anthony Eden
+* Chris DiMartino
+* Darrell Fuhriman
+* Fabien Carrion
+* Jacob Maine
+* James B. Byrne
+* Jay Zeschin
+* Jeremy Lecour
+* Steve Meyfroidt
+* Seth Ladd
+* Thibaut Barrère
+* Stephen Touset
+* sasikumargn
+* Andrew Kuklewicz
+* Leif Gustafson
+* Andrew Sodt
+* Tyler Kiley
+* Colman Nady
+* Scott Gonyea
 
-* status table with job list, updated in real time
-* error table
-* cancel, restart
+If your name should be on the list but isn't, please leave a comment!
 
-## Future features
+h2. Features
 
-* endpoint for real time hooks
+Currently supported features:
 
-## Contributing
-
-Please see [CONTRIBUTING.md](https://github.com/activecell/restful-etl/blob/master/CONTRIBUTING.md).
-
-## Anything we missed?
-
-If there's anything at all that you need or want to know, please log an
-[issue](https://github.com/activecell/restful-etl/issues) and we will
-try to get you sorted out straight away.
+* ETL Domain Specific Language (DSL) - Control files are specified in a Ruby-based DSL
+* Multiple source types. Current supported types:
+** Fixed-width and delimited text files
+** XML files through SAX
+** Apache combined log format
+* Multiple destination types - file and database destinations
+* Support for extracting from multiple sources in a single job
+* Support for writing to multiple destinations in a single job
+* A variety of built-in transformations are included:
+** Date-to-string, string-to-date, string-to-datetime, string-to-timestamp
+** Type transformation supporting strings, integers, floats and big decimals
+** Trim
+** SHA-1
+** Decode from an external decode file
+** Default replacement for empty values
+** Ordinalize
+** Hierarchy lookup
+** Foreign key lookup
+** Ruby blocks
+** Any custom transformation class
+* A variety of build-in row-level processors
+** Check exists processor to determine if the record already exists in the destination database
+** Check unique processor to determine whether a matching record was processed during this job execution
+** Copy field
+** Rename field
+** Hierarchy exploder which takes a tree structure defined through a parent id and explodes it into a hierarchy bridge table
+** Surrogate key generator including support for looking up the last surrogate key from the target table using a custom query
+** Sequence generator including support for context-sensitive sequences where the context can be defined as a combination of fields from the source data
+** New row-level processors can easily be defined and applied
+* Pre-processing
+** Truncate processor
+* Post-processing
+** Bulk import using native RDBMS bulk loader tools
+* Virtual fields - Add a field to the destination data which doesn't exist in the source data
+* Built in job and record meta data
+* Support for type 1 and type 2 slowly changing dimensions
+** Automated effective date and end date time stamping for type 2
+** CRC checking
