@@ -3,16 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "mocha test/unit/ && mocha test/api/"
   },
   "engines": {
     "node": "0.10.x"
   },
   "dependencies": {
     "coffee-script": "~1.6.2",
-    "showcase": "0.3.6",
-    "supertest": "0.7.1"
+    "express": "~3.1.2",
+    "hbs": "~2.1.0",
+    "showcase": "0.3.6"
   },
   "devDependencies": {
+    "supertest": "*",
+    "mocha": "*",
+    "chai": "*"
   }
 }
