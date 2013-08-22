@@ -1,0 +1,2 @@
+exports.connections = () ->
+  "connections"

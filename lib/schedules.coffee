@@ -1,0 +1,3 @@
+exports.schedules = () ->
+  "schedules"
+

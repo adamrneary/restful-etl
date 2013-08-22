@@ -1,0 +1,14 @@
+.DS_Store
+/bower_components
+/node_modules
+
+.sass-cache/
+public/docs
+public
+
+.idea
+
+.rvmrc
+build/
+test/cov/
+test/reports/
