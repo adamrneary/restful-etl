@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <ul id="cartLinkList" class="nav introduction">
+                <li class="nav-header">Introduction</li>
+                <li>
+                    <a href="#">Introduction1</a>
+                </li>
+            </ul>
+            <ul id="noncartLinkList" class="nav api">
+                <li class="nav-header">API</li>
+            </ul>
+            <ul id="compLinkList" class="nav objects">
+                <li class="nav-header">Objects</li>
+            </ul>
+        </div>
+
+        <div class="span9">
+            <h1> Introduction</h1>
+            <h2> RESTful ETL</h2>
+            <div>
+                RESTful ETL is an extract, transform, and load (ETL) library that interprets classic Kimball Method data warehouse and ETL patterns with the modern asynchronous, non-blocking advantages of node.js.
+                Designed for applications small enough that bulk loading is not required, the library relies on RESTful API interfaces for data sources, destinations, and its own operation.
+            </div>
+            <h2> Terminology:</h2>
+            <div>
+                <ul>
+                    <li>A <strong>connection</strong> is an object containing credentials for a known data source/destination.</li>
+                    <li>A <strong>task</strong> is the most atomic type of action that can be taken in the system, and tasks are either of type extract, transform, or load
+                        <ul>
+                            <li>
+                                <strong>Extract tasks</strong> retrieve data from the source. They do not change depending on the destination. Given a valid connection, extract jobs use <code>GET</code> requests to extract data without concern for how the data will be transformed or loaded.</li>
+                            <li>
+                                <strong>Load tasks</strong> use <code>GET</code>, <code>POST</code>, and <code>PUT</code> requests to append, update, and delete records in the destination without concern for how the data was extracted or loaded.</li>
+                            <li>Thusly, the <strong>transformation task</strong> that sits between the two need only provide a means of transforming data rows from the source interface to the destination. A library of common data transformations facilitates this process, though most transformations required are simple data manipulations easily handled by rudimentary javascript.</li>
+                        </ul>
+                    </li>
+                    <li>A <strong>job</strong> is an array of tasks--a single flow of data through the system--and it typically consists of an extract, a transform, and a load task (though in the request, the transform task is generally inferred from the extract and load tasks)</li>
+                    <li>A <strong>batch</strong> is an array of jobs to be performed at the same time. They can maintain dependencies to ensure that data from one job is available for subsequent jobs.</li>
+                    <li>A <strong>schedule</strong> is an array of batches along with metadata about how frequently to execute future batches. Note, a new batch can be triggered manually within a schedule, and that batch will be associated with all other batches in the schedule.</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
