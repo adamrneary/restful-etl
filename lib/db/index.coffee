@@ -1,6 +1,5 @@
 mongoose = require "mongoose"
 Schema = mongoose.Schema
-
 config = require '../../config'
 
 path = "mongodb://localhost:27017/#{config.db_path}"

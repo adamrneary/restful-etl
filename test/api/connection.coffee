@@ -12,12 +12,14 @@ db      = require path.join(__dirname, '../../lib/db')
 
 
 
-
 describe 'ETL api', ->
 
-#  before (done)->
-#    db.conn.connection.db.dropDatabase (err)->
-#      console.log 'ZZZ', err
+  before (done)->
+    connection = db.conn.connection
+    connection.on 'connected', ->
+      connection.db.dropDatabase (err)->
+        done()
+
 
   describe 'Connection', ->
 

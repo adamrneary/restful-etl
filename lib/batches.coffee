@@ -1,2 +1,0 @@
-exports.batches = () ->
-  "batches"
