@@ -71,3 +71,15 @@ fi
 echo ""
 echo "Installing packages from package.json."
 npm install
+
+#
+# Check mongo-express config.js file
+#
+if [ -f ./node_modules/mongo-express/config.js ]; then
+  echo "mongo-express config.js exist"
+else
+  echo "copy mongo-express config.js from mongo_express_config.js to ./node_modules/mongo-express/config.js"
+  cp mongo_express_config.js ./node_modules/mongo-express/config.js
+fi
+
+
