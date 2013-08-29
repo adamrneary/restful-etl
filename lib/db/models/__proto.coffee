@@ -12,7 +12,6 @@ module.exports = (name, schema)->
 
     append: (json, cb) ->
       model = new Model json
-      console.log 'append', json, model
       model.save (err)->
         console.log 'saved', err
         cb(err, model)

@@ -15,3 +15,5 @@ module.exports =
   conn: conn
   models:
     Connection: require("./models/connection")
+    Batch: require("./models/batch")
+    Schedule: require("./models/schedule")
