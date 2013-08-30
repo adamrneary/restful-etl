@@ -11,7 +11,24 @@
 
 ## Sample requests and responses
 #####/connection
-Example POST request:
+Sample GET response:
+```json
+[{
+  id: '51b4ac524c9bfd8f2d000002'
+  name: 'Quickbooks Desktop',
+  provider: 'QBD',
+  realm: '12345',
+  oauth: {
+    consumer: {
+      key: '',
+      secret: ''
+    }
+  }
+},
+  # ...more connections...
+]```
+
+Sample POST request:
 ```json
 {
   name: 'Quickbooks Desktop',
@@ -20,7 +37,7 @@ Example POST request:
   oauth: {
     consumer: {
       key: '',
-      secret
+      secret: ''
     }
   }
 }```
@@ -35,18 +52,12 @@ Sample POST response:
   oauth: {
     consumer: {
       key: '',
-      secret
+      secret: ''
     }
   }
 }```
 
 #####/connection/:id
-Example get request:
-```json
-{
-  id: '51b4ac524c9bfd8f2d000002'
-}```
-
 Sample GET response:
 ```json
 {
@@ -57,10 +68,51 @@ Sample GET response:
   oauth: {
     consumer: {
       key: '',
-      secret
+      secret: ''
     }
   }
 }```
 
+Example PUT request:
+```json
+{
+  name: 'Dashboard',
+  provider: 'QBD',
+  realm: '12345',
+  oauth: {
+    consumer: {
+      key: '',
+      secret: ''
+    }
+  }
+}```
 
+Example PUT response:
+```json
+{
+  id: '51b4ac524c9bfd8f2d000002'
+  name: 'Dashboard',
+  provider: 'QBD',
+  realm: '12345',
+  oauth: {
+    consumer: {
+      key: '',
+      secret: ''
+    }
+  }
+}```
 
+Sample DELETE response:
+```json
+{
+  id: '51b4ac524c9bfd8f2d000002'
+  name: 'Dashboard',
+  provider: 'QBD',
+  realm: '12345',
+  oauth: {
+    consumer: {
+      key: '',
+      secret: ''
+    }
+  }
+}```
