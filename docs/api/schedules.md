@@ -72,7 +72,9 @@ Sample POST request:
 
 You can also POST to
 
-/schedules/batches
+/schedule/:id/:action/...
+switch req.params.action
+  when 'create'
 
 This will manually trigger a new batch for an existing schedule.
 

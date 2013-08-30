@@ -5,7 +5,7 @@ request = require('supertest')
 {isAuth, docco, getSections} = require('showcase')
 
 app.get '/', isAuth, (req, res) ->
-  res.render 'pages/index'
+  res.render 'pages/iframe', url: '/home/connections.html'
 
 app.get '/tests', isAuth, (req, res) ->
   res.render 'pages/iframe', url: '/test_runner.html'
@@ -17,7 +17,4 @@ app.start()
 
 # Generate docco documenation
 docco(files: '/../lib/db/models/*.coffee', output: '/public/docs', root: __dirname, layout: 'parallel')
-
-## Generate gfm documenation
-#gfm.generate '/../docs/', (error) ->
-#  console.log error if error
+docco(files: '/../docs/api/*.md', output: '/public/home', root: __dirname, layout: 'linear')

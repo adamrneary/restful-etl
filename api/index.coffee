@@ -14,11 +14,11 @@ formatters = require("./formatters")
 server = restify.createServer
   name: 'etl-api'
   version: '0.0.1'
-  formatters:
-    "*/*": formatFoo = (req, res, body) ->
-      console.error body
-      return body.stack  if body instanceof Error
-      body.toString "base64"  if Buffer.isBuffer(body)
+#  formatters:
+#    "*/*": formatFoo = (req, res, body) ->
+#      console.error body
+#      return body.stack  if body instanceof Error
+#      body.toString "base64"  if Buffer.isBuffer(body)
 
 
 

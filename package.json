@@ -16,7 +16,8 @@
     "showcase": "0.3.6",
     "restify": "~2.6.0",
     "mongoose": "~3.6.18",
-    "underscore": "~1.5.1"
+    "underscore": "~1.5.1",
+    "mongo-express": "~0.18.0"
   },
   "devDependencies": {
     "supertest": "*",
