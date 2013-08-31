@@ -1,4 +1,3 @@
-gfm = require  'gfm'
 app = require('showcase').app(__dirname)
 request = require('supertest')
 
