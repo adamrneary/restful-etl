@@ -4,12 +4,12 @@ Schema = mongoose.Schema
 
 connectionSchema = new Schema
   name: {type: String, required: true}
+  provider: String
   realm: String
   oauth_consumer_key: String
   oauth_consumer_secret: String
 
 connectionSchema.pre 'save', (next)->
-  # TODO: add provider to the condition below
   Connection::findOne {name: @name}, (err, data)->
     return next err if err
     return next new Error 'fields are not unique' if data?
