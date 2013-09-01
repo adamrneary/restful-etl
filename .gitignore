@@ -12,3 +12,17 @@ public
 build/
 test/cov/
 test/reports/
+
+octopress/.bundle
+octopress/.DS_Store
+octopress/.sass-cache
+octopress/.gist-cache
+octopress/.pygments-cache
+octopress/_deploy
+octopress/public
+octopress/sass.old
+octopress/source.old
+octopress/source/_stash
+octopress/source/stylesheets/screen.css
+octopress/vendor
+octopress/node_modules
