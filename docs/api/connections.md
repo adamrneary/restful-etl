@@ -4,6 +4,8 @@
 
 * `id`: An immutable String assigned by the system on create
 * `tenant_id`: A optional String to link a schedule to a specific tenant (included even if it is specified by a schedule)
+* `name`: A String used for lookups
+    * Note: The name must be unique within a given tenant
 * `provider`: TODO: provider description
 * `realm`: TODO: realm description
 * `oauth/consumer/key`: TODO: key description

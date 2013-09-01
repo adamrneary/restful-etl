@@ -17,3 +17,4 @@ module.exports =
     Connection: require("./models/connection")
     Batch: require("./models/batch")
     Schedule: require("./models/schedule")
+    Tenant: require("./models/tenant")
