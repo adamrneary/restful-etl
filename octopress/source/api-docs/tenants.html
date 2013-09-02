@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>API documentation: Tenants</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          
+          <h1>API documentation: Tenants</h1>
+<h2>Fields</h2>
+<ul>
+<li><code>id</code>: An immutable String assigned by the system on create</li>
+<li><code>name</code>: A String used for lookups</li>
+</ul>
+<h2>Sample requests and responses</h2>
+<h5>/tenant</h5>
+<p>Example POST request:</p>
+<pre><code class="lang-json">{
+name: &#39;my tenant&#39;
+}</code></pre>
+<p>Sample POST response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0000a0&#39;,
+name: &#39;my tenant&#39;
+}</code></pre>
+<p>Sample GET response:</p>
+<pre><code class="lang-json">[{
+id: &#39;51b4ac524c9bfd8f2d0000a0&#39;,
+name: &#39;my tenant&#39;
+},
+# ...more tenants...
+
+]</code></pre>
+<h5>/tenant/:id</h5>
+<p>Sample GET response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0000a0&#39;,
+name: &#39;new tenant&#39;
+}</code></pre>
+<p>Sample PUT request:</p>
+<pre><code class="lang-json">{
+name: &#39;new tenant&#39;
+}</code></pre>
+<p>Sample PUT response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0000a0&#39;,
+name: &#39;new tenant&#39;
+}</code></pre>
+<p>Sample DELETE response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0000a0&#39;,
+name: &#39;new tenant&#39;
+}</code></pre>
+
+          
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="batches.html">
+                    batches.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="connections.html">
+                    connections.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="errors.html">
+                    errors.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="schedules.html">
+                    schedules.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tenants.html">
+                    tenants.md
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>

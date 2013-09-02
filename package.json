@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "coffee-script": "~1.6.2",
+    "docco": "~0.6.2",
     "restify": "~2.6.0",
     "mongoose": "~3.6.18",
     "underscore": "~1.5.1",
