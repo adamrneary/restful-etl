@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>API documentation: Batches</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          
+          <h1>API documentation: Batches</h1>
+<h2>Fields</h2>
+<ul>
+<li><code>id</code>: An immutable String assigned by the system on create</li>
+<li><code>tenant_id</code>: A optional String to link a schedule to a specific tenant (included even if it is specified by a schedule)</li>
+<li><code>source\connection\id</code>: A String to link the batch to a connection used as a source</li>
+<li><code>destination\connection\id</code>: A String to link the batch to a connection used as a destination</li>
+<li><code>since</code>: An optional Unix timestamp specifying the earliest point in the data itself that should be requested. See note below.</li>
+<li><code>updated_since</code>: An optional Unix timestamp to allow for incremental updates. Only records updated after this point will be requested, regardless of any timing specified in the data</li>
+<li><code>jobs</code>: An Array of job items, each containing a set of tasks (see below)</li>
+</ul>
+<h3>Job and task fields</h3>
+<ul>
+<li>extract</li>
+<li>source\connection\id: An optional String to override source connection for the specific extract task</li>
+<li>object: A String identifying the object endpoint within the source system to extract</li>
+<li>grain: An optional String used for summary reports that can be extracted at various grains (e.g. daily, monthly)</li>
+<li>since: An optional String to override the since variable used in the batch (not commonly used)</li>
+<li>updated\since: An optional String to override the updated_since variable used in the batch (not commonly used)</li>
+<li>load:</li>
+<li>destination\connection\id: An optional String to override destination connection for the specific load task</li>
+<li>object: A String identifying the object endpoint within the destination system to load</li>
+<li>allowDelete: A Boolean value specifying whether to allow deletions (see below)</li>
+<li>since: An optional String to override the since variable used in the batch (not commonly used)</li>
+</ul>
+<h3>A note on &quot;since&quot; and &quot;updated<em>since</em>&quot;</h3>
+<h3>A note a allowing deletions</h3>
+<h2>Sample requests and responses</h2>
+<h5>/batch</h5>
+<p>Sample GET response:</p>
+<pre><code class="lang-json">[
+{
+id: &#39;51b4ac524c9bfd8f2d0a0002&#39;
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;Bills&#39;,
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}
+,
+# ...more batches...
+]</code></pre>
+<p>Sample POST request:</p>
+<pre><code class="lang-json">{
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;Bills&#39;,
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}</code></pre>
+<p>Sample POST response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0a0002&#39;
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;Bills&#39;,
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}</code></pre>
+<h5>/batch/:id</h5>
+<p>Sample GET response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0a0002&#39;
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;Bills&#39;,
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}</code></pre>
+<p>Sample PUT request:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0a0002&#39;
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;new Bills&#39;,
+},
+load: {
+object: &#39;new financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;new Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}</code></pre>
+<p>Sample PUT response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0a0002&#39;
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;new Bills&#39;,
+},
+load: {
+object: &#39;new financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;new Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}</code></pre>
+<p>Sample DELETE response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d0a0002&#39;
+source: {
+connection:{
+id: &#39;51b4ac524c9bfd8f2d000002&#39;
+}
+},
+destination: {
+connection: {
+id: &#39;51acded6a60c22e94d000004&#39;
+}
+},
+since: &#39;2010-01-01&#39;,
+jobs: [
+{
+extract: {
+object: &#39;new Bills&#39;,
+},
+load: {
+object: &#39;new financial history&#39;,
+allowDelete: true
+}
+}, {
+extract: {
+object: &#39;new Balance Sheet Standard&#39;,
+grain: &#39;monthly&#39;
+},
+load: {
+object: &#39;financial history&#39;,
+allowDelete: true
+}
+}
+]
+}</code></pre>
+
+          
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="batches.html">
+                    batches.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="connections.html">
+                    connections.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="errors.html">
+                    errors.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="schedules.html">
+                    schedules.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tenants.html">
+                    tenants.md
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>

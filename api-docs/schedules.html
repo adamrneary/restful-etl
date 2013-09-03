@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>API documentation: Schedules</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="public/stylesheets/normalize.css" />
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="page">
+
+      <div class="header">
+        
+          
+          <h1>API documentation: Schedules</h1>
+<h2>Fields:</h2>
+<ul>
+<li><code>id</code>: An immutable String assigned by the system on create</li>
+<li><code>tenant_id</code>: A optional String to link a schedule to a specific tenant</li>
+<li><code>name</code>: A String provided by the user to facilitate lookups</li>
+<li>Note: The name must be unique within a given tenant</li>
+<li><code>frequency</code>: A string indicating how often a new batch should be created</li>
+<li>Valid frequencies</li>
+<li>&#39;on_demand&#39;</li>
+<li>&#39;hourly</li>
+<li>&#39;daily&#39;</li>
+<li>&#39;weekly&#39;</li>
+<li>&#39;monthly&#39;</li>
+<li>&#39;annually&#39;</li>
+<li><code>batches</code>: An Array of &quot;batch&quot; Objects representing the batches initiated on behalf of the schedule</li>
+</ul>
+<h2>Sample requests and responses</h2>
+<h5>/schedules</h5>
+<p>Sample GET response:</p>
+<pre><code class="lang-json">[
+{
+id: &#39;51b4ac524c9bfd8f2d000009&#39;,
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+},
+# ...more schedules...
+]</code></pre>
+<p>Sample POST request:</p>
+<pre><code class="lang-json">{
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+}</code></pre>
+<p>Sample POST response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d000109&#39;,
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+}</code></pre>
+<h5>/schedules/:id</h5>
+<p>Sample GET response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d000009&#39;,
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+}</code></pre>
+<p>Sample PUT request:</p>
+<pre><code class="lang-json">{
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+}</code></pre>
+<p>Sample PUT response:</p>
+<pre><code class="lang-json">{
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+}</code></pre>
+<p>Sample DELETE response:</p>
+<pre><code class="lang-json">{
+id: &#39;51b4ac524c9bfd8f2d000009&#39;,
+name: &#39;Daily QBD to Activecell refresh&#39;,
+frequency: &quot;daiy&quot;,
+batches: [
+# an array of batches; same response as for `GET` to batch endpoint
+]
+}</code></pre>
+
+          
+        
+
+        
+          <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+              
+                
+                <li>
+                  <a class="source" href="batches.html">
+                    batches.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="connections.html">
+                    connections.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="errors.html">
+                    errors.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="schedules.html">
+                    schedules.md
+                  </a>
+                </li>
+              
+                
+                <li>
+                  <a class="source" href="tenants.html">
+                    tenants.md
+                  </a>
+                </li>
+              
+            </ol>
+          </div>
+        
+      </div>
+
+      
+      <div class="fleur">h</div>
+    </div>
+  </div>
+</body>
+</html>
