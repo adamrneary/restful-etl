@@ -6,6 +6,10 @@ We maintain script/bootstrap so you can run 1 script to set up your working
 environment. If you had any dependencies that don't get picked up by `npm install`
 then please make sure the appropriate flags are added to script/bootstrap.
 
+## Local dev
+
+Run `npm start` to start the local server.
+
 ## Style
 
 We want to keep styles simple and consistent so that anyone
@@ -16,6 +20,9 @@ can drop in and out of the project seamlessly.
 * All css should be written in scss
 
 ## Tests
+
+Run `npm test` to execute the test suite.
+TODO: We also could use a "watch" command to run so that tests are re-run on save.
 
 Please make sure all pull requests include tests that fail
 without your new functionality and pass with it.
