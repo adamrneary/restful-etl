@@ -34,11 +34,8 @@ server.put "/:model/:id", routes.put
 server.del "/:model/:id", routes.del
 
 # Generate docco documenation
-exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../octopress/source/src-docs --layout parallel #{__dirname}/../lib/db/models/*.coffee", (err, stdout, stderr) ->
-  console.log('docco exec error: ' + err || stderr) if err or stderr
-  console.log stdout.replace(/: ([\w|\/\.]*)/gm, '')
-
-exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../octopress/source/api-docs --layout linear #{__dirname}/../docs/api/*.md", (err, stdout, stderr) ->
+# TODO: This should be built into a deploy rake task of some sort rather than built when the server start up
+exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../showcase/source/src-docs --layout parallel #{__dirname}/../lib/db/models/*.coffee", (err, stdout, stderr) ->
   console.log('docco exec error: ' + err || stderr) if err or stderr
   console.log stdout.replace(/: ([\w|\/\.]*)/gm, '')
 
