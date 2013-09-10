@@ -8,7 +8,9 @@ then please make sure the appropriate flags are added to script/bootstrap.
 
 ## Local dev
 
-Run `npm start` to start the local server.
+* `npm start` - to start server locally on http://localhost:7171.
+* `npm test` -  to run tests.
+* `http://localhost:8081/db/etl` - to run web-based MongoDB admin interface on http://localhost:8081.
 
 ## Style
 
