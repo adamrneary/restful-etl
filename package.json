@@ -1,0 +1,25 @@
+{
+  "name": "activecell-etl",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha test/unit/ && mocha test/api/"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.2",
+    "docco": "~0.6.2",
+    "restify": "~2.6.0",
+    "mongoose": "~3.6.18",
+    "underscore": "~1.5.1",
+    "mongo-express": "~0.18.0"
+  },
+  "devDependencies": {
+    "supertest": "*",
+    "mocha": "*",
+    "chai": "*"
+  }
+}

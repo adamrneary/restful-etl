@@ -1,0 +1,8 @@
+deployment:
+  showcase:
+    branch: master
+    heroku:
+      appname: activecell-etl
+machine:
+  node:
+    version: 0.10.3

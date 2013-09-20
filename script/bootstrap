@@ -1,0 +1,85 @@
+#!/bin/bash
+#
+# bootstrap
+#
+# Checks for dependencies so you can get rolling with ActiveCell straight away
+
+echo ""
+echo "tactile.js"
+echo "Bad-ass interactive charts."
+echo ""
+
+#
+# Check for node
+#
+if test ! $(which node); then
+  echo "  x You need to install node. If you use Homebrew, you can run:"
+  echo "    brew install node"
+  exit
+else
+  echo "  + node found."
+fi
+
+#
+# Check node version
+#
+NODE_VERSION=$(node -v)
+if ! [[ $NODE_VERSION == v0.10* ]]; then
+  echo "  x You need to update node to 0.10.x. If you use Homebrew, you can run:"
+  echo "    brew update && brew upgrade node"
+  exit
+else
+  echo "  + node >= 0.10."
+fi
+
+#
+# Check for npm
+#
+if test ! $(which npm); then
+  echo "  x You need to install npm. If you use Homebrew, you can run:"
+  echo "    brew install npm"
+  exit
+else
+  echo "  + npm found."
+fi
+
+#
+# Check for coffee-script
+#
+if test ! $(which coffee); then
+  echo "  x You need to install coffee. You can run:"
+  echo "    npm install -g coffee-script"
+  exit
+else
+  echo "  + coffee-script found."
+fi
+
+#
+# Check for casperjs
+#
+if test ! $(which casperjs); then
+  echo "  x You need to install casperjs. If you use Homebrew, you can run:"
+  echo "    brew install casperjs"
+  exit
+else
+  echo "  + casperjs found."
+fi
+
+#
+# Install from package file
+#
+echo ""
+echo "Installing packages from package.json."
+npm install
+
+#
+# Check mongo-express config.js file
+#
+if [ -f ./node_modules/mongo-express/config.js ]; then
+  echo "mongo-express config.js exist"
+else
+  echo "copy mongo-express config.js from mongo_express_config.js to ./node_modules/mongo-express/config.js"
+  cp mongo_express_config.js ./node_modules/mongo-express/config.js
+fi
+
+
