@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "mocha test/unit/ && mocha test/api/"
+    "test": "mocha test/unit/ && mocha test/api/ && mocha test/integration/"
   },
   "engines": {
     "node": "0.10.x"
@@ -15,7 +15,11 @@
     "restify": "~2.6.0",
     "mongoose": "~3.6.18",
     "underscore": "~1.5.1",
-    "mongo-express": "~0.18.0"
+    "mongo-express": "~0.18.0",
+    "oauth": "~0.9.10",
+    "xml2js": "~0.2.8",
+    "nock": "~0.22.1",
+    "async": "~0.2.9"
   },
   "devDependencies": {
     "supertest": "*",
