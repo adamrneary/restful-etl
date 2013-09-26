@@ -1,5 +1,6 @@
-__proto = require './__proto'
-mongoose = require 'mongoose'
+mongoose = require "mongoose"
+__proto = require "./__proto"
+
 Schema = mongoose.Schema
 
 jobSchema = new Schema
@@ -24,5 +25,11 @@ batchSchema = new Schema
   jobs: [jobSchema]
 
 class Batch extends __proto('Batch', batchSchema)
+  create: (doc, cb) ->
+    super doc, (err, model)->
+      batchConstructor = require("../../batch").Batch
+      batch = new batchConstructor doc
+      batch.run()
+      cb err, model
 
 module.exports = Batch
