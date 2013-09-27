@@ -1,4 +1,5 @@
 intuitExtractor = require "./providers/intuit_extractor.coffee"
+xeroExtractor = require "./providers/xero_extractor.coffee"
 
 extractObjects = (options = {}, cb) ->
   switch options.provider.toUpperCase()
@@ -6,6 +7,8 @@ extractObjects = (options = {}, cb) ->
       intuitExtractor options, cb
     when "QBO"
       intuitExtractor options, cb
+    when "XERO"
+      xeroExtractor options, cb
 
 
 extract = (options = {}, cb) ->
