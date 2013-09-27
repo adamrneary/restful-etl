@@ -29,7 +29,16 @@ class Batch extends __proto('Batch', batchSchema)
     super doc, (err, model)->
       batchConstructor = require("../../batch").Batch
       batch = new batchConstructor doc
-      batch.run()
-      cb err, model
+      batch.run (err, jobs) ->
+        console.log "jobs", jobs
+#        console.log "jobs", jobs
+#        fs = require('fs');
+#        fs.writeFile "/tmp/test", jobs[0].extract._data, (err) ->
+#          if err
+#            console.log err
+#          else
+#            console.log "The file was saved!"
+
+        cb err, model
 
 module.exports = Batch

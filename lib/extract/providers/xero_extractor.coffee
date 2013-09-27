@@ -12,5 +12,9 @@ module.exports = (options = {}, cb) ->
     {"Accept": "application/json", "Connection" : "close", "User-Agent" : "Node authentication"}
   )
 
-  oauth.getProtectedResource "https://api.xero.com/api.xro/2.0/#{options.extract.object}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
+  if options.since
+    url = "https://api.xero.com/api.xro/2.0/#{options.object}?where=Date>=DateTime(#{options.since.getFullYear()},#{options.since.getMonth()},#{options.since.getDate()})"
+  else
+    url = "https://api.xero.com/api.xro/2.0/#{options.object}"
+  oauth.getProtectedResource url, "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
     cb err, data if cb

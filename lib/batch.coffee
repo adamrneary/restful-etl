@@ -34,8 +34,19 @@ class Batch
               cb(err, jobs) if cb
 
   _buildJobOptions: (job, connection) ->
-    _.extend job, connection
-
-
+    jobOptions = {}
+    jobOptions.provider = connection.provider
+    jobOptions.oauth_consumer_key = connection.oauth_consumer_key
+    jobOptions.oauth_consumer_secret = connection.oauth_consumer_secret
+    jobOptions.oauth_access_key = connection.oauth_access_key
+    jobOptions.oauth_access_secret = connection.oauth_access_secret
+    _.extend jobOptions, job
+    if @options.since
+      jobOptions.extract?.since = @options.since unless jobOptions.extract?.since
+      jobOptions.load?.since = @options.since unless jobOptions.load?.since
+    if @options.grain
+      jobOptions.extract?.grain = @options.grain unless jobOptions.extract?.grain
+      jobOptions.load?.grain = @options.grain unless jobOptions.load?.grain
+    jobOptions
 
 exports.Batch = Batch

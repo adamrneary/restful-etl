@@ -12,11 +12,12 @@ extractObjects = (options = {}, cb) ->
 
 
 extract = (options = {}, cb) ->
-  switch options.grain
-    when "daily"
-      console.log "grain daily"
-    when "monthly"
-      console.log "grain daily"
+  if options.since
+    date = new Date options.since
+    switch options.grain
+      when "monthly"
+        date.setMonth(0)
+    options.since = date
   extractObjects options, cb
 
 
