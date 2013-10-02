@@ -29,7 +29,7 @@ describe "Check batch class", ->
 
     options =
       tenant_id: "tenant_id_test"
-      source_connection_id: "5242bebbcbf86b9b26000004"
+      source_connection_id: "source_connection_id"
       destination_connection_id: "destination_connection_id_test"
       jobs: [
         extract:
@@ -47,8 +47,49 @@ describe "Check batch class", ->
         .reply(200, "done");
       batch = new Batch(options)
       batch.run (err, jobs) ->
-        done(err) if err
-        _.each jobs, (job) ->
-          done("not done") if job.extract._data isnt "done"
-        done()
+        if err then done(err)
+        else done()
 
+##------------------------------------------------------------------------------
+##
+##------------------------------------------------------------------------------
+describe "Check xero extractor", ->
+#  before (done)->
+#    connection = db.conn.connection
+#    connection.on "connected", ->
+#      connection.db.dropDatabase (err)->
+#        done()
+
+  it "create a xero connection and receive data", (done)->
+    connectioin =
+      name: "XERO connection"
+      provider: "XERO"
+      oauth_consumer_key: "0001"
+      oauth_consumer_secret: "0002"
+      oauth_access_key: "0003"
+      oauth_access_secret: "0004"
+
+    options =
+      tenant_id: "tenant_id_test"
+      source_connection_id: "source_connection_id"
+      destination_connection_id: "destination_connection_id_test"
+      jobs: [
+        extract:
+          object: "Accounts"
+      ,
+        extract:
+          object: "Items"
+      ]
+
+    connectionModel::create connectioin, (err, model) ->
+      options.source_connection_id = model._id
+      nock("https://api.xero.com")
+        .get("/api.xro/2.0/Accounts")
+        .reply(200, "done");
+      nock("https://api.xero.com")
+        .get("/api.xro/2.0/Items")
+        .reply(200, "done");
+      batch = new Batch(options)
+      batch.run (err, jobs) ->
+        if err then done(err)
+        else done()

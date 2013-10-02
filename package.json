@@ -19,7 +19,8 @@
     "oauth": "~0.9.10",
     "xml2js": "~0.2.8",
     "nock": "~0.22.1",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "moment": "~2.2.1"
   },
   "devDependencies": {
     "supertest": "*",

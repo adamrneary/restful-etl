@@ -15,6 +15,7 @@ class Job
   _buildExtractOptions: () ->
     extractOptions = {}
     extractOptions.provider = @options.provider
+    extractOptions.realm = @options.realm
     extractOptions.oauth_consumer_key = @options.oauth_consumer_key
     extractOptions.oauth_consumer_secret = @options.oauth_consumer_secret
     extractOptions.oauth_access_key = @options.oauth_access_key

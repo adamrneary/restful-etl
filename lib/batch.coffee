@@ -36,10 +36,12 @@ class Batch
   _buildJobOptions: (job, connection) ->
     jobOptions = {}
     jobOptions.provider = connection.provider
+    jobOptions.realm = connection.realm
     jobOptions.oauth_consumer_key = connection.oauth_consumer_key
     jobOptions.oauth_consumer_secret = connection.oauth_consumer_secret
     jobOptions.oauth_access_key = connection.oauth_access_key
     jobOptions.oauth_access_secret = connection.oauth_access_secret
+
     _.extend jobOptions, job
     if @options.since
       jobOptions.extract?.since = @options.since unless jobOptions.extract?.since

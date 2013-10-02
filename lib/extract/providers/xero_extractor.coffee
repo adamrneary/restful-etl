@@ -13,8 +13,9 @@ module.exports = (options = {}, cb) ->
   )
 
   if options.since
-    url = "https://api.xero.com/api.xro/2.0/#{options.object}?where=Date>=DateTime(#{options.since.getFullYear()},#{options.since.getMonth()},#{options.since.getDate()})"
+    url = "https://api.xero.com/api.xro/2.0/#{options.object}?where=Date>=DateTime(#{options.since.year()},#{options.since.month()},#{options.since.day()})"
   else
     url = "https://api.xero.com/api.xro/2.0/#{options.object}"
   oauth.getProtectedResource url, "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
+    console.log "data", data
     cb err, data if cb
