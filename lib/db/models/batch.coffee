@@ -30,6 +30,7 @@ class Batch extends __proto('Batch', batchSchema)
       batchConstructor = require("../../batch").Batch
       batch = new batchConstructor doc
       batch.run (err, jobs) ->
+        console.log "jobs", jobs
         cb err, model
 
 module.exports = Batch

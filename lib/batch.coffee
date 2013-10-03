@@ -44,11 +44,11 @@ class Batch
 
     _.extend jobOptions, job
     if @options.since
-      jobOptions.extract?.since = @options.since unless jobOptions.extract?.since
-      jobOptions.load?.since = @options.since unless jobOptions.load?.since
+      jobOptions.extract?.since = @options.since if _.isUndefined jobOptions.extract?.since
+      jobOptions.load?.since = @options.since if _.isUndefined jobOptions.load?.since
     if @options.grain
-      jobOptions.extract?.grain = @options.grain unless jobOptions.extract?.grain
-      jobOptions.load?.grain = @options.grain unless jobOptions.load?.grain
+      jobOptions.extract?.grain = @options.grain if _.isUndefined jobOptions.extract?.grain
+      jobOptions.load?.grain = @options.grain if _.isUndefined jobOptions.load?.grain
     jobOptions
 
 exports.Batch = Batch
