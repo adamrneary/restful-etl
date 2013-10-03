@@ -1,5 +1,6 @@
 OAuth = require('oauth');
-module.exports = (options = {}, cb) ->
+
+exports.extract = (options = {}, cb) ->
   oauth = new OAuth.OAuth(
     "get_request_token url",
     "get_access_token url",

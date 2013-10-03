@@ -2,9 +2,13 @@ async = require "async"
 OAuth = require "oauth"
 _ = require "underscore"
 
-maxResults = 10
+maxResults = 500
 
-module.exports = (options = {}, cb) ->
+exports.maxResults = (val) ->
+  return maxResults unless val
+  maxResults = val
+
+exports.extract = (options = {}, cb) ->
   oauth = new OAuth.OAuth(
     "get_request_token url",
     "get_access_token url",
@@ -41,7 +45,7 @@ module.exports = (options = {}, cb) ->
             if err
               cb2 err
             else
-              resultData.push JSON.parse(data).QueryResponse["#{options.object}"]
+              resultData = resultData.concat JSON.parse(data).QueryResponse["#{options.object}"]
               cb2 err
         , (err)->
           cb err, resultData

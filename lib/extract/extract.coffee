@@ -1,6 +1,6 @@
 moment = require "moment"
-intuitExtractor = require "./providers/intuit_extractor.coffee"
-xeroExtractor = require "./providers/xero_extractor.coffee"
+intuitExtractor = require("./providers/intuit_extractor.coffee").extract
+xeroExtractor = require("./providers/xero_extractor.coffee").extract
 
 extractObjects = (options = {}, cb) ->
   switch options.provider.toUpperCase()
