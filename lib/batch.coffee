@@ -1,7 +1,8 @@
+async = require "async"
 _ = require "underscore"
 connection = require "./db/models/connection"
 extract = require "./extract/extract"
-async = require "async"
+intuitBatchExtractor = require("./extract/providers/intuit_batch_extractor").extract
 Job = require("./job").Job
 
 class Batch
@@ -17,21 +18,24 @@ class Batch
         else
           jobs = @options.jobs
           connectionObj = connection.toObject()
-          async.each jobs, (job, cb) =>
-            jobOptions = @_buildJobOptions _.clone(job), connectionObj
-            jobObj = new Job(jobOptions)
-            jobObj.extract (err, data) ->
-              if err then cb(err)
+          if connectionObj.provider is "QBO_BATCH" or connectionObj.provider is "QBD_BATCH"
+            intuitBatchExtractor @options, connectionObj, cb
+          else
+            async.each jobs, (job, cb) =>
+              jobOptions = @_buildJobOptions _.clone(job), connectionObj
+              jobObj = new Job(jobOptions)
+              jobObj.extract (err, data) ->
+                if err then cb(err)
+                else
+                  job.extract._data = data if job.extract
+                  jobObj.load (err, data) ->
+                    job.load._data = data if job.load
+                    cb(err)
+            , (err) ->
+              if err
+                cb(err) if cb
               else
-                job.extract._data = data if job.extract
-                jobObj.load (err, data) ->
-                  job.load._data = data if job.load
-                  cb(err)
-          , (err) ->
-            if err
-              cb(err) if cb
-            else
-              cb(err, jobs) if cb
+                cb(err, jobs) if cb
 
   _buildJobOptions: (job, connection) ->
     jobOptions = {}
