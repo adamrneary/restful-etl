@@ -136,7 +136,9 @@ exports.extract = (options, connection, cb) ->
   ,
   (err)->
     if  err
-      cb err, null if cb
+      cb err, options.jobs if cb
     else
       batchsQueue.push newBatch while newBatch = createNewBatch(true)
+      unless _.any(batchOperationsList, (d) -> d.totalCount)
+        cb null, options.jobs if cb
 
