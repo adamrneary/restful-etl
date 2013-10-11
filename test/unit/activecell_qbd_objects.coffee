@@ -3,17 +3,9 @@ qbd_customers = require("../../lib/load/providers/activecell_objects/qbd/custome
 assert  = require("chai").assert
 
 describe "qbd ActiveCell", ->
-  describe "customers object", () ->
-    it "check filter function", ()->
-      assert.ok qbd_customers.filter("1234", {company_id:"1234", qbd_id:"qbd:1234"})
-      assert.notOk qbd_customers.filter("1234", {company_id:"1234"})
 
-    it "check compare function", ()->
-      assert.equal qbd_customers.compare("1234",{Id:"qbd:1234", DisplayName: "name1"}, {company_id:"1234", qbd_id:"qbd:1234", name: "name1"}), "equal"
-      assert.equal qbd_customers.compare("1234",{Id:"qbd:1234", DisplayName: "new name"}, {company_id:"1234", qbd_id:"qbd:1234", name: "name1"}), "update"
-      assert.equal qbd_customers.compare("1234",{Iid:"qbd:234", DisplayName: "name1"}, {company_id:"1234", qbd_id:"qbd:1234", name: "name1"}), ""
-
-    it "check create function", ()->
+  describe "Customers object", ->
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
       qbdObj =
         Id:"qbd:1234"
         DisplayName: "name1"
@@ -25,7 +17,39 @@ describe "qbd ActiveCell", ->
 
       assert.deepEqual qbd_customers.create("1234", qbdObj), resultObj
 
-    it "check update function", ()->
+    it "filters comparison to valid Activecell objects", ->
+      assert.ok qbd_customers.filter "1234", {company_id:"1234", qbd_id:"qbd:1234"}
+      assert.notOk qbd_customers.filter "1234", {company_id:"1234"}
+
+    it "can compare objObjs with Activecell objects", ->
+      existingObj =
+        company_id: "1234"
+        qbd_id: "qbd:1234"
+        name: "name1"
+
+      assert.equal qbd_customers.compare("1234",
+        Id: "qbd:1234"
+        DisplayName: "name1"
+      ,
+        existingObj
+      ), "equal"
+
+      assert.equal qbd_customers.compare("1234",
+        Id:"qbd:1234"
+        DisplayName: "new name"
+      ,
+        existingObj
+      ), "update"
+
+      assert.equal qbd_customers.compare("1234",{
+        Iid:"qbd:234"
+        DisplayName: "name1"
+      ,
+        existingObj
+      ), ""
+
+
+    it "can update an existing object", ->
       qbdObj =
         Id:"qbd:1234"
         DisplayName: "new Name"
