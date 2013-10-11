@@ -1,6 +1,6 @@
 moment = require "moment"
-intuitExtractor = require("./providers/intuit_extractor.coffee").extract
-xeroExtractor = require("./providers/xero_extractor.coffee").extract
+intuitExtractor = require("./providers/intuit_extractor").extract
+xeroExtractor = require("./providers/xero_extractor").extract
 
 extractObjects = (options = {}, cb) ->
   switch options.provider.toUpperCase()
@@ -11,7 +11,6 @@ extractObjects = (options = {}, cb) ->
     when "XERO"
       xeroExtractor options, cb
 
-
 extract = (options = {}, cb) ->
   if options.since
     date = moment options.since
@@ -20,6 +19,5 @@ extract = (options = {}, cb) ->
         date.month(0)
     options.since = date
   extractObjects options, cb
-
 
 module.exports = extract

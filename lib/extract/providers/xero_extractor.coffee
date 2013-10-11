@@ -18,5 +18,4 @@ exports.extract = (options = {}, cb) ->
   else
     url = "https://api.xero.com/api.xro/2.0/#{options.object}"
   oauth.getProtectedResource url, "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
-    console.log "data", data
     cb err, data if cb

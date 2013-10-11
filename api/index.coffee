@@ -37,7 +37,7 @@ server.del "/:model/:id", routes.del
 # TODO: This should be built into a deploy rake task of some sort rather than built when the server start up
 exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../showcase/source/src-docs --layout parallel #{__dirname}/../lib/db/models/*.coffee", (err, stdout, stderr) ->
   console.log('docco exec error: ' + err || stderr) if err or stderr
-  console.log stdout.replace(/: ([\w|\/\.]*)/gm, '')
+#  console.log stdout.replace(/: ([\w|\/\.]*)/gm, '')
 
 server.listen 7171, ->
   console.log "%s listening at %s", server.name, server.url
