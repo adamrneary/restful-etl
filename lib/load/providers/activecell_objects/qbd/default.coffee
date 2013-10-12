@@ -1,10 +1,10 @@
 _ = require "underscore"
 class Default
   constructor: (@company_id) ->
-    @compareFields[
+    @compareFields [
       activeCell: "qbd_id"
       qbd: "Id"
-      ,
+    ,
       activeCell: "name"
       qbd: "DisplayName"
     ]
@@ -45,7 +45,7 @@ class Default
 
   # get/set compare fields
   compareFields: (newFields) ->
-    if _.isArray(newFields) then @_compareFields
-    else @_compareFields = newFields
+    if _.isArray(newFields) then @_compareFields = newFields
+    else @_compareFields
 
 exports.Default = Default
