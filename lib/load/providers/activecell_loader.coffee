@@ -7,13 +7,13 @@ exports.load = (options = {}, cb) ->
   async.series [
     # load data
     (cb) ->
-      options_temp =
+      requestOptions =
         hostname: "#{options.subdomain}.activecell.com"
         path: "/api/v1/#{options.object.toLowerCase()}.json"
         method: "GET"
         auth: "#{options.username}:#{options.password}"
 
-      req = https.request options_temp, (res) ->
+      req = https.request requestOptions, (res) ->
         data = ""
         res.on 'data', (d) ->
           data += d.toString()
@@ -43,8 +43,8 @@ exports.load = (options = {}, cb) ->
     ,
     # compare objects
     (cb) ->
-      Customers = require("./activecell_objects/qb/#{options.object.toLowerCase()}").class
-      Obj = new Customers(options.companyId)
+      classObj = require("./activecell_objects/qb/#{options.object.toLowerCase()}").class
+      Obj = new classObj(options.companyId)
       activeCellData = _.filter activeCellData, (d) ->
         Obj.filter(d)
       sourseData = options.batch.extractData[options.required_object]
@@ -55,21 +55,70 @@ exports.load = (options = {}, cb) ->
 
       _.each sourseData, (source) ->
         foundIndex = 0
-        foundObj = _.find activeCellData, (active, i)->
+        foundObj = _.find activeCellData, (active, i) ->
+          return unless active
           foundIndex = i
           Obj.compare source, active
         if foundObj
           activeCellData[foundIndex] = null
-          switch Obj.compare source, foundObj
+          switch Obj.compare(source, foundObj)
             when "update" then updateList.push Obj.update source, foundObj
         else
           createList.push Obj.transform(source)
 
       deleteList = _.compact activeCellData
 
-      console.log "updateList", updateList
-      console.log "createList", createList
-      console.log "deleteList", deleteList
-      cb()
+      async.parallel [
+        (cb)->
+          requestOptions =
+            hostname: "#{options.subdomain}.activecell.com"
+            path: "/api/v1/#{options.object.toLowerCase()}/"
+            method: "PUT"
+            auth: "#{options.username}:#{options.password}"
+
+          async.each updateList, (obj, cb) ->
+            requestOptions.path += obj.id + ".json"
+            req = https.request requestOptions, (res) ->
+              cb()
+            req.end()
+            req.on "error", (e) ->
+              cb e
+          , (err) ->
+            cb(err)
+        ,
+        (cb)->
+          requestOptions =
+            hostname: "#{options.subdomain}.activecell.com"
+            path: "/api/v1/#{options.object.toLowerCase()}.json"
+            method: "POST"
+            auth: "#{options.username}:#{options.password}"
+
+          async.each createList, (obj, cb) ->
+            req = https.request requestOptions, (res) ->
+              cb()
+            req.end()
+            req.on "error", (e) ->
+              cb e
+          , (err) ->
+            cb(err)
+        ,
+        (cb)->
+          requestOptions =
+            hostname: "#{options.subdomain}.activecell.com"
+            path: "/api/v1/#{options.object.toLowerCase()}/"
+            method: "DELETE"
+            auth: "#{options.username}:#{options.password}"
+
+          async.each deleteList, (obj, cb) ->
+            requestOptions.path += obj.id + ".json"
+            req = https.request requestOptions, (res) ->
+              cb()
+            req.end()
+            req.on "error", (e) ->
+              cb e
+          , (err) ->
+            cb(err)
+      ], (err) ->
+        cb(err)
   ], (err) ->
     cb(err)

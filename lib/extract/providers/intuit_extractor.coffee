@@ -43,6 +43,7 @@ exports.extract = (options = {}, cb) ->
         resultData = []
         async.each startPositions, (startPosition, cb2)->
           oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select *, MetaData.CreateTime from #{options.object} #{filter} startposition #{startPosition} maxresults #{maxResults}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
+
             if err
               cb2 err
             else
