@@ -5,12 +5,13 @@ load = require "./load/load"
 class Job
   constructor: (@options) ->
 
-  extract: (cb) ->
-    extract @options, (err, data) ->
-      cb(err, data) if cb
-
-  load: (cb) ->
-    load @options, (err, data) ->
-      cb(err, data) if cb
+  run: (cb) ->
+    switch @options.type
+      when "extract"
+        extract @options, (err, data) ->
+          cb(err, data) if cb
+      when "load"
+        load @options, (err) ->
+          cb(err) if cb
 
 exports.Job = Job

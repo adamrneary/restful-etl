@@ -11,7 +11,7 @@ jobSchema = new Schema
   since: String
   updated_since: String
   allowDelete: Boolean
-  required_objects: [String]
+  required_object: String
 
 batchSchema = new Schema
   tenant_id: String
@@ -24,11 +24,12 @@ batchSchema = new Schema
 class Batch extends __proto('Batch', batchSchema)
   create: (doc, cb) ->
     super doc, (err, model)->
-      cb err, model
-#      batchConstructor = require("../../batch").Batch
-#      batch = new batchConstructor doc
-#      batch.run (err, jobs) ->
-#        console.log "done"
-#        cb err, model
+#      cb err, model
+      batchConstructor = require("../../batch").Batch
+      batch = new batchConstructor doc
+      batch.run (err, jobs) ->
+#        console.log "batch", batch
+        console.log "done"
+        cb err, model
 
 module.exports = Batch

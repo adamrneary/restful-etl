@@ -1,8 +1,8 @@
-Customers = require("../../lib/load/providers/activecell_objects/qbd/customers").Customers
+Customers = require("../../../lib/load/providers/activecell_objects/qb/customers").class
 assert  = require("chai").assert
 
 describe "qbd ActiveCell", ->
-  describe "Customers object", ->
+  describe "customers object", ->
     beforeEach ()->
       @companyId = "1A78ADSF6780AZXCVf"
 
@@ -44,21 +44,21 @@ describe "qbd ActiveCell", ->
         Id: "QB:399"
         DisplayName: "name1"
       ,
-        existingObj
+      existingObj
       ), "equal"
 
       assert.equal @customers.compare(
         Id:"QB:399"
         DisplayName: "new name"
       ,
-        existingObj
+      existingObj
       ), "update"
 
       assert.equal @customers.compare(
         Id:"QB:399x"
         DisplayName: "name1"
       ,
-        existingObj
+      existingObj
       ), ""
 
     it "can update an existing object", ->

@@ -27,9 +27,9 @@ class Default
       ""
 
   # transform  QBD object to ActiveCell object
-  transform: (qbdObj) ->
+  transform: (qbdObj) =>
     newObj = {company_id: @companyId()}
-    _.each @compareFields(), (field) ->
+    _.each @compareFields(), (field) =>
       newObj[field.activeCell] = qbdObj[field.qbd]
     newObj
 

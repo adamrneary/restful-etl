@@ -4,9 +4,7 @@ xeroExtractor = require("./providers/xero_extractor").extract
 
 extractObjects = (options = {}, cb) ->
   switch options.provider.toUpperCase()
-    when "QBD"
-      intuitExtractor options, cb
-    when "QBO"
+    when "QB"
       intuitExtractor options, cb
     when "XERO"
       xeroExtractor options, cb

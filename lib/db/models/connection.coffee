@@ -8,8 +8,13 @@ connectionSchema = new Schema
   realm: String
   oauth_consumer_key: String
   oauth_consumer_secret: String
-  oauth_access_key:  String
-  oauth_access_secret:  String
+  oauth_access_key: String
+  oauth_access_secret: String
+
+  subdomain: String
+  company_id: String
+  username: String
+  password: String
 
 connectionSchema.pre 'save', (next)->
   Connection::findOne {name: @name}, (err, data)->
