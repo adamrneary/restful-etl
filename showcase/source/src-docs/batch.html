@@ -66,22 +66,20 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>__proto = require <span class="string">'./__proto'</span>
-mongoose = require <span class="string">'mongoose'</span>
+            <div class="content"><div class='highlight'><pre>mongoose = require <span class="string">"mongoose"</span>
+__proto = require <span class="string">"./__proto"</span>
+
 Schema = mongoose.Schema
 
 jobSchema = <span class="keyword">new</span> Schema
-  extract:
-    source_connection_id: String
-    object: String
-    grain: String
-    since: String
-    updated_since: String
-  load:
-    destination_connection_id: String
-    object: String
-    allowDelete: Boolean
-    since: String
+  type: {type: String, required: <span class="literal">true</span>}
+  connection_id: String
+  object: String
+  grain: String
+  since: String
+  updated_since: String
+  allowDelete: Boolean
+  required_object: String
 
 batchSchema = <span class="keyword">new</span> Schema
   tenant_id: String
@@ -92,6 +90,41 @@ batchSchema = <span class="keyword">new</span> Schema
   jobs: [jobSchema]
 
 <span class="class"><span class="keyword">class</span> <span class="title">Batch</span> <span class="keyword">extends</span> <span class="title">__proto</span>('<span class="title">Batch</span>', <span class="title">batchSchema</span>)</span>
+  create: (doc, cb) -&gt;
+    <span class="keyword">super</span> doc, (err, model)-&gt;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <pre><code> cb err, model</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      batchConstructor = require(<span class="string">"../../batch"</span>).Batch
+      batch = <span class="keyword">new</span> batchConstructor doc
+      batch.run (err, jobs) -&gt;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <pre><code>   console.log &quot;batch&quot;, batch</code></pre>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        console.log <span class="string">"done"</span>
+        cb err, model
 
 module.exports = Batch</pre></div></div>
             

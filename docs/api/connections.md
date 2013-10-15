@@ -9,7 +9,8 @@
 * `provider`: TODO: provider description
 * `realm`: TODO: realm description
 * `oauth/consumer/key`: TODO: key description
-* `oauth/consumer/secret`: TODO: secret description
+* `oauth/access/key': TODO: key description
+* `oauth/access/secret': TODO: secret description
 
 ## Sample requests and responses
 #####/connection
@@ -22,6 +23,9 @@ Sample GET response:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
@@ -38,6 +42,9 @@ Sample POST request:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
@@ -53,6 +60,9 @@ Sample POST response:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
@@ -69,6 +79,9 @@ Sample GET response:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
@@ -83,6 +96,9 @@ Example PUT request:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
@@ -98,6 +114,9 @@ Example PUT response:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
@@ -113,6 +132,9 @@ Sample DELETE response:
   realm: '12345',
   oauth: {
     consumer: {
+      key: ''
+    },
+    access:{
       key: '',
       secret: ''
     }
