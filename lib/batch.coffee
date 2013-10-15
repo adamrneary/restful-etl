@@ -24,17 +24,17 @@ class Batch
           cb new Error("source connection not found")  if cb
         else
           connectionObj = connection.toObject()
+          @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract"
+          jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract"
           if connectionObj.provider is "QBO_BATCH" or connectionObj.provider is "QBD_BATCH"
-            intuitBatchExtractor @options, connectionObj, cb
+            intuitBatchExtractor @, connectionObj, jobOptions, cb
           else
-            @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract"
-            async.each @extractJobs, (job, cb) =>
-              jobOptions = @_buildJobOptions _.clone(job), connectionObj, "extract"
-              jobObj = new Job(jobOptions)
+            async.each jobOptions, (jobOpt, cb) =>
+              jobObj = new Job(jobOpt)
               jobObj.run (err, data) =>
                 if err then cb(err)
                 else
-                  @extractData[jobOptions.object] = data
+                  @extractData[jobOpt.object] = data
                   cb()
             , (err) =>
               return if @error
@@ -54,11 +54,11 @@ class Batch
           @error = true
           cb new Error("destination connection not found")  if cb
         else
-          @loadJobs = _.filter @options.jobs, (job) -> job.type is "load"
           connectionObj = connection.toObject()
-          async.each @loadJobs, (job, cb) =>
-            jobOptions = @_buildJobOptions _.clone(job), connectionObj, "load"
-            jobObj = new Job(jobOptions)
+          @loadJobs = _.filter @options.jobs, (job) -> job.type is "load"
+          jobOptions = _.map @loadJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "load"
+          async.each jobOptions, (jobOpt, cb) =>
+            jobObj = new Job(jobOpt)
             jobObj.run (err) =>
               if err then cb(err)
               else

@@ -14,7 +14,7 @@ exports.maxBatchItems = (val) ->
   return maxBatchItems unless val
   maxBatchItems = val
 
-exports.extract = (options, connection, cb) ->
+exports.extract = (batch, connection, jobOptions, cb) ->
   oauth = new OAuth.OAuth(
     "get_request_token url",
     "get_access_token url",
@@ -29,20 +29,16 @@ exports.extract = (options, connection, cb) ->
 
   globalError = false
 
-  batchOperationsList = _.map options.jobs, (job) ->
+  batchOperationsList = _.map jobOptions, (jobOpt) ->
     batchOperation = {startPosition: 1, _data: []}
-    batchOperation.object = job.extract.object
+    batchOperation.object = jobOpt.object
 
-    since = null
-    since = options.since unless _.isUndefined options.since
-    since = job.extract.since unless _.isUndefined job.extract.since
-    grain = null
-    grain = options.grain unless _.isUndefined options.grain
-    grain = job.extract.grain unless _.isUndefined job.extract.grain
+    since = jobOpt.since
+    grain = jobOpt.grain
     filter = ""
     if since
       date = moment since
-      switch options.grain
+      switch jobOpt.grain
         when "monthly"
           date.month(0)
       filter = "where MetaData.CreateTime >= '#{date.format("YYYY-MM-DDTHH:MM:SSZ")}'"
@@ -70,6 +66,7 @@ exports.extract = (options, connection, cb) ->
       _.each data, (d)->
         batchOperationsList[d.bId]._data = batchOperationsList[d.bId]._data.concat d.QueryResponse["#{batchOperationsList[d.bId].object}"]
       cb()
+
   batchsQueue.drain = ()->
     return if globalError
     if (_.any batchOperationsList, (d)->
@@ -81,22 +78,21 @@ exports.extract = (options, connection, cb) ->
         return true
 
       )
-      jobs = options.jobs
-      _.each jobs, (job, i)->
-        job.extract._data = batchOperationsList[i]._data
-      cb null, jobs if cb
+      _.each batchOperationsList, (d) ->
+        batch.extractData[d.object] = d._data
+      cb null if cb
 
   createNewBatch = (last) ->
     resultsCount = 0
     itemsCount = 0
     result = "<IntuitBatchRequest xmlns='http://schema.intuit.com/finance/v3'>"
     _.each batchOperationsList, (d, i)->
-      return if resultsCount > maxResults
-      return if itemsCount > maxBatchItems
+      return if resultsCount >= maxResults
+      return if itemsCount >= maxBatchItems
       return if _.isUndefined d.totalCount
       return if d.startPosition > d.totalCount
       count = Math.min(maxResults - resultsCount, d.totalCount - d.startPosition + 1)
-      result += "<BatchItemRequest bId='#{i}'><Query>select *, MetaData.CreateTime from #{d.object} #{d.filter}</Query></BatchItemRequest>"
+      result += "<BatchItemRequest bId='#{i}'><Query>select *, MetaData.CreateTime from #{d.object} #{d.filter} startposition #{d.startPosition} maxresults #{count}</Query></BatchItemRequest>"
       d.startPosition += count
       resultsCount += count
       itemsCount++
@@ -136,9 +132,9 @@ exports.extract = (options, connection, cb) ->
   ,
   (err)->
     if  err
-      cb err, options.jobs if cb
+      cb err if cb
     else
       batchsQueue.push newBatch while newBatch = createNewBatch(true)
       unless _.any(batchOperationsList, (d) -> d.totalCount)
-        cb null, options.jobs if cb
+        cb null if cb
 
