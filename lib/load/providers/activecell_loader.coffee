@@ -1,6 +1,7 @@
 https = require "https"
 async = require "async"
 _ = require "underscore"
+Errors = require "../../Errors"
 
 exports.load = (options = {}, cb) ->
   activeCellData = []
@@ -30,7 +31,7 @@ exports.load = (options = {}, cb) ->
 
       req.end()
       req.on "error", (e) ->
-        cb e
+        cb new Errors.IntuitLoadError("", e)
     ,
     # waiting for required objects
     (cb) ->
@@ -82,7 +83,7 @@ exports.load = (options = {}, cb) ->
               cb()
             req.end()
             req.on "error", (e) ->
-              cb e
+              cb new Errors.IntuitLoadError("Update object error.", e)
           , (err) ->
             cb(err)
         ,
@@ -98,7 +99,7 @@ exports.load = (options = {}, cb) ->
               cb()
             req.end()
             req.on "error", (e) ->
-              cb e
+              cb new Errors.IntuitLoadError("Create object error.", e)
           , (err) ->
             cb(err)
         ,
@@ -115,7 +116,7 @@ exports.load = (options = {}, cb) ->
               cb()
             req.end()
             req.on "error", (e) ->
-              cb e
+              cb new Errors.IntuitLoadError("Delete object error.", e)
           , (err) ->
             cb(err)
       ], (err) ->

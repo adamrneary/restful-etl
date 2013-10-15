@@ -2,6 +2,7 @@ moment = require "moment"
 async = require "async"
 OAuth = require "oauth"
 _ = require "underscore"
+Errors = require "../../Errors"
 
 maxResults = 500
 maxBatchItems = 25
@@ -52,7 +53,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
     oauth.post "https://qb.sbfinance.intuit.com/v3/company/#{connection.realm}/batch", connection.oauth_access_key, connection.oauth_access_secret, data, "application/xml", (err, data, response) ->
       if err
         globalError = true
-        cb(err)
+        cb new Errors.IntuitBatchExtractError "", err
         return
 
       data = JSON.parse(data).BatchItemResponse
@@ -60,7 +61,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
         d.Fault?.Error
       if err
         globalError = true
-        cb(err)
+        cb new Errors.IntuitBatchExtractError JSON.stringify(err)
         return
 
       _.each data, (d)->
@@ -113,7 +114,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
     oauth.post "https://qb.sbfinance.intuit.com/v3/company/#{connection.realm}/batch", connection.oauth_access_key, connection.oauth_access_secret, data, "application/xml", (err, data, response) ->
       if err
         globalError = true
-        cb(err)
+        cb new Errors.IntuitBatchExtractError "", err
         return
 
       data = JSON.parse(data).BatchItemResponse
@@ -121,7 +122,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
         d.Fault?.Error
       if err
         globalError = true
-        cb(err)
+        cb new Errors.IntuitBatchExtractError JSON.stringify(err)
         return
 
       _.each data, (d)->

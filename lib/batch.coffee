@@ -4,6 +4,7 @@ connection = require "./db/models/connection"
 extract = require "./extract/extract"
 intuitBatchExtractor = require("./extract/providers/intuit_batch_extractor").extract
 Job = require("./job").Job
+Errors = require "./Errors"
 
 class Batch
   constructor: (@options) ->
@@ -21,7 +22,7 @@ class Batch
       else
         unless connection
           @error = true
-          cb new Error("source connection not found")  if cb
+          cb new Errors.ConnectionError "source connection not found", @options.source_connection_id  if cb
         else
           connectionObj = connection.toObject()
           @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract"

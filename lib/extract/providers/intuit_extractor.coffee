@@ -1,6 +1,7 @@
 async = require "async"
 OAuth = require "oauth"
 _ = require "underscore"
+Errors = require "../../Errors"
 
 maxResults = 500
 
@@ -32,7 +33,8 @@ exports.extract = (options = {}, cb) ->
       oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select count(*) from #{options.object} #{filter}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
         count = JSON.parse(data).QueryResponse?.totalCount
         count if _.isUndefined count
-        cb err, count
+        if err then cb new Errors.IntuitExtractError("", err), count
+        else cb null, count
     ,
     (count, cb) ->
       if count is 0
@@ -41,14 +43,13 @@ exports.extract = (options = {}, cb) ->
         startPositions = (start + 1 for start in [0..count] by maxResults)
         startPositions.pop() unless count % maxResults
         resultData = []
-        async.each startPositions, (startPosition, cb2)->
+        async.each startPositions, (startPosition, cb)->
           oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select *, MetaData.CreateTime from #{options.object} #{filter} startposition #{startPosition} maxresults #{maxResults}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
-
             if err
-              cb2 err
+              cb new Errors.IntuitExtractError("", err)
             else
               resultData = resultData.concat JSON.parse(data).QueryResponse["#{options.object}"]
-              cb2 err
+              cb()
         , (err)->
           cb err, resultData
   ],
