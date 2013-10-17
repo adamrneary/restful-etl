@@ -1,19 +1,17 @@
-__proto = require './__proto'
-mongoose = require 'mongoose'
+mongoose = require "mongoose"
+__proto = require "./__proto"
+
 Schema = mongoose.Schema
 
 jobSchema = new Schema
-  extract:
-    source_connection_id: String
-    object: String
-    grain: String
-    since: String
-    updated_since: String
-  load:
-    destination_connection_id: String
-    object: String
-    allowDelete: Boolean
-    since: String
+  type: {type: String, required: true}
+  connection_id: String
+  object: String
+  grain: String
+  since: String
+  updated_since: String
+  allowDelete: Boolean
+  required_object: String
 
 batchSchema = new Schema
   tenant_id: String
@@ -24,5 +22,15 @@ batchSchema = new Schema
   jobs: [jobSchema]
 
 class Batch extends __proto('Batch', batchSchema)
+  create: (doc, cb) ->
+    super doc, (err, model)->
+      cb err, model
+#      batchConstructor = require("../../batch").Batch
+#      batch = new batchConstructor doc
+#      batch.run (err, jobs) ->
+#        console.log "err", err.toString()
+##        console.log "batch", batch
+#        console.log "done"
+#        cb err, model
 
 module.exports = Batch

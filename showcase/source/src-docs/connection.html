@@ -76,6 +76,13 @@ connectionSchema = <span class="keyword">new</span> Schema
   realm: String
   oauth_consumer_key: String
   oauth_consumer_secret: String
+  oauth_access_key: String
+  oauth_access_secret: String
+
+  subdomain: String
+  company_id: String
+  username: String
+  password: String
 
 connectionSchema.pre <span class="string">'save'</span>, (next)-&gt;
   Connection::findOne {name: <span class="property">@name</span>}, (err, data)-&gt;

@@ -1,0 +1,23 @@
+[ { "id": "000000001",
+    "company_id": "company_id:123456",
+    "qbd_id": "QB:499",
+    "name": "Express Settlement"
+  },
+  {
+    "id": "000000002",
+    "company_id": "company_id:12345",
+    "qbd_id": "QB:399",
+    "name": "American Express Settlement"
+  },
+  {
+    "id": "000000003",
+    "company_id": "company_id:12345",
+    "qbd_id": "QB:39911",
+    "name": "American Settlement"
+  },
+  {
+    "id": "000000004",
+    "company_id": "company_id:12345",
+    "qbd_id": "QB:390",
+    "name": "new Swarupa Bangaru"
+  } ]
