@@ -22,11 +22,16 @@ describe "qbd ActiveCell", ->
 
       @vendors = new Vendors(@companyId)
 
-#    it "can transform a qbdObj in order to create a new Activecell obj", ->
-#
-#    it "filters comparison to valid Activecell objects", ->
-#
-#    it "can compare objObjs with Activecell objects", ->
-#
-#    it "can update an existing object", ->
-    
+   it "can transform a qbdObj in order to create a new Activecell obj", ->
+     resultObj =
+       company_id: @companyId
+       qbd_id: "QB:401"
+       name: "Early Pay Discount"
+
+     assert.deepEqual @vendor.transform(@qbdObj), resultObj
+
+   # it "filters comparison to valid Activecell objects", ->
+   #
+   # it "can compare objObjs with Activecell objects", ->
+   #
+   # it "can update an existing object", ->
