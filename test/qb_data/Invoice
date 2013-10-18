@@ -1,1 +1,78 @@
-[]
+{
+  "Deposit": 0,
+  "AllowIPNPayment": false,
+  "AllowOnlinePayment": false,
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "1798",
+  "SyncToken": "0",
+  "MetaData": {
+    "CreateTime": "2013-10-17T11:19:38-07:00",
+    "LastUpdatedTime": "2013-10-17T11:22:57-07:00"
+  },
+  "DocNumber": "1150",
+  "TxnDate": "2013-10-17",
+  "LinkedTxn": [],
+  "Line": [
+    {
+      "Id": "1",
+      "LineNum": 1,
+      "Description": "4 integrated editorial installments for MotoX with social media support",
+      "Amount": 24000.0,
+      "DetailType": "SalesItemLineDetail",
+      "SalesItemLineDetail": {
+        "ItemRef": {
+          "value": "21",
+          "name": "Integrated Editorial"
+        },
+        "TaxCodeRef": {
+          "value": "NON"
+        }
+      }
+    },
+    {
+      "Amount": 24000.0,
+      "DetailType": "SubTotalLineDetail",
+      "SubTotalLineDetail": {}
+    }
+  ],
+  "CustomerRef": {
+    "value": "62",
+    "name": "Largetail LLC"
+  },
+  "CustomerMemo": {
+    "value": "Program with MotoX"
+  },
+  "BillAddr": {
+    "Id": "25",
+    "Line1": "19 West 21st Street   #702",
+    "City": "New York",
+    "Country": "USA",
+    "CountrySubDivisionCode": "NY",
+    "PostalCode": "10010",
+    "Lat": "40.740998",
+    "Long": "-73.99171799999999"
+  },
+  "ShipAddr": {
+    "Id": "25",
+    "Line1": "19 West 21st Street   #702",
+    "City": "New York",
+    "Country": "USA",
+    "CountrySubDivisionCode": "NY",
+    "PostalCode": "10010",
+    "Lat": "40.740998",
+    "Long": "-73.99171799999999"
+  },
+  "SalesTermRef": {
+    "value": "3"
+  },
+  "DueDate": "2013-11-16",
+  "TotalAmt": 24000.0,
+  "ApplyTaxAfterDiscount": false,
+  "PrintStatus": "NotSet",
+  "EmailStatus": "EmailSent",
+  "BillEmail": {
+    "Address": "donna@largetail.com, abejcohen@gmail.com"
+  },
+  "Balance": 24000.0
+}

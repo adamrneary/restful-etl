@@ -1,1 +1,35 @@
-[]
+{
+  "CustomerRef": {
+    "value": "314"
+  },
+  "DepositToAccountRef": {
+    "value": "50"
+  },
+  "PaymentMethodRef": {
+    "value": "9"
+  },
+  "PaymentRefNum": "535",
+  "TotalAmt": 4965.0,
+  "UnappliedAmt": 0,
+  "ProcessPayment": false,
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "1773",
+  "SyncToken": "0",
+  "MetaData": {
+    "CreateTime": "2013-10-12T05:35:29-07:00",
+    "LastUpdatedTime": "2013-10-12T05:35:29-07:00"
+  },
+  "TxnDate": "2013-10-12",
+  "Line": [
+    {
+      "Amount": 4965.0,
+      "LinkedTxn": [
+        {
+          "TxnId": "1250",
+          "TxnType": "Invoice"
+        }
+      ]
+    }
+  ]
+}

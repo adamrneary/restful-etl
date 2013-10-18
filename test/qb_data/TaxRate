@@ -1,1 +1,13 @@
-[{"Name":"N/A","Description":"Not Applicable","Active":true,"RateValue":0,"status":"Synchronized","Id":"QB:17","SyncToken":"1","MetaData":{"CreateTime":"2013-01-09T00:05:01Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}}]
+{
+  "Name": "N/A",
+  "Description": "Not Applicable",
+  "Active": true,
+  "RateValue": 0,
+  "status": "Synchronized",
+  "Id": "QB:17",
+  "SyncToken": "1",
+  "MetaData": {
+    "CreateTime": "2013-01-09T00:05:01Z",
+    "LastUpdatedTime": "2013-05-20T23:29:51Z"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "Name": "American Express",
+  "Active": true,
+  "Type": "CREDIT_CARD",
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "6",
+  "SyncToken": "0",
+  "MetaData": {
+    "CreateTime": "2013-04-14T11:25:54-07:00",
+    "LastUpdatedTime": "2013-04-14T11:25:54-07:00"
+  }
+}

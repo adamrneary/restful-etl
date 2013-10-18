@@ -1,0 +1,24 @@
+{
+  "FileName": "mattie kahn april may 2013 invoice",
+  "FileAccessUri": "/v3/company/694592140/download/100000000000161781",
+  "TempDownloadUri": "https://intuit-qbo-prod-25.s3.amazonaws.com/694592140%2Fattachments%2Fmattie%20kahn%20april%20may%202013%20invoice?Expires=1382098748&AWSAccessKeyId=AKIAJEXDXKNYCBUNCCCQ&Signature=7FrbKxxGIajX4OAP%2B4mgn%2FycM%2FQ%3D",
+  "Size": 42979,
+  "ContentType": "application/octet-stream",
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "100000000000161781",
+  "SyncToken": "1",
+  "MetaData": {
+    "CreateTime": "2013-05-30T15:17:47-07:00",
+    "LastUpdatedTime": "2013-05-30T15:17:52-07:00"
+  },
+  "AttachableRef": [
+    {
+      "EntityRef": {
+        "value": "1355",
+        "type": "Bill"
+      },
+      "IncludeOnSend": false
+    }
+  ]
+}

@@ -1,1 +1,12 @@
-[]
+{
+  "Name": "Indirect",
+  "SubClass": false,
+  "Active": true,
+  "status": "Synchronized",
+  "Id": "QB:9",
+  "SyncToken": "1",
+  "MetaData": {
+    "CreateTime": "2010-04-11T20:53:15Z",
+    "LastUpdatedTime": "2013-05-20T23:31:25Z"
+  }
+}

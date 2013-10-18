@@ -1,0 +1,53 @@
+{
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "1771",
+  "SyncToken": "1",
+  "MetaData": {
+    "CreateTime": "2013-10-09T16:49:52-07:00",
+    "LastUpdatedTime": "2013-10-11T10:54:44-07:00"
+  },
+  "DocNumber": "1145",
+  "TxnDate": "2013-10-09",
+  "Line": [
+    {
+      "Id": "1",
+      "LineNum": 1,
+      "Description": "Collaboration- Nina Ricci Ballet Bag collaboration_ Kate to receive 25%",
+      "Amount": 9980.0,
+      "DetailType": "SalesItemLineDetail",
+      "SalesItemLineDetail": {
+        "ItemRef": {
+          "value": "5",
+          "name": "Collaboration"
+        },
+        "TaxCodeRef": {
+          "value": "NON"
+        }
+      }
+    },
+    {
+      "Amount": 9980.0,
+      "DetailType": "SubTotalLineDetail",
+      "SubTotalLineDetail": {}
+    }
+  ],
+  "CustomerRef": {
+    "value": "460",
+    "name": "Nina Ricci"
+  },
+  "TotalAmt": 9980.0,
+  "ApplyTaxAfterDiscount": false,
+  "PrintStatus": "NotSet",
+  "EmailStatus": "NotSet",
+  "Balance": 0,
+  "PaymentMethodRef": {
+    "value": "9",
+    "name": "Wire"
+  },
+  "PaymentRefNum": "545",
+  "DepositToAccountRef": {
+    "value": "50",
+    "name": "CHASE - OPERATING"
+  }
+}

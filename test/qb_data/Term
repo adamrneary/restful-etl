@@ -1,0 +1,15 @@
+{
+  "Name": "COTY 3 MOs",
+  "Active": true,
+  "Type": "STANDARD",
+  "DiscountPercent": 0,
+  "DueDays": 90,
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "5",
+  "SyncToken": "0",
+  "MetaData": {
+    "CreateTime": "2013-10-14T21:14:54-07:00",
+    "LastUpdatedTime": "2013-10-14T21:14:54-07:00"
+  }
+}
