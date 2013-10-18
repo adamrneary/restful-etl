@@ -1,0 +1,19 @@
+{
+    "Department":
+    {
+        "Name":"Marketing Department",
+        "SubDepartment":false,
+        "FullyQualifiedName":"Marketing Department",
+        "Active":true,
+        "domain":"QBO",
+        "sparse":false,
+        "Id":"2",
+        "SyncToken":"0",
+        "MetaData":
+        {
+            "CreateTime":"2013-08-13T11:52:48-07:00",
+            "LastUpdatedTime":"2013-08-13T11:52:48-07:00"
+        }
+    },
+    "time":"2013-08-13T11:54:48.026-07:00"
+}

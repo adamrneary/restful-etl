@@ -1,13 +1,94 @@
 {
-  "Name": "N/A",
-  "Description": "Not Applicable",
-  "Active": true,
-  "RateValue": 0,
-  "status": "Synchronized",
-  "Id": "QB:17",
-  "SyncToken": "1",
-  "MetaData": {
-    "CreateTime": "2013-01-09T00:05:01Z",
-    "LastUpdatedTime": "2013-05-20T23:29:51Z"
-  }
+   "QueryResponse":{
+      "TaxRate":[
+         {
+            "Name":"TX1",
+            "Description":"Sales Tax for TX1",
+            "Active":true,
+            "RateValue":10,
+            "AgencyRef":{
+               "value":"QB:99",
+               "name":"City of East Bayshore"
+            },
+            "status":"Pending",
+            "Id":"NG:3109479",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"2013-04-03T10:09:02Z",
+               "LastUpdatedTime":"2013-04-03T10:09:02Z"
+            }
+         },
+         {
+            "Name":"East Bayshore",
+            "Description":"City Sales Tax",
+            "Active":true,
+            "RateValue":0.3,
+            "AgencyRef":{
+               "value":"QB:99",
+               "name":"City of East Bayshore"
+            },
+            "status":"Synchronized",
+            "Id":"QB:53",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"2003-12-15T20:52:54Z",
+               "LastUpdatedTime":"2013-03-26T10:26:36Z"
+            }
+         },
+         {
+            "Name":"San Tomas",
+            "Description":"CA sales tax, San Tomas County",
+            "Active":true,
+            "RateValue":7.75,
+            "AgencyRef":{
+               "value":"QB:17",
+               "name":"State Board of Equalization"
+            },
+            "status":"Synchronized",
+            "Id":"QB:46",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"1999-07-29T18:24:16Z",
+               "LastUpdatedTime":"2013-03-26T10:26:36Z"
+            }
+         },
+         {
+            "Name":"San Domingo",
+            "Description":"CA sales tax, San Domingo County",
+            "Active":true,
+            "RateValue":7.5,
+            "AgencyRef":{
+               "value":"QB:17",
+               "name":"State Board of Equalization"
+            },
+            "status":"Synchronized",
+            "Id":"QB:45",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"1999-07-29T18:24:16Z",
+               "LastUpdatedTime":"2013-03-26T10:26:36Z"
+            }
+         },
+         {
+            "Name":"Out of State",
+            "Description":"Out-of-state sale, exempt from sales tax",
+            "Active":true,
+            "RateValue":0,
+            "AgencyRef":{
+               "value":"QB:17",
+               "name":"State Board of Equalization"
+            },
+            "status":"Synchronized",
+            "Id":"QB:44",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"1999-07-29T18:24:16Z",
+               "LastUpdatedTime":"2013-03-26T10:26:36Z"
+            }
+         }
+      ],
+      "startPosition":1,
+      "maxResults":5
+   },
+   "time":"2013-04-03T10:27:02.757Z"
 }

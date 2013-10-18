@@ -1,78 +1,57 @@
 {
-  "Deposit": 0,
-  "AllowIPNPayment": false,
-  "AllowOnlinePayment": false,
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "1798",
-  "SyncToken": "0",
-  "MetaData": {
-    "CreateTime": "2013-10-17T11:19:38-07:00",
-    "LastUpdatedTime": "2013-10-17T11:22:57-07:00"
-  },
-  "DocNumber": "1150",
-  "TxnDate": "2013-10-17",
-  "LinkedTxn": [],
-  "Line": [
-    {
-      "Id": "1",
-      "LineNum": 1,
-      "Description": "4 integrated editorial installments for MotoX with social media support",
-      "Amount": 24000.0,
-      "DetailType": "SalesItemLineDetail",
-      "SalesItemLineDetail": {
-        "ItemRef": {
-          "value": "21",
-          "name": "Integrated Editorial"
-        },
-        "TaxCodeRef": {
-          "value": "NON"
-        }
-      }
-    },
-    {
-      "Amount": 24000.0,
-      "DetailType": "SubTotalLineDetail",
-      "SubTotalLineDetail": {}
-    }
-  ],
-  "CustomerRef": {
-    "value": "62",
-    "name": "Largetail LLC"
-  },
-  "CustomerMemo": {
-    "value": "Program with MotoX"
-  },
-  "BillAddr": {
-    "Id": "25",
-    "Line1": "19 West 21st Street   #702",
-    "City": "New York",
-    "Country": "USA",
-    "CountrySubDivisionCode": "NY",
-    "PostalCode": "10010",
-    "Lat": "40.740998",
-    "Long": "-73.99171799999999"
-  },
-  "ShipAddr": {
-    "Id": "25",
-    "Line1": "19 West 21st Street   #702",
-    "City": "New York",
-    "Country": "USA",
-    "CountrySubDivisionCode": "NY",
-    "PostalCode": "10010",
-    "Lat": "40.740998",
-    "Long": "-73.99171799999999"
-  },
-  "SalesTermRef": {
-    "value": "3"
-  },
-  "DueDate": "2013-11-16",
-  "TotalAmt": 24000.0,
-  "ApplyTaxAfterDiscount": false,
-  "PrintStatus": "NotSet",
-  "EmailStatus": "EmailSent",
-  "BillEmail": {
-    "Address": "donna@largetail.com, abejcohen@gmail.com"
-  },
-  "Balance": 24000.0
+   "QueryResponse":{
+      "Invoice":[
+         {
+            "status":"Synchronized",
+            "Id":"QB:64531",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"2010-06-16T20:48:31.215Z",
+               "LastUpdatedTime":"2013-04-08T10:49:47Z"
+            },
+            "DocNumber":"1223",
+            "TxnDate":"2010-06-16",
+            "ExchangeRate":1,
+            "PrivateNote":"add grp and add an item in group dup 1214",
+            "TxnStatus":"Payable",
+            "TxnTaxDetail":{
+               "DefaultTaxCodeRef":{
+                  "value":"QB:1",
+                  "name":"Tax"
+               },
+               "TotalTax":0
+            },
+            "CustomerRef":{
+               "value":"QB:286",
+               "name":"General Electrical"
+            },
+            "RemitToRef":{
+               "value":"QB:286",
+               "name":"General Electrical"
+            },
+            "DueDate":"2010-06-16",
+            "ShipMethodRef":{
+               "value":"QB:4",
+               "name":"UPS"
+            },
+            "ShipDate":"2010-06-16",
+            "TotalAmt":35,
+            "TemplateRef":{
+               "value":"QB:14",
+               "name":"Rock Castle Invoice"
+            },
+            "PrintStatus":"NotSet",
+            "EmailStatus":"NotSet",
+            "ARAccountRef":{
+               "value":"QB:4",
+               "name":"Accounts Receivable"
+            },
+            "Balance":35,
+            "FinanceCharge":false
+         }
+      ],
+      "startPosition":1,
+      "maxResults":1
+   },
+   "time":"2013-04-11T07:44:54.728Z"
 }

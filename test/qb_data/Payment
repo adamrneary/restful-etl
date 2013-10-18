@@ -1,35 +1,45 @@
 {
-  "CustomerRef": {
-    "value": "314"
+  "QueryResponse":{
+    "Payment":[
+      {
+        "CustomerRef":{
+          "value":"QB:284",
+          "name":"Google"
+        },
+        "RemitToRef":{
+          "value":"QB:284",
+          "name":"Google"
+        },
+        "ARAccountRef":{
+          "value":"QB:4",
+          "name":"Accounts Receivable"
+        },
+        "DepositToAccountRef":{
+          "value":"QB:2",
+          "name":"Checking"
+        },
+        "PaymentMethodRef":{
+          "value":"QB:9",
+          "name":"Home Depot Gift Card"
+        },
+        "PaymentRefNum":"Cash#003",
+        "TotalAmt":40,
+        "status":"Synchronized",
+        "Id":"NG:3410926",
+        "SyncToken":"6",
+        "MetaData":{
+          "CreateTime":"2013-05-21T11:38:46Z",
+          "LastUpdatedTime":"2013-05-21T11:40:35Z"
+        },
+        "TxnDate":"2013-05-21",
+        "PrivateNote":"Testing with Cash and all fields mod",
+        "Line":[
+
+        ]
+      }
+    ],
+    "startPosition":1,
+    "maxResults":1
   },
-  "DepositToAccountRef": {
-    "value": "50"
-  },
-  "PaymentMethodRef": {
-    "value": "9"
-  },
-  "PaymentRefNum": "535",
-  "TotalAmt": 4965.0,
-  "UnappliedAmt": 0,
-  "ProcessPayment": false,
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "1773",
-  "SyncToken": "0",
-  "MetaData": {
-    "CreateTime": "2013-10-12T05:35:29-07:00",
-    "LastUpdatedTime": "2013-10-12T05:35:29-07:00"
-  },
-  "TxnDate": "2013-10-12",
-  "Line": [
-    {
-      "Amount": 4965.0,
-      "LinkedTxn": [
-        {
-          "TxnId": "1250",
-          "TxnType": "Invoice"
-        }
-      ]
-    }
-  ]
+  "time":"2013-05-27T06:28:52.659Z"
 }

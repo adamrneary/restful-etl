@@ -1,20 +1,73 @@
 {
-  "Taxable": false,
-  "Job": false,
-  "BillWithParent": false,
-  "Balance": 0,
-  "BalanceWithJobs": 0,
-  "PreferredDeliveryMethod": "Print",
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "313",
-  "SyncToken": "0",
-  "MetaData": {
-    "CreateTime": "2013-04-30T16:27:56-07:00",
-    "LastUpdatedTime": "2013-05-21T17:08:59-07:00"
-  },
-  "FullyQualifiedName": "AG Hair",
-  "DisplayName": "AG Hair",
-  "PrintOnCheckName": "AG Hair",
-  "Active": true
+    QueryResponse: {
+        Customer: [
+            {
+                BillAddr: {
+                    Line1: "Lee M Smith", 
+                    Line2: "431 Hampshire Blvd", 
+                    Line3: "East Bayshore CA 94327", 
+                    City: "East Bayshore", 
+                    CountrySubDivisionCode: "CA", 
+                    PostalCode: "94327"
+                }, 
+                ShipAddr: {
+                    Line1: "Smith Photography", 
+                    Line2: "910 Grapevine Ave", 
+                    Line3: "East Bayshore CA 94327", 
+                    City: "East Bayshore", 
+                    CountrySubDivisionCode: "CA", 
+                    PostalCode: "94327"
+                }, 
+                ContactName: "Lee M Smith", 
+                AltContactName: "Shannon Van Campen", 
+                Job: true, 
+                ParentRef: {
+                    value: "QB:78", 
+                    name: "Smith, Lee"
+                }, 
+                CustomerTypeRef: {
+                    value: "QB:1", 
+                    name: "Commercial"
+                }, 
+                SalesTermRef: {
+                    value: "QB:1", 
+                    name: "Net 30"
+                }, 
+                TaxRateRef: {
+                    value: "QB:46", 
+                    name: "San Tomas"
+                }, 
+                Balance: 0, 
+                OpenBalanceDate: "2013-08-11", 
+                JobInfo: {
+                    Status: "Closed", 
+                    StartDate: "2012-09-02"
+                }, 
+                status: "Synchronized", 
+                Id: "QB:98", 
+                SyncToken: "1", 
+                MetaData: {
+                    CreateTime: "2003-12-15T22:15:13Z", 
+                    LastUpdatedTime: "2000-01-01T08:00:00Z"
+                }, 
+                Organization: false, 
+                Title: "Mr.", 
+                GivenName: "Lee", 
+                MiddleName: "M", 
+                FamilyName: "Smith", 
+                CompanyName: "Smith Photography", 
+                DisplayName: "Patio", 
+                Active: true, 
+                PrimaryPhone: {
+                    FreeFormNumber: "415-555-3151"
+                }, 
+                PrimaryEmailAddr: {
+                    Address: "lsmith@samplename.com"
+                }
+            }
+        ], 
+        startPosition: 1, 
+        maxResults: 1
+    }, 
+    time: "2013-04-03T10:25:45.366Z"
 }

@@ -1,41 +1,65 @@
 {
-  "DueDate": "2013-08-05",
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "1527",
-  "SyncToken": "2",
-  "MetaData": {
-    "CreateTime": "2013-08-05T07:00:53-07:00",
-    "LastUpdatedTime": "2013-08-05T15:24:37-07:00"
-  },
-  "DocNumber": "7",
-  "TxnDate": "2013-08-05",
-  "PrivateNote": "July 2013 contributions",
-  "Line": [
-    {
-      "Id": "1",
-      "Description": "July 2013 contributions",
-      "Amount": 160.0,
-      "DetailType": "AccountBasedExpenseLineDetail",
-      "AccountBasedExpenseLineDetail": {
-        "AccountRef": {
-          "value": "81",
-          "name": "Legal & Professional Fees:Consulting"
-        },
-        "BillableStatus": "NotBillable",
-        "TaxCodeRef": {
-          "value": "NON"
-        }
-      }
-    }
-  ],
-  "VendorRef": {
-    "value": "27",
-    "name": "Mattie Kahn"
-  },
-  "APAccountRef": {
-    "value": "75",
-    "name": "Accounts Payable (A/P)"
-  },
-  "TotalAmt": 160.0
+   "QueryResponse":{
+      "Bill":[
+         {
+            "DueDate":"2013-02-15",
+            "Balance":1990.19,
+            "status":"Pending",
+            "Id":"NG:3424987",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"2013-06-03T11:52:25Z",
+               "LastUpdatedTime":"2013-06-03T11:52:25Z"
+            },
+            "CustomField":[
+
+            ],
+            "DocNumber":"TEST001",
+            "TxnDate":"2013-02-05",
+            "PrivateNote":"tESTING with ll types of Line itesms",
+            "TxnStatus":"Payable",
+            "Line":[
+               {
+                  "Id":"NG:3629083",
+                  "Description":"Testing Exp",
+                  "Amount":500,
+                  "DetailType":"AccountBasedExpenseLineDetail",
+                  "AccountBasedExpenseLineDetail":{
+                     "CustomerRef":{
+                        "value":"QB:260",
+                        "name":"Apple"
+                     },
+                     "ClassRef":{
+                        "value":"QB:1",
+                        "name":"New Construction"
+                     },
+                     "AccountRef":{
+                        "value":"QB:32",
+                        "name":"Fuel"
+                     },
+                     "BillableStatus":"Billable"
+                  },
+                  "CustomField":[
+
+                  ]
+               }
+            ],
+            "TxnTaxDetail":{
+               "TaxLine":[
+
+               ]
+            },
+            "VendorRef":{
+               "value":"QB:164",
+               "name":"Bank of Anycity"
+            },
+            "APAccountRef":{
+               "value":"QB:12",
+               "name":"Accounts Payable"
+            },
+            "TotalAmt":1990.19
+         }
+      ]
+   },
+   "time":"2013-06-03T11:56:16.996Z"
 }

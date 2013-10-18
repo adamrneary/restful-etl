@@ -1,11 +1,39 @@
 {
-  "Name": "TAX",
-  "Description": "TAX",
-  "Taxable": true,
-  "TaxGroup": false,
-  "Id": "TAX",
-  "MetaData": {
-    "CreateTime": "2013-04-14T11:25:50-07:00",
-    "LastUpdatedTime": "2013-04-14T11:25:50-07:00"
-  }
+ "TaxCode":
+ {
+   "Name":"1% Tax",
+   "Description":"1% Tax",
+   "Active":true,
+   "Taxable":true,
+   "TaxGroup":true,
+   "SalesTaxRateList":
+   {
+     "TaxRateDetail":[
+      {
+        "TaxRateRef":
+        {
+          "value":"80",
+          "name":"1% Tax (Sales)"
+        },
+      "TaxTypeApplicable":"TaxOnAmount",
+      "TaxOrder":0
+      }
+    ]
+   },
+   "PurchaseTaxRateList":
+   {
+      "TaxRateDetail":[
+      ]
+    },
+    "domain":"QBO",
+    "sparse":false,
+    "Id":"33",
+    "SyncToken":"0",
+    "MetaData":
+    {
+       "CreateTime":"2012-10-15T16:40:00-07:00",
+       "LastUpdatedTime":"2012-10-15T16:40:00-07:00"
+     }
+   },
+ "time":"2013-03-14T15:30:17.932-07:00"
 }

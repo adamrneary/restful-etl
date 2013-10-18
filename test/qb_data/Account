@@ -1,23 +1,22 @@
-{
-  "Name": "Accounts Payable (A/P)",
-  "SubAccount": false,
-  "FullyQualifiedName": "Accounts Payable (A/P)",
-  "Active": true,
-  "Classification": "Liability",
-  "AccountType": "Accounts Payable",
-  "AccountSubType": "AccountsPayable",
-  "CurrentBalance": 0,
-  "CurrentBalanceWithSubAccounts": 0,
-  "CurrencyRef": {
-    "value": "USD",
-    "name": "United States Dollar"
-  },
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "75",
-  "SyncToken": "0",
-  "MetaData": {
-    "CreateTime": "2013-04-22T20:02:58-07:00",
-    "LastUpdatedTime": "2013-08-25T13:57:17-07:00"
-  }
+{ "Account" : { "AccountSubType" : "CostOfLaborCos",
+      "AccountType" : "Cost of Goods Sold",
+      "Active" : true,
+      "Classification" : "Expense",
+      "CurrencyRef" : { "name" : "United States Dollar",
+          "value" : "USD"
+        },
+      "CurrentBalance" : 0,
+      "CurrentBalanceWithSubAccounts" : 0,
+      "FullyQualifiedName" : "qQqcZ1tSkFayEA48LJ6u",
+      "Id" : "55",
+      "MetaData" : { "CreateTime" : "2013-04-09T03:23:03-07:00",
+          "LastUpdatedTime" : "2013-04-09T03:23:04-07:00"
+        },
+      "Name" : "qQqcZ1tSkFayEA48LJ6u",
+      "SubAccount" : false,
+      "SyncToken" : "3",
+      "domain" : "QBO",
+      "sparse" : false
+    },
+  "time" : "2013-04-09T03:23:23.139-07:00"
 }

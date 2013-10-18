@@ -1,123 +1,83 @@
 {
-  "AccountingInfoPrefs": {
-    "CustomerTerminology": "client"
-  },
-  "ProductAndServicesPrefs": {
-    "ForSales": true,
-    "ForPurchase": false,
-    "QuantityWithPriceAndRate": false,
-    "QuantityOnHand": false
-  },
-  "SalesFormsPrefs": {
-    "CustomField": [
-      {
-        "CustomField": [
-          {
-            "Name": "SalesFormsPrefs.UseSalesCustom3",
-            "Type": "BooleanType",
-            "BooleanValue": false
-          },
-          {
-            "Name": "SalesFormsPrefs.UseSalesCustom2",
-            "Type": "BooleanType",
-            "BooleanValue": false
-          },
-          {
-            "Name": "SalesFormsPrefs.UseSalesCustom1",
-            "Type": "BooleanType",
-            "BooleanValue": false
-          }
-        ]
-      },
-      {
-        "CustomField": [
-          {
-            "Name": "SalesFormsPrefs.PrintOrderSalesCustom3",
-            "Type": "StringType",
-            "StringValue": "3"
-          },
-          {
-            "Name": "SalesFormsPrefs.PrintOrderSalesCustom2",
-            "Type": "StringType",
-            "StringValue": "2"
-          },
-          {
-            "Name": "SalesFormsPrefs.PrintOrderSalesCustom1",
-            "Type": "StringType",
-            "StringValue": "1"
-          }
-        ]
-      }
-    ],
-    "CustomTxnNumbers": false,
-    "AllowDeposit": false,
-    "AllowDiscount": false,
-    "AllowEstimates": false,
-    "IPNSupportEnabled": false,
-    "AllowServiceDate": false,
-    "AllowShipping": false,
-    "DefaultTerms": {
-      "value": "3"
-    }
-  },
-  "VendorAndPurchasesPrefs": {
-    "TrackingByCustomer": false,
-    "BillableExpenseTracking": false,
-    "POCustomField": [
-      {
-        "CustomField": [
-          {
-            "Name": "PurchasePrefs.UsePurchaseCustom3",
-            "Type": "BooleanType",
-            "BooleanValue": false
-          },
-          {
-            "Name": "PurchasePrefs.UsePurchaseCustom2",
-            "Type": "BooleanType",
-            "BooleanValue": false
-          },
-          {
-            "Name": "PurchasePrefs.UsePurchaseCustom1",
-            "Type": "BooleanType",
-            "BooleanValue": false
-          }
-        ]
-      }
-    ]
-  },
-  "TimeTrackingPrefs": {
-    "UseServices": false,
-    "BillCustomers": false,
-    "ShowBillRateToAll": false,
-    "WorkWeekStartDate": "Sunday",
-    "MarkTimeEntriesBillable": false
-  },
-  "TaxPrefs": {
-    "UsingSalesTax": false
-  },
-  "CurrencyPrefs": {
-    "MultiCurrencyEnabled": false,
-    "HomeCurrency": {
-      "value": "USD"
-    }
-  },
-  "OtherPrefs": {
-    "NameValue": [
-      {
-        "Name": "SalesFormsPrefs.DefaultCustomerMessage"
-      },
-      {
-        "Name": "SalesFormsPrefs.DefaultItem",
-        "Value": "1"
-      }
-    ]
-  },
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "1",
-  "SyncToken": "4",
-  "MetaData": {
-    "CreateTime": "2013-04-14T11:25:50-07:00",
-    "LastUpdatedTime": "2013-09-30T16:24:05-07:00"
-  }
+   "QueryResponse":{
+      "Preferences":[
+         {
+            "AccountingInfoPrefs":{
+               "UseAccountNumbers":true,
+               "RequiresAccounts":true,
+               "ClassTrackingPerTxn":true,
+               "AutoJournalEntryNumber":true,
+               "FirstMonthOfFiscalYear":"January",
+               "TaxYearMonth":"January",
+               "TaxForm":"1255"
+            },
+            "AdvancedInventoryPrefs":{
+               "FIFOEnabled":true,
+               "FIFOEffectiveDate":"2013-04-24"
+            },
+            "ProductAndServicesPrefs":{
+               "InventoryAndPurchaseOrder":true,
+               "UOM":"MultiplePerItem"
+            },
+            "SalesFormsPrefs":{
+               "UsingProgressInvoicing":true,
+               "AllowEstimates":true,
+               "AutoApplyCredit":false,
+               "AutoApplyPayments":true,
+               "PrintItemWithZeroAmount":true,
+               "DefaultShipMethodRef":{
+                  "value":"QB:4"
+               },
+               "DefaultMarkup":0.0,
+               "TrackReimbursableExpensesAsIncome":true,
+               "UsingSalesOrders":true,
+               "UsingPriceLevels":true
+            },
+            "VendorAndPurchasesPrefs":{
+               "DefaultMarkup":0.0,
+               "DaysBillsAreDue":10,
+               "DiscountAccountRef":{
+                  "value":"QB:125"
+               }
+            },
+            "TimeTrackingPrefs":{
+               "WorkWeekStartDate":"Monday",
+               "TimeTrackingEnabled":true
+            },
+            "TaxPrefs":{
+               "UsingSalesTax":true,
+               "TaxRateRef":{
+                  "value":"QB:46"
+               },
+               "NonTaxableSalesTaxCodeRef":{
+                  "value":"QB:2"
+               },
+               "TaxableSalesTaxCodeRef":{
+                  "value":"QB:1"
+               }
+            },
+            "FinanceChargesPrefs":{
+               "AnnualInterestRate":10.0,
+               "MinFinChrg":5.0,
+               "CalcFinChrgFromTxnDate":false,
+               "AssessFinChrgForOverdueCharges":true,
+               "FinChrgAccountRef":{
+                  "value":"QB:77"
+               }
+            },
+            "CurrencyPrefs":{
+               "MultiCurrencyEnabled":false,
+               "HomeCurrency":{
+                  "value":"QB:0"
+               }
+            },
+            "ReportPrefs":{
+               "ReportBasis":"Accrual"
+            }
+         }
+      ],
+      "startPosition":1,
+      "maxResults":1
+   },
+   "time":"2013-05-24T09:52:22.605Z"
 }

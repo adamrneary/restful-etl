@@ -1,55 +1,55 @@
-  "CompanyName": "Man Repeller LLC",
-  "LegalName": "Man Repeller LLC",
-  "CompanyAddr": {
-    "Id": "1",
-    "Line1": "11 E. 1st Street",
-    "City": "New York",
-    "CountrySubDivisionCode": "NY",
-    "PostalCode": "10003",
-    "Lat": "40.724455",
-    "Long": "-73.9908911"
-  },
-  "CustomerCommunicationAddr": {
-    "Id": "1",
-    "Line1": "11 E. 1st Street",
-    "City": "New York",
-    "CountrySubDivisionCode": "NY",
-    "PostalCode": "10003",
-    "Lat": "40.724455",
-    "Long": "-73.9908911"
-  },
-  "LegalAddr": {
-    "Id": "1",
-    "Line1": "11 E. 1st Street",
-    "City": "New York",
-    "CountrySubDivisionCode": "NY",
-    "PostalCode": "10003",
-    "Lat": "40.724455",
-    "Long": "-73.9908911"
-  },
-  "PrimaryPhone": {
-    "FreeFormNumber": "(917)864-6410"
-  },
-  "CompanyStartDate": "2013-04-14",
-  "Country": "US",
-  "Email": {
-    "Address": "abejcohen@gmail.com"
-  },
-  "WebAddr": {
-    "URI": "http://www.manrepeller.com"
-  },
-  "SupportedLanguages": "en",
-  "NameValue": [
-    {
-      "Name": "NeoEnabled",
-      "Value": "false"
-    }
-  ],
-  "domain": "QBO",
-  "sparse": false,
-  "Id": "1",
-  "SyncToken": "85",
-  "MetaData": {
-    "CreateTime": "2013-04-14T11:25:50-07:00",
-    "LastUpdatedTime": "2013-09-30T15:51:53-07:00"
-  }
+{
+   "QueryResponse":{
+      "CompanyInfo":[
+         {
+            "CompanyName":"Stage_Nirvana_CompInfo",
+            "LegalName":"Stage_Nirvana_CompInfo_Legal",
+            "CompanyAddr":{
+               "Line1":"2500 Garcia Ave",
+               "Line2":"2nd cross,3rd street",
+               "Line3":"CA 94010",
+               "City":"MountainView",
+               "CountrySubDivisionCode":"CA",
+               "PostalCode":"94010"
+            },
+            "LegalAddr":{
+               "Line1":"2500 Garcia Ave",
+               "Line2":"2nd cross,3rd street",
+               "City":"MountainView",
+               "CountrySubDivisionCode":"CA",
+               "PostalCode":"94010"
+            },
+            "PrimaryPhone":{
+               "FreeFormNumber":"650-890-9876"
+            },
+            "CompanyFileName":"Stage_Nirvana_CompInfo",
+            "FlavorStratum":"bel_stratum",
+            "SampleFile":false,
+            "CompanyUserId":"183058671",
+            "CompanyStartDate":"2013-05-27",
+            "EmployerId":"12-1234567",
+            "FiscalYearStartMonth":"January",
+            "TaxYearStartMonth":"January",
+            "QBVersion":"23 0 5 4",
+            "Fax":{
+               "FreeFormNumber":"650-890-9876"
+            },
+            "Email":{
+               "Address":"nirvana@intu.com"
+            },
+            "WebAddr":{
+               "URI":"www.nirvanainto.com"
+            },
+            "LastSyncTime":"2013-05-27T01:56:55Z",
+            "domain":"QBDT",
+            "Id":"255535841",
+            "SyncToken":"1",
+            "MetaData":{
+               "CreateTime":"2013-05-27T01:56:09.660Z",
+               "LastUpdatedTime":"2013-05-27T01:56:55.330Z"
+            }
+         }
+      ]
+   },
+   "time":"2013-05-27T11:31:23.032Z"
+}
