@@ -1,0 +1,49 @@
+Invoice = require("../../../lib/load/providers/activecell_objects/qb/invoice").class
+assert  = require("chai").assert
+
+describe "qb ActiveCell", ->
+  describe "invoice object", ->
+    beforeEach ()->
+      @companyId = "1A78ADSF6780AZXCVf"
+
+      @qbdObj =
+          status: "Synchronized"
+          Id: "QB:64531"
+          SyncToken: "1"
+          MetaData:
+            CreateTime: "2010-06-16T20:48:31.215Z"
+            LastUpdatedTime: "2013-04-08T10:49:47Z"
+          DocNumber: "1223"
+          TxnDate: "2010-06-16"
+          ExchangeRate: 1
+          PrivateNote: "add grp and add an item in group dup 1214"
+          TxnStatus: "Payable"
+          TxnTaxDetail:
+            DefaultTaxCodeRef:
+              value: "QB:1"
+              name: "Tax"
+            TotalTax: 0
+          CustomerRef:
+            value: "QB:286"
+            name: "General Electrical"
+          RemitToRef:
+            value: "QB:286"
+            name: "General Electrical"
+          DueDate: "2010-06-16"
+          ShipMethodRef:
+            value: "QB:4"
+            name: "UPS"
+          ShipDate: "2010-06-16"
+          TotalAmt: 35
+          TemplateRef:
+            value: "QB:14"
+            name: "Rock Castle Invoice"
+          PrintStatus: "NotSet"
+          EmailStatus: "NotSet"
+          ARAccountRef:
+            value: "QB:4"
+            name: "Accounts Receivable"
+          Balance: 35
+          FinanceCharge: false
+
+      @invoice= new Invoice(@companyId)
