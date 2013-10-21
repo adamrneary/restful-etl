@@ -17,5 +17,5 @@ describe "qb ActiveCell", ->
         MetaData:
           CreateTime: "2013-07-11T15:12:41-07:00"
           LastUpdatedTime: "2013-07-11T15:12:41-07:00"
-          
+
       @paymentMethod = new PaymentMethod(@companyId)

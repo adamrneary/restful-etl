@@ -1,0 +1,64 @@
+SalesReceipt = require("../../../lib/load/providers/activecell_objects/qb/sales_receipt").class
+assert  = require("chai").assert
+
+describe "qb ActiveCell", ->
+  describe "salesReceipt object", ->
+    beforeEach ()->
+      @companyId = "1A78ADSF6780AZXCVf"
+
+      @qbdObj =
+        domain: "QBO"
+        sparse: false
+        Id: "97"
+        SyncToken: "0"
+        MetaData:
+          CreateTime: "2013-03-13T13:31:43-07:00"
+          LastUpdatedTime: "2013-03-13T13:31:43-07:00"
+        CustomField: [
+          Name: "Custom 1"
+          Type: "StringType"
+          ,
+          Name: "Custom 2"
+          Type: "StringType"
+          ,
+          Name: "Custom 3"
+          Type: "StringType"
+        ]
+        DocNumber: "1047"
+        TxnDate: "2013-03-13"
+        DepartmentRef:
+          value: "1"
+          name: "Department1"
+        CurrencyRef:
+          value: "USD"
+          name: "United States Dollar"
+        PrivateNote: "Memo for SalesReceipt"
+        Line: [
+          Id: "1"
+          LineNum: 1
+          Description: "123189403765"
+          Amount: 5
+          DetailType: "SalesItemLineDetail"
+          SalesItemLineDetail:
+            ItemRef:
+              value: "1"
+              name: "Sales"
+            UnitPrice: 0.5
+            Qty: 10
+            TaxCodeRef: {"value": "NON"}
+          ,
+          Amount: 5
+          DetailType: "SubTotalLineDetail"
+          SubTotalLineDetail: {}
+        ]
+        TxnTaxDetail: {"TotalTax": 0}
+        TotalAmt: 5
+        ApplyTaxAfterDiscount: false
+        PrintStatus: "NeedToPrint"
+        EmailStatus: "NotSet"
+        Balance: 0
+        DepositToAccountRef:
+          value: "4"
+          name: "Undeposited Funds"
+
+      @salesReceipt = new SalesReceipt(@companyId)
