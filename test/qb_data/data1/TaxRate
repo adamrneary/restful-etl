@@ -1,0 +1,106 @@
+[
+{
+"Name":"San Tomas",
+"Description":"CA sales tax, San Tomas County",
+"Active":true,
+"RateValue":7.75,
+"AgencyRef":{
+"value":"QB:67",
+"name":"State Board of Equalization"
+},
+"status":"Synchronized",
+"Id":"QB:86",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"San Domingo",
+"Description":"CA sales tax, San Domingo County",
+"Active":true,
+"RateValue":7.5,
+"AgencyRef":{
+"value":"QB:67",
+"name":"State Board of Equalization"
+},
+"status":"Synchronized",
+"Id":"QB:85",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Out of State",
+"Description":"Out-of-state sale, exempt from sales tax",
+"Active":true,
+"RateValue":0,
+"AgencyRef":{
+"value":"QB:67",
+"name":"State Board of Equalization"
+},
+"status":"Synchronized",
+"Id":"QB:84",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"East Bayshore",
+"Description":"City Sales Tax",
+"Active":true,
+"RateValue":0.3,
+"AgencyRef":{
+"value":"QB:66",
+"name":"City of East Bayshore"
+},
+"status":"Synchronized",
+"Id":"QB:83",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"PinnacleCart TAX TaxCode Ref",
+"Active":true,
+"RateValue":0,
+"status":"Synchronized",
+"Id":"NG:3577878",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-05-08T17:29:02Z",
+"LastUpdatedTime":"2013-05-08T17:29:14Z"
+}
+},
+{
+"Name":"PinnacleCart NON TaxCode Ref",
+"Active":true,
+"RateValue":0,
+"status":"Synchronized",
+"Id":"NG:3577877",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2013-05-08T17:29:01Z",
+"LastUpdatedTime":"2013-05-08T17:29:14Z"
+}
+},
+{
+"Name":"PinnacleCart NON TaxCode Ref",
+"Active":true,
+"RateValue":0,
+"status":"Synchronized",
+"Id":"NG:3386977",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2013-05-08T17:29:01Z",
+"LastUpdatedTime":"2013-05-08T17:29:14Z"
+}
+}
+]
