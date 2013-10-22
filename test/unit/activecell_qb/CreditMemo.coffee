@@ -7,58 +7,15 @@ describe "qb ActiveCell", ->
       @companyId = "1A78ADSF6780AZXCVf"
 
       @qbdObj =
-        RemainingCredit: 10498.95
         domain: "QBO"
-        sparse: false
         Id: "276"
         SyncToken: "0"
         MetaData:
           CreateTime: "2013-04-29T17:30:30-07:00"
           LastUpdatedTime: "2013-04-29T17:30:30-07:00"
-        CustomField:[
-          Name: "Custom 1"
-          Type: "StringType"
-          ,
-          Name: "Custom 2"
-          Type: "StringType"
-          ,
-          Name: "Custom 3"
-          Type: "StringType"
-        ]
         DocNumber: "1139"
         TxnDate: "2013-04-29"
-        DepartmentRef:
-          value: "1"
-          name: "testDept"
-        PrivateNote:"CreditMemo"
-        Line:[
-          Id: "1"
-          LineNum: 1
-          Description: "QBO"
-          Amount: 9999.00
-          DetailType: "SalesItemLineDetail"
-          SalesItemLineDetail:
-            ItemRef:
-              value: "1"
-              name: "Sales"
-            UnitPrice:9999
-            Qty:1
-            TaxCodeRef:
-              value:"TAX"
-          ,
-          Amount: 9999.00
-          DetailType: "SubTotalLineDetail"
-          SubTotalLineDetail: { }
-          ,
-          Amount: 999.90
-          DetailType: "DiscountLineDetail"
-          DiscountLineDetail:
-            PercentBased:true
-            DiscountPercent:10
-            DiscountAccountRef:
-              value:"51"
-              name:"Discounts given"
-        ]
+        Line:[]
         TxnTaxDetail:
           TxnTaxCodeRef:
             value: "9"
@@ -76,31 +33,58 @@ describe "qb ActiveCell", ->
         CustomerRef:
           value: "96"
           name: "yOvUlsnhx6 AOGcYnY5TI"
-        CustomerMemo:
-          value: "Issuing a credit to customer"
-        BillAddr:
-          Id: "92"
-          Line1: "2700 Garcia Avenue"
-          City: "Mountain View"
-          Country: "USA"
-          CountrySubDivisionCode: "CA"
-          PostalCode: "94043"
-          Lat: "37.4276176"
-          Long: "-122.099344"
-        ShipAddr:
-          Id: "93"
-          Line1: "2500 Garcia Avenue"
-          City: "Mountain View"
-          Country: "USA"
-          CountrySubDivisionCode: "CA"
-          PostalCode: "94043"
-          Lat: "37.428314"
-          Long: "-122.0961024"
+        DepositToAccountRef:
+          value: "0969"
+          name: 'checking'
         TotalAmt: 10498.95
         ApplyTaxAfterDiscount: false
-        PrintStatus: "NotSet"
-        EmailStatus: "NotSet"
-        BillEmail:
-          Address: "test@abc.com"
         Balance:10498.95
       @creditMemo = new CreditMemo(@companyId)
+
+      # NOTE TO IGOR: Since we are unit testing the different types of lines,
+      # maybe we should just stub the lines for these documents to save time.
+      Lines: [
+        Id: '1235'
+        AccountId: '09384509345Z'
+        ProductId: '09384509345asd'
+        Amount: 1000000
+      ,
+        Id: '3453'
+        AccountId: '23482'
+        Amount: 498.95
+      ]
+
+      resultObjs = [
+        company_id: @companyId
+        source: 'QB:CreditMemo'
+        qbd_id: '276'
+        is_credit: false
+        account_id: @accountLookup("0969")
+        customer_id: @customerLookup("96")
+        transaction_date: "2013-04-29" # from TxnDate above
+        period_id: @periodLookup("2013-04-29")
+        amount_cents: 1049895
+      ,
+        company_id: @companyId
+        source: 'QB:CreditMemo'
+        qbd_id: '1235'
+        is_credit: true
+        account_id: '09384509345Z'
+        customer_id: @customerLookup("96")
+        product_id: '09384509345asd'
+        transaction_date: "2013-04-29" # from TxnDate above
+        period_id: @periodLookup("2013-04-29")
+        amount_cents: 1000000
+      ,
+        company_id: @companyId
+        source: 'QB:CreditMemo'
+        qbd_id: '3453'
+        is_credit: true
+        account_id: '23482'
+        customer_id: @customerLookup("96")
+        transaction_date: "2013-04-29" # from TxnDate above
+        period_id: @periodLookup("2013-04-29")
+        amount_cents: 49895
+      ]
+
+    it 'logs a warning if the total amount does not equal the sum of line amounts', ->

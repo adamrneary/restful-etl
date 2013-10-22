@@ -14,18 +14,10 @@ describe "qb ActiveCell", ->
         MetaData:
           CreateTime: "2013-03-13T13:31:43-07:00"
           LastUpdatedTime: "2013-03-13T13:31:43-07:00"
-        CustomField: [
-          Name: "Custom 1"
-          Type: "StringType"
-          ,
-          Name: "Custom 2"
-          Type: "StringType"
-          ,
-          Name: "Custom 3"
-          Type: "StringType"
-        ]
         DocNumber: "1047"
         TxnDate: "2013-03-13"
+        CustomerRef:
+          value: '239393'
         DepartmentRef:
           value: "1"
           name: "Department1"
@@ -33,24 +25,7 @@ describe "qb ActiveCell", ->
           value: "USD"
           name: "United States Dollar"
         PrivateNote: "Memo for SalesReceipt"
-        Line: [
-          Id: "1"
-          LineNum: 1
-          Description: "123189403765"
-          Amount: 5
-          DetailType: "SalesItemLineDetail"
-          SalesItemLineDetail:
-            ItemRef:
-              value: "1"
-              name: "Sales"
-            UnitPrice: 0.5
-            Qty: 10
-            TaxCodeRef: {"value": "NON"}
-          ,
-          Amount: 5
-          DetailType: "SubTotalLineDetail"
-          SubTotalLineDetail: {}
-        ]
+        Line: []
         TxnTaxDetail: {"TotalTax": 0}
         TotalAmt: 5
         ApplyTaxAfterDiscount: false
@@ -62,3 +37,50 @@ describe "qb ActiveCell", ->
           name: "Undeposited Funds"
 
       @salesReceipt = new SalesReceipt(@companyId)
+
+      # NOTE TO IGOR: Since we are unit testing the different types of lines,
+      # maybe we should just stub the lines for these documents to save time.
+      Lines: [
+        Id: 'NG:1234'
+        AccountId: '09384509345Z'
+        ProductId: '09384509345asd'
+        Amount: 1
+      ,
+        Id: 'NG:3629083'
+        AccountId: '23482'
+        Amount: 4
+      ]
+
+      resultObjs = [
+        company_id: @companyId
+        source: 'QB:SalesReceipt'
+        qbd_id: '19'
+        is_credit: false
+        account_id: @accountLookup("4")
+        customer_id: @customerLookup("239393")
+        transaction_date: "2013-03-13" # from TxnDate above
+        period_id: @periodLookup("2013-03-13")
+        amount_cents: 500
+      ,
+        company_id: @companyId
+        source: 'QB:SalesReceipt'
+        qbd_id: 'NG:1234'
+        is_credit: true
+        account_id: '09384509345Z'
+        customer_id: @customerLookup("239393")
+        product_id: '09384509345asd'
+        transaction_date: "2013-03-13" # from TxnDate above
+        period_id: @periodLookup("2013-03-13")
+        amount_cents: 100
+      ,
+        company_id: @companyId
+        source: 'QB:SalesReceipt'
+        qbd_id: 'NG:3629083'
+        is_credit: true
+        account_id: '23482'
+        customer_id: @customerLookup("239393")
+        transaction_date: "2013-03-13" # from TxnDate above
+        period_id: @periodLookup("2013-03-13")
+        amount_cents: 400
+      ]
+

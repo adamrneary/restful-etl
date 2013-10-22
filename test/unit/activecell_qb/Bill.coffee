@@ -20,31 +20,7 @@ describe "qb ActiveCell", ->
           TxnDate: "2013-02-05"
           PrivateNote: "tESTING with ll types of Line itesms"
           TxnStatus: "Payable"
-          Line:[
-            Id: "NG:3629083"
-            Description: "Testing Exp"
-            Amount: 500
-            DetailType: "AccountBasedExpenseLineDetail"
-            AccountBasedExpenseLineDetail:
-              CustomerRef:
-                value: "QB:260"
-                name: "Apple"
-              ClassRef:
-                value: "QB:1"
-                name: "New Construction"
-              AccountRef:
-                value: "QB:32"
-                name: "Fuel"
-              BillableStatus: "Billable"
-            },
-            CustomField:[]
-          ,
-            Id: "QB:123"
-            Amount: 456
-            DetailType: "ItemBasedExpenseLineDetail"
-            ItemBasedExpenseLineDetail:
-              ItemRef: {value: 'QB:345'}
-          ]
+          Line:[]
           TxnTaxDetail:
             TaxLine: []
           VendorRef:
@@ -56,8 +32,18 @@ describe "qb ActiveCell", ->
           TotalAmt:1990.19
       @bill = new Bill(@companyId)
 
-      # NOTE TO IGOR: Since we are unit testing the different types of lines,
-      # maybe we should just stub the lines for these documents to save time.
+    # NOTE TO IGOR: Since we are unit testing the different types of lines,
+    # maybe we should just stub the lines for these documents to save time.
+    Lines: [
+      Id: 'NG:1234'
+      AccountId: '09384509345Z'
+      ProductId: '09384509345asd'
+      Amount: 1000
+    ,
+      Id: 'NG:3629083'
+      AccountId: '23482'
+      Amount: 990.19
+    ]
 
     resultObjs = [
       company_id: @companyId
@@ -72,22 +58,24 @@ describe "qb ActiveCell", ->
     ,
       company_id: @companyId
       source: 'QB:Bill'
-      qbd_id: 'NG:3629083'
+      qbd_id: 'NG:1234'
       is_credit: false
-      account_id: @accountLookup("QB:12")
+      account_id: '09384509345Z'
       vendor_id: @vendorLookup("QB:164")
+      product_id: '09384509345asd'
       transaction_date: "2013-02-05" # from TxnDate above
       period_id: @periodLookup("2013-02-05")
-      amount_cents: 50000
+      amount_cents: 100000
     ,
       company_id: @companyId
       source: 'QB:Bill'
       qbd_id: 'NG:3629083'
       is_credit: false
-      account_id: @accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
-      product_id:  @productLookup('QB:345')
+      account_id: '23482'
       vendor_id: @vendorLookup("QB:164")
       transaction_date: "2013-02-05" # from TxnDate above
       period_id: @periodLookup("2013-02-05")
-      amount_cents: 45600
+      amount_cents: 99019
     ]
+
+    it 'logs a warning if the total amount does not equal the sum of line amounts', ->

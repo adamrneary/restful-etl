@@ -27,45 +27,56 @@ describe "qb ActiveCell", ->
         DocNumber: "1234"
         TxnDate: "2013-03-14"
         PrivateNote: "This is the memo."
-        Line:[
-          Id: "1"
-          Description: "Charge for advertising"
-          Amount: 5.00
-          DetailType: "AccountBasedExpenseLineDetail"
-          AccountBasedExpenseLineDetail:
-            ClassRef:
-              value: "100100000000000212510"
-              name: "Class 1"
-            AccountRef:
-              value: "8"
-              name: "Advertising"
-            BillableStatus:"Billable"
-            MarkupInfo:
-              Percent:10
-            TaxCodeRef:
-              value: "TAX"
-          ,
-          Id: "2"
-          Description: "Charge for office supplies"
-          Amount: 10.00
-          DetailType: "ItemBasedExpenseLineDetail"
-          ItemBasedExpenseLineDetail:
-            BillableStatus: "Billable"
-            ItemRef:
-              value: "7"
-              name: "Office Supplies 2"
-            ClassRef:
-              value: "100100000000000212510"
-              name: "Class 1"
-            UnitPrice:1
-            MarkupInfo:
-              Percent:1
-            Qty:10,
-            TaxCodeRef:
-              value: "TAX"
-          AccountBasedExpenseLineDetail:
-            AccountRef:
-              value: "9"
-              name: "Bank Charges"
-        ]
+        Line:[]
       @purchase = new Purchase(@companyId)
+
+
+      # NOTE TO IGOR: Since we are unit testing the different types of lines,
+      # maybe we should just stub the lines for these documents to save time.
+      Lines: [
+        Id: 'NG:1234'
+        AccountId: '09384509345Z'
+        ProductId: '09384509345asd'
+        Amount: 10.00
+      ,
+        Id: 'NG:3629083'
+        AccountId: '23482'
+        Amount: 5.00
+      ]
+
+      resultObjs = [
+        company_id: @companyId
+        source: 'QB:Purchase'
+        qbd_id: '216'
+        is_credit: true
+        account_id: @accountLookup("QB:32")
+        customer_id: @customerLookup("191") # entity could be customer or vendor
+        transaction_date: "2013-03-14" # from TxnDate above
+        period_id: @periodLookup("2013-03-14")
+        amount_cents: 1500
+      ,
+        company_id: @companyId
+        source: 'QB:Purchase'
+        qbd_id: 'NG:1234'
+        is_credit: false
+        account_id: '09384509345Z'
+        customer_id: @customerLookup("191") # entity could be customer or vendor
+        product_id: '09384509345asd'
+        transaction_date: "2013-03-14" # from TxnDate above
+        period_id: @periodLookup("2013-03-14")
+        amount_cents: 1000
+      ,
+        company_id: @companyId
+        source: 'QB:Purchase'
+        qbd_id: 'NG:3629083'
+        is_credit: false
+        account_id: '23482'
+        customer_id: @customerLookup("191") # entity could be customer or vendor
+        transaction_date: "2013-03-14" # from TxnDate above
+        period_id: @periodLookup("2013-03-14")
+        amount_cents: 500
+      ]
+
+      it 'logs a warning if AccountRef is not populated', ->
+
+      it 'logs a warning if the total amount does not equal the sum of line amounts', ->
