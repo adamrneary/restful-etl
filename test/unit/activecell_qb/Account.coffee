@@ -75,6 +75,8 @@ describe "qb ActiveCell", ->
         parent_qb_id: "QB:1"
         parent_account_id: "52306e72d5ca8d64690000b2"
 
+    it "uses the cached account lookup ", ->
+
 #    it "filters comparison to valid Activecell objects", ->
 #
 #    it "can compare objObjs with Activecell objects", ->
