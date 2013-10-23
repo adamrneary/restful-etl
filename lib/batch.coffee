@@ -10,6 +10,8 @@ class Batch
   constructor: (@options) ->
     @error = false
     @extractData = {}
+    @loadData = {}
+    @loadResultData = {}
 
   run: (cb) =>
     cb_success = _.after 2, cb

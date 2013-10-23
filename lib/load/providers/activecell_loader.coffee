@@ -27,47 +27,86 @@ exports.load = (options = {}, cb) ->
             err = e
           finally
               activeCellData = data
+              options.batch.loadData[options.object] = data.slice(0)
               cb err
 
       req.end()
       req.on "error", (e) ->
         cb new Errors.IntuitLoadError("", e)
     ,
-    # waiting for required objects
+    # waiting for extract required objects
     (cb) ->
+      unless options.required_objects.extract
+        cb()
+        return
       waitObjects = () ->
-        if not options.batch.extractData[options.required_object]
-          setTimeout(waitObjects, 1000)
+        if (not _.any options.required_objects.extract, (object) ->
+          not _.isUndefined(options.batch.extractData[object]))
+          setTimeout(waitObjects, 100)
         else
           cb()
       waitObjects()
     ,
+    # waiting for load required objects
+    (cb) ->
+      unless options.required_objects.load
+        cb()
+        return
+      waitObjects = () ->
+        if (_.any options.required_objects.load, (object) ->
+          not _.isUndefined(options.batch.loadData[object]))
+          setTimeout(waitObjects, 100)
+        else
+          cb()
+      waitObjects()
+  ,
+    # waiting for load result required objects
+    (cb) ->
+      unless options.required_objects.load_result
+        cb()
+        return
+      waitObjects = () ->
+        if (_.any options.required_objects.load_result, (object) ->
+          not _.isUndefined(options.batch.loadResultData[object]))
+          setTimeout(waitObjects, 100)
+        else
+          cb()
+      waitObjects()
+  ,
     # compare objects
     (cb) ->
       classObj = require("./activecell_objects/qb/#{options.object.toLowerCase()}").class
       Obj = new classObj(options.companyId)
       activeCellData = _.filter activeCellData, (d) ->
         Obj.filter(d)
-      sourseData = options.batch.extractData[options.required_object]
-
+      loadResultData = activeCellData.slice(0)
+      sourseData = options.batch.extractData[options.source_object]
       createList = []
       deleteList = []
       updateList = []
 
-      _.each sourseData, (source) ->
+      _.each sourseData, (sourceObject) ->
         foundIndex = 0
-        foundObj = _.find activeCellData, (active, i) ->
-          return unless active
+        foundObj = _.find activeCellData, (activeCellObject, i) ->
+          return unless activeCellObject
           foundIndex = i
-          Obj.compare source, active
+          Obj.compare sourceObject, activeCellObject, options.batch.extractData, options.batch.loadData, options.batch.loadResultData
         if foundObj
           activeCellData[foundIndex] = null
-          switch Obj.compare(source, foundObj)
-            when "update" then updateList.push Obj.update source, foundObj
+          switch Obj.compare(sourceObject, foundObj, options.batch.extractData, options.batch.loadData, options.batch.loadResultData)
+            when "update"
+              updatedObject = Obj.update(sourceObject, foundObj)
+              updateList.push updatedObject
+              loadResultData[foundIndex] = updatedObject
         else
-          createList.push Obj.transform(source)
+          createList.push Obj.transform(sourceObject)
 
       deleteList = _.compact activeCellData
+
+      _.each deleteList, (deletedObject) ->
+        _.each loadResultData, (object, i) ->
+          loadResultData[i] = null if deletedObject is object
+      loadResultData = _.compact loadResultData
 
       async.parallel [
         (cb)->
@@ -87,7 +126,7 @@ exports.load = (options = {}, cb) ->
           , (err) ->
             cb(err)
         ,
-        (cb)->
+        (cb)-> #TODO: Added created objects to the loadResultData
           requestOptions =
             hostname: "#{options.subdomain}.activecell.com"
             path: "/api/v1/#{options.object.toLowerCase()}.json"
@@ -120,6 +159,7 @@ exports.load = (options = {}, cb) ->
           , (err) ->
             cb(err)
       ], (err) ->
+        options.batch.loadResultData = loadResultData
         cb(err)
   ], (err) ->
     cb(err)

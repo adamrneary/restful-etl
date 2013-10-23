@@ -167,12 +167,15 @@ describe "Extract data from intuit and load it to ActiveCell", ->
       source_connection_id: "source_connection_id"
       destination_connection_id: "destination_connection_id"
       jobs: [
-        type: "extract",
+        type: "extract"
         object: "Customer"
       ,
-        type: "load",
-        object: "customers",
-        required_object: "Customer"
+        type: "load"
+        object: "customers"
+#        required_object: "Customer"
+        source_object: "Customer"
+        required_objects:
+          extract: ["Customer"]
       ]
 
     intuitCustomerData = ""
@@ -180,7 +183,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
 
     async.series [
       (cb) ->
-        fs.readFile "./test/qb_data/Customer", (err, data) ->
+        fs.readFile "./test/integration/qb_data/Customer", (err, data) ->
           intuitCustomerData = '{"QueryResponse":{"Customer":'+data.toString()+'}}'
           cb(err)
     ,
@@ -189,14 +192,14 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           options.source_connection_id = model._id
           nock("https://qb.sbfinance.intuit.com")
             .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Customer")
-            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}');
+            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}')
           nock("https://qb.sbfinance.intuit.com")
             .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Customer%20%20startposition%201%20maxresults%20500")
             .reply(200, intuitCustomerData);
           cb(err)
     ,
       (cb) ->
-        fs.readFile "./test/activecell_data/customers", (err, data) ->
+        fs.readFile "./test/integration/activecell_data/customers", (err, data) ->
           activecellCustomersData = data.toString()
           cb(err)
     ,
@@ -205,11 +208,11 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           options.destination_connection_id = model._id
           nock("https://sterlingcooper.activecell.com")
             .get("/api/v1/customers.json")
-            .reply(200, activecellCustomersData);
+            .reply(200, activecellCustomersData)
           cb(err)
     ,
       (cb) ->
-        fs.readFile "./test/activecell_data/customers_create", (err, data) ->
+        fs.readFile "./test/integration/activecell_data/customers_create", (err, data) ->
           createObjects = JSON.parse data.toString()
           _.each createObjects, (obj) ->
             nock("https://sterlingcooper.activecell.com")
@@ -218,28 +221,26 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           cb(err)
     ,
       (cb) ->
-        fs.readFile "./test/activecell_data/customers_delete", (err, data) ->
+        fs.readFile "./test/integration/activecell_data/customers_delete", (err, data) ->
           deleteObjects = JSON.parse data.toString()
           _.each deleteObjects, (obj) ->
             nock("https://sterlingcooper.activecell.com")
               .delete("/api/v1/customers/#{obj.id}.json")
-              .reply(204);
+              .reply(204)
           cb(err)
     ,
       (cb) ->
-        fs.readFile "./test/activecell_data/customers_update", (err, data) ->
+        fs.readFile "./test/integration/activecell_data/customers_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
             nock("https://sterlingcooper.activecell.com")
               .put("/api/v1/customers/#{obj.id}.json")
-              .reply(200);
+              .reply(200)
           cb(err)
     ,
       (cb) ->
         batch = new Batch(options)
         batch.run (err) ->
-#          console.log "batch", batch
           cb(err)
-#        cb()
     ], (err) ->
       done(err)

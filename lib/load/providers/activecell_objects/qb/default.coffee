@@ -17,7 +17,7 @@ class Default
   # "equal" - if the objects is equal
   # "update" - if the objects is not equal, and we should update the ActiveCell object
   # "" - if the objects can not be compared
-  compare: (qbdObj, activeCellObj) ->
+  compare: (qbdObj, activeCellObj, extractData, loadData, loadResultData) ->
     if (activeCellObj.company_id + activeCellObj.qbd_id) is (@companyId() + qbdObj.Id)
       equal = _.all @compareFields(), (field) ->
         qbdObj[field.qbd] is activeCellObj[field.activeCell]
@@ -27,14 +27,15 @@ class Default
       ""
 
   # transform  QBD object to ActiveCell object
-  transform: (qbdObj) =>
+  transform: (qbdObj, extractData, loadData, loadResultData) =>
     newObj = {company_id: @companyId()}
     _.each @compareFields(), (field) =>
       newObj[field.activeCell] = qbdObj[field.qbd]
     newObj
 
   # update ActiveCell object using QBD object
-  update: (qbdObj, activeCellObj) ->
+  update: (qbdObj, activeCellObj, extractData, loadData, loadResultData) ->
+    activeCellObj = _.clone activeCellObj
     _.extend activeCellObj, @transform(qbdObj)
     activeCellObj
 

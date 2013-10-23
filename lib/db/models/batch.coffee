@@ -11,7 +11,10 @@ jobSchema = new Schema
   since: String
   updated_since: String
   allowDelete: Boolean
-  required_object: String
+  required_objects:
+    extract: [String]
+    load: [String]
+    load_result: [String]
 
 batchSchema = new Schema
   tenant_id: String
