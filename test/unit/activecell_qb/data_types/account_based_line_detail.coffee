@@ -1,7 +1,9 @@
+lineTranform = require("../../../../lib/load/providers/activecell_objects/qb/utils/utils").lineTranform
+assert  = require("chai").assert
+
 describe "qbd ActiveCell", ->
   describe "AccountBasedExpenseLineDetail", ->
-
-    it "can find an account based on the account ref", ->
+    beforeEach () ->
       @qbdObj =
         Id: "QB:123"
         Amount: 500
@@ -9,7 +11,10 @@ describe "qbd ActiveCell", ->
         AccountBasedExpenseLineDetail:
           AccountRef: {value: 'QB:345'}
 
-      resultObj:
+    it "can find an account based on the account ref", ->
+      resultObj =
         Id: "QB:123"
         Amount: 500
-        AccountId: @accountLookup('QB:345')
+        AccountId: "QB:345" #@accountLookup('QB:345')
+
+      assert.deepEqual lineTranform(@qbdObj), resultObj

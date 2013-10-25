@@ -1,20 +1,26 @@
+transromRefs = require("../../../../lib/load/providers/activecell_objects/qb/utils/utils").transromRefs
+assert  = require("chai").assert
+
 describe "qbd ActiveCell", ->
   describe "EntityTypeRef", ->
 
     it "can identify a customer", ->
-      @qbdObj =
-        Entity:
-          Type: 'Customer'
-          EntityRef: {value: 'QB:234'}
+      qbdObj =
+        CustomerRef:
+          value: "QB:234"
 
-      resultObj:
-        CustomerId: @customerLookup('QB:234')
+      resultObj =
+        CustomerId: "QB:234"
+
+      assert.deepEqual transromRefs(qbdObj), resultObj
 
     it "can identify a vendor", ->
-      @qbdObj =
-        Entity:
-          Type: 'Vendor'
-          EntityRef: {value: 'QB:234'}
+      qbdObj =
+        CustomerRef:
+          value: "QB:234"
+          type: "Vendor"
 
-      resultObj:
-        VendorId: @vendorLookup('QB:234')
+      resultObj =
+        VendorId: "QB:234"
+
+      assert.deepEqual transromRefs(qbdObj), resultObj

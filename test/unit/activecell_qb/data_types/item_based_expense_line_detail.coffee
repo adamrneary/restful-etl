@@ -1,22 +1,35 @@
+lineTranform = require("../../../../lib/load/providers/activecell_objects/qb/utils/utils").lineTranform
+assert  = require("chai").assert
+
 describe "qbd ActiveCell", ->
   describe "ItemBasedExpenseLineDetail", ->
 
     it "can find an account based on the item", ->
-      @qbdObj =
+      extractData =
+        Item:[
+          Name: "Freight Reimbursement"
+          Id: "QB:345"
+          ExpenseAccountRef:
+            value: "QB:123"
+        ]
+
+      qbdObj =
         Id: "QB:123"
         Amount: 500
         DetailType: "ItemBasedExpenseLineDetail"
         ItemBasedExpenseLineDetail:
           ItemRef: {value: 'QB:345'}
 
-      resultObj:
+      resultObj =
         Id: "QB:123"
         Amount: 500
-        AccountId: @accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
-        ProductId: @productLookup('QB:345')
+        AccountId: "QB:123"#@accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
+        ProductId: "QB:345"
+
+      assert.deepEqual lineTranform(qbdObj, extractData), resultObj
 
     it "can find an account based on the item account ref", ->
-      @qbdObj =
+      qbdObj =
         Id: "QB:123"
         Amount: 500
         DetailType: "ItemBasedExpenseLineDetail"
@@ -24,8 +37,10 @@ describe "qbd ActiveCell", ->
           ItemRef: {value: 'QB:345'}
           ItemAccountRef: {value: 'QB:678'}
 
-      resultObj:
+      resultObj =
         Id: "QB:123"
         Amount: 500
-        AccountId: @accountLookup('QB:678')
-        ProductId: @productLookup('QB:345')
+        AccountId: "QB:678"
+        ProductId: "QB:345"
+
+      assert.deepEqual lineTranform(qbdObj), resultObj
