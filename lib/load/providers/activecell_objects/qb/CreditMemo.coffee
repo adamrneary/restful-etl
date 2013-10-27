@@ -1,5 +1,5 @@
 _ = require "underscore"
-Default = require("./default").Default
+Default = require("./utils/default").Default
 utils = require "./utils/utils"
 
 class CreditMemo extends Default
@@ -21,7 +21,8 @@ class CreditMemo extends Default
       qbd: "TotalAmt"
     ]
 
-  transform: (qbdObj, extractData, loadData, loadResultData) =>
+  transform: (qbdObj, extractData, loadData, loadResultData, cb) =>
+    messages = []
     result = []
     utils.transromRefs qbdObj, extractData, loadData, loadResultData
     qbdObj.account_id = qbdObj.deposit_account_id
@@ -31,6 +32,7 @@ class CreditMemo extends Default
     obj.is_credit = false
     obj.period_id = obj.transaction_date
     result.push obj
+    totalAmountCents = obj.amount_cents
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
       newObj = _.defaults(newObj, obj)
@@ -38,7 +40,14 @@ class CreditMemo extends Default
       delete newObj.Id
       newObj.is_credit = true
       result.push newObj
+      totalAmountCents -= newObj.amount_cents
 
+    if totalAmountCents
+      messages.push
+        type: "warning"
+        message: "total amount does not equal the sum of line amounts"
+
+      cb messages if cb
     result
 
 module.exports.class = CreditMemo

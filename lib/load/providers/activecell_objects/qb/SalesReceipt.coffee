@@ -1,5 +1,5 @@
 _ = require "underscore"
-Default = require("./default").Default
+Default = require("./utils/default").Default
 utils = require "./utils/utils"
 
 class SalesReceipt extends Default

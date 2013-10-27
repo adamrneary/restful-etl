@@ -104,4 +104,9 @@ describe "qb ActiveCell", ->
 
       assert.deepEqual @creditMemo.transform(@qbdObj), resultObjs
 
-    it 'logs a warning if the total amount does not equal the sum of line amounts', ->
+    it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
+      @creditMemo.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )

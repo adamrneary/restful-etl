@@ -29,9 +29,3 @@ describe "qbd ActiveCell", ->
        name: "Early Pay Discount"
 
      assert.deepEqual @vendor.transform(@qbdObj), resultObj
-
-   # it "filters comparison to valid Activecell objects", ->
-   #
-   # it "can compare objObjs with Activecell objects", ->
-   #
-   # it "can update an existing object", ->

@@ -22,6 +22,7 @@ describe "qbd ActiveCell", ->
         DefaultTaxCodeRef: {value: "QB:1", name:"Tax"}
 
       @customer = new Customer(@companyId)
+
     it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObj =
         company_id: @companyId
@@ -29,49 +30,3 @@ describe "qbd ActiveCell", ->
         name: "American Express Settlement"
 
       assert.deepEqual @customer.transform(@qbdObj), resultObj
-
-    it "filters comparison to valid Activecell objects", ->
-      assert.ok @customer.filter {company_id: @companyId, qbd_id:"qbd:1234"}
-      assert.notOk @customer.filter {company_id: @companyId}
-
-    it "can compare objObjs with Activecell objects", ->
-      existingObj =
-        company_id: @companyId
-        qbd_id: "QB:399"
-        name: "name1"
-
-      assert.equal @customer.compare(
-        Id: "QB:399"
-        DisplayName: "name1"
-      ,
-      existingObj
-      ), "equal"
-
-      assert.equal @customer.compare(
-        Id:"QB:399"
-        DisplayName: "new name"
-      ,
-      existingObj
-      ), "update"
-
-      assert.equal @customer.compare(
-        Id:"QB:399x"
-        DisplayName: "name1"
-      ,
-      existingObj
-      ), ""
-
-    it "can update an existing object", ->
-      @qbdObj.DisplayName = "new Name"
-
-      activeCellObj =
-        company_id: @companyId
-        qbd_id: "QB:399"
-        name: "name1"
-
-      resultObj =
-        company_id: @companyId
-        qbd_id: "QB:399"
-        name: "new Name"
-
-      assert.deepEqual @customer.update(@qbdObj, activeCellObj), resultObj

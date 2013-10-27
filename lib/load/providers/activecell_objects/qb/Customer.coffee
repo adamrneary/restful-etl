@@ -1,4 +1,4 @@
-Default = require("./default").Default
+Default = require("./utils/default").Default
 
 class Customer extends Default
 
