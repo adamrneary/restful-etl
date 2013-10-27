@@ -1,8 +1,8 @@
-Vendors = require("../../../lib/load/providers/activecell_objects/qb/vendors").class
+Vendor = require("../../../lib/load/providers/activecell_objects/qb/Vendor").class
 assert  = require("chai").assert
 
 describe "qbd ActiveCell", ->
-  describe "vendors object", ->
+  describe "Vendor object", ->
     beforeEach ()->
       @companyId = "1A78ADSF6780AZXCVf"
 
@@ -20,9 +20,9 @@ describe "qbd ActiveCell", ->
         DisplayName: "Early Pay Discount"
         Active: true
 
-      @vendors = new Vendors(@companyId)
+      @vendor = new Vendor(@companyId)
 
-   it "can transform a qbdObj in order to create a new Activecell obj", ->
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
      resultObj =
        company_id: @companyId
        qbd_id: "QB:401"

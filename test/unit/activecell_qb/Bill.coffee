@@ -21,12 +21,18 @@ describe "qb ActiveCell", ->
           PrivateNote: "tESTING with ll types of Line itesms"
           TxnStatus: "Payable"
           Line:[
-            Id: "QB:123"
-            Amount: 500
-            DetailType: "ItemBasedExpenseLineDetail"
-            ItemBasedExpenseLineDetail:
-              ItemRef: {value: 'QB:345'}
-              ItemAccountRef: {value: 'QB:678'}
+              Id: "QB:123"
+              Amount: 500
+              DetailType: "ItemBasedExpenseLineDetail"
+              ItemBasedExpenseLineDetail:
+                ItemRef: {value: 'QB:345'}
+                ItemAccountRef: {value: 'QB:678'}
+            ,
+              Id: "QB:213"
+              Amount: 1600
+              DetailType: "AccountBasedExpenseLineDetail"
+              AccountBasedExpenseLineDetail:
+                AccountRef: {value: "QB:345"}
           ]
           TxnTaxDetail:
             TaxLine: []
@@ -40,20 +46,7 @@ describe "qb ActiveCell", ->
 
       @bill = new Bill(@companyId)
 
-    # NOTE TO IGOR: Since we are unit testing the different types of lines,
-    # maybe we should just stub the lines for these documents to save time.
     it "can transform a qbdObj in order to create a new Activecell obj", ->
-      Lines: [
-        Id: 'NG:1234'
-        AccountId: '09384509345Z'
-        ProductId: '09384509345asd'
-        Amount: 1000
-      ,
-        Id: 'NG:3629083'
-        AccountId: '23482'
-        Amount: 990.19
-      ]
-
       resultObjs = [
         company_id: @companyId
         qbd_id: 'NG:3424987'
@@ -76,15 +69,15 @@ describe "qb ActiveCell", ->
         is_credit: false
         period_id: "2013-02-05"#@periodLookup("2013-02-05")
       ,
+        amount_cents: 160000
+        account_id: 'QB:345'
         company_id: @companyId
-        source: 'QB:Bill'
-        qbd_id: 'NG:3629083'
-        is_credit: false
-        account_id: '23482'
+        qbd_id: 'QB:213'
         vendor_id: "QB:164"#@vendorLookup("QB:164")
         transaction_date: "2013-02-05" # from TxnDate above
+        source: 'QB:Bill'
+        is_credit: false
         period_id: "2013-02-05"#@periodLookup("2013-02-05")
-        amount_cents: 99019
       ]
 
       assert.deepEqual @bill.transform(@qbdObj), resultObjs

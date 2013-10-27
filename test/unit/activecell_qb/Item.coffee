@@ -1,4 +1,4 @@
-Item = require("../../../lib/load/providers/activecell_objects/qb/item").class
+Item = require("../../../lib/load/providers/activecell_objects/qb/Item").class
 assert  = require("chai").assert
 
 describe "qb ActiveCell", ->
@@ -38,14 +38,17 @@ describe "qb ActiveCell", ->
 
       @item = new Item(@companyId)
 
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObj =
         company_id: @companyId
-        qbd_id: 'QB:95'
-        name: 'Freight Reimbursement'
+        qbd_id: "QB:95"
+        name: "Freight Reimbursement"
         description: "Freight and Delivery Reimbursement"
-        income_account_id: @accountLookup('QB:119')
-        cogs_account_id: @accountLookup('234')
-        expense_account_id: @accountLookup('123')
-        asset_account_id: @accountLookup('456')
-        deposit_account_id: @accountLookup('345')
-        qb_type: 'Other Charge'
+        income_account_id: "QB:119" #@accountLookup("QB:119")
+        cogs_account_id: "234" #@accountLookup("234")
+        expense_account_id: "123" #@accountLookup("123")
+        asset_account_id: "456" #@accountLookup("456")
+        deposit_account_id: "345" #@accountLookup("345")
+        qb_type: "Other Charge"
+
+      assert.deepEqual @item.transform(@qbdObj), resultObj

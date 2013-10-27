@@ -1,4 +1,4 @@
-Purchase = require("../../../lib/load/providers/activecell_objects/qb/purchase").class
+Purchase = require("../../../lib/load/providers/activecell_objects/qb/Purchase").class
 assert  = require("chai").assert
 
 describe "qb ActiveCell", ->
@@ -8,7 +8,7 @@ describe "qb ActiveCell", ->
 
       @qbdObj =
         AccountRef:
-          value: "69"
+          value: "QB:69"
           name: "Test Credit Card Account"
         PaymentType:"CreditCard"
         EntityRef:
@@ -27,8 +27,23 @@ describe "qb ActiveCell", ->
         DocNumber: "1234"
         TxnDate: "2013-03-14"
         PrivateNote: "This is the memo."
-        Line:[]
+        Line:[
+          Id: "QB:123"
+          Amount: 500
+          DetailType: "ItemBasedExpenseLineDetail"
+          ItemBasedExpenseLineDetail:
+            ItemRef: {value: 'QB:345'}
+            ItemAccountRef: {value: 'QB:678'}
+        ,
+          Id: "QB:213"
+          Amount: 1600
+          DetailType: "AccountBasedExpenseLineDetail"
+          AccountBasedExpenseLineDetail:
+            AccountRef: {value: "QB:345"}
+        ]
       @purchase = new Purchase(@companyId)
+
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
 
 
       # NOTE TO IGOR: Since we are unit testing the different types of lines,
@@ -46,36 +61,38 @@ describe "qb ActiveCell", ->
 
       resultObjs = [
         company_id: @companyId
-        source: 'QB:Purchase'
-        qbd_id: '216'
-        is_credit: true
-        account_id: @accountLookup("QB:32")
-        customer_id: @customerLookup("191") # entity could be customer or vendor
+        qbd_id: "216"
+        account_id: "QB:69" #@accountLookup("QB:32")
+        customer_id: "191" #@customerLookup("191") # entity could be customer or vendor
         transaction_date: "2013-03-14" # from TxnDate above
-        period_id: @periodLookup("2013-03-14")
         amount_cents: 1500
+        source: "QB:Purchase"
+        is_credit: true
+        period_id: "2013-03-14" #@periodLookup("2013-03-14")
       ,
+        amount_cents: 50000
+        product_id: "QB:345"
+        account_id: "QB:678"
         company_id: @companyId
-        source: 'QB:Purchase'
-        qbd_id: 'NG:1234'
-        is_credit: false
-        account_id: '09384509345Z'
-        customer_id: @customerLookup("191") # entity could be customer or vendor
-        product_id: '09384509345asd'
+        qbd_id: "QB:123"
+        customer_id: "191" #@customerLookup("191") # entity could be customer or vendor
         transaction_date: "2013-03-14" # from TxnDate above
-        period_id: @periodLookup("2013-03-14")
-        amount_cents: 1000
+        source: "QB:Purchase"
+        is_credit: false
+        period_id: "2013-03-14" #@periodLookup("2013-03-14")
       ,
+        amount_cents: 160000
+        account_id: "QB:345"
         company_id: @companyId
-        source: 'QB:Purchase'
-        qbd_id: 'NG:3629083'
-        is_credit: false
-        account_id: '23482'
-        customer_id: @customerLookup("191") # entity could be customer or vendor
+        qbd_id: "QB:213"
+        customer_id: "191" #@customerLookup("191") # entity could be customer or vendor
         transaction_date: "2013-03-14" # from TxnDate above
-        period_id: @periodLookup("2013-03-14")
-        amount_cents: 500
+        source: "QB:Purchase"
+        is_credit: false
+        period_id: "2013-03-14" #@periodLookup("2013-03-14")
       ]
+
+      assert.deepEqual @purchase.transform(@qbdObj), resultObjs
 
       it 'logs a warning if AccountRef is not populated', ->
 

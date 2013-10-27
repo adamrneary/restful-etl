@@ -1,4 +1,4 @@
-CreditMemo = require("../../../lib/load/providers/activecell_objects/qb/credit_memo").class
+CreditMemo = require("../../../lib/load/providers/activecell_objects/qb/CreditMemo").class
 assert  = require("chai").assert
 
 describe "qb ActiveCell", ->
@@ -15,7 +15,20 @@ describe "qb ActiveCell", ->
           LastUpdatedTime: "2013-04-29T17:30:30-07:00"
         DocNumber: "1139"
         TxnDate: "2013-04-29"
-        Line:[]
+        Line:[
+          Id: "QB:123"
+          Amount: 500
+          DetailType: "ItemBasedExpenseLineDetail"
+          ItemBasedExpenseLineDetail:
+            ItemRef: {value: 'QB:345'}
+            ItemAccountRef: {value: 'QB:678'}
+        ,
+          Id: "QB:213"
+          Amount: 1600
+          DetailType: "AccountBasedExpenseLineDetail"
+          AccountBasedExpenseLineDetail:
+            AccountRef: {value: "QB:345"}
+        ]
         TxnTaxDetail:
           TxnTaxCodeRef:
             value: "9"
@@ -39,6 +52,7 @@ describe "qb ActiveCell", ->
         TotalAmt: 10498.95
         ApplyTaxAfterDiscount: false
         Balance:10498.95
+
       @creditMemo = new CreditMemo(@companyId)
 
       # NOTE TO IGOR: Since we are unit testing the different types of lines,
@@ -54,37 +68,40 @@ describe "qb ActiveCell", ->
         Amount: 498.95
       ]
 
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
         company_id: @companyId
-        source: 'QB:CreditMemo'
-        qbd_id: '276'
-        is_credit: false
-        account_id: @accountLookup("0969")
-        customer_id: @customerLookup("96")
+        qbd_id: "276"
+        account_id: "0969" #@accountLookup("0969")
+        customer_id: "96" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
-        period_id: @periodLookup("2013-04-29")
         amount_cents: 1049895
+        source: "QB:CreditMemo"
+        is_credit: false
+        period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ,
+        amount_cents: 50000
+        product_id: "QB:345"
+        account_id: "QB:678"
         company_id: @companyId
-        source: 'QB:CreditMemo'
-        qbd_id: '1235'
-        is_credit: true
-        account_id: '09384509345Z'
-        customer_id: @customerLookup("96")
-        product_id: '09384509345asd'
+        qbd_id: 'QB:123'
+        customer_id: "96" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
-        period_id: @periodLookup("2013-04-29")
-        amount_cents: 1000000
+        source: 'QB:CreditMemo'
+        is_credit: true
+        period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ,
+        amount_cents: 160000
+        account_id: "QB:345"
         company_id: @companyId
-        source: 'QB:CreditMemo'
-        qbd_id: '3453'
-        is_credit: true
-        account_id: '23482'
-        customer_id: @customerLookup("96")
+        qbd_id: 'QB:213'
+        customer_id: "96" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
-        period_id: @periodLookup("2013-04-29")
-        amount_cents: 49895
+        source: 'QB:CreditMemo'
+        is_credit: true
+        period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ]
+
+      assert.deepEqual @creditMemo.transform(@qbdObj), resultObjs
 
     it 'logs a warning if the total amount does not equal the sum of line amounts', ->

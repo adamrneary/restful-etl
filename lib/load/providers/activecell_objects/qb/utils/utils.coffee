@@ -53,6 +53,34 @@ transromRefs = (obj) ->
         id = obj[key].value
         delete obj[key]
         obj.account_id = id
+      when "ARAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.account_id = id
+      when "Account"
+        id = obj[key].value
+        delete obj[key]
+        obj.account_id = id
+      when "DepositToAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.deposit_account_id = id
+      when "IncomeAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.income_account_id = id
+      when "AssetAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.asset_account_id = id
+      when "ExpenseAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.expense_account_id = id
+      when "COGSAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.cogs_account_id = id
       else
         delete obj[key]
   obj

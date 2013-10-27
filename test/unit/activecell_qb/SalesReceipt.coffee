@@ -1,4 +1,4 @@
-SalesReceipt = require("../../../lib/load/providers/activecell_objects/qb/sales_receipt").class
+SalesReceipt = require("../../../lib/load/providers/activecell_objects/qb/SalesReceipt").class
 assert  = require("chai").assert
 
 describe "qb ActiveCell", ->
@@ -25,7 +25,20 @@ describe "qb ActiveCell", ->
           value: "USD"
           name: "United States Dollar"
         PrivateNote: "Memo for SalesReceipt"
-        Line: []
+        Line: [
+          Id: "QB:123"
+          Amount: 500
+          DetailType: "ItemBasedExpenseLineDetail"
+          ItemBasedExpenseLineDetail:
+            ItemRef: {value: 'QB:345'}
+            ItemAccountRef: {value: 'QB:678'}
+        ,
+          Id: "QB:213"
+          Amount: 1600
+          DetailType: "AccountBasedExpenseLineDetail"
+          AccountBasedExpenseLineDetail:
+            AccountRef: {value: "QB:345"}
+        ]
         TxnTaxDetail: {"TotalTax": 0}
         TotalAmt: 5
         ApplyTaxAfterDiscount: false
@@ -40,6 +53,7 @@ describe "qb ActiveCell", ->
 
       # NOTE TO IGOR: Since we are unit testing the different types of lines,
       # maybe we should just stub the lines for these documents to save time.
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
       Lines: [
         Id: 'NG:1234'
         AccountId: '09384509345Z'
@@ -53,34 +67,35 @@ describe "qb ActiveCell", ->
 
       resultObjs = [
         company_id: @companyId
-        source: 'QB:SalesReceipt'
-        qbd_id: '19'
-        is_credit: false
-        account_id: @accountLookup("4")
-        customer_id: @customerLookup("239393")
+        qbd_id: "97"
+        account_id: "4" #@accountLookup("4")
+        customer_id: "239393" #@customerLookup("239393")
         transaction_date: "2013-03-13" # from TxnDate above
-        period_id: @periodLookup("2013-03-13")
         amount_cents: 500
+        source: "QB:SalesReceipt"
+        is_credit: false
+        period_id: "2013-03-13" #@periodLookup("2013-03-13")
       ,
+        amount_cents: 50000
+        product_id: "QB:345"
+        account_id: "QB:678"
         company_id: @companyId
-        source: 'QB:SalesReceipt'
-        qbd_id: 'NG:1234'
-        is_credit: true
-        account_id: '09384509345Z'
-        customer_id: @customerLookup("239393")
-        product_id: '09384509345asd'
+        qbd_id: "QB:123"
+        customer_id: "239393" #@customerLookup("239393")
         transaction_date: "2013-03-13" # from TxnDate above
-        period_id: @periodLookup("2013-03-13")
-        amount_cents: 100
+        source: "QB:SalesReceipt"
+        is_credit: true
+        period_id: "2013-03-13" #@periodLookup("2013-03-13")
       ,
+        amount_cents: 160000
+        account_id: "QB:345"
         company_id: @companyId
-        source: 'QB:SalesReceipt'
-        qbd_id: 'NG:3629083'
-        is_credit: true
-        account_id: '23482'
-        customer_id: @customerLookup("239393")
+        qbd_id: "QB:213"
+        customer_id: "239393" #@customerLookup("239393")
         transaction_date: "2013-03-13" # from TxnDate above
-        period_id: @periodLookup("2013-03-13")
-        amount_cents: 400
+        source: "QB:SalesReceipt"
+        is_credit: true
+        period_id: "2013-03-13" #@periodLookup("2013-03-13")
       ]
 
+      assert.deepEqual @salesReceipt.transform(@qbdObj), resultObjs

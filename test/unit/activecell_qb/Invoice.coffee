@@ -1,4 +1,4 @@
-Invoice = require("../../../lib/load/providers/activecell_objects/qb/invoice").class
+Invoice = require("../../../lib/load/providers/activecell_objects/qb/Invoice").class
 assert  = require("chai").assert
 
 describe "qb ActiveCell", ->
@@ -15,6 +15,20 @@ describe "qb ActiveCell", ->
             LastUpdatedTime: "2013-04-08T10:49:47Z"
           DocNumber: "1223"
           TxnDate: "2010-06-16"
+          Line:[
+            Id: "QB:123"
+            Amount: 500
+            DetailType: "ItemBasedExpenseLineDetail"
+            ItemBasedExpenseLineDetail:
+              ItemRef: {value: 'QB:345'}
+              ItemAccountRef: {value: 'QB:678'}
+          ,
+            Id: "QB:213"
+            Amount: 1600
+            DetailType: "AccountBasedExpenseLineDetail"
+            AccountBasedExpenseLineDetail:
+              AccountRef: {value: "QB:345"}
+          ]
           ExchangeRate: 1
           PrivateNote: "add grp and add an item in group dup 1214"
           TxnStatus: "Payable"
@@ -46,57 +60,46 @@ describe "qb ActiveCell", ->
           Balance: 35
           FinanceCharge: false
 
-      @invoice= new Invoice(@companyId)
+      @invoice = new Invoice(@companyId)
 
-
-      # NOTE TO IGOR: Since we are unit testing the different types of lines,
-      # maybe we should just stub the lines for these documents to save time.
-      Lines: [
-        Id: 'NG:1234'
-        AccountId: '09384509345Z'
-        ProductId: '09384509345asd'
-        Amount: 1000
-      ,
-        Id: 'NG:3629083'
-        AccountId: '23482'
-        Amount: 990.19
-      ]
-
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
         company_id: @companyId
-        source: 'QB:Invoice'
-        qbd_id: 'QB:64531'
+        qbd_id: "QB:64531"
+        account_id: "QB:4" #@accountLookup("QB:4")
+        customer_id: "QB:286" #@customerLookup("QB:286")
+        transaction_date: "2010-06-16" # from TxnDate above
+        amount_cents: 3500
+        source: "QB:Invoice"
         is_credit: true
-        account_id: @accountLookup("QB:4")
-        customer_id: @customerLookup("QB:286")
-        transaction_date: "2010-06-16" # from TxnDate above
-        period_id: @periodLookup("2010-06-16")
-        amount_cents: 199019
+        period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ,
+        amount_cents: 50000
+        product_id: "QB:345"
+        account_id: "QB:678"
         company_id: @companyId
-        source: 'QB:Invoice'
-        qbd_id: 'NG:1234'
-        is_credit: false
-        account_id: '09384509345Z'
-        customer_id: @customerLookup("QB:286")
-        product_id: '09384509345asd'
+        qbd_id: "QB:123"
+        customer_id: "QB:286" #@customerLookup("QB:286")
         transaction_date: "2010-06-16" # from TxnDate above
-        period_id: @periodLookup("2010-06-16")
-        amount_cents: 100000
+        source: "QB:Invoice"
+        is_credit: false
+        period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ,
+        amount_cents: 160000
+        account_id: "QB:345"
         company_id: @companyId
-        source: 'QB:Invoice'
-        qbd_id: 'NG:3629083'
-        is_credit: false
-        account_id: '23482'
-        customer_id: @customerLookup("QB:286")
+        qbd_id: "QB:213"
+        customer_id: "QB:286" #@customerLookup("QB:286")
         transaction_date: "2010-06-16" # from TxnDate above
-        period_id: @periodLookup("2010-06-16")
-        amount_cents: 99019
+        source: "QB:Invoice"
+        is_credit: false
+        period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ]
 
-      it 'logs a warning if there are no lines', ->
+      assert.deepEqual @invoice.transform(@qbdObj), resultObjs
 
-      it 'logs a warning if CustomerRef is not populated', ->
+    it 'logs a warning if there are no lines', ->
 
-      it 'logs a warning if the total amount does not equal the sum of line amounts', ->
+    it 'logs a warning if CustomerRef is not populated', ->
+
+    it 'logs a warning if the total amount does not equal the sum of line amounts', ->

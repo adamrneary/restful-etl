@@ -1,4 +1,4 @@
-Customers = require("../../../lib/load/providers/activecell_objects/qb/customers").class
+Customer = require("../../../lib/load/providers/activecell_objects/qb/Customer").class
 assert  = require("chai").assert
 
 describe "qbd ActiveCell", ->
@@ -21,18 +21,18 @@ describe "qbd ActiveCell", ->
         Active: true
         DefaultTaxCodeRef: {value: "QB:1", name:"Tax"}
 
-      @customers = new Customers(@companyId)
+      @customer = new Customer(@companyId)
     it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObj =
         company_id: @companyId
         qbd_id: "QB:399"
         name: "American Express Settlement"
 
-      assert.deepEqual @customers.transform(@qbdObj), resultObj
+      assert.deepEqual @customer.transform(@qbdObj), resultObj
 
     it "filters comparison to valid Activecell objects", ->
-      assert.ok @customers.filter {company_id: @companyId, qbd_id:"qbd:1234"}
-      assert.notOk @customers.filter {company_id: @companyId}
+      assert.ok @customer.filter {company_id: @companyId, qbd_id:"qbd:1234"}
+      assert.notOk @customer.filter {company_id: @companyId}
 
     it "can compare objObjs with Activecell objects", ->
       existingObj =
@@ -40,21 +40,21 @@ describe "qbd ActiveCell", ->
         qbd_id: "QB:399"
         name: "name1"
 
-      assert.equal @customers.compare(
+      assert.equal @customer.compare(
         Id: "QB:399"
         DisplayName: "name1"
       ,
       existingObj
       ), "equal"
 
-      assert.equal @customers.compare(
+      assert.equal @customer.compare(
         Id:"QB:399"
         DisplayName: "new name"
       ,
       existingObj
       ), "update"
 
-      assert.equal @customers.compare(
+      assert.equal @customer.compare(
         Id:"QB:399x"
         DisplayName: "name1"
       ,
@@ -74,4 +74,4 @@ describe "qbd ActiveCell", ->
         qbd_id: "QB:399"
         name: "new Name"
 
-      assert.deepEqual @customers.update(@qbdObj, activeCellObj), resultObj
+      assert.deepEqual @customer.update(@qbdObj, activeCellObj), resultObj

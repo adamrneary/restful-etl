@@ -1,12 +1,10 @@
-Item = require("../../../lib/load/providers/activecell_objects/qb/item").class
+Payment = require("../../../lib/load/providers/activecell_objects/qb/Payment").class
 assert  = require("chai").assert
 
 describe "qb ActiveCell", ->
-  describe "item object", ->
+  describe "Payment object", ->
     beforeEach ()->
       @companyId = "1A78ADSF6780AZXCVf"
-
-    it 'can find a deposit account in the header', ->
       @qbdObj =
         CustomerRef:
           value: "QB:284"
@@ -33,104 +31,66 @@ describe "qb ActiveCell", ->
           LastUpdatedTime: "2013-05-21T11:40:35Z"
         TxnDate: "2013-05-21"
         PrivateNote: "Testing with Cash and all fields mod"
-        Line: [ ]
+        Line: [
+          Id: "QB:213"
+          Amount: 1600
+          DetailType: "AccountBasedExpenseLineDetail"
+          AccountBasedExpenseLineDetail:
+            AccountRef: {value: "QB:345"}
+        ,
+          Id: "QB:212"
+          Amount: 1612
+          DetailType: "AccountBasedExpenseLineDetail"
+          AccountBasedExpenseLineDetail:
+            AccountRef: {value: "QB:31245"}
+        ]
 
-      @item = new Item(@companyId)
+      @payment = new Payment(@companyId)
 
+    it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
         company_id: @companyId
-        source: 'QB:Payment'
-        qbd_id: 'NG:3410926-credit'
+        qbd_id: "NG:3410926-credit"
+        account_id: "QB:4" #@accountLookup("QB:4")
+        customer_id: "QB:284" #@customerLookup("QB:284")
+        transaction_date: "2013-05-21" # from TxnDate above
+        amount_cents: 4000
+        source: "QB:Payment"
         is_credit: true
-        account_id: @accountLookup("QB:4")
-        customer_id: @customerLookup("QB:284")
-        transaction_date: "2013-05-21" # from TxnDate above
-        period_id: @periodLookup("2013-05-21")
-        amount_cents: 4000
+        period_id: "2013-05-21" #@periodLookup("2013-05-21")
       ,
         company_id: @companyId
-        source: 'QB:Payment'
-        qbd_id: 'NG:3410926-debit'
-        is_credit: false
-        account_id: @accountLookup('QB:2')
-        customer_id: @customerLookup("QB:284")
+        qbd_id: "NG:3410926-debit"
+        account_id: "QB:2" #@accountLookup("QB:2")
+        customer_id: "QB:284" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
-        period_id: @periodLookup("2013-05-21")
         amount_cents: 4000
+        source: "QB:Payment"
+        is_credit: false
+        period_id: "2013-05-21" #@periodLookup("2013-05-21")
+      ,
+        amount_cents: 160000
+        account_id: "QB:345"
+        company_id: @companyId
+        qbd_id: "QB:213"
+        customer_id: "QB:284" #@customerLookup("QB:284")
+        transaction_date: "2013-05-21" # from TxnDate above
+        source: "QB:Payment"
+        is_credit: false
+        period_id: "2013-05-21" #@periodLookup("2013-05-21")
+      ,
+        amount_cents: 161200
+        account_id: "QB:31245"
+        company_id: @companyId
+        qbd_id: "QB:212"
+        customer_id: "QB:284" #@customerLookup("QB:284")
+        transaction_date: "2013-05-21" # from TxnDate above
+        source: "QB:Payment"
+        is_credit: false
+        period_id: "2013-05-21" #@periodLookup("2013-05-21")
       ]
 
-
-    it 'can find deposit accounts in the lines', ->
-      @qbdObj =
-        CustomerRef:
-          value: "QB:284"
-          name: "Google"
-        RemitToRef:
-          value: "QB:284"
-          name: "Google"
-        ARAccountRef:
-          value: "QB:4"
-          name: "Accounts Receivable"
-        PaymentMethodRef:
-          value: "QB:9"
-          name: "Home Depot Gift Card"
-        PaymentRefNum:"Cash#003"
-        TotalAmt: 40
-        status: "Synchronized"
-        Id: "NG:3410926"
-        SyncToken: "6"
-        MetaData:
-          CreateTime: "2013-05-21T11:38:46Z"
-          LastUpdatedTime: "2013-05-21T11:40:35Z"
-        TxnDate: "2013-05-21"
-        PrivateNote: "Testing with Cash and all fields mod"
-        Line: [ ]
-
-      @item = new Item(@companyId)
-
-      # NOTE TO IGOR: Since we are unit testing the different types of lines,
-      # maybe we should just stub the lines for these documents to save time.
-      Lines: [
-        Id: 'NG:1234'
-        AccountId: '09384509345Z'
-        Amount: 10
-      ,
-        Id: 'NG:3629083'
-        AccountId: '23482'
-        Amount: 20
-      ]
-
-      resultObjs = [
-        company_id: @companyId
-        source: 'QB:Payment'
-        qbd_id: 'NG:3410926'
-        is_credit: true
-        account_id: @accountLookup("QB:4")
-        customer_id: @customerLookup("QB:284")
-        transaction_date: "2013-05-21" # from TxnDate above
-        period_id: @periodLookup("2013-05-21")
-        amount_cents: 4000
-      ,
-        company_id: @companyId
-        source: 'QB:Payment'
-        qbd_id: 'NG:1234'
-        is_credit: false
-        account_id: '09384509345Z'
-        customer_id: @customerLookup("QB:284")
-        transaction_date: "2013-05-21" # from TxnDate above
-        period_id: @periodLookup("2013-05-21")
-        amount_cents: 1000
-      ,
-        company_id: @companyId
-        source: 'QB:Payment'
-        qbd_id: 'NG:3629083'
-        is_credit: false
-        account_id: '23482'
-        customer_id: @customerLookup("QB:284")
-        transaction_date: "2013-05-21" # from TxnDate above
-        period_id: @periodLookup("2013-05-21")
-        amount_cents: 2000
-      ]
+      assert.deepEqual @payment.transform(@qbdObj), resultObjs
 
       it 'logs a warning if AccountRef is not populated', ->
 

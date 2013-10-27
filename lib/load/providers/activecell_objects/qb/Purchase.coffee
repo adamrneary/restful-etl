@@ -2,7 +2,7 @@ _ = require "underscore"
 Default = require("./default").Default
 utils = require "./utils/utils"
 
-class Bill extends Default
+class Invoice extends Default
   constructor: (@company_id) ->
     @compareFields [
       activeCell: "qbd_id"
@@ -11,8 +11,8 @@ class Bill extends Default
       activeCell: "account_id"
       qbd: "account_id"
     ,
-      activeCell: "vendor_id"
-      qbd: "vendor_id"
+      activeCell: "customer_id"
+      qbd: "customer_id"
     ,
       activeCell: "transaction_date"
       qbd: "TxnDate"
@@ -26,7 +26,7 @@ class Bill extends Default
     utils.transromRefs qbdObj, extractData, loadData, loadResultData
     obj = super qbdObj, extractData, loadData, loadResultData
     obj.amount_cents *= 100
-    obj.source = "QB:Bill"
+    obj.source = "QB:Purchase"
     obj.is_credit = true
     obj.period_id = obj.transaction_date
     result.push obj
@@ -40,5 +40,4 @@ class Bill extends Default
 
     result
 
-module.exports.class = Bill
-
+module.exports.class = Invoice
