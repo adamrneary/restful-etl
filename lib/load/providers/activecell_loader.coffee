@@ -140,6 +140,7 @@ exports.load = (options = {}, cb) ->
             req.on "error", (e) ->
               cb new Errors.IntuitLoadError("Create object error.", e)
           , (err) ->
+            options.batch.loadResultData = loadResultData
             cb(err)
         ,
         (cb)->
@@ -159,7 +160,6 @@ exports.load = (options = {}, cb) ->
           , (err) ->
             cb(err)
       ], (err) ->
-        options.batch.loadResultData = loadResultData
         cb(err)
   ], (err) ->
     cb(err)

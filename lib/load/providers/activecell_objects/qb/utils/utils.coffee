@@ -44,12 +44,15 @@ transromRefs = (obj) ->
       when "Customer"
         id = obj[key].value
         delete obj[key]
-        obj.CustomerId = id
+        obj.customer_id = id
       when "Vendor"
         id = obj[key].value
         delete obj[key]
-        obj.VendorId = id
-
+        obj.vendor_id = id
+      when "APAccount"
+        id = obj[key].value
+        delete obj[key]
+        obj.account_id = id
       else
         delete obj[key]
   obj
@@ -59,35 +62,35 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
     when "AccountBasedExpenseLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
-      newObj.AccountId = obj.AccountBasedExpenseLineDetail.AccountRef.value
+      newObj.amount_cents = obj.Amount * 100
+      newObj.account_id = obj.AccountBasedExpenseLineDetail.AccountRef.value
     when "DepositLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
-      newObj.AccountId = obj.DepositLineDetail.AccountRef.value
+      newObj.amount_cents = obj.Amount * 100
+      newObj.account_id = obj.DepositLineDetail.AccountRef.value
     when "DiscountLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
-      newObj.AccountId = obj.DiscountLineDetail.Discount.DiscountAccountRef.value
+      newObj.amount_cents = obj.Amount * 100
+      newObj.account_id = obj.DiscountLineDetail.Discount.DiscountAccountRef.value
     when "ItemBasedExpenseLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
-      newObj.ProductId = obj.ItemBasedExpenseLineDetail.ItemRef.value
+      newObj.amount_cents = obj.Amount * 100
+      newObj.product_id = obj.ItemBasedExpenseLineDetail.ItemRef.value
       if obj.ItemBasedExpenseLineDetail.ItemAccountRef
-        newObj.AccountId = obj.ItemBasedExpenseLineDetail.ItemAccountRef.value
+        newObj.account_id = obj.ItemBasedExpenseLineDetail.ItemAccountRef.value
       else
         item = _.find extractData.Item, (item) ->
-          item.Id is newObj.ProductId
-        newObj.AccountId = item.ExpenseAccountRef.value
+          item.Id is newObj.product_id
+        newObj.account_id = item.ExpenseAccountRef.value
     when "JournalEntryLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
+      newObj.amount_cents = obj.Amount * 100
       newObj.PostingType = obj.JournalEntryLineDetail.PostingType
-      newObj.AccountId = obj.JournalEntryLineDetail.AccountRef.value
+      newObj.account_id = obj.JournalEntryLineDetail.AccountRef.value
       if obj.JournalEntryLineDetail.Entity.Type is "Vendor"
         newObj.VendorId = obj.JournalEntryLineDetail.Entity.EntityRef.value
       else
@@ -95,26 +98,26 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
     when "PaymentLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
+      newObj.amount_cents = obj.Amount * 100
       if obj.PaymentLineDetail.ItemRef
-        newObj.ProductId = obj.PaymentLineDetail.ItemRef.value
+        newObj.product_id = obj.PaymentLineDetail.ItemRef.value
         item = _.find extractData.Item, (item) ->
-          item.Id is newObj.ProductId
-        newObj.AccountId = item.DepositToAccountRef.value
+          item.Id is newObj.product_id
+        newObj.account_id = item.DepositToAccountRef.value
       else
-        newObj.AccountId = obj.PaymentLineDetail.Discount.DiscountAccountRef.value
+        newObj.account_id = obj.PaymentLineDetail.Discount.DiscountAccountRef.value
 
     when "SalesItemLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.Amount = obj.Amount
-      newObj.ProductId = obj.SalesItemLineDetail.ItemRef.value
+      newObj.amount_cents = obj.Amount * 100
+      newObj.product_id = obj.SalesItemLineDetail.ItemRef.value
       if obj.SalesItemLineDetail.ItemAccountRef
-        newObj.AccountId = obj.SalesItemLineDetail.ItemAccountRef.value
+        newObj.account_id = obj.SalesItemLineDetail.ItemAccountRef.value
       else
         item = _.find extractData.Item, (item) ->
-          item.Id is newObj.ProductId
-        newObj.AccountId = item.IncomeAccountRef.value
+          item.Id is newObj.product_id
+        newObj.account_id = item.IncomeAccountRef.value
 
   newObj
 
