@@ -46,7 +46,7 @@ class Bill extends Default
         type: "warning"
         message: "total amount does not equal the sum of line amounts"
 
-      cb messages if cb
+    cb messages if cb
     result
 
 module.exports.class = Bill

@@ -17,7 +17,7 @@ describe "qb ActiveCell", ->
           TxnDate: "2010-06-16"
           Line:[
             Id: "QB:123"
-            Amount: 500
+            Amount: 1900
             DetailType: "ItemBasedExpenseLineDetail"
             ItemBasedExpenseLineDetail:
               ItemRef: {value: 'QB:345'}
@@ -48,7 +48,7 @@ describe "qb ActiveCell", ->
             value: "QB:4"
             name: "UPS"
           ShipDate: "2010-06-16"
-          TotalAmt: 35
+          TotalAmt: 3500
           TemplateRef:
             value: "QB:14"
             name: "Rock Castle Invoice"
@@ -57,7 +57,7 @@ describe "qb ActiveCell", ->
           ARAccountRef:
             value: "QB:4"
             name: "Accounts Receivable"
-          Balance: 35
+          Balance: 3500
           FinanceCharge: false
 
       @invoice = new Invoice(@companyId)
@@ -69,12 +69,12 @@ describe "qb ActiveCell", ->
         account_id: "QB:4" #@accountLookup("QB:4")
         customer_id: "QB:286" #@customerLookup("QB:286")
         transaction_date: "2010-06-16" # from TxnDate above
-        amount_cents: 3500
+        amount_cents: 350000
         source: "QB:Invoice"
         is_credit: true
         period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ,
-        amount_cents: 50000
+        amount_cents: 190000
         product_id: "QB:345"
         account_id: "QB:678"
         company_id: @companyId
@@ -98,8 +98,28 @@ describe "qb ActiveCell", ->
 
       assert.deepEqual @invoice.transform(@qbdObj), resultObjs
 
-    it 'logs a warning if there are no lines', ->
+    it 'logs a warning if there are no lines', (done)->
+      delete @qbdObj.Line
+      @qbdObj.TotalAmt = 0
+      @invoice.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )
 
-    it 'logs a warning if CustomerRef is not populated', ->
+    it 'logs a warning if CustomerRef is not populated', (done)->
+      delete @qbdObj.CustomerRef
+      @invoice.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )
 
-    it 'logs a warning if the total amount does not equal the sum of line amounts', ->
+    it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
+      @qbdObj.TotalAmt = 32412
+      @invoice.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )
+

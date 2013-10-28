@@ -22,7 +22,7 @@ describe "qb ActiveCell", ->
           value: "QB:9"
           name: "Home Depot Gift Card"
         PaymentRefNum:"Cash#003"
-        TotalAmt: 40
+        TotalAmt: 4000
         status: "Synchronized"
         Id: "NG:3410926"
         SyncToken: "6"
@@ -39,7 +39,7 @@ describe "qb ActiveCell", ->
             AccountRef: {value: "QB:345"}
         ,
           Id: "QB:212"
-          Amount: 1612
+          Amount: 2400
           DetailType: "AccountBasedExpenseLineDetail"
           AccountBasedExpenseLineDetail:
             AccountRef: {value: "QB:31245"}
@@ -54,7 +54,7 @@ describe "qb ActiveCell", ->
         account_id: "QB:4" #@accountLookup("QB:4")
         customer_id: "QB:284" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
-        amount_cents: 4000
+        amount_cents: 400000
         source: "QB:Payment"
         is_credit: true
         period_id: "2013-05-21" #@periodLookup("2013-05-21")
@@ -64,7 +64,7 @@ describe "qb ActiveCell", ->
         account_id: "QB:2" #@accountLookup("QB:2")
         customer_id: "QB:284" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
-        amount_cents: 4000
+        amount_cents: 400000
         source: "QB:Payment"
         is_credit: false
         period_id: "2013-05-21" #@periodLookup("2013-05-21")
@@ -79,7 +79,7 @@ describe "qb ActiveCell", ->
         is_credit: false
         period_id: "2013-05-21" #@periodLookup("2013-05-21")
       ,
-        amount_cents: 161200
+        amount_cents: 240000
         account_id: "QB:31245"
         company_id: @companyId
         qbd_id: "QB:212"
@@ -92,6 +92,18 @@ describe "qb ActiveCell", ->
 
       assert.deepEqual @payment.transform(@qbdObj), resultObjs
 
-      it 'logs a warning if AccountRef is not populated', ->
+    it 'logs a warning if ARAccountRef is not populated', (done)->
+      delete @qbdObj.ARAccountRef
+      @payment.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )
 
-      it 'logs a warning if the total amount does not equal the sum of line amounts', ->
+    it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
+      @qbdObj.TotalAmt = 32412
+      @payment.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )

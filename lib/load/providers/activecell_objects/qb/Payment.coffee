@@ -21,8 +21,14 @@ class Payment extends Default
       qbd: "TotalAmt"
     ]
 
-  transform: (qbdObj, extractData, loadData, loadResultData) =>
+  transform: (qbdObj, extractData, loadData, loadResultData, cb) =>
+    messages = []
     result = []
+    unless qbdObj.ARAccountRef
+      messages.push
+        type: "warning"
+        message: "CustomerRef is not defined"
+
     if qbdObj.DepositToAccountRef
       creditObj = _.clone qbdObj
       delete creditObj.DepositToAccountRef
@@ -52,6 +58,7 @@ class Payment extends Default
       obj.is_credit = true
       obj.period_id = obj.transaction_date
       result.push obj
+    totalAmountCents = result[0].amount_cents
     obj = result[0]
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
@@ -60,6 +67,14 @@ class Payment extends Default
       delete newObj.Id
       newObj.is_credit = false
       result.push newObj
+      totalAmountCents -= newObj.amount_cents
+
+    if totalAmountCents
+      messages.push
+        type: "warning"
+        message: "total amount does not equal the sum of line amounts"
+
+    cb messages if cb
 
     result
 

@@ -17,7 +17,7 @@ describe "qb ActiveCell", ->
         TxnDate: "2013-04-29"
         Line:[
           Id: "QB:123"
-          Amount: 500
+          Amount: 8898
           DetailType: "ItemBasedExpenseLineDetail"
           ItemBasedExpenseLineDetail:
             ItemRef: {value: 'QB:345'}
@@ -49,24 +49,11 @@ describe "qb ActiveCell", ->
         DepositToAccountRef:
           value: "0969"
           name: 'checking'
-        TotalAmt: 10498.95
+        TotalAmt: 10498
         ApplyTaxAfterDiscount: false
-        Balance:10498.95
+        Balance:10498
 
       @creditMemo = new CreditMemo(@companyId)
-
-      # NOTE TO IGOR: Since we are unit testing the different types of lines,
-      # maybe we should just stub the lines for these documents to save time.
-      Lines: [
-        Id: '1235'
-        AccountId: '09384509345Z'
-        ProductId: '09384509345asd'
-        Amount: 1000000
-      ,
-        Id: '3453'
-        AccountId: '23482'
-        Amount: 498.95
-      ]
 
     it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
@@ -75,12 +62,12 @@ describe "qb ActiveCell", ->
         account_id: "0969" #@accountLookup("0969")
         customer_id: "96" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
-        amount_cents: 1049895
+        amount_cents: 1049800
         source: "QB:CreditMemo"
         is_credit: false
         period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ,
-        amount_cents: 50000
+        amount_cents: 889800
         product_id: "QB:345"
         account_id: "QB:678"
         company_id: @companyId
@@ -105,6 +92,7 @@ describe "qb ActiveCell", ->
       assert.deepEqual @creditMemo.transform(@qbdObj), resultObjs
 
     it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
+      @qbdObj.TotalAmt = 32412
       @creditMemo.transform(@qbdObj, null, null, null, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"

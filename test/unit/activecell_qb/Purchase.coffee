@@ -16,7 +16,7 @@ describe "qb ActiveCell", ->
           name: "Sample Customer"
           type: "Customer"
         Credit: false
-        TotalAmt: 15.00
+        TotalAmt: 2500
         domain: "QBO"
         sparse: false
         Id: "216"
@@ -29,7 +29,7 @@ describe "qb ActiveCell", ->
         PrivateNote: "This is the memo."
         Line:[
           Id: "QB:123"
-          Amount: 500
+          Amount: 900
           DetailType: "ItemBasedExpenseLineDetail"
           ItemBasedExpenseLineDetail:
             ItemRef: {value: 'QB:345'}
@@ -44,33 +44,18 @@ describe "qb ActiveCell", ->
       @purchase = new Purchase(@companyId)
 
     it "can transform a qbdObj in order to create a new Activecell obj", ->
-
-
-      # NOTE TO IGOR: Since we are unit testing the different types of lines,
-      # maybe we should just stub the lines for these documents to save time.
-      Lines: [
-        Id: 'NG:1234'
-        AccountId: '09384509345Z'
-        ProductId: '09384509345asd'
-        Amount: 10.00
-      ,
-        Id: 'NG:3629083'
-        AccountId: '23482'
-        Amount: 5.00
-      ]
-
       resultObjs = [
         company_id: @companyId
         qbd_id: "216"
         account_id: "QB:69" #@accountLookup("QB:32")
         customer_id: "191" #@customerLookup("191") # entity could be customer or vendor
         transaction_date: "2013-03-14" # from TxnDate above
-        amount_cents: 1500
+        amount_cents: 250000
         source: "QB:Purchase"
         is_credit: true
         period_id: "2013-03-14" #@periodLookup("2013-03-14")
       ,
-        amount_cents: 50000
+        amount_cents: 90000
         product_id: "QB:345"
         account_id: "QB:678"
         company_id: @companyId
@@ -94,6 +79,18 @@ describe "qb ActiveCell", ->
 
       assert.deepEqual @purchase.transform(@qbdObj), resultObjs
 
-      it 'logs a warning if AccountRef is not populated', ->
+    it 'logs a warning if AccountRef is not populated', (done)->
+      delete @qbdObj.AccountRef
+      @purchase.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )
 
-      it 'logs a warning if the total amount does not equal the sum of line amounts', ->
+    it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
+      @qbdObj.TotalAmt = 32412
+      @purchase.transform(@qbdObj, null, null, null, (messages) ->
+        assert.equal messages.length, 1
+        assert.equal messages[0].type, "warning"
+        done()
+      )

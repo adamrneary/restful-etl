@@ -22,7 +22,7 @@ describe "qb ActiveCell", ->
           TxnStatus: "Payable"
           Line:[
               Id: "QB:123"
-              Amount: 500
+              Amount: 390
               DetailType: "ItemBasedExpenseLineDetail"
               ItemBasedExpenseLineDetail:
                 ItemRef: {value: 'QB:345'}
@@ -42,7 +42,7 @@ describe "qb ActiveCell", ->
           APAccountRef:
             value: "QB:12",
             name: "Accounts Payable"
-          TotalAmt:1990.19
+          TotalAmt:1990
 
       @bill = new Bill(@companyId)
 
@@ -53,12 +53,12 @@ describe "qb ActiveCell", ->
         account_id: "QB:12"#@accountLookup("QB:32")
         vendor_id: "QB:164"#@vendorLookup("QB:164")
         transaction_date: "2013-02-05" # from TxnDate above
-        amount_cents: 199019
+        amount_cents: 199000
         source: 'QB:Bill'
         is_credit: true
         period_id: "2013-02-05"#@periodLookup("2013-02-05")
       ,
-        amount_cents: 50000
+        amount_cents: 39000
         product_id: 'QB:345'
         account_id: 'QB:678'
         company_id: @companyId
@@ -83,6 +83,7 @@ describe "qb ActiveCell", ->
       assert.deepEqual @bill.transform(@qbdObj), resultObjs
 
     it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
+      @qbdObj.TotalAmt = 32412
       @bill.transform(@qbdObj, null, null, null, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"

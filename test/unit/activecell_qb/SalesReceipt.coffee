@@ -51,20 +51,7 @@ describe "qb ActiveCell", ->
 
       @salesReceipt = new SalesReceipt(@companyId)
 
-      # NOTE TO IGOR: Since we are unit testing the different types of lines,
-      # maybe we should just stub the lines for these documents to save time.
     it "can transform a qbdObj in order to create a new Activecell obj", ->
-      Lines: [
-        Id: 'NG:1234'
-        AccountId: '09384509345Z'
-        ProductId: '09384509345asd'
-        Amount: 1
-      ,
-        Id: 'NG:3629083'
-        AccountId: '23482'
-        Amount: 4
-      ]
-
       resultObjs = [
         company_id: @companyId
         qbd_id: "97"

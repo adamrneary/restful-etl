@@ -21,14 +21,26 @@ class Invoice extends Default
       qbd: "TotalAmt"
     ]
 
-  transform: (qbdObj, extractData, loadData, loadResultData) =>
+  transform: (qbdObj, extractData, loadData, loadResultData, cb) =>
+    messages = []
     result = []
+    unless qbdObj.CustomerRef
+      messages.push
+        type: "warning"
+        message: "CustomerRef is not defined"
+
+    unless qbdObj.Line and qbdObj.Line.length
+       messages.push
+         type: "warning"
+         message: "there are no lines"
+
     utils.transromRefs qbdObj, extractData, loadData, loadResultData
     obj = super qbdObj, extractData, loadData, loadResultData
     obj.amount_cents *= 100
     obj.source = "QB:Invoice"
     obj.is_credit = true
     obj.period_id = obj.transaction_date
+    totalAmountCents = obj.amount_cents
     result.push obj
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
@@ -37,6 +49,14 @@ class Invoice extends Default
       delete newObj.Id
       newObj.is_credit = false
       result.push newObj
+      totalAmountCents -= newObj.amount_cents
+
+    if totalAmountCents
+      messages.push
+        type: "warning"
+        message: "total amount does not equal the sum of line amounts"
+
+    cb messages if cb
 
     result
 
