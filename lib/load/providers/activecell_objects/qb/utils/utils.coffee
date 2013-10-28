@@ -5,7 +5,7 @@ getIdByQBDId = (qbdId, list)->
   obj = _.find list, (d) ->
     d.qbd_id is qbdId
   if obj then obj.id
-  else ""
+  else qbdId
 
 getIdByQBOId = (qboId, list)->
   return "" unless list
@@ -27,6 +27,19 @@ getObjNameByQBName = (name) ->
     when "Account" then "accounts"
     when "Customer" then "customers"
     when "Vendor" then "vendors"
+
+satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
+  keys = _.keys obj
+  _.each keys, (key)->
+    switch key
+      when "account_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+      when "vendor_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.vendors)
+      when "product_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.products)
+
+
 
 transromRefs = (obj) ->
   return unless obj
@@ -120,9 +133,9 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
       newObj.PostingType = obj.JournalEntryLineDetail.PostingType
       newObj.account_id = obj.JournalEntryLineDetail.AccountRef.value
       if obj.JournalEntryLineDetail.Entity.Type is "Vendor"
-        newObj.VendorId = obj.JournalEntryLineDetail.Entity.EntityRef.value
+        newObj.vendor_id = obj.JournalEntryLineDetail.Entity.EntityRef.value
       else
-        newObj.VendorId = obj.JournalEntryLineDetail.Entity.EntityRef.value
+        newObj.vendor_id = obj.JournalEntryLineDetail.Entity.EntityRef.value
     when "PaymentLineDetail"
       newObj = {}
       newObj.Id = obj.Id
@@ -156,3 +169,4 @@ module.exports.getIdByQBId = getIdByQBId
 module.exports.getObjNameByQBName = getObjNameByQBName
 module.exports.transromRefs = transromRefs
 module.exports.lineTranform = lineTranform
+module.exports.satisfyDependencies = satisfyDependencies
