@@ -172,8 +172,6 @@ describe "Extract data from intuit and load it to ActiveCell", ->
       ,
         type: "load"
         object: "customers"
-#        required_object: "Customer"
-        source_object: "Customer"
         required_objects:
           extract: ["Customer"]
       ]

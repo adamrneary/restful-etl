@@ -1,5 +1,5 @@
 moment = require "moment"
-activecellLoader = require("./providers/activecell_loader").load
+activecellLoader = require("./providers/activecell/activecell_loader").load
 
 loadObjects = (options = {}, cb) ->
   switch options.provider.toUpperCase()
