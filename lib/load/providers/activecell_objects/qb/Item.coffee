@@ -37,6 +37,8 @@ class Item extends Default
     result = []
     utils.transromRefs qbdObj, extractData, loadData, loadResultData
     obj = super qbdObj, extractData, loadData, loadResultData
+    utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
+    obj
 
 
 module.exports.class = Item

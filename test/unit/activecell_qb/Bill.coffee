@@ -25,8 +25,8 @@ describe "qb ActiveCell", ->
               Amount: 390
               DetailType: "ItemBasedExpenseLineDetail"
               ItemBasedExpenseLineDetail:
-                ItemRef: {value: 'QB:345'}
-                ItemAccountRef: {value: 'QB:678'}
+                ItemRef: {value: "QB:345"}
+                ItemAccountRef: {value: "QB:678"}
             ,
               Id: "QB:213"
               Amount: 1600

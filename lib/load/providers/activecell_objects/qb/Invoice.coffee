@@ -41,6 +41,7 @@ class Invoice extends Default
     obj.is_credit = true
     obj.period_id = obj.transaction_date
     totalAmountCents = obj.amount_cents
+    utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
     result.push obj
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
@@ -48,6 +49,7 @@ class Invoice extends Default
       newObj.qbd_id = newObj.Id
       delete newObj.Id
       newObj.is_credit = false
+      utils.satisfyDependencies(newObj, extractData, loadData, loadResultData)
       result.push newObj
       totalAmountCents -= newObj.amount_cents
 

@@ -39,6 +39,7 @@ class Payment extends Default
       creditObj.is_credit = true
       creditObj.period_id = creditObj.transaction_date
       creditObj.qbd_id += "-credit"
+      utils.satisfyDependencies(creditObj, extractData, loadData, loadResultData)
       result.push creditObj
 
       utils.transromRefs qbdObj, extractData, loadData, loadResultData
@@ -49,6 +50,7 @@ class Payment extends Default
       debitObj.is_credit = false
       debitObj.period_id = debitObj.transaction_date
       debitObj.qbd_id += "-debit"
+      utils.satisfyDependencies(debitObj, extractData, loadData, loadResultData)
       result.push debitObj
     else
       utils.transromRefs qbdObj, extractData, loadData, loadResultData
@@ -57,6 +59,7 @@ class Payment extends Default
       obj.source = "QB:Payment"
       obj.is_credit = true
       obj.period_id = obj.transaction_date
+      utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
       result.push obj
     totalAmountCents = result[0].amount_cents
     obj = result[0]
@@ -66,6 +69,7 @@ class Payment extends Default
       newObj.qbd_id = newObj.Id
       delete newObj.Id
       newObj.is_credit = false
+      utils.satisfyDependencies(newObj, extractData, loadData, loadResultData)
       result.push newObj
       totalAmountCents -= newObj.amount_cents
 

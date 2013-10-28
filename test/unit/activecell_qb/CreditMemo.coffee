@@ -53,14 +53,49 @@ describe "qb ActiveCell", ->
         ApplyTaxAfterDiscount: false
         Balance:10498
 
+      @loadData =
+        accounts:
+          [
+            id: "17cc67093475061e3d95369d",
+            qbd_id: "0969"
+          ,
+            id: "18cc6709347adfae3d95369d",
+            qbd_id: "QB:678"
+          ,
+            id: "19cc6709347adfae3d95369d",
+            qbd_id: "QB:345"
+          ]
+        customers:
+          [
+            id: "27cc67093475061e3d95369d",
+            qbd_id: "96"
+          ,
+            id: "28cc6709347adfae3d95369d",
+            qbd_id: "QB:165"
+          ,
+            id: "29cc6709347adfae3d95369d",
+            qbd_id: "QB:166"
+          ]
+        products:
+          [
+            id: "37cc67093475061e3d95369d",
+            qbd_id: "QB:345"
+          ,
+            id: "38cc6709347adfae3d95369d",
+            qbd_id: "QB:365"
+          ,
+            id: "39cc6709347adfae3d95369d",
+            qbd_id: "QB:366"
+          ]
+
       @creditMemo = new CreditMemo(@companyId)
 
     it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
         company_id: @companyId
         qbd_id: "276"
-        account_id: "0969" #@accountLookup("0969")
-        customer_id: "96" #@customerLookup("96")
+        account_id: "17cc67093475061e3d95369d" #@accountLookup("0969")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
         amount_cents: 1049800
         source: "QB:CreditMemo"
@@ -68,32 +103,32 @@ describe "qb ActiveCell", ->
         period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ,
         amount_cents: 889800
-        product_id: "QB:345"
-        account_id: "QB:678"
+        product_id: "37cc67093475061e3d95369d"
+        account_id: "18cc6709347adfae3d95369d"
         company_id: @companyId
         qbd_id: 'QB:123'
-        customer_id: "96" #@customerLookup("96")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
         source: 'QB:CreditMemo'
         is_credit: true
         period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ,
         amount_cents: 160000
-        account_id: "QB:345"
+        account_id: "19cc6709347adfae3d95369d"
         company_id: @companyId
         qbd_id: 'QB:213'
-        customer_id: "96" #@customerLookup("96")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("96")
         transaction_date: "2013-04-29" # from TxnDate above
         source: 'QB:CreditMemo'
         is_credit: true
         period_id: "2013-04-29" #@periodLookup("2013-04-29")
       ]
 
-      assert.deepEqual @creditMemo.transform(@qbdObj), resultObjs
+      assert.deepEqual @creditMemo.transform(@qbdObj, {}, @loadData, {}), resultObjs
 
     it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
       @qbdObj.TotalAmt = 32412
-      @creditMemo.transform(@qbdObj, null, null, null, (messages) ->
+      @creditMemo.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"
         done()

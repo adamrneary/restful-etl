@@ -60,14 +60,49 @@ describe "qb ActiveCell", ->
           Balance: 3500
           FinanceCharge: false
 
+      @loadData =
+        accounts:
+          [
+            id: "17cc67093475061e3d95369d",
+            qbd_id: "QB:4"
+          ,
+            id: "18cc6709347adfae3d95369d",
+            qbd_id: "QB:678"
+          ,
+            id: "19cc6709347adfae3d95369d",
+            qbd_id: "QB:345"
+          ]
+        customers:
+          [
+            id: "27cc67093475061e3d95369d",
+            qbd_id: "QB:286"
+          ,
+            id: "28cc6709347adfae3d95369d",
+            qbd_id: "QB:165"
+          ,
+            id: "29cc6709347adfae3d95369d",
+            qbd_id: "QB:166"
+          ]
+        products:
+          [
+            id: "37cc67093475061e3d95369d",
+            qbd_id: "QB:345"
+          ,
+            id: "38cc6709347adfae3d95369d",
+            qbd_id: "QB:365"
+          ,
+            id: "39cc6709347adfae3d95369d",
+            qbd_id: "QB:366"
+          ]
+
       @invoice = new Invoice(@companyId)
 
     it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
         company_id: @companyId
         qbd_id: "QB:64531"
-        account_id: "QB:4" #@accountLookup("QB:4")
-        customer_id: "QB:286" #@customerLookup("QB:286")
+        account_id: "17cc67093475061e3d95369d" #@accountLookup("QB:4")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:286")
         transaction_date: "2010-06-16" # from TxnDate above
         amount_cents: 350000
         source: "QB:Invoice"
@@ -75,33 +110,33 @@ describe "qb ActiveCell", ->
         period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ,
         amount_cents: 190000
-        product_id: "QB:345"
-        account_id: "QB:678"
+        product_id: "37cc67093475061e3d95369d"
+        account_id: "18cc6709347adfae3d95369d"
         company_id: @companyId
         qbd_id: "QB:123"
-        customer_id: "QB:286" #@customerLookup("QB:286")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:286")
         transaction_date: "2010-06-16" # from TxnDate above
         source: "QB:Invoice"
         is_credit: false
         period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ,
         amount_cents: 160000
-        account_id: "QB:345"
+        account_id: "19cc6709347adfae3d95369d"
         company_id: @companyId
         qbd_id: "QB:213"
-        customer_id: "QB:286" #@customerLookup("QB:286")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:286")
         transaction_date: "2010-06-16" # from TxnDate above
         source: "QB:Invoice"
         is_credit: false
         period_id: "2010-06-16" #@periodLookup("2010-06-16")
       ]
 
-      assert.deepEqual @invoice.transform(@qbdObj), resultObjs
+      assert.deepEqual @invoice.transform(@qbdObj, {}, @loadData, {}), resultObjs
 
     it 'logs a warning if there are no lines', (done)->
       delete @qbdObj.Line
       @qbdObj.TotalAmt = 0
-      @invoice.transform(@qbdObj, null, null, null, (messages) ->
+      @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"
         done()
@@ -109,7 +144,7 @@ describe "qb ActiveCell", ->
 
     it 'logs a warning if CustomerRef is not populated', (done)->
       delete @qbdObj.CustomerRef
-      @invoice.transform(@qbdObj, null, null, null, (messages) ->
+      @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"
         done()
@@ -117,7 +152,7 @@ describe "qb ActiveCell", ->
 
     it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
       @qbdObj.TotalAmt = 32412
-      @invoice.transform(@qbdObj, null, null, null, (messages) ->
+      @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"
         done()

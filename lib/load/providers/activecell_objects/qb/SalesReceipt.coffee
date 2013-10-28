@@ -30,6 +30,7 @@ class SalesReceipt extends Default
     obj.source = "QB:SalesReceipt"
     obj.is_credit = false
     obj.period_id = obj.transaction_date
+    utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
     result.push obj
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
@@ -37,6 +38,7 @@ class SalesReceipt extends Default
       newObj.qbd_id = newObj.Id
       delete newObj.Id
       newObj.is_credit = true
+      utils.satisfyDependencies(newObj, extractData, loadData, loadResultData)
       result.push newObj
 
     result

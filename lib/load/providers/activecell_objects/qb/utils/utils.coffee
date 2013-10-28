@@ -38,7 +38,18 @@ satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
         obj[key] = getIdByQBDId(obj[key], loadData.vendors)
       when "product_id"
         obj[key] = getIdByQBDId(obj[key], loadData.products)
-
+      when "customer_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.customers)
+      when "income_account_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+      when "cogs_account_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+      when "expense_account_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+      when "asset_account_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+      when "deposit_account_id"
+        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
 
 
 transromRefs = (obj) ->

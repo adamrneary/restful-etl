@@ -45,14 +45,52 @@ describe "qb ActiveCell", ->
             AccountRef: {value: "QB:31245"}
         ]
 
+      @loadData =
+        accounts:
+          [
+            id: "17cc67093475061e3d95369d",
+            qbd_id: "QB:4"
+          ,
+            id: "18cc6709347adfae3d95369d",
+            qbd_id: "QB:2"
+          ,
+            id: "19cc6709347adfae3d95369d",
+            qbd_id: "QB:345"
+          ,
+            id: "16cc6709347adfae3d95369d",
+            qbd_id: "QB:31245"
+          ]
+        customers:
+          [
+            id: "27cc67093475061e3d95369d",
+            qbd_id: "QB:284"
+          ,
+            id: "28cc6709347adfae3d95369d",
+            qbd_id: "QB:165"
+          ,
+            id: "29cc6709347adfae3d95369d",
+            qbd_id: "QB:166"
+          ]
+        products:
+          [
+            id: "37cc67093475061e3d95369d",
+            qbd_id: "QB:345"
+          ,
+            id: "38cc6709347adfae3d95369d",
+            qbd_id: "QB:365"
+          ,
+            id: "39cc6709347adfae3d95369d",
+            qbd_id: "QB:366"
+          ]
+
       @payment = new Payment(@companyId)
 
     it "can transform a qbdObj in order to create a new Activecell obj", ->
       resultObjs = [
         company_id: @companyId
         qbd_id: "NG:3410926-credit"
-        account_id: "QB:4" #@accountLookup("QB:4")
-        customer_id: "QB:284" #@customerLookup("QB:284")
+        account_id: "17cc67093475061e3d95369d" #@accountLookup("QB:4")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
         amount_cents: 400000
         source: "QB:Payment"
@@ -61,8 +99,8 @@ describe "qb ActiveCell", ->
       ,
         company_id: @companyId
         qbd_id: "NG:3410926-debit"
-        account_id: "QB:2" #@accountLookup("QB:2")
-        customer_id: "QB:284" #@customerLookup("QB:284")
+        account_id: "18cc6709347adfae3d95369d" #@accountLookup("QB:2")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
         amount_cents: 400000
         source: "QB:Payment"
@@ -70,31 +108,31 @@ describe "qb ActiveCell", ->
         period_id: "2013-05-21" #@periodLookup("2013-05-21")
       ,
         amount_cents: 160000
-        account_id: "QB:345"
+        account_id: "19cc6709347adfae3d95369d"
         company_id: @companyId
         qbd_id: "QB:213"
-        customer_id: "QB:284" #@customerLookup("QB:284")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
         source: "QB:Payment"
         is_credit: false
         period_id: "2013-05-21" #@periodLookup("2013-05-21")
       ,
         amount_cents: 240000
-        account_id: "QB:31245"
+        account_id: "16cc6709347adfae3d95369d"
         company_id: @companyId
         qbd_id: "QB:212"
-        customer_id: "QB:284" #@customerLookup("QB:284")
+        customer_id: "27cc67093475061e3d95369d" #@customerLookup("QB:284")
         transaction_date: "2013-05-21" # from TxnDate above
         source: "QB:Payment"
         is_credit: false
         period_id: "2013-05-21" #@periodLookup("2013-05-21")
       ]
 
-      assert.deepEqual @payment.transform(@qbdObj), resultObjs
+      assert.deepEqual @payment.transform(@qbdObj, {}, @loadData, {}), resultObjs
 
     it 'logs a warning if ARAccountRef is not populated', (done)->
       delete @qbdObj.ARAccountRef
-      @payment.transform(@qbdObj, null, null, null, (messages) ->
+      @payment.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"
         done()
@@ -102,7 +140,7 @@ describe "qb ActiveCell", ->
 
     it 'logs a warning if the total amount does not equal the sum of line amounts', (done)->
       @qbdObj.TotalAmt = 32412
-      @payment.transform(@qbdObj, null, null, null, (messages) ->
+      @payment.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
         assert.equal messages[0].type, "warning"
         done()
