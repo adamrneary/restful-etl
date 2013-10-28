@@ -1,24 +1,34 @@
+moment = require "moment"
 _ = require "underscore"
 
 getIdByQBDId = (qbdId, list)->
-  return "" unless list
+  return qbdId unless list
   obj = _.find list, (d) ->
     d.qbd_id is qbdId
   if obj then obj.id
   else qbdId
 
 getIdByQBOId = (qboId, list)->
-  return "" unless list
+  return qboId unless list
   obj = _.find list, (d) ->
     d.qbo_id is qboId
   if obj then obj.id
-  else ""
+  else qboId
 
 getIdByQBId = (qbId, list)->
-  return "" unless list
-  id = findIdByQBDId qbId, list
-  return id if id
-  findIdByQBOId qbId, list
+  return qbId unless list
+  id = getIdByQBDId qbId, list
+  return id unless id is qbId
+  getIdByQBOId qbId, list
+
+getIdByDate = (date, list)->
+  dateObj = moment date
+  dateObj.date(1)
+  findStr = dateObj.format('YYYY-MM-DD');
+  obj = _.find list, (d) ->
+    d.first_day is findStr
+  if obj then obj.id
+  else date
 
 getObjNameByQBName = (name) ->
   switch name
@@ -33,23 +43,25 @@ satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
   _.each keys, (key)->
     switch key
       when "account_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+        obj[key] = getIdByQBId(obj[key], loadData.accounts)
       when "vendor_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.vendors)
+        obj[key] = getIdByQBId(obj[key], loadData.vendors)
       when "product_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.products)
+        obj[key] = getIdByQBId(obj[key], loadData.products)
       when "customer_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.customers)
+        obj[key] = getIdByQBId(obj[key], loadData.customers)
       when "income_account_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+        obj[key] = getIdByQBId(obj[key], loadData.accounts)
       when "cogs_account_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+        obj[key] = getIdByQBId(obj[key], loadData.accounts)
       when "expense_account_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+        obj[key] = getIdByQBId(obj[key], loadData.accounts)
       when "asset_account_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+        obj[key] = getIdByQBId(obj[key], loadData.accounts)
       when "deposit_account_id"
-        obj[key] = getIdByQBDId(obj[key], loadData.accounts)
+        obj[key] = getIdByQBId(obj[key], loadData.accounts)
+      when "period_id"
+        obj[key] = getIdByDate(obj[key], loadData.periods)
 
 
 transromRefs = (obj) ->

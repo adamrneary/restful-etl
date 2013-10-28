@@ -86,6 +86,20 @@ describe "qb ActiveCell", ->
             id: "39cc6709347adfae3d95369d",
             qbd_id: "QB:366"
           ]
+        periods:
+          [
+            id: "37cc67093475061e3d95369d",
+            first_day: "2013-03-01"
+          ,
+            id: "36cc67093475061e3d95369d",
+            first_day: "2013-04-01"
+
+            id: "17cc67093475061e3d95369d",
+            first_day: "2013-05-01"
+          ,
+            id: "27cc67093475061e3d95369d",
+            first_day: "2013-06-01"
+          ]
 
       @salesReceipt = new SalesReceipt(@companyId)
 
@@ -99,7 +113,7 @@ describe "qb ActiveCell", ->
         amount_cents: 500
         source: "QB:SalesReceipt"
         is_credit: false
-        period_id: "2013-03-13" #@periodLookup("2013-03-13")
+        period_id: "37cc67093475061e3d95369d" #@periodLookup("2013-03-13")
       ,
         amount_cents: 50000
         product_id: "37cc67093475061e3d95369d"
@@ -110,7 +124,7 @@ describe "qb ActiveCell", ->
         transaction_date: "2013-03-13" # from TxnDate above
         source: "QB:SalesReceipt"
         is_credit: true
-        period_id: "2013-03-13" #@periodLookup("2013-03-13")
+        period_id: "37cc67093475061e3d95369d" #@periodLookup("2013-03-13")
       ,
         amount_cents: 160000
         account_id: "19cc6709347adfae3d95369d"
@@ -120,7 +134,7 @@ describe "qb ActiveCell", ->
         transaction_date: "2013-03-13" # from TxnDate above
         source: "QB:SalesReceipt"
         is_credit: true
-        period_id: "2013-03-13" #@periodLookup("2013-03-13")
+        period_id: "37cc67093475061e3d95369d" #@periodLookup("2013-03-13")
       ]
 
       assert.deepEqual @salesReceipt.transform(@qbdObj, {}, @loadData, {}), resultObjs
