@@ -15,7 +15,7 @@ describe "qbd ActiveCell", ->
     it "can find an account based on the discount account ref", ->
       resultObj =
         Id: "QB:123"
-        Amount: 500
-        AccountId: "QB:678" #@accountLookup('QB:678')
+        amount_cents: 50000
+        account_id: "QB:678" #@accountLookup('QB:678')
 
       assert.deepEqual lineTranform(@qbdObj), resultObj

@@ -10,7 +10,7 @@ describe "qbd ActiveCell", ->
           value: "QB:234"
 
       resultObj =
-        CustomerId: "QB:234"
+        customer_id: "QB:234"
 
       assert.deepEqual transromRefs(qbdObj), resultObj
 
@@ -21,6 +21,6 @@ describe "qbd ActiveCell", ->
           type: "Vendor"
 
       resultObj =
-        VendorId: "QB:234"
+        vendor_id: "QB:234"
 
       assert.deepEqual transromRefs(qbdObj), resultObj

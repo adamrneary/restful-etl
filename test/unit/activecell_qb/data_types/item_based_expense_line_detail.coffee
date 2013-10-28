@@ -22,9 +22,9 @@ describe "qbd ActiveCell", ->
 
       resultObj =
         Id: "QB:123"
-        Amount: 500
-        AccountId: "QB:123"#@accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
-        ProductId: "QB:345"
+        amount_cents: 50000
+        account_id: "QB:123"#@accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
+        product_id: "QB:345"
 
       assert.deepEqual lineTranform(qbdObj, extractData), resultObj
 
@@ -39,8 +39,8 @@ describe "qbd ActiveCell", ->
 
       resultObj =
         Id: "QB:123"
-        Amount: 500
-        AccountId: "QB:678"
-        ProductId: "QB:345"
+        amount_cents: 50000
+        account_id: "QB:678"
+        product_id: "QB:345"
 
       assert.deepEqual lineTranform(qbdObj), resultObj
