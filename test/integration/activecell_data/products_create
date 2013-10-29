@@ -1,0 +1,5 @@
+[ { "company_id": "company_id:12345",
+    "qbd_id": "QB:4",
+    "name": "SSL certificate",
+    "expense_account_id": "QB:21",
+    "qb_type": "NonInventory" } ]

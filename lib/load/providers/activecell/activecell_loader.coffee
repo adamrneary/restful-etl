@@ -29,7 +29,8 @@ exports.load = (options = {}, cb) ->
           finally
               activeCellData = data
               options.batch.loadData[options.object] = data.slice(0)
-              cb err
+              options.batch.loadResultData[options.object] = options.batch.loadData[options.object] if options.object is "periods"
+            cb err
 
       req.end()
       req.on "error", (e) ->
@@ -37,7 +38,10 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for extract required objects
     (cb) ->
-      unless options.required_objects.extract
+      if options.object is "periods"
+        cb()
+        return
+      unless options.required_objects?.extract
         cb()
         return
       waitObjects = () ->
@@ -50,11 +54,14 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for load required objects
     (cb) ->
-      unless options.required_objects.load
+      if options.object is "periods"
+        cb()
+        return
+      unless options.required_objects?.load
         cb()
         return
       waitObjects = () ->
-        if (_.any options.required_objects.load, (object) ->
+        if (not _.any options.required_objects.load, (object) ->
           not _.isUndefined(options.batch.loadData[object]))
           setTimeout(waitObjects, 100)
         else
@@ -62,6 +69,9 @@ exports.load = (options = {}, cb) ->
       waitObjects()
   ,
     (cb) ->
+      if options.object is "periods"
+        cb()
+        return
       extractData = options.batch.extractData
       loadData = options.batch.loadData
       loadResultData = options.batch.loadResultData

@@ -45,6 +45,7 @@ getQBObjByObjName = (name) ->
     when "accounts" then ["Account"]
     when "customers" then ["Customer"]
     when "vendors" then ["Vendor"]
+    when "periods" then []
 
 satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
   result = false
@@ -156,7 +157,7 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
       else
         item = _.find extractData.Item, (item) ->
           item.Id is newObj.product_id
-        newObj.account_id = item.ExpenseAccountRef.value
+        newObj.account_id = item?.ExpenseAccountRef.value
     when "JournalEntryLineDetail"
       newObj = {}
       newObj.Id = obj.Id
@@ -175,7 +176,7 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
         newObj.product_id = obj.PaymentLineDetail.ItemRef.value
         item = _.find extractData.Item, (item) ->
           item.Id is newObj.product_id
-        newObj.account_id = item.DepositToAccountRef.value
+        newObj.account_id = item?.DepositToAccountRef.value
       else
         newObj.account_id = obj.PaymentLineDetail.Discount.DiscountAccountRef.value
 
@@ -189,7 +190,7 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
       else
         item = _.find extractData.Item, (item) ->
           item.Id is newObj.product_id
-        newObj.account_id = item.IncomeAccountRef.value
+        newObj.account_id = item?.IncomeAccountRef.value
 
   newObj
 

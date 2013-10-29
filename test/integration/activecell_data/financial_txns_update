@@ -1,0 +1,9 @@
+[ { "company_id": "company_id:12345",
+    "qbd_id": "QB:11238",
+    "account_id": "2134asdfasdf",
+    "vendor_id": "asdfasdf78098a7sdf0",
+    "transaction_date": "2013-05-08",
+    "amount_cents": 53415,
+    "source": "QB:Bill",
+    "is_credit": true,
+    "period_id": "51150257318033896f000140" } ]

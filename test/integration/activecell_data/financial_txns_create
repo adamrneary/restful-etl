@@ -1,0 +1,11 @@
+[
+[ { "amount_cents": 160000,
+    "account_id": "jkalsdj;lkjzc;xv",
+    "company_id": "company_id:12345",
+    "qbd_id": "QB:213",
+    "customer_id": "000000002",
+    "transaction_date": "2013-03-13",
+    "source": "QB:SalesReceipt",
+    "is_credit": true,
+    "period_id": "51150257318033896f00013e" } ]
+]

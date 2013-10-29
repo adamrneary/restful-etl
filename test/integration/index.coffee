@@ -125,21 +125,64 @@ describe "Extract data from intuit and load it to ActiveCell", ->
       source_connection_id: "source_connection_id"
       destination_connection_id: "destination_connection_id"
       jobs: [
-#        type: "extract"
-#        object: "Customer"
-#      ,
         type: "extract"
         object: "Account"
-#      ,
-#        type: "load"
-#        object: "customers"
-#        required_objects:
-#          extract: ["Customer"]
+      ,
+        type: "extract"
+        object: "Bill"
+      ,
+        type: "extract"
+        object: "CreditMemo"
+      ,
+        type: "extract"
+        object: "Customer"
+      ,
+        type: "extract"
+        object: "Invoice"
+      ,
+        type: "extract"
+        object: "Item"
+      ,
+        type: "extract"
+        object: "Payment"
+      ,
+        type: "extract"
+        object: "Purchase"
+      ,
+        type: "extract"
+        object: "SalesReceipt"
+      ,
+        type: "extract"
+        object: "Vendor"
       ,
         type: "load"
         object: "accounts"
         required_objects:
           extract: ["Account"]
+      ,
+        type: "load"
+        object: "customers"
+        required_objects:
+          extract: ["Customer"]
+      ,
+        type: "load"
+        object: "financial_txns"
+        required_objects:
+          extract: ["Account", "Bill", "CreditMemo", "Customer", "Invoice", "Item", "Payment", "Purchase", "SalesReceipt", "Vendor"]
+          load: ["periods"]
+      ,
+        type: "load"
+        object: "periods"
+      ,
+        type: "load"
+        object: "products"
+        required_objects:
+          extract: ["Item"]
+      ,
+        type: "load"
+        object: "vendors"
+        required_objects:
+          extract: ["Vendor"]
       ]
 
     intuitAccountData = ""
@@ -156,11 +199,9 @@ describe "Extract data from intuit and load it to ActiveCell", ->
     activeCellAccountsData = ""
     activeCellCustomersData = ""
     activeCellFinancialTxnsData = ""
+    activeCellPeriodsData = ""
     activeCellProductsData = ""
     activeCellVendorsData = ""
-    activeCellPeriodsData = ""
-
-
 
     async.series [
       # Extract QB data
@@ -258,13 +299,69 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           nock("https://qb.sbfinance.intuit.com")
             .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Account%20%20startposition%201%20maxresults%20500")
             .reply(200, intuitAccountData);
-#
-#          nock("https://qb.sbfinance.intuit.com")
-#            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Customer")
-#            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}')
-#          nock("https://qb.sbfinance.intuit.com")
-#            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Customer%20%20startposition%201%20maxresults%20500")
-#            .reply(200, intuitCustomerData);
+            # Bill
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Bill")
+            .reply(200, '{"QueryResponse":{"totalCount":1},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Bill%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitBillData);
+            # CreditMemo
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20CreditMemo")
+            .reply(200, '{"QueryResponse":{"totalCount":1},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20CreditMemo%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitCreditMemoData);
+            # Customer
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Customer")
+            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Customer%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitCustomerData);
+            # Invoice
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Invoice")
+            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Invoice%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitInvoiceData);
+            # Item
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Item")
+            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Item%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitItemData);
+            # Payment
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Payment")
+            .reply(200, '{"QueryResponse":{"totalCount":1},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Payment%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitPaymentData);
+            # Purchase
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Purchase")
+            .reply(200, '{"QueryResponse":{"totalCount":1},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Purchase%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitPurchaseData);
+            # SalesReceipt
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20SalesReceipt")
+            .reply(200, '{"QueryResponse":{"totalCount":1},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20SalesReceipt%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitSalesReceiptData);
+            # Vendor
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20count(*)%20from%20Vendor")
+            .reply(200, '{"QueryResponse":{"totalCount":20},"time":"2013-10-03T05:10:07.823-07:00"}')
+          nock("https://qb.sbfinance.intuit.com")
+            .get("/v3/company/12345/query?query=%20select%20*,%20MetaData.CreateTime%20from%20Vendor%20%20startposition%201%20maxresults%20500")
+            .reply(200, intuitVendorData);
 
 
           cb(err)
@@ -277,9 +374,21 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           nock("https://sterlingcooper.activecell.com")
             .get("/api/v1/accounts.json")
             .reply(200, activeCellAccountsData)
-#          nock("https://sterlingcooper.activecell.com")
-#            .get("/api/v1/customers.json")
-#            .reply(200, activeCellCustomersData)
+          nock("https://sterlingcooper.activecell.com")
+            .get("/api/v1/customers.json")
+            .reply(200, activeCellCustomersData)
+          nock("https://sterlingcooper.activecell.com")
+            .get("/api/v1/financial_txns.json")
+            .reply(200, activeCellFinancialTxnsData)
+          nock("https://sterlingcooper.activecell.com")
+            .get("/api/v1/periods.json")
+            .reply(200, activeCellPeriodsData)
+          nock("https://sterlingcooper.activecell.com")
+            .get("/api/v1/products.json")
+            .reply(200, activeCellProductsData)
+          nock("https://sterlingcooper.activecell.com")
+            .get("/api/v1/vendors.json")
+            .reply(200, activeCellVendorsData)
           cb(err)
     ,
       # mocking ActiveCell answers
@@ -335,6 +444,87 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           _.each updateObjects, (obj) ->
             nock("https://sterlingcooper.activecell.com")
               .put("/api/v1/customers/#{obj.id}.json")
+              .reply(200)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/financial_txns_create", (err, data) ->
+          createObjects = JSON.parse data.toString()
+          _.each createObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .post("/api/v1/financial_txns.json")
+              .reply(201);
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/financial_txns_delete", (err, data) ->
+          deleteObjects = JSON.parse data.toString()
+          _.each deleteObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .delete("/api/v1/financial_txns/#{obj.id}.json")
+              .reply(204)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/financial_txns_update", (err, data) ->
+          updateObjects = JSON.parse data.toString()
+          _.each updateObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .put("/api/v1/financial_txns/#{obj.id}.json")
+              .reply(200)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/products_create", (err, data) ->
+          createObjects = JSON.parse data.toString()
+          _.each createObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .post("/api/v1/products.json")
+              .reply(201);
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/products_delete", (err, data) ->
+          deleteObjects = JSON.parse data.toString()
+          _.each deleteObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .delete("/api/v1/products/#{obj.id}.json")
+              .reply(204)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/products_update", (err, data) ->
+          updateObjects = JSON.parse data.toString()
+          _.each updateObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .put("/api/v1/products/#{obj.id}.json")
+              .reply(200)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/vendors_create", (err, data) ->
+          createObjects = JSON.parse data.toString()
+          _.each createObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .post("/api/v1/vendors.json")
+              .reply(201);
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/vendors_delete", (err, data) ->
+          deleteObjects = JSON.parse data.toString()
+          _.each deleteObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .delete("/api/v1/vendors/#{obj.id}.json")
+              .reply(204)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/vendors_update", (err, data) ->
+          updateObjects = JSON.parse data.toString()
+          _.each updateObjects, (obj) ->
+            nock("https://sterlingcooper.activecell.com")
+              .put("/api/v1/vendors/#{obj.id}.json")
               .reply(200)
           cb(err)
     ,

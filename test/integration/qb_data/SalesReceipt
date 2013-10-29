@@ -1,1 +1,60 @@
-[]
+[{
+  "domain": "QBO",
+  "sparse": false,
+  "Id": "97",
+  "SyncToken": "0",
+  "MetaData": {
+    "CreateTime": "2013-03-13T13:31:43-07:00",
+    "LastUpdatedTime": "2013-03-13T13:31:43-07:00"
+  },
+  "DocNumber": "1047",
+  "TxnDate": "2013-03-13",
+  "CustomerRef": {
+    "value": "QB:399"
+  },
+  "DepartmentRef": {
+    "value": "1",
+    "name": "Department1"
+  },
+  "CurrencyRef": {
+    "value": "USD",
+    "name": "United States Dollar"
+  },
+  "PrivateNote": "Memo for SalesReceipt",
+  "Line": [
+    {
+      "Id": "QB:123",
+      "Amount": 500,
+      "DetailType": "ItemBasedExpenseLineDetail",
+      "ItemBasedExpenseLineDetail": {
+        "ItemRef": {
+          "value": "QB:9"
+        },
+        "ItemAccountRef": {
+          "value": "QB:147"
+        }
+      }
+    }, {
+      "Id": "QB:213",
+      "Amount": 1600,
+      "DetailType": "AccountBasedExpenseLineDetail",
+      "AccountBasedExpenseLineDetail": {
+        "AccountRef": {
+          "value": "QB:146"
+        }
+      }
+    }
+  ],
+  "TxnTaxDetail": {
+    "TotalTax": 0
+  },
+  "TotalAmt": 5,
+  "ApplyTaxAfterDiscount": false,
+  "PrintStatus": "NeedToPrint",
+  "EmailStatus": "NotSet",
+  "Balance": 0,
+  "DepositToAccountRef": {
+    "value": "QB:144",
+    "name": "Undeposited Funds"
+  }
+}]
