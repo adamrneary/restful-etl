@@ -3,7 +3,7 @@ mongoose = require 'mongoose'
 Schema = mongoose.Schema
 
 connectionSchema = new Schema
-  name: {type: String, required: true}
+  name: String
   provider: String
   realm: String
   oauth_consumer_key: String

@@ -46,32 +46,31 @@ getQBObjByObjName = (name) ->
     when "customers" then ["Customer"]
     when "vendors" then ["Vendor"]
 
-
 satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
+  result = false
   keys = _.keys obj
   _.each keys, (key)->
     switch key
-      when "account_id"
-        obj[key] = getIdByQBId(obj[key], loadData.accounts)
+      when "account_id", "income_account_id", "cogs_account_id", "expense_account_id", "asset_account_id", "deposit_account_id"
+        newValue = getIdByQBId(obj[key], loadData.accounts)
+        result = true unless obj[key] is newValue
+        obj[key] = newValue
       when "vendor_id"
-        obj[key] = getIdByQBId(obj[key], loadData.vendors)
+        newValue = getIdByQBId(obj[key], loadData.vendors)
+        result = true unless obj[key] is newValue
+        obj[key] = newValue
       when "product_id"
-        obj[key] = getIdByQBId(obj[key], loadData.products)
+        newValue = getIdByQBId(obj[key], loadData.products)
+        result = true unless obj[key] is newValue
+        obj[key] = newValue
       when "customer_id"
-        obj[key] = getIdByQBId(obj[key], loadData.customers)
-      when "income_account_id"
-        obj[key] = getIdByQBId(obj[key], loadData.accounts)
-      when "cogs_account_id"
-        obj[key] = getIdByQBId(obj[key], loadData.accounts)
-      when "expense_account_id"
-        obj[key] = getIdByQBId(obj[key], loadData.accounts)
-      when "asset_account_id"
-        obj[key] = getIdByQBId(obj[key], loadData.accounts)
-      when "deposit_account_id"
-        obj[key] = getIdByQBId(obj[key], loadData.accounts)
+        newValue = getIdByQBId(obj[key], loadData.customers)
+        result = true unless obj[key] is newValue
+        obj[key] = newValue
       when "period_id"
-        obj[key] = getIdByDate(obj[key], loadData.periods)
-
+        newValue = getIdByDate(obj[key], loadData.periods)
+        result = true unless obj[key] is newValue
+        obj[key] = newValue
 
 transromRefs = (obj) ->
   return unless obj
