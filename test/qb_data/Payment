@@ -1,45 +1,152 @@
+[
 {
-  "QueryResponse":{
-    "Payment":[
-      {
-        "CustomerRef":{
-          "value":"QB:284",
-          "name":"Google"
-        },
-        "RemitToRef":{
-          "value":"QB:284",
-          "name":"Google"
-        },
-        "ARAccountRef":{
-          "value":"QB:4",
-          "name":"Accounts Receivable"
-        },
-        "DepositToAccountRef":{
-          "value":"QB:2",
-          "name":"Checking"
-        },
-        "PaymentMethodRef":{
-          "value":"QB:9",
-          "name":"Home Depot Gift Card"
-        },
-        "PaymentRefNum":"Cash#003",
-        "TotalAmt":40,
-        "status":"Synchronized",
-        "Id":"NG:3410926",
-        "SyncToken":"6",
-        "MetaData":{
-          "CreateTime":"2013-05-21T11:38:46Z",
-          "LastUpdatedTime":"2013-05-21T11:40:35Z"
-        },
-        "TxnDate":"2013-05-21",
-        "PrivateNote":"Testing with Cash and all fields mod",
-        "Line":[
-
-        ]
-      }
-    ],
-    "startPosition":1,
-    "maxResults":1
-  },
-  "time":"2013-05-27T06:28:52.659Z"
+"CustomerRef":{
+"value":"NG:10656134",
+"name":"Larry Austin (EV)"
+},
+"RemitToRef":{
+"value":"NG:10656134",
+"name":"Larry Austin (EV)"
+},
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"DepositToAccountRef":{
+"value":"QB:65",
+"name":"Undeposited Funds"
+},
+"PaymentRefNum":"4321",
+"TotalAmt":12,
+"status":"Synchronized",
+"Id":"NG:11893070",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:41Z",
+"LastUpdatedTime":"2013-03-21T18:56:52Z"
+},
+"TxnDate":"2013-01-21",
+"Line":[
+]
+},
+{
+"CustomerRef":{
+"value":"NG:10650710",
+"name":"Jane Smith (EV)"
+},
+"RemitToRef":{
+"value":"NG:10650710",
+"name":"Jane Smith (EV)"
+},
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"DepositToAccountRef":{
+"value":"QB:65",
+"name":"Undeposited Funds"
+},
+"PaymentRefNum":"344Smith",
+"TotalAmt":12,
+"status":"Synchronized",
+"Id":"NG:11889451",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:41Z",
+"LastUpdatedTime":"2013-03-21T18:56:52Z"
+},
+"TxnDate":"2013-01-21",
+"Line":[
+]
+},
+{
+"CustomerRef":{
+"value":"NG:10650710",
+"name":"Jane Smith (EV)"
+},
+"RemitToRef":{
+"value":"NG:10650710",
+"name":"Jane Smith (EV)"
+},
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"DepositToAccountRef":{
+"value":"QB:65",
+"name":"Undeposited Funds"
+},
+"PaymentRefNum":"2343Smith",
+"TotalAmt":435,
+"status":"Synchronized",
+"Id":"NG:11887920",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:41Z",
+"LastUpdatedTime":"2013-03-21T18:56:52Z"
+},
+"TxnDate":"2013-01-21",
+"Line":[
+]
+},
+{
+"CustomerRef":{
+"value":"NG:10656128",
+"name":"sfsgs"
+},
+"RemitToRef":{
+"value":"NG:10656128",
+"name":"sfsgs"
+},
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"DepositToAccountRef":{
+"value":"QB:65",
+"name":"Undeposited Funds"
+},
+"PaymentRefNum":"651",
+"TotalAmt":200,
+"status":"Synchronized",
+"Id":"NG:11887909",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:41Z",
+"LastUpdatedTime":"2013-03-21T18:56:52Z"
+},
+"TxnDate":"2013-01-18",
+"Line":[
+]
+},
+{
+"CustomerRef":{
+"value":"NG:9172274",
+"name":"3 - Buzzanca, Ryan"
+},
+"RemitToRef":{
+"value":"NG:9172274",
+"name":"3 - Buzzanca, Ryan"
+},
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"DepositToAccountRef":{
+"value":"QB:69",
+"name":"Company Checking Account"
+},
+"PaymentRefNum":"3",
+"TotalAmt":44.99,
+"status":"Synchronized",
+"Id":"NG:11361131",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:41Z",
+"LastUpdatedTime":"2013-03-21T18:56:52Z"
+},
+"TxnDate":"2012-12-19",
+"Line":[
+]
 }
+]

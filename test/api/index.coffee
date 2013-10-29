@@ -24,15 +24,6 @@ describe 'ETL connection api', ->
       .expect(200)
       .end (done)
 
-  it 'should raise an error when trying to create connection with existing name', (done)->
-    request(app)
-      .post('/connection')
-      .send({ name: 'NAME1' })
-      .set('Accept', 'application/json')
-      .set('Content-type', 'application/json')
-      .expect(500)
-      .end (done)
-
   it 'create and get connection', (done)->
     request(app)
       .post('/connection')

@@ -1,65 +1,74 @@
+[
 {
-   "QueryResponse":{
-      "Bill":[
-         {
-            "DueDate":"2013-02-15",
-            "Balance":1990.19,
-            "status":"Pending",
-            "Id":"NG:3424987",
-            "SyncToken":"1",
-            "MetaData":{
-               "CreateTime":"2013-06-03T11:52:25Z",
-               "LastUpdatedTime":"2013-06-03T11:52:25Z"
-            },
-            "CustomField":[
-
-            ],
-            "DocNumber":"TEST001",
-            "TxnDate":"2013-02-05",
-            "PrivateNote":"tESTING with ll types of Line itesms",
-            "TxnStatus":"Payable",
-            "Line":[
-               {
-                  "Id":"NG:3629083",
-                  "Description":"Testing Exp",
-                  "Amount":500,
-                  "DetailType":"AccountBasedExpenseLineDetail",
-                  "AccountBasedExpenseLineDetail":{
-                     "CustomerRef":{
-                        "value":"QB:260",
-                        "name":"Apple"
-                     },
-                     "ClassRef":{
-                        "value":"QB:1",
-                        "name":"New Construction"
-                     },
-                     "AccountRef":{
-                        "value":"QB:32",
-                        "name":"Fuel"
-                     },
-                     "BillableStatus":"Billable"
-                  },
-                  "CustomField":[
-
-                  ]
-               }
-            ],
-            "TxnTaxDetail":{
-               "TaxLine":[
-
-               ]
-            },
-            "VendorRef":{
-               "value":"QB:164",
-               "name":"Bank of Anycity"
-            },
-            "APAccountRef":{
-               "value":"QB:12",
-               "name":"Accounts Payable"
-            },
-            "TotalAmt":1990.19
-         }
-      ]
-   },
-   "time":"2013-06-03T11:56:16.996Z"
+"Balance":-217.18,
+"status":"SyncError",
+"Id":"NG:9398564",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2012-08-10T18:56:31Z",
+"LastUpdatedTime":"2012-11-27T17:25:51Z"
+},
+"DocNumber":"A87730F1421",
+"TxnDate":"2012-08-10",
+"PrivateNote":"Mobile Expense Report 2012.08.10",
+"Line":[
+],
+"VendorRef":{
+"name":"Rich Peters"
+},
+"APAccountRef":{
+"name":"Accounts Payable"
+},
+"TotalAmt":-217.18
+},
+{
+"Balance":0,
+"status":"SyncError",
+"Id":"NG:8784296",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-05-23T20:01:48Z",
+"LastUpdatedTime":"2012-05-23T20:08:15Z"
+},
+"DocNumber":"944549",
+"TxnDate":"2012-05-23",
+"Line":[
+],
+"VendorRef":{
+"value":"NG:1911509"
+},
+"APAccountRef":{
+"name":"Accounts Payable"
+},
+"TotalAmt":0
+},
+{
+"SalesTermRef":{
+"value":"QB:2",
+"name":"2% 10 Net 30"
+},
+"DueDate":"2012-06-22",
+"Balance":22.54,
+"status":"Synchronized",
+"Id":"QB:19",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-05-23T20:07:40Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-05-23",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"Line":[
+],
+"VendorRef":{
+"value":"NG:1920652",
+"name":"Sachiko Sushi"
+},
+"APAccountRef":{
+"value":"QB:35",
+"name":"Accounts Payable"
+},
+"TotalAmt":22.54
 }
+]

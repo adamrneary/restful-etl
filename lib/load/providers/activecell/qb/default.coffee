@@ -13,7 +13,7 @@ class Default
   transform: (qbdObj, extractData, loadData, loadResultData) =>
     newObj = {company_id: @companyId()}
     _.each @transformFields(), (field) =>
-      newObj[field.activeCell] = qbdObj[field.qbd]
+      newObj[field.activeCell] = qbdObj[field.qbd] if qbdObj[field.qbd]
     newObj
 
   # get/set company id

@@ -1,57 +1,1006 @@
+[
 {
-   "QueryResponse":{
-      "Invoice":[
-         {
-            "status":"Synchronized",
-            "Id":"QB:64531",
-            "SyncToken":"1",
-            "MetaData":{
-               "CreateTime":"2010-06-16T20:48:31.215Z",
-               "LastUpdatedTime":"2013-04-08T10:49:47Z"
-            },
-            "DocNumber":"1223",
-            "TxnDate":"2010-06-16",
-            "ExchangeRate":1,
-            "PrivateNote":"add grp and add an item in group dup 1214",
-            "TxnStatus":"Payable",
-            "TxnTaxDetail":{
-               "DefaultTaxCodeRef":{
-                  "value":"QB:1",
-                  "name":"Tax"
-               },
-               "TotalTax":0
-            },
-            "CustomerRef":{
-               "value":"QB:286",
-               "name":"General Electrical"
-            },
-            "RemitToRef":{
-               "value":"QB:286",
-               "name":"General Electrical"
-            },
-            "DueDate":"2010-06-16",
-            "ShipMethodRef":{
-               "value":"QB:4",
-               "name":"UPS"
-            },
-            "ShipDate":"2010-06-16",
-            "TotalAmt":35,
-            "TemplateRef":{
-               "value":"QB:14",
-               "name":"Rock Castle Invoice"
-            },
-            "PrintStatus":"NotSet",
-            "EmailStatus":"NotSet",
-            "ARAccountRef":{
-               "value":"QB:4",
-               "name":"Accounts Receivable"
-            },
-            "Balance":35,
-            "FinanceCharge":false
-         }
-      ],
-      "startPosition":1,
-      "maxResults":1
-   },
-   "time":"2013-04-11T07:44:54.728Z"
+"status":"Synchronized",
+"Id":"NG:11893067",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:37.234Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"773",
+"TxnDate":"2015-06-01",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10650693",
+"name":"testjake farr"
+},
+"BillAddr":{
+"Line1":"testjake farr",
+"CountrySubDivisionCode":"MI"
+},
+"RemitToRef":{
+"value":"QB:399",
+"name":"testjake farr"
+},
+"DueDate":"2015-06-01",
+"ShipDate":"2015-06-01",
+"TotalAmt":200,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":200,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11893066",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:37.171Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"772",
+"TxnDate":"2014-06-01",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10650693",
+"name":"testjake farr"
+},
+"BillAddr":{
+"Line1":"testjake farr",
+"CountrySubDivisionCode":"MI"
+},
+"RemitToRef":{
+"value":"QB:399",
+"name":"testjake farr"
+},
+"DueDate":"2014-06-01",
+"ShipDate":"2014-06-01",
+"TotalAmt":200,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":200,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11893065",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:37.109Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"771",
+"TxnDate":"2013-06-01",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10650693",
+"name":"testjake farr"
+},
+"BillAddr":{
+"Line1":"testjake farr",
+"CountrySubDivisionCode":"MI"
+},
+"RemitToRef":{
+"value":"QB:399",
+"name":"testjake farr"
+},
+"DueDate":"2013-06-01",
+"ShipDate":"2013-06-01",
+"TotalAmt":200,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":200,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11893064",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:37.046Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"767",
+"TxnDate":"2013-01-18",
+"ExchangeRate":1,
+"TxnStatus":"Paid",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10656128",
+"name":"sfsgs"
+},
+"BillAddr":{
+"Line1":"sfsgs",
+"Line2":"rew",
+"Line3":"rew",
+"City":"ew, re rewrew"
+},
+"RemitToRef":{
+"value":"QB:402",
+"name":"sfsgs"
+},
+"DueDate":"2013-01-18",
+"ShipDate":"2013-01-18",
+"TotalAmt":200,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":0,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11889415",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:36.984Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"E205",
+"TxnDate":"2013-01-21",
+"ExchangeRate":1,
+"TxnStatus":"Paid",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10650710",
+"name":"Jane Smith (EV)"
+},
+"BillAddr":{
+"Line1":"Jane Smith (EV)",
+"CountrySubDivisionCode":"MI"
+},
+"RemitToRef":{
+"value":"QB:400",
+"name":"Jane Smith (EV)"
+},
+"DueDate":"2013-01-21",
+"ShipDate":"2013-01-21",
+"TotalAmt":435,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":0,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11887984",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:36.921Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"E206",
+"TxnDate":"2013-01-21",
+"ExchangeRate":1,
+"TxnStatus":"Paid",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10650710",
+"name":"Jane Smith (EV)"
+},
+"BillAddr":{
+"Line1":"Jane Smith (EV)",
+"City":"12341",
+"CountrySubDivisionCode":"MI",
+"PostalCode":"34234"
+},
+"RemitToRef":{
+"value":"QB:400",
+"name":"Jane Smith (EV)"
+},
+"DueDate":"2013-01-21",
+"ShipDate":"2013-01-21",
+"TotalAmt":12,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":0,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11887911",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:36.859Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"E204",
+"TxnDate":"2013-01-18",
+"ExchangeRate":1,
+"TxnStatus":"Paid",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10656134",
+"name":"Larry Austin (EV)"
+},
+"BillAddr":{
+"Line1":"Larry Austin (EV)",
+"Line2":"709 Pleasant Street",
+"City":"Grand Ledge",
+"CountrySubDivisionCode":"MI",
+"PostalCode":"48837"
+},
+"RemitToRef":{
+"value":"QB:404",
+"name":"Larry Austin (EV)"
+},
+"DueDate":"2013-01-18",
+"ShipDate":"2013-01-18",
+"TotalAmt":12,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":0,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11887910",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:36.734Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"E203",
+"TxnDate":"2013-01-18",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10656132",
+"name":"Joe Anderson (EV)"
+},
+"BillAddr":{
+"Line1":"Joe Anderson (EV)",
+"Line2":"alt addressxxx",
+"Line3":"alt addr2xxx",
+"City":"alt cityxxx",
+"CountrySubDivisionCode":"MI"
+},
+"RemitToRef":{
+"value":"QB:403",
+"name":"Joe Anderson (EV)"
+},
+"DueDate":"2013-01-18",
+"ShipDate":"2013-01-18",
+"TotalAmt":295,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":295,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11887908",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:36.671Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"768",
+"TxnDate":"2013-01-18",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10656128",
+"name":"sfsgs"
+},
+"BillAddr":{
+"Line1":"sfsgs",
+"Line2":"rew",
+"Line3":"rew",
+"City":"ew, re rewrew"
+},
+"RemitToRef":{
+"value":"QB:402",
+"name":"sfsgs"
+},
+"DueDate":"2013-02-18",
+"ShipDate":"2013-01-18",
+"TotalAmt":45,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":45,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11887907",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-01-21T22:56:36.437Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"770",
+"TxnDate":"2013-01-18",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:10656126",
+"name":"BBB test"
+},
+"BillAddr":{
+"Line1":"BBB test",
+"CountrySubDivisionCode":"MI"
+},
+"RemitToRef":{
+"value":"QB:401",
+"name":"BBB test"
+},
+"DueDate":"2013-02-01",
+"ShipDate":"2013-01-18",
+"TotalAmt":200,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":200,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11363834",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:31.101Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"RNF0001",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9168548",
+"name":"6 - Johnson, Tom"
+},
+"BillAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"ShipAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"RemitToRef":{
+"value":"QB:384",
+"name":"6 - Johnson, Tom"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":191.94,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":191.94,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11363828",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:30.695Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"VOZ0001",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Paid",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9172274",
+"name":"3 - Buzzanca, Ryan"
+},
+"BillAddr":{
+"Line1":"Ryan Buzzanca",
+"Line2":"2320",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16509"
+},
+"ShipAddr":{
+"Line1":"Ryan Buzzanca",
+"Line2":"2320",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16509"
+},
+"RemitToRef":{
+"value":"QB:386",
+"name":"3 - Buzzanca, Ryan"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":44.99,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":0,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11363823",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:29.867Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"VVL0001",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9172471",
+"name":"11 - Ambrose, Alex"
+},
+"BillAddr":{
+"Line1":"alexander ambrsoe",
+"Line2":"pat 13",
+"City":"erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"ShipAddr":{
+"Line1":"alexander ambrsoe",
+"Line2":"pat 13",
+"City":"erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"RemitToRef":{
+"value":"QB:394",
+"name":"11 - Ambrose, Alex"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":569.05,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":569.05,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11363691",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:29.460Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"NEK0018",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9172451",
+"name":"5 - Fritts, Andy"
+},
+"BillAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"ShipAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"RemitToRef":{
+"value":"QB:388",
+"name":"5 - Fritts, Andy"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":127.96,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":127.96,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11361127",
+"SyncToken":"4",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:28.976Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"TRX0001",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9172274",
+"name":"3 - Buzzanca, Ryan"
+},
+"BillAddr":{
+"Line1":"Ryan Buzzanca",
+"Line2":"2320",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16509"
+},
+"ShipAddr":{
+"Line1":"Ryan Buzzanca",
+"Line2":"2320",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16509"
+},
+"RemitToRef":{
+"value":"QB:386",
+"name":"3 - Buzzanca, Ryan"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":32,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":32,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11360892",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:28.554Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"BXY0005",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9172451",
+"name":"5 - Fritts, Andy"
+},
+"BillAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"ShipAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"RemitToRef":{
+"value":"QB:388",
+"name":"5 - Fritts, Andy"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":51.98,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":51.98,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"NG:11360891",
+"SyncToken":"4",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:27.726Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"WAH0019",
+"TxnDate":"2012-12-19",
+"ExchangeRate":1,
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"DefaultTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"NG:9172451",
+"name":"5 - Fritts, Andy"
+},
+"BillAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"ShipAddr":{
+"Line1":"Andy Fritts",
+"Line2":"2320 W 8th St",
+"City":"Erie",
+"Country":"USA",
+"CountrySubDivisionCode":"PA",
+"PostalCode":"16505"
+},
+"RemitToRef":{
+"value":"QB:388",
+"name":"5 - Fritts, Andy"
+},
+"ClassRef":{
+"value":"QB:11",
+"name":"Extended Warranty"
+},
+"DueDate":"2012-12-19",
+"ShipDate":"2012-12-19",
+"TotalAmt":274.7,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NeedToPrint",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":274.7,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"QB:13",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-05-16T19:22:07.564Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-04-01",
+"ExchangeRate":1,
+"PrivateNote":"Opening balance",
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"QB:38",
+"name":"Job 1"
+},
+"BillAddr":{
+"Line1":"Anthony and Cindy"
+},
+"RemitToRef":{
+"value":"QB:15",
+"name":"Anthony and Cindy"
+},
+"DueDate":"2001-04-01",
+"ShipDate":"2001-04-01",
+"TotalAmt":3500,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NotSet",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":3500,
+"FinanceCharge":false
+},
+{
+"status":"Synchronized",
+"Id":"QB:10",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-05-16T19:21:06.518Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-05-01",
+"ExchangeRate":1,
+"PrivateNote":"Opening balance",
+"TxnStatus":"Payable",
+"TxnTaxDetail":{
+"TotalTax":0
+},
+"CustomerRef":{
+"value":"QB:37",
+"name":"Roger Clyne"
+},
+"RemitToRef":{
+"value":"QB:37",
+"name":"Roger Clyne"
+},
+"DueDate":"2012-05-01",
+"ShipDate":"2012-05-01",
+"TotalAmt":750,
+"TemplateRef":{
+"value":"QB:3",
+"name":"Intuit Service Invoice"
+},
+"PrintStatus":"NotSet",
+"EmailStatus":"NotSet",
+"ARAccountRef":{
+"value":"QB:34",
+"name":"Accounts Receivable"
+},
+"Balance":750,
+"FinanceCharge":false
 }
+]

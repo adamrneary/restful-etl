@@ -16,12 +16,6 @@ connectionSchema = new Schema
   username: String
   password: String
 
-connectionSchema.pre 'save', (next)->
-  Connection::findOne {name: @name}, (err, data)->
-    return next err if err
-    return next new Error 'fields are not unique' if data?
-    next()
-
 class Connection extends __proto('Connection', connectionSchema)
 
 module.exports = Connection

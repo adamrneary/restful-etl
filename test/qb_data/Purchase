@@ -1,100 +1,390 @@
+[
 {
-    "Purchase":
-    {
-        "AccountRef":
-        {
-            "value":"69",
-            "name":"Test Credit Card Account"
-        },
-        "PaymentType":"CreditCard",
-        "EntityRef":
-        {
-            "value":"191",
-            "name":"Sample Customer",
-            "type":"Customer"
-        },
-        "Credit":false,
-        "TotalAmt":15.00,
-        "domain":"QBO",
-        "sparse":false,
-        "Id":"216",
-        "SyncToken":"0",
-        "MetaData":
-        {
-            "CreateTime":"2013-03-14T14:13:37-07:00",
-            "LastUpdatedTime":"2013-03-14T14:13:37-07:00"
-        },
-        "DocNumber":"1234",
-        "TxnDate":"2013-03-14",
-        "PrivateNote":"This is the memo.",
-        "Line":[
-            {
-                "Id":"1",
-                "Description":"Charge for advertising",
-                "Amount":5.00,
-                "DetailType":"AccountBasedExpenseLineDetail",
-                "AccountBasedExpenseLineDetail":
-                {
-                    "ClassRef":
-                    {
-                        "value":"100100000000000212510",
-                        "name":"Class 1"
-                    },
-                    "AccountRef":
-                    {
-                        "value":"8",
-                        "name":"Advertising"
-                    },
-                    "BillableStatus":"Billable",
-                    "MarkupInfo":
-                    {
-                        "Percent":10
-                    },
-                    "TaxCodeRef":
-                    {
-                        "value":"TAX"
-                    }
-                }
-            },
-            {
-                "Id":"2",
-                "Description":"Charge for office supplies",
-                "Amount":10.00,
-                "DetailType":"ItemBasedExpenseLineDetail",
-                "ItemBasedExpenseLineDetail":
-                {
-                    "BillableStatus":"Billable",
-                    "ItemRef":
-                    {
-                        "value":"7",
-                        "name":"Office Supplies 2"
-                    },
-                    "ClassRef":
-                    {
-                        "value":"100100000000000212510",
-                        "name":"Class 1"
-                    },
-                    "UnitPrice":1,
-                    "MarkupInfo":
-                    {
-                        "Percent":1
-                    },
-                    "Qty":10,
-                    "TaxCodeRef":
-                    {
-                        "value":"TAX"
-                    }
-                },
-                "AccountBasedExpenseLineDetail":
-                {
-                    "AccountRef":
-                    {
-                        "value":"9",
-                        "name":"Bank Charges"
-                    }
-                }
-            }
-        ]
-    },
-    "time":"2013-03-14T14:14:32.507-07:00"
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"NG:2006070",
+"name":"Downtown Aquarium"
+},
+"TotalAmt":63.95,
+"Memo":"Imported from Shoeboxed: https://app.shoeboxed.com/shared/view/15588047-338d-4d99-a4b2-01974dd788ec",
+"PrintStatus":"NotSet",
+"status":"Synchronized",
+"Id":"NG:9972044",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-10-05T17:37:23Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"WEB000006",
+"TxnDate":"2012-07-11",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:41",
+"name":"AMEX"
+},
+"PaymentType":"CreditCard",
+"EntityRef":{
+"value":"NG:1936704",
+"name":"Cafe Intuit"
+},
+"Credit":false,
+"TotalAmt":35.78,
+"Memo":"ExpenseCloud Report ID#230852 - Report for david2@davidleary.com 2012/07/31",
+"status":"Synchronized",
+"Id":"NG:9286875",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-07-31T18:20:35Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"WEB000004",
+"TxnDate":"2012-07-31",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:41",
+"name":"AMEX"
+},
+"PaymentType":"CreditCard",
+"EntityRef":{
+"value":"QB:29",
+"name":"WebEx"
+},
+"Credit":false,
+"TotalAmt":91.38,
+"Memo":"ExpenseCloud Report ID#229808 - Report for david3@davidleary.com 2012/07/24",
+"status":"Synchronized",
+"Id":"NG:9230597",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-07-24T20:56:23Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"WEB000003",
+"TxnDate":"2012-07-24",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:41",
+"name":"AMEX"
+},
+"PaymentType":"CreditCard",
+"EntityRef":{
+"value":"QB:33",
+"name":"Bending Records"
+},
+"Credit":false,
+"TotalAmt":45.69,
+"Memo":"ExpenseCloud Report ID#229805 - Report for david3@davidleary.com 2012/07/24",
+"status":"Synchronized",
+"Id":"NG:9236428",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-07-24T20:50:57Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"WEB000002",
+"TxnDate":"2012-07-24",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:41",
+"name":"AMEX"
+},
+"PaymentType":"CreditCard",
+"EntityRef":{
+"value":"QB:15",
+"name":"Anthony and Cindy"
+},
+"Credit":false,
+"TotalAmt":0,
+"Memo":"VOID: ExpenseCloud Report ID#229805 - Report for david3@davidleary.com 2012/07/24",
+"status":"Synchronized",
+"Id":"NG:9236404",
+"SyncToken":"5",
+"MetaData":{
+"CreateTime":"2012-07-24T20:45:07Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"WEB000001",
+"TxnDate":"2012-07-24",
+"ExchangeRate":1,
+"TxnStatus":"Voided"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"QB:34",
+"name":"David Leary"
+},
+"RemitToAddr":{
+"Line1":"David Leary"
+},
+"TotalAmt":96.67,
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"NG:9208620",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-07-20T21:26:20Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-07-20",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"NG:1936704",
+"name":"Cafe Intuit"
+},
+"TotalAmt":2.25,
+"Memo":"Imported from Shoeboxed: https://app.shoeboxed.com/shared/view/df1e08fe-b0cb-4940-9fa5-7f6959dda0fa -> Test to see how the auto mapping in Shoeboxed works",
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"NG:8977575",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-07-17T20:24:59Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-05-23",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"NG:1936705",
+"name":"Starbucks"
+},
+"TotalAmt":7.64,
+"Memo":"Imported from Shoeboxed: https://app.shoeboxed.com/shared/view/0ada02c3-9939-4518-9c8e-36a8cc04d73d",
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"NG:8975438",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2012-07-17T20:24:58Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-03-14",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"NG:1912087",
+"name":"Target"
+},
+"TotalAmt":101.22,
+"Memo":"Imported from Shoeboxed: https://app.shoeboxed.com/shared/view/a1b7e795-d3eb-4c18-91b6-c3cdb022569e",
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"NG:8975437",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-07-17T20:24:57Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-03-11",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"NG:1920652",
+"name":"Sachiko Sushi"
+},
+"TotalAmt":38.29,
+"Memo":"Imported from Shoeboxed: https://app.shoeboxed.com/shared/view/ea3f9a23-2fb2-4616-b85b-a1edbb11db7f",
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"NG:8806438",
+"SyncToken":"4",
+"MetaData":{
+"CreateTime":"2012-05-30T20:49:58Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-04-23",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"NG:1920652",
+"name":"Sachiko Sushi"
+},
+"TotalAmt":38.29,
+"Memo":"Imported from Shoeboxed: https://app.shoeboxed.com/shared/view/225e1d29-690c-4cc2-9b85-8eb743348b04",
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"NG:8629809",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-04-30T19:47:19Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-04-23",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"TotalAmt":0,
+"PrintStatus":"NotSet",
+"status":"Synchronized",
+"Id":"QB:200",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2013-04-23T18:21:07Z",
+"LastUpdatedTime":"2013-04-23T18:21:31Z"
+},
+"DocNumber":"1",
+"TxnDate":"2013-04-23",
+"ExchangeRate":1,
+"TxnStatus":"Paid"
+},
+{
+"AccountRef":{
+"value":"QB:41",
+"name":"AMEX"
+},
+"PaymentType":"CreditCard",
+"EntityRef":{
+"value":"QB:47",
+"name":"Denver Museum"
+},
+"Credit":false,
+"TotalAmt":104,
+"status":"Synchronized",
+"Id":"QB:59",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-08-10T20:18:33Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-07-12",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"QB:46",
+"name":"Anchors Away"
+},
+"RemitToAddr":{
+"Line1":"Anchors Away"
+},
+"TotalAmt":217.18,
+"PrintStatus":"NotSet",
+"status":"Synchronized",
+"Id":"QB:53",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-08-10T18:34:34Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"DocNumber":"EFT",
+"TxnDate":"2012-07-07",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:41",
+"name":"AMEX"
+},
+"PaymentType":"CreditCard",
+"EntityRef":{
+"value":"QB:21",
+"name":"Apocalypse Interrupted Support"
+},
+"Credit":false,
+"TotalAmt":40,
+"status":"Synchronized",
+"Id":"QB:34",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-07-20T21:17:59Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-06-30",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
+},
+{
+"AccountRef":{
+"value":"QB:31",
+"name":"DSFCU - Checking"
+},
+"PaymentType":"Check",
+"EntityRef":{
+"value":"QB:35",
+"name":"Go Daddy"
+},
+"TotalAmt":450,
+"Memo":"Doman Registration",
+"PrintStatus":"NeedToPrint",
+"status":"Synchronized",
+"Id":"QB:7",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-05-11T20:24:55Z",
+"LastUpdatedTime":"2013-03-21T18:56:53Z"
+},
+"TxnDate":"2012-05-11",
+"ExchangeRate":1,
+"TxnStatus":"Payable"
 }
+]
