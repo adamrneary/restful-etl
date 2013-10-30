@@ -39,3 +39,5 @@ module.exports = (name, schema)->
     findOne: ->
       Model.findOne.apply Model, arguments
 
+    find: ->
+      Model.find.apply Model, arguments

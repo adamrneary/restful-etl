@@ -20,7 +20,8 @@
     "xml2js": "~0.2.8",
     "nock": "~0.22.1",
     "async": "~0.2.9",
-    "moment": "~2.2.1"
+    "moment": "~2.2.1",
+    "cron": "~1.0.1"
   },
   "devDependencies": {
     "supertest": "*",

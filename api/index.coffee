@@ -3,8 +3,6 @@ Error.stackTraceLimit = Infinity
 fs = require("fs")
 restify = require("restify")
 routes = require("./routes")
-middleware = require("../middleware")
-formatters = require("./formatters")
 exec = require('child_process').exec
 
 #createServer:
@@ -41,6 +39,5 @@ exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../show
 
 server.listen 7171, ->
   console.log "%s listening at %s", server.name, server.url
-
 
 module.exports = server
