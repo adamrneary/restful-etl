@@ -26,12 +26,12 @@ class Schedule
     @cronJob = new CronJob @options.cron_time, () =>
       @startCb() if @startCb
       unless @options.batches?.length
-        @finishCb()
+        @finishCb() if @finishCb
         return
       _.each @options.batches, (batchOptions) =>
         newBatch = new Batch(batchOptions)
         newBatch.run _.after @options.batches.length - 1, () =>
-          @finishCb() @finishCb
+          @finishCb() if @finishCb
     , null, false, @options.timezone
 
   constructor: (@options, startCb, finishCb) ->
