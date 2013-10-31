@@ -24,11 +24,14 @@ class Schedule
   _createJob: () ->
     CronJob = require('cron').CronJob
     @cronJob = new CronJob @options.cron_time, () =>
-      @startCb()
+      @startCb() if @startCb
+      unless @options.batches?.length
+        @finishCb()
+        return
       _.each @options.batches, (batchOptions) =>
         newBatch = new Batch(batchOptions)
         newBatch.run _.after @options.batches.length - 1, () =>
-          @finishCb()
+          @finishCb() @finishCb
     , null, false, @options.timezone
 
   constructor: (@options, startCb, finishCb) ->

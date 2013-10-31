@@ -1,9 +1,15 @@
+_ = require "underscore"
 schedule = require("../../lib/schedule")
 assert  = require("chai").assert
 
-describe "", ->
-  it "can transform a qbdObj in order to create a new Activecell obj", (done)->
-    newSchedule = 
+describe "schedule class", ->
+  it "run the schedule every second, and wait until the job runs twice", (done)->
+    options =
+      name: "tmp"
+      cron_time: "* * * * * *"
+      batches: [
+      ]
 
-    schedule
-    assert.deepEqual @account.transform(@qbdObj), resultObj
+    newSchedule = new schedule.Schedule options, null, _.after 2, ()->  done()
+
+    newSchedule.start()

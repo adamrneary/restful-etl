@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "mocha test/unit/activecell_obj && mocha test/unit/qb_obj && mocha test/unit/qb_obj/data_types  && mocha test/api/ && mocha test/integration/"
+    "test": "mocha test/unit && mocha test/unit/activecell_obj && mocha test/unit/qb_obj && mocha test/unit/qb_obj/data_types  && mocha test/api/ && mocha test/integration/"
   },
   "engines": {
     "node": "0.10.x"
