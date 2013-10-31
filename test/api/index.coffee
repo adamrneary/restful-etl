@@ -202,7 +202,7 @@ describe 'ETL schedule api', ->
   it 'create schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME1"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)
@@ -211,7 +211,7 @@ describe 'ETL schedule api', ->
   it 'create and get schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME2"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)
@@ -226,7 +226,7 @@ describe 'ETL schedule api', ->
   it 'create and change schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME3"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)
@@ -235,7 +235,7 @@ describe 'ETL schedule api', ->
         id = req.body._id
         request(app)
           .put("/schedule/#{id}")
-          .send({name: "NAME3_1"})
+          .send({cron_time: "1 * * * *"})
           .set('Accept', 'application/json')
           .set('Content-type', 'application/json')
           .expect(200)
@@ -244,7 +244,7 @@ describe 'ETL schedule api', ->
   it 'create and delete schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME4"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)

@@ -1,5 +1,8 @@
 _ = require "underscore"
+async = require "async"
+Batch = require("./batch").Batch
 schedules = []
+
 
 findById = (id) ->
   _.find schedules, (schedule) ->
@@ -20,10 +23,17 @@ addSchedule = (schedule) ->
 class Schedule
   _createJob: () ->
     CronJob = require('cron').CronJob
-    @cronJob = new CronJob '* * * * * *', () =>
-      console.log "#{@options.name}"
+    @cronJob = new CronJob @options.cron_time, () =>
+      @startCb()
+      _.each @options.batches, (batchOptions) =>
+        newBatch = new Batch(batchOptions)
+        newBatch.run _.after @options.batches.length - 1, () =>
+          @finishCb()
+    , null, false, @options.timezone
 
-  constructor: (@options) ->
+  constructor: (@options, startCb, finishCb) ->
+    @startCb = startCb if startCb
+    @finishCb = finishCb if finishCb
     @_createJob()
 
   update: (@options) ->

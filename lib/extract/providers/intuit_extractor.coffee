@@ -32,7 +32,6 @@ exports.extract = (options = {}, cb) ->
     (cb) ->
       oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select count(*) from #{options.object} #{filter}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
         count = JSON.parse(data).QueryResponse?.totalCount
-        count if _.isUndefined count
         if err then cb new Errors.IntuitExtractError("", err), count
         else cb null, count
     ,

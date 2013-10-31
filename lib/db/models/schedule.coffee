@@ -24,8 +24,9 @@ batchSchema = new Schema
   jobs: [jobSchema]
 
 scheduleSchema = new Schema
-  name: type: String
-  frequency: String
+  name: String
+  cron_time: {type: String, required: true}
+  timezone: String
   batches: [batchSchema]
 
 class Schedule extends __proto('Schedule', scheduleSchema)
@@ -47,7 +48,7 @@ class Schedule extends __proto('Schedule', scheduleSchema)
         cb err, model
       else
         updateSchedule = schedule.findById(id)
-        updateSchedule.update doc
+        updateSchedule.update model
         updateSchedule.start()
         cb err, model
 

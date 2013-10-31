@@ -25,13 +25,12 @@ batchSchema = new Schema
 class Batch extends __proto('Batch', batchSchema)
   create: (doc, cb) ->
     super doc, (err, model)->
-      cb err, model
-#      batchConstructor = require("../../batch").Batch
-#      batch = new batchConstructor doc
-#      batch.run (err, jobs) ->
-#        console.log "err", err.toString()
-##        console.log "batch", batch
-#        console.log "done"
-#        cb err, model
+      if err
+        cb err, model
+      else
+        ETLBatch = require("../../batch").Batch
+        newBatch = new ETLBatch doc
+        newBatch.run (err, jobs) ->
+        cb err, model
 
 module.exports = Batch
