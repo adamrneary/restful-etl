@@ -13,8 +13,7 @@ connectionSchema = new Schema
 
   subdomain: String
   company_id: String
-  username: String
-  password: String
+  token: String
 
 class Connection extends __proto('Connection', connectionSchema)
 

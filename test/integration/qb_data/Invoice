@@ -15,7 +15,7 @@
       "DetailType": "ItemBasedExpenseLineDetail",
       "ItemBasedExpenseLineDetail": {
         "ItemRef": {
-          "value": "QB:2"
+          "value": "QB:9"
         },
         "ItemAccountRef": {
           "value": "QB:147"

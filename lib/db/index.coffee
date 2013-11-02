@@ -23,7 +23,6 @@ conn = mongoose.connect path, (err, res) ->
             console.log "start"
           , () ->
             console.log "finish"
-
           )
           newShedule.start()
           schedule.addSchedule newShedule

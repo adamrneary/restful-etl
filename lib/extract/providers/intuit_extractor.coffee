@@ -31,9 +31,15 @@ exports.extract = (options = {}, cb) ->
   async.waterfall [
     (cb) ->
       oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select count(*) from #{options.object} #{filter}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
-        count = JSON.parse(data).QueryResponse?.totalCount
-        if err then cb new Errors.IntuitExtractError("", err), count
-        else cb null, count
+        if err
+          cb new Errors.IntuitExtractError("Response error", err)
+          return
+        data = JSON.parse(data)
+        if data.QueryResponse
+          count = data.QueryResponse.totalCount
+          cb null, count
+        else
+          cb new Errors.IntuitExtractError("Response error", data)
     ,
     (count, cb) ->
       if count is 0
@@ -45,15 +51,16 @@ exports.extract = (options = {}, cb) ->
         async.each startPositions, (startPosition, cb)->
           oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select *, MetaData.CreateTime from #{options.object} #{filter} startposition #{startPosition} maxresults #{maxResults}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
             if err
-              cb new Errors.IntuitExtractError("", err)
+              cb new Errors.IntuitExtractError("Response error", err)
             else
-              resultData = resultData.concat JSON.parse(data).QueryResponse["#{options.object}"]
-              cb()
+              data = JSON.parse(data)
+              if data.QueryResponse
+                resultData = resultData.concat data.QueryResponse["#{options.object}"]
+                cb()
+              else
+                cb new Errors.IntuitExtractError("Response error", data)
         , (err)->
           cb err, resultData
   ],
   (err, data) ->
-#    fs = require('fs');
-#    fs.writeFile "./test/data/#{options.object}", JSON.stringify(data), (err) ->
-#      console.log "err", err
     cb err, data if cb

@@ -92,8 +92,7 @@ class Batch
       when "ACTIVECELL"
         jobOptions.companyId = connection.company_id
         jobOptions.subdomain = connection.subdomain
-        jobOptions.username = connection.username
-        jobOptions.password = connection.password
+        jobOptions.token = connection.token
 
     _.extend jobOptions, job
     if @options.since

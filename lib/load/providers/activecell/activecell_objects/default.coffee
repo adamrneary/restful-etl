@@ -14,6 +14,12 @@ class Default
   compare: (qbdObj, activeCellObj) ->
     if (activeCellObj.company_id + activeCellObj.qbd_id) is (@companyId() + qbdObj.qbd_id)
       equal = _.all @compareFields(), (field) ->
+        activeCellObj[field] = null if _.isUndefined activeCellObj[field]
+        qbdObj[field] = null if _.isUndefined qbdObj[field]
+#        unless qbdObj[field] is activeCellObj[field]
+#          console.log "#{field} qbdObj:#{qbdObj[field]} activeCellObj:#{activeCellObj[field]}"
+#          console.log qbdObj
+#          console.log activeCellObj
         qbdObj[field] is activeCellObj[field]
       if equal then "equal"
       else "update"

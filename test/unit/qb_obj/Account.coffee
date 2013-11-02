@@ -29,9 +29,9 @@ describe "qb ActiveCell", ->
         qbd_id: "QB:147"
         name: "Chase Operating"
         type: "Asset"
-        subtype: "Bank"
+        sub_type: "Bank"
         account_number: "10400"
         current_balance: 12823.22
-        parent_qb_id: "QB:37"
+        parent_account_id: "QB:37"
 
       assert.deepEqual @account.transform(@qbdObj), resultObj

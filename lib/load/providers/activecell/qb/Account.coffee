@@ -13,7 +13,7 @@ class Account extends Default
       activeCell: "type"
       qbd: "Classification"
     ,
-      activeCell: "subtype"
+      activeCell: "sub_type"
       qbd: "AccountType"
     ,
       activeCell: "account_number"

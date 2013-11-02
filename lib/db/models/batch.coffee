@@ -30,7 +30,8 @@ class Batch extends __proto('Batch', batchSchema)
       else
         ETLBatch = require("../../batch").Batch
         newBatch = new ETLBatch doc
-        newBatch.run (err, jobs) ->
-        cb err, model
+        newBatch.run (err) ->
+#          console.log newBatch
+          cb err, model
 
 module.exports = Batch

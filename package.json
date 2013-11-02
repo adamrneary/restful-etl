@@ -21,7 +21,9 @@
     "nock": "~0.22.1",
     "async": "~0.2.9",
     "moment": "~2.2.1",
-    "cron": "~1.0.1"
+    "cron": "~1.0.1",
+    "requester": "~0.1.20",
+    "request": "~2.27.0"
   },
   "devDependencies": {
     "supertest": "*",

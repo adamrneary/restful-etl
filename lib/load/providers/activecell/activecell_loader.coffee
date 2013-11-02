@@ -1,4 +1,5 @@
-https = require "https"
+http = require "http"
+request = require "request"
 async = require "async"
 _ = require "underscore"
 Errors = require "../../../Errors"
@@ -9,32 +10,20 @@ exports.load = (options = {}, cb) ->
   async.series [
     # load data
     (cb) ->
-      requestOptions =
-        hostname: "#{options.subdomain}.activecell.com"
-        path: "/api/v1/#{options.object.toLowerCase()}.json"
+      request
         method: "GET"
-        auth: "#{options.username}:#{options.password}"
+        uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
+      , (err, res, data) ->
+        if err
+          cb new Errors.IntuitLoadError("Get objects #{options.object} error.", err)
 
-      req = https.request requestOptions, (res) ->
-        data = ""
-        res.on 'data', (d) ->
-          data += d.toString()
-        res.on 'end', (d) ->
-          err = null
-          try
-            data = JSON.parse data
-          catch e
-            data = []
-            err = e
-          finally
-              activeCellData = data
-              options.batch.loadData[options.object] = data.slice(0)
-              options.batch.loadResultData[options.object] = options.batch.loadData[options.object] if options.object is "periods"
-            cb err
-
-      req.end()
-      req.on "error", (e) ->
-        cb new Errors.IntuitLoadError("", e)
+        unless res.statusCode is 200
+          cb new Errors.IntuitLoadError("Get objects #{options.object} invalid status code: #{res.statusCode}", err)
+        else
+          activeCellData = JSON.parse(data)
+          options.batch.loadData[options.object] = activeCellData.slice(0)
+          options.batch.loadResultData[options.object] = options.batch.loadData[options.object] if options.object is "periods"
+          cb()
     ,
     # waiting for extract required objects
     (cb) ->
@@ -45,8 +34,8 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       waitObjects = () ->
-        if (not _.any options.required_objects.extract, (object) ->
-          not _.isUndefined(options.batch.extractData[object]))
+        if (_.any options.required_objects.extract, (object) ->
+          _.isUndefined(options.batch.extractData[object]))
           setTimeout(waitObjects, 100)
         else
           cb()
@@ -61,8 +50,24 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       waitObjects = () ->
-        if (not _.any options.required_objects.load, (object) ->
-          not _.isUndefined(options.batch.loadData[object]))
+        if (_.any options.required_objects.load, (object) ->
+          _.isUndefined(options.batch.loadData[object]))
+          setTimeout(waitObjects, 100)
+        else
+          cb()
+      waitObjects()
+    ,
+    # waiting for load result required objects
+    (cb) ->
+      if options.object is "periods"
+        cb()
+        return
+      unless options.required_objects?.load_result
+        cb()
+        return
+      waitObjects = () ->
+        if (_.any options.required_objects.load_result, (object) ->
+          _.isUndefined(options.batch.loadResultData[object]))
           setTimeout(waitObjects, 100)
         else
           cb()
@@ -122,93 +127,83 @@ exports.load = (options = {}, cb) ->
 
             async.parallel [
               (cb)->
-                requestOptions =
-                  hostname: "#{options.subdomain}.activecell.com"
-                  path: "/api/v1/#{options.object.toLowerCase()}/"
-                  method: "PUT"
-                  auth: "#{options.username}:#{options.password}"
-
                 async.each updateList, (obj, cb) ->
-                  requestOptions.path += obj.id + ".json"
-                  req = https.request requestOptions, (res) ->
-                    cb()
-                  req.end()
-                  req.on "error", (e) ->
-                    cb new Errors.IntuitLoadError("Update object error.", e)
-                , (err) ->
-                  cb(err)
-            ,
-              (cb)-> #TODO: Added created objects to the resultData
-                requestOptions =
-                  hostname: "#{options.subdomain}.activecell.com"
-                  path: "/api/v1/#{options.object.toLowerCase()}.json"
-                  method: "POST"
-                  auth: "#{options.username}:#{options.password}"
+                  request
+                    method: "PUT"
+                    uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
+                    json: obj
+                  , (err, res, body) ->
+                    if err
+                      cb new Errors.IntuitLoadError("Update object error.", err)
 
-                async.each createList, (obj, cb) ->
-                  req = https.request requestOptions, (res) ->
-                    cb()
-                  req.end()
-                  req.on "error", (e) ->
-                    cb new Errors.IntuitLoadError("Create object error.", e)
+                    unless res.statusCode is 204
+                      cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
+                    else
+                      cb()
                 , (err) ->
                   cb(err)
             ,
               (cb)->
-                requestOptions =
-                  hostname: "#{options.subdomain}.activecell.com"
-                  path: "/api/v1/#{options.object.toLowerCase()}/"
-                  method: "DELETE"
-                  auth: "#{options.username}:#{options.password}"
+                async.each createList, (obj, cb) ->
+                  request
+                    method: "POST"
+                    uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
+                    json: obj
+                  , (err, res, body) ->
+                    if err
+                      cb new Errors.IntuitLoadError("Create object error.", err)
 
+                    unless res.statusCode is 200
+                      cb new Errors.IntuitLoadError("Create invalid status code: #{res.statusCode}", err)
+                    else
+                      resultData.push body
+                      cb()
+                , (err) ->
+                  cb(err)
+            ,
+              (cb)->
                 async.each deleteList, (obj, cb) ->
-                  requestOptions.path += obj.id + ".json"
-                  req = https.request requestOptions, (res) ->
-                    cb()
-                  req.end()
-                  req.on "error", (e) ->
-                    cb new Errors.IntuitLoadError("Delete object error.", e)
+                  request
+                    method: "DELETE"
+                    uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
+                  , (err, res, body) ->
+                    if err
+                      cb new Errors.IntuitLoadError("Delete object error.", err)
+
+                    unless res.statusCode is 200
+                      cb new Errors.IntuitLoadError("Delete invalid status code: #{res.statusCode}", err)
+                    else
+                      cb()
                 , (err) ->
                   cb(err)
             ], (err) ->
               cb(err)
         ,
-          # waiting for load result required objects
-          (cb) ->
-            unless options.required_objects.load_result
-              cb()
-              return
-            waitObjects = () ->
-              if (_.any options.required_objects.load_result, (object) ->
-                not _.isUndefined(options.batch.loadResultData[object]))
-                setTimeout(waitObjects, 100)
-              else
-                cb()
-            waitObjects()
-        ,
           #satisfy dependencies if needed
           (cb) ->
             updateList = []
+            tmpLoadResultData = _.clone loadResultData
+            tmpLoadResultData[options.object] = resultData
             _.each resultData, (obj) ->
-              updateList.push obj if utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
-
-            requestOptions =
-              hostname: "#{options.subdomain}.activecell.com"
-              path: "/api/v1/#{options.object.toLowerCase()}/"
-              method: "PUT"
-              auth: "#{options.username}:#{options.password}"
+              updateList.push obj if utils.satisfyDependencies(obj, extractData, loadData, tmpLoadResultData)
 
             async.each updateList, (obj, cb) ->
-              requestOptions.path += obj.id + ".json"
-              req = https.request requestOptions, (res) ->
-                cb()
-              req.end()
-              req.on "error", (e) ->
-                cb new Errors.IntuitLoadError("Update object error.", e)
+              request
+                method: "PUT"
+                uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
+                json: obj
+              , (err, res, body) ->
+                if err
+                  cb new Errors.IntuitLoadError("Update object error.", err)
+
+                unless res.statusCode is 204
+                  cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
+                else
+                  cb()
             , (err) ->
               if err then cb(err)
               else
-                options.batch.loadResultData[options.object] = resultData
+                loadResultData[options.object] = resultData
                 cb()
       ], (err) ->
         cb(err)

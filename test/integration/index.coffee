@@ -101,7 +101,7 @@ describe "Check intuit extractor", ->
 
 
 describe "Extract data from intuit and load it to ActiveCell", ->
-  it "extract customers from intuit transform and load to ActiveCell", (done)->
+  it "extract objects from intuit transform and load to ActiveCell", (done)->
     intuitExtractor.maxResults 500
     intuitConnectioin =
       name: "intuit connection 3"
@@ -117,8 +117,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
       provider: "ACTIVECELL"
       subdomain: "sterlingcooper"
       company_id: "company_id:12345"
-      username: "don.draper@sterlingcooper.com"
-      password: "111111"
+      token: "55555"
 
     options =
       tenant_id: "tenant_id_test"
@@ -170,6 +169,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
         required_objects:
           extract: ["Account", "Bill", "CreditMemo", "Customer", "Invoice", "Item", "Payment", "Purchase", "SalesReceipt", "Vendor"]
           load: ["periods"]
+          load_result: ["accounts", "periods", "vendors", "products", "customers"]
       ,
         type: "load"
         object: "periods"
@@ -371,23 +371,23 @@ describe "Extract data from intuit and load it to ActiveCell", ->
         connectionModel::create activeCellConnectioin, (err, model) ->
           options.destination_connection_id = model._id
           # mocking ActiveCell answers
-          nock("https://sterlingcooper.activecell.com")
-            .get("/api/v1/accounts.json")
+          nock("http://sterlingcooper.activecell.dev:3000")
+            .get("/api/v1/accounts.json?token=55555")
             .reply(200, activeCellAccountsData)
-          nock("https://sterlingcooper.activecell.com")
-            .get("/api/v1/customers.json")
+          nock("http://sterlingcooper.activecell.dev:3000")
+            .get("/api/v1/customers.json?token=55555")
             .reply(200, activeCellCustomersData)
-          nock("https://sterlingcooper.activecell.com")
-            .get("/api/v1/financial_txns.json")
+          nock("http://sterlingcooper.activecell.dev:3000")
+            .get("/api/v1/financial_txns.json?token=55555")
             .reply(200, activeCellFinancialTxnsData)
-          nock("https://sterlingcooper.activecell.com")
-            .get("/api/v1/periods.json")
+          nock("http://sterlingcooper.activecell.dev:3000")
+            .get("/api/v1/periods.json?token=55555")
             .reply(200, activeCellPeriodsData)
-          nock("https://sterlingcooper.activecell.com")
-            .get("/api/v1/products.json")
+          nock("http://sterlingcooper.activecell.dev:3000")
+            .get("/api/v1/products.json?token=55555")
             .reply(200, activeCellProductsData)
-          nock("https://sterlingcooper.activecell.com")
-            .get("/api/v1/vendors.json")
+          nock("http://sterlingcooper.activecell.dev:3000")
+            .get("/api/v1/vendors.json?token=55555")
             .reply(200, activeCellVendorsData)
           cb(err)
     ,
@@ -396,136 +396,135 @@ describe "Extract data from intuit and load it to ActiveCell", ->
         fs.readFile "./test/integration/activecell_data/accounts_create", (err, data) ->
           createObjects = JSON.parse data.toString()
           _.each createObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .post("/api/v1/accounts.json")
-              .reply(201);
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .post("/api/v1/accounts.json?token=55555")
+              .reply(200, obj)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/accounts_delete", (err, data) ->
           deleteObjects = JSON.parse data.toString()
           _.each deleteObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .delete("/api/v1/accounts/#{obj.id}.json")
-              .reply(204)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .delete("/api/v1/accounts/#{obj.id}.json?token=55555")
+              .reply(200)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/accounts_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
-
-            nock("https://sterlingcooper.activecell.com")
-              .put("/api/v1/accounts/#{obj.id}.json")
-              .reply(200)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .put("/api/v1/accounts/#{obj.id}.json?token=55555")
+              .reply(204)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/customers_create", (err, data) ->
           createObjects = JSON.parse data.toString()
           _.each createObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .post("/api/v1/customers.json")
-              .reply(201);
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .post("/api/v1/customers.json?token=55555")
+              .reply(200, obj)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/customers_delete", (err, data) ->
           deleteObjects = JSON.parse data.toString()
           _.each deleteObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .delete("/api/v1/customers/#{obj.id}.json")
-              .reply(204)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .delete("/api/v1/customers/#{obj.id}.json?token=55555")
+              .reply(200)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/customers_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .put("/api/v1/customers/#{obj.id}.json")
-              .reply(200)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .put("/api/v1/customers/#{obj.id}.json?token=55555")
+              .reply(204)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/financial_txns_create", (err, data) ->
           createObjects = JSON.parse data.toString()
           _.each createObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .post("/api/v1/financial_txns.json")
-              .reply(201);
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .post("/api/v1/financial_txns.json?token=55555")
+              .reply(200, obj)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/financial_txns_delete", (err, data) ->
           deleteObjects = JSON.parse data.toString()
           _.each deleteObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .delete("/api/v1/financial_txns/#{obj.id}.json")
-              .reply(204)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .delete("/api/v1/financial_txns/#{obj.id}.json?token=55555")
+              .reply(200)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/financial_txns_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .put("/api/v1/financial_txns/#{obj.id}.json")
-              .reply(200)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .put("/api/v1/financial_txns/#{obj.id}.json?token=55555")
+              .reply(204)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/products_create", (err, data) ->
           createObjects = JSON.parse data.toString()
           _.each createObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .post("/api/v1/products.json")
-              .reply(201);
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .post("/api/v1/products.json?token=55555")
+              .reply(200, obj)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/products_delete", (err, data) ->
           deleteObjects = JSON.parse data.toString()
           _.each deleteObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .delete("/api/v1/products/#{obj.id}.json")
-              .reply(204)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .delete("/api/v1/products/#{obj.id}.json?token=55555")
+              .reply(200)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/products_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .put("/api/v1/products/#{obj.id}.json")
-              .reply(200)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .put("/api/v1/products/#{obj.id}.json?token=55555")
+              .reply(204)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/vendors_create", (err, data) ->
           createObjects = JSON.parse data.toString()
           _.each createObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .post("/api/v1/vendors.json")
-              .reply(201);
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .post("/api/v1/vendors.json?token=55555")
+              .reply(200, obj)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/vendors_delete", (err, data) ->
           deleteObjects = JSON.parse data.toString()
           _.each deleteObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .delete("/api/v1/vendors/#{obj.id}.json")
-              .reply(204)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .delete("/api/v1/vendors/#{obj.id}.json?token=55555")
+              .reply(200)
           cb(err)
     ,
       (cb) ->
         fs.readFile "./test/integration/activecell_data/vendors_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
-            nock("https://sterlingcooper.activecell.com")
-              .put("/api/v1/vendors/#{obj.id}.json")
-              .reply(200)
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .put("/api/v1/vendors/#{obj.id}.json?token=55555")
+              .reply(204)
           cb(err)
     ,
       (cb) ->

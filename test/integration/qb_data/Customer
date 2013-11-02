@@ -61,14 +61,14 @@
             "Status":"None"
         },
         "status":"Synchronized",
-        "Id":"QB:389",
+        "Id":"QB:499",
         "SyncToken":"1",
         "MetaData":{
             "CreateTime":"2013-05-16T16:25:43Z",
             "LastUpdatedTime":"2013-05-20T23:29:51Z"
         },
         "Organization":false,
-        "DisplayName":"Zain Abdullah",
+        "DisplayName":"Express Settlement",
         "Active":true,
         "DefaultTaxCodeRef":{
             "value":"QB:1",

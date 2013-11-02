@@ -103,16 +103,16 @@ describe 'ETL batch api', ->
       .send({source:{connection:{id:"connection_id_1"}}})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
-      .expect(200)
+      .expect(500)
       .end (err, req)->
-        return done err if err?
+#        return done err if err?
         id = req.body._id
         request(app)
           .put("/batch/#{id}")
           .send({source:{connection:{id:"connection_id_1_1"}}})
           .set('Accept', 'application/json')
           .set('Content-type', 'application/json')
-          .expect(200)
+          .expect(500)
           .end(done)
 
   it 'create and delete batch', (done)->

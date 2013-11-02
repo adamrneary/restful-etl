@@ -52,26 +52,42 @@ satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
   keys = _.keys obj
   _.each keys, (key)->
     switch key
-      when "account_id", "income_account_id", "cogs_account_id", "expense_account_id", "asset_account_id", "deposit_account_id"
-        newValue = getIdByQBId(obj[key], loadData.accounts)
+      when "account_id", "income_account_id", "cogs_account_id", "expense_account_id", "asset_account_id", "deposit_account_id", "parent_account_id"
+        if loadResultData.accounts
+          newValue = getIdByQBId(obj[key], loadResultData.accounts)
+        else
+          newValue = getIdByQBId(obj[key], loadData.accounts)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "vendor_id"
-        newValue = getIdByQBId(obj[key], loadData.vendors)
+        if loadResultData.vendors
+          newValue = getIdByQBId(obj[key], loadResultData.vendors)
+        else
+          newValue = getIdByQBId(obj[key], loadData.vendors)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "product_id"
-        newValue = getIdByQBId(obj[key], loadData.products)
+        if loadResultData.products
+          newValue = getIdByQBId(obj[key], loadResultData.products)
+        else
+          newValue = getIdByQBId(obj[key], loadData.products)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "customer_id"
-        newValue = getIdByQBId(obj[key], loadData.customers)
+        if loadResultData.customers
+          newValue = getIdByQBId(obj[key], loadResultData.customers)
+        else
+          newValue = getIdByQBId(obj[key], loadData.customers)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "period_id"
-        newValue = getIdByDate(obj[key], loadData.periods)
+        if loadResultData.customers
+          newValue = getIdByDate(obj[key], loadResultData.periods)
+        else
+          newValue = getIdByDate(obj[key], loadData.periods)
         result = true unless obj[key] is newValue
         obj[key] = newValue
+  result
 
 transromRefs = (obj) ->
   return unless obj
@@ -85,7 +101,7 @@ transromRefs = (obj) ->
       when "Parent"
         id = obj[key].value
         delete obj[key]
-        obj.parent_qb_id = id
+        obj.parent_account_id = id
       when "Customer"
         id = obj[key].value
         delete obj[key]
