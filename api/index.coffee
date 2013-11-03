@@ -1,9 +1,10 @@
 Error.stackTraceLimit = Infinity
 
-fs = require("fs")
-restify = require("restify")
-routes = require("./routes")
-exec = require('child_process').exec
+fs = require "fs"
+restify = require "restify"
+socket = require "../lib/socket"
+routes = require "./routes"
+exec = require("child_process").exec
 
 #createServer:
 server = restify.createServer
@@ -14,6 +15,8 @@ server = restify.createServer
       console.error body
       return body.stack  if body instanceof Error
       body.toString "base64"  if Buffer.isBuffer(body)
+
+socket.listen server
 
 server.use restify.CORS()
 server.use restify.authorizationParser()
@@ -34,7 +37,7 @@ server.del "/:model/:id", routes.del
 # Generate docco documenation
 # TODO: This should be built into a deploy rake task of some sort rather than built when the server start up
 exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../showcase/source/src-docs --layout parallel #{__dirname}/../lib/db/models/*.coffee", (err, stdout, stderr) ->
-  console.log('docco exec error: ' + err || stderr) if err or stderr
+  console.log("docco exec error: " + err || stderr) if err or stderr
 #  console.log stdout.replace(/: ([\w|\/\.]*)/gm, '')
 
 server.listen 7171, ->

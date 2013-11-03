@@ -18,12 +18,7 @@ conn = mongoose.connect path, (err, res) ->
         console.error "Get shudeles error:", err
       else
         _.each docs, (doc) ->
-          newShedule = new schedule.Schedule(doc
-          , () ->
-            console.log "start"
-          , () ->
-            console.log "finish"
-          )
+          newShedule = new schedule.Schedule doc
           newShedule.start()
           schedule.addSchedule newShedule
 

@@ -1,5 +1,6 @@
 _ = require "underscore"
 async = require "async"
+message = require("./message").message
 Batch = require("./batch").Batch
 schedules = []
 
@@ -22,16 +23,22 @@ addSchedule = (schedule) ->
 
 class Schedule
   _createJob: () ->
-    CronJob = require('cron').CronJob
+    CronJob = require("cron").CronJob
     @cronJob = new CronJob @options.cron_time, () =>
       @startCb() if @startCb
+      message @options.tenant_id, "schedule start", {id: @options.id} if @options.tenant_id
       unless @options.batches?.length
         @finishCb() if @finishCb
         return
+      errors = []
       _.each @options.batches, (batchOptions) =>
         newBatch = new Batch(batchOptions)
-        newBatch.run _.after @options.batches.length - 1, () =>
+        finishCb = _.after @options.batches.length - 1, () =>
+          message @options.tenant_id, "schedule finish", {id: @options.id, err: errors} if @options.tenant_id
           @finishCb() if @finishCb
+        newBatch.run (err) =>
+          finishCb()
+          errors.push err if err
     , null, false, @options.timezone
 
   constructor: (@options, startCb, finishCb) ->
