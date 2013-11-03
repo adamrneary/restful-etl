@@ -29,7 +29,7 @@ class Batch
           connectionObj = connection.toObject()
           @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract"
           jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract"
-          if connectionObj.provider is "QBO_BATCH" or connectionObj.provider is "QBD_BATCH"
+          if connectionObj.provider is "QB_BATCH" or connectionObj.provider is "QBD_BATCH"
             intuitBatchExtractor @, connectionObj, jobOptions, cb
           else
             async.each jobOptions, (jobOpt, cb) =>

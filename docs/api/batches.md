@@ -11,18 +11,13 @@
 * `jobs`: An Array of job items, each containing a set of tasks (see below)
 
 ### Job and task fields
+* type String specifies the type of work, can be "load" or "extract"
+* object: A String identifying the object endpoint within the source system to extract
+* grain: An optional String used for summary reports that can be extracted at various grains (e.g. daily, monthly)
+* since: An optional String to override the since variable used in the batch (not commonly used)
+* updated\since: An optional String to override the updated\_since variable used in the batch (not commonly used)
+* required_objects An object specifies which objects need to wait, contains three arrays: "extract", "load", "load_result"
 
-* extract
-    * source\_connection\_id: An optional String to override source connection for the specific extract task
-    * object: A String identifying the object endpoint within the source system to extract
-    * grain: An optional String used for summary reports that can be extracted at various grains (e.g. daily, monthly)
-    * since: An optional String to override the since variable used in the batch (not commonly used)
-    * updated\since: An optional String to override the updated\_since variable used in the batch (not commonly used)
-* load:
-    * destination\_connection\_id: An optional String to override destination connection for the specific load task
-    * object: A String identifying the object endpoint within the destination system to load
-    * allowDelete: A Boolean value specifying whether to allow deletions (see below)
-    * since: An optional String to override the since variable used in the batch (not commonly used)
 
 ### A note on "since" and "updated_since"
 
@@ -37,28 +32,20 @@ Sample GET response:
 [
   {
    id: '51b4ac524c9bfd8f2d0a0002',
-   source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-   destination\_connection\_id: '51acded6a60c22e94d000004',
+   source_connection_id: '51b4ac524c9bfd8f2d000003',
+   destination_connection_id: '51acded6a60c22e94d000004',
    since: '2010-01-01',
    jobs: [
-     {
-       extract: {
-         object: 'Bills',
-       },
-       load: {
-         object: 'financial history',
-         allowDelete: true
-       }
-     }, {
-       extract: {
-         object: 'Balance Sheet Standard',
-         grain: 'monthly'
-       },
-       load: {
-         object: 'financial history',
-         allowDelete: true
-       }
-     }
+      {
+        type": "extract",
+        object": "Account"
+      },
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
+      }
    ]
  }
 ,
@@ -67,56 +54,40 @@ Sample GET response:
 
 Sample POST request:
 {
-  source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-  destination\_connection\_id: '51acded6a60c22e94d000004',
+  source_connection_id: '51b4ac524c9bfd8f2d000003',
+  destination_connection_id: '51acded6a60c22e94d000004',
   since: '2010-01-01',
   jobs: [
-    {
-      extract: {
-        object: 'Bills',
+      {
+        type": "extract",
+        object": "Account"
       },
-      load: {
-        object: 'financial history',
-        allowDelete: true
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
       }
-    }, {
-      extract: {
-        object: 'Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
   ]
 }
 
 Sample POST response:
 {
   id: '51b4ac524c9bfd8f2d0a0002'
-  source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-  destination\_connection\_id: '51acded6a60c22e94d000004',
+  source_connection_id: '51b4ac524c9bfd8f2d000003',
+  destination_connection_id: '51acded6a60c22e94d000004',
   since: '2010-01-01',
   jobs: [
-    {
-      extract: {
-        object: 'Bills',
+      {
+        type": "extract",
+        object": "Account"
       },
-      load: {
-        object: 'financial history',
-        allowDelete: true
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
       }
-    }, {
-      extract: {
-        object: 'Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
   ]
 }
 
@@ -124,111 +95,79 @@ Sample POST response:
 Sample GET response:
 {
   id: '51b4ac524c9bfd8f2d0a0002'
-  source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-  destination\_connection\_id: '51acded6a60c22e94d000004',
+  source_connection_id: '51b4ac524c9bfd8f2d000003',
+  destination_connection_id: '51acded6a60c22e94d000004',
   since: '2010-01-01',
   jobs: [
-    {
-      extract: {
-        object: 'Bills',
+      {
+        type": "extract",
+        object": "Account"
       },
-      load: {
-        object: 'financial history',
-        allowDelete: true
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
       }
-    }, {
-      extract: {
-        object: 'Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
   ]
 }
 
 Sample PUT request:
 {
   id: '51b4ac524c9bfd8f2d0a0002'
-  source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-  destination\_connection\_id: '51acded6a60c22e94d000004',
+  source_connection_id: '51b4ac524c9bfd8f2d000003',
+  destination_connection_id: '51acded6a60c22e94d000004',
   since: '2010-01-01',
   jobs: [
-    {
-      extract: {
-        object: 'new Bills',
+      {
+        type": "extract",
+        object": "Account"
       },
-      load: {
-        object: 'new financial history',
-        allowDelete: true
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
       }
-    }, {
-      extract: {
-        object: 'new Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
   ]
 }
 
 Sample PUT response:
 {
   id: '51b4ac524c9bfd8f2d0a0002'
-  source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-  destination\_connection\_id: '51acded6a60c22e94d000004',
+  source_connection_id: '51b4ac524c9bfd8f2d000003',
+  destination_connection_id: '51acded6a60c22e94d000004',
   since: '2010-01-01',
   jobs: [
-    {
-      extract: {
-        object: 'new Bills',
+      {
+        type": "extract",
+        object": "Account"
       },
-      load: {
-        object: 'new financial history',
-        allowDelete: true
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
       }
-    }, {
-      extract: {
-        object: 'new Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
   ]
 }
 
 Sample DELETE response:
 {
   id: '51b4ac524c9bfd8f2d0a0002'
-  source\_connection\_id: '51b4ac524c9bfd8f2d000003',
-  destination\_connection\_id: '51acded6a60c22e94d000004',
+  source_connection_id: '51b4ac524c9bfd8f2d000003',
+  destination_connection_id: '51acded6a60c22e94d000004',
   since: '2010-01-01',
   jobs: [
-    {
-      extract: {
-        object: 'new Bills',
+      {
+        type": "extract",
+        object": "Account"
       },
-      load: {
-        object: 'new financial history',
-        allowDelete: true
+      {
+        type": "load",
+        object": "accounts",
+        required_objects:{
+          extract: ["Account"]
       }
-    }, {
-      extract: {
-        object: 'new Balance Sheet Standard',
-        grain: 'monthly'
-      },
-      load: {
-        object: 'financial history',
-        allowDelete: true
-      }
-    }
   ]
 }
