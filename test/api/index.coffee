@@ -97,36 +97,6 @@ describe 'ETL batch api', ->
           .expect(200)
           .end(done)
 
-  it 'create and change batch', (done)->
-    request(app)
-      .post('/batch')
-      .send({source:{connection:{id:"connection_id_1"}}})
-      .set('Accept', 'application/json')
-      .set('Content-type', 'application/json')
-      .expect(500)
-      .end (err, req)->
-#        return done err if err?
-        id = req.body._id
-        request(app)
-          .put("/batch/#{id}")
-          .send({source:{connection:{id:"connection_id_1_1"}}})
-          .set('Accept', 'application/json')
-          .set('Content-type', 'application/json')
-          .expect(500)
-          .end(done)
-
-  it 'create and delete batch', (done)->
-    request(app)
-      .post('/batch')
-      .expect(200)
-      .end (err, req)->
-        return done err if err?
-        id = req.body._id
-        request(app)
-          .del("/batch/#{id}")
-          .expect(200)
-          .end(done)
-
   it 'get all batch', (done)->
     request(app)
       .get('/batch')

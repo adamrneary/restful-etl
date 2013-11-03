@@ -39,13 +39,12 @@ class Batch extends __proto("Batch", batchSchema)
           cb err, model if cb
           @destroy model.id
 
-
-  update: (id, doc, cb)->
+  update: (id, doc, cb) ->
     super id, doc, (err, model) ->
       message model.tenant_id, "batch update", {id: model?.id, err: err}
       cb err, model if cb
 
-  destroy: (id, cb)->
+  destroy: (id, cb) ->
     super id, (err, model) ->
       message model.tenant_id, "batch destroy", {id: model?.id, err: err}
       cb err, model if cb

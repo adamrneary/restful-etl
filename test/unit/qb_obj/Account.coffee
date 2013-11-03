@@ -31,7 +31,7 @@ describe "qb ActiveCell", ->
         type: "Asset"
         sub_type: "Bank"
         account_number: "10400"
-        current_balance: 12823.22
+        current_balance: 1282322
         parent_account_id: "QB:37"
 
       assert.deepEqual @account.transform(@qbdObj), resultObj

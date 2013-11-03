@@ -28,6 +28,7 @@ class Account extends Default
 
   transform: (qbdObj, extractData, loadData, loadResultData) =>
     obj = super qbdObj, extractData, loadData, loadResultData
+    obj.current_balance *= 100 if obj.current_balance
     utils.transromRefs obj, extractData, loadData, loadResultData
 
 module.exports.class = Account

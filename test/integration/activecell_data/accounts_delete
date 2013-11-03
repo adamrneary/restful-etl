@@ -5,5 +5,5 @@
     "type": "Expense",
     "subtype": "Cost of Goods Sold",
     "account_number": "50010",
-    "current_balance": 13617.44,
+    "current_balance": 1361744,
     "parent_qb_id": "QB:68" } ]
