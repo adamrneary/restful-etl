@@ -22,7 +22,7 @@ describe "qbd ActiveCell", ->
 
       resultObj =
         Id: "QB:123"
-        amount_cents: 50000
+        amount_cents: 500
         account_id: "QB:123"#@accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
         product_id: "QB:345"
 
@@ -39,7 +39,7 @@ describe "qbd ActiveCell", ->
 
       resultObj =
         Id: "QB:123"
-        amount_cents: 50000
+        amount_cents: 500
         account_id: "QB:678"
         product_id: "QB:345"
 

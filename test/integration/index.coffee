@@ -165,7 +165,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           extract: ["Customer"]
       ,
         type: "load"
-        object: "financial_txns"
+        object: "financial_transactions"
         required_objects:
           extract: ["Account", "Bill", "CreditMemo", "Customer", "Invoice", "Item", "Payment", "Purchase", "SalesReceipt", "Vendor"]
           load: ["periods"]
@@ -198,7 +198,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
 
     activeCellAccountsData = ""
     activeCellCustomersData = ""
-    activeCellFinancialTxnsData = ""
+    activeCellFinancialTransactionsData = ""
     activeCellPeriodsData = ""
     activeCellProductsData = ""
     activeCellVendorsData = ""
@@ -267,8 +267,8 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           cb(err)
     ,
       (cb) ->
-        fs.readFile "./test/integration/activecell_data/financial_txns", (err, data) ->
-          activeCellFinancialTxnsData = data.toString()
+        fs.readFile "./test/integration/activecell_data/financial_transactions", (err, data) ->
+          activeCellFinancialTransactionsData = data.toString()
           cb(err)
     ,
       (cb) ->
@@ -378,8 +378,8 @@ describe "Extract data from intuit and load it to ActiveCell", ->
             .get("/api/v1/customers.json?token=55555")
             .reply(200, activeCellCustomersData)
           nock("http://sterlingcooper.activecell.dev:3000")
-            .get("/api/v1/financial_txns.json?token=55555")
-            .reply(200, activeCellFinancialTxnsData)
+            .get("/api/v1/financial_transactions.json?token=55555")
+            .reply(200, activeCellFinancialTransactionsData)
           nock("http://sterlingcooper.activecell.dev:3000")
             .get("/api/v1/periods.json?token=55555")
             .reply(200, activeCellPeriodsData)
@@ -416,7 +416,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           _.each updateObjects, (obj) ->
             nock("http://sterlingcooper.activecell.dev:3000")
               .put("/api/v1/accounts/#{obj.id}.json?token=55555")
-              .reply(204)
+              .reply(200)
           cb(err)
     ,
       (cb) ->
@@ -443,34 +443,34 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           _.each updateObjects, (obj) ->
             nock("http://sterlingcooper.activecell.dev:3000")
               .put("/api/v1/customers/#{obj.id}.json?token=55555")
-              .reply(204)
-          cb(err)
-    ,
-      (cb) ->
-        fs.readFile "./test/integration/activecell_data/financial_txns_create", (err, data) ->
-          createObjects = JSON.parse data.toString()
-          _.each createObjects, (obj) ->
-            nock("http://sterlingcooper.activecell.dev:3000")
-              .post("/api/v1/financial_txns.json?token=55555")
-              .reply(200, obj)
-          cb(err)
-    ,
-      (cb) ->
-        fs.readFile "./test/integration/activecell_data/financial_txns_delete", (err, data) ->
-          deleteObjects = JSON.parse data.toString()
-          _.each deleteObjects, (obj) ->
-            nock("http://sterlingcooper.activecell.dev:3000")
-              .delete("/api/v1/financial_txns/#{obj.id}.json?token=55555")
               .reply(200)
           cb(err)
     ,
       (cb) ->
-        fs.readFile "./test/integration/activecell_data/financial_txns_update", (err, data) ->
+        fs.readFile "./test/integration/activecell_data/financial_transactions_create", (err, data) ->
+          createObjects = JSON.parse data.toString()
+          _.each createObjects, (obj) ->
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .post("/api/v1/financial_transactions.json?token=55555")
+              .reply(200, obj)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/financial_transactions_delete", (err, data) ->
+          deleteObjects = JSON.parse data.toString()
+          _.each deleteObjects, (obj) ->
+            nock("http://sterlingcooper.activecell.dev:3000")
+              .delete("/api/v1/financial_transactions/#{obj.id}.json?token=55555")
+              .reply(200)
+          cb(err)
+    ,
+      (cb) ->
+        fs.readFile "./test/integration/activecell_data/financial_transactions_update", (err, data) ->
           updateObjects = JSON.parse data.toString()
           _.each updateObjects, (obj) ->
             nock("http://sterlingcooper.activecell.dev:3000")
-              .put("/api/v1/financial_txns/#{obj.id}.json?token=55555")
-              .reply(204)
+              .put("/api/v1/financial_transactions/#{obj.id}.json?token=55555")
+              .reply(200)
           cb(err)
     ,
       (cb) ->
@@ -497,7 +497,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           _.each updateObjects, (obj) ->
             nock("http://sterlingcooper.activecell.dev:3000")
               .put("/api/v1/products/#{obj.id}.json?token=55555")
-              .reply(204)
+              .reply(200)
           cb(err)
     ,
       (cb) ->
@@ -524,7 +524,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
           _.each updateObjects, (obj) ->
             nock("http://sterlingcooper.activecell.dev:3000")
               .put("/api/v1/vendors/#{obj.id}.json?token=55555")
-              .reply(204)
+              .reply(200)
           cb(err)
     ,
       (cb) ->

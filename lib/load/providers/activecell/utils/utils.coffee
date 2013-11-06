@@ -53,38 +53,38 @@ satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
   _.each keys, (key)->
     switch key
       when "account_id", "income_account_id", "cogs_account_id", "expense_account_id", "asset_account_id", "deposit_account_id", "parent_account_id"
-        if loadResultData.accounts
-          newValue = getIdByQBId(obj[key], loadResultData.accounts)
+        if loadResultData?.accounts
+          newValue = getIdByQBId(obj[key], loadResultData?.accounts)
         else
-          newValue = getIdByQBId(obj[key], loadData.accounts)
+          newValue = getIdByQBId(obj[key], loadData?.accounts)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "vendor_id"
-        if loadResultData.vendors
-          newValue = getIdByQBId(obj[key], loadResultData.vendors)
+        if loadResultData?.vendors
+          newValue = getIdByQBId(obj[key], loadResultData?.vendors)
         else
-          newValue = getIdByQBId(obj[key], loadData.vendors)
+          newValue = getIdByQBId(obj[key], loadData?.vendors)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "product_id"
-        if loadResultData.products
-          newValue = getIdByQBId(obj[key], loadResultData.products)
+        if loadResultData?.products
+          newValue = getIdByQBId(obj[key], loadResultData?.products)
         else
-          newValue = getIdByQBId(obj[key], loadData.products)
+          newValue = getIdByQBId(obj[key], loadData?.products)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "customer_id"
-        if loadResultData.customers
-          newValue = getIdByQBId(obj[key], loadResultData.customers)
+        if loadResultData?.customers
+          newValue = getIdByQBId(obj[key], loadResultData?.customers)
         else
-          newValue = getIdByQBId(obj[key], loadData.customers)
+          newValue = getIdByQBId(obj[key], loadData?.customers)
         result = true unless obj[key] is newValue
         obj[key] = newValue
       when "period_id"
-        if loadResultData.customers
-          newValue = getIdByDate(obj[key], loadResultData.periods)
+        if loadResultData?.customers
+          newValue = getIdByDate(obj[key], loadResultData?.periods)
         else
-          newValue = getIdByDate(obj[key], loadData.periods)
+          newValue = getIdByDate(obj[key], loadData?.periods)
         result = true unless obj[key] is newValue
         obj[key] = newValue
   result
@@ -187,7 +187,7 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
     when "PaymentLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       if obj.PaymentLineDetail.ItemRef
         newObj.product_id = obj.PaymentLineDetail.ItemRef.value
         item = _.find extractData.Item, (item) ->
@@ -199,7 +199,7 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
     when "SalesItemLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       newObj.product_id = obj.SalesItemLineDetail.ItemRef.value
       if obj.SalesItemLineDetail.ItemAccountRef
         newObj.account_id = obj.SalesItemLineDetail.ItemAccountRef.value

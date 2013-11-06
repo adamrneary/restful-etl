@@ -70,4 +70,4 @@ describe "qb ActiveCell", ->
         deposit_account_id: "21cc6709347adfae3d95369d" #@accountLookup("345")
         qb_type: "Other Charge"
 
-      assert.deepEqual @item.transform(@qbdObj, {}, @loadData, {}), resultObj
+      assert.deepEqual @item.transform(@qbdObj, {}, @loadData, {}), [resultObj]

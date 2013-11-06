@@ -147,7 +147,7 @@ describe "qb ActiveCell", ->
     it 'logs a warning if ARAccountRef is not populated', (done)->
       delete @qbdObj.ARAccountRef
       @payment.transform(@qbdObj, {}, @loadData, {}, (messages) ->
-        assert.equal messages.length, 1
+        assert.equal messages.length, 2
         assert.equal messages[0].type, "warning"
         done()
       )

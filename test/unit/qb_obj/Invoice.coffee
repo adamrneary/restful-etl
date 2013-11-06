@@ -151,7 +151,7 @@ describe "qb ActiveCell", ->
       delete @qbdObj.Line
       @qbdObj.TotalAmt = 0
       @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
-        assert.equal messages.length, 1
+        assert.equal messages.length, 2
         assert.equal messages[0].type, "warning"
         done()
       )

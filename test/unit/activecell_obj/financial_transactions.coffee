@@ -1,4 +1,4 @@
-FinancialTxns = require("../../../lib/load/providers/activecell/activecell_objects/financial_txns").class
+FinancialTxns = require("../../../lib/load/providers/activecell/activecell_objects/financial_transactions").class
 assert  = require("chai").assert
 
 describe "qbd ActiveCell", ->

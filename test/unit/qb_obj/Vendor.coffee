@@ -28,4 +28,4 @@ describe "qbd ActiveCell", ->
        qbd_id: "QB:401"
        name: "Early Pay Discount"
 
-     assert.deepEqual @vendor.transform(@qbdObj), resultObj
+     assert.deepEqual @vendor.transform(@qbdObj), [resultObj]

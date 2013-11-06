@@ -29,4 +29,4 @@ describe "qbd ActiveCell", ->
         qbd_id: "QB:399"
         name: "American Express Settlement"
 
-      assert.deepEqual @customer.transform(@qbdObj), resultObj
+      assert.deepEqual @customer.transform(@qbdObj), [resultObj]

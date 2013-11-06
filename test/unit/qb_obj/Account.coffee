@@ -34,4 +34,4 @@ describe "qb ActiveCell", ->
         current_balance: 1282322
         parent_account_id: "QB:37"
 
-      assert.deepEqual @account.transform(@qbdObj), resultObj
+      assert.deepEqual @account.transform(@qbdObj), [resultObj]

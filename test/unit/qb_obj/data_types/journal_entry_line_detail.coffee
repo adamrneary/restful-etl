@@ -19,7 +19,7 @@ describe "qbd ActiveCell", ->
     it "can find an account based on the item", ->
       resultObj =
         Id: "QB:123"
-        amount_cents: 50000
+        amount_cents: 500
         PostingType: "Credit"
         account_id: "QB:345"#@accountLookup(@itemLookup('QB:345')['ExpenseAccountRef'])
         vendor_id: "QB:234"#@vendorLookup('QB:234') # See entity type ref. This could be customer or vendor.
