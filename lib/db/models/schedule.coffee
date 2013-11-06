@@ -42,7 +42,7 @@ class Schedule extends __proto("Schedule", scheduleSchema)
       cb err, model if cb
   destroy: (id, cb)->
     super id, (err, model) ->
-      message model.tenant_id, "schedule update", {id: model?.id, err: err}
+      message model.tenant_id, "schedule destroy", {id: model?.id, err: err}
       schedule.deleteById(id) unless err
       cb err, model if cb
 

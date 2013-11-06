@@ -74,6 +74,14 @@ exports.load = (options = {}, cb) ->
       waitObjects()
   ,
     (cb) ->
+      printMessages = (messages)->
+        _.each messages, (message) ->
+          switch message.type
+            when "error"
+              console.error "error: #{message.message}, qb object: #{JSON.stringify(message.obj)}"
+            when "warning"
+              console.warn "warning: #{message.message}, qb object: #{JSON.stringify(message.obj)}"
+
       if options.object is "periods"
         cb()
         return
@@ -91,7 +99,7 @@ exports.load = (options = {}, cb) ->
               classObj = require("./qb/#{objName}").class
               Obj = new classObj(options.companyId)
               _.each options.batch.extractData[objName], (obj) ->
-                sourseData = sourseData.concat Obj.transform(obj, extractData, loadData, loadResultData)
+                sourseData = sourseData.concat Obj.transform(obj, extractData, loadData, loadResultData, printMessages)
 
             classObj = require("./activecell_objects/#{options.object.toLowerCase()}").class
             Obj = new classObj(options.companyId)
@@ -136,7 +144,7 @@ exports.load = (options = {}, cb) ->
                     if err
                       cb new Errors.IntuitLoadError("Update object error.", err)
 
-                    unless res.statusCode is 204
+                    unless res.statusCode is 200
                       cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
                     else
                       cb()
@@ -196,7 +204,7 @@ exports.load = (options = {}, cb) ->
                 if err
                   cb new Errors.IntuitLoadError("Update object error.", err)
 
-                unless res.statusCode is 204
+                unless res.statusCode is 200
                   cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
                 else
                   cb()

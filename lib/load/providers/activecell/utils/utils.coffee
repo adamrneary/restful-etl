@@ -33,7 +33,7 @@ getIdByDate = (date, list)->
 getObjNameByQBName = (name) ->
   switch name
     when "Item" then "products"
-    when "Bill", "CreditMemo", "Invoice", "Payment", "Purchase", "SalesReceipt" then "financial_txns"
+    when "Bill", "CreditMemo", "Invoice", "Payment", "Purchase", "SalesReceipt" then "financial_transactions"
     when "Account" then "accounts"
     when "Customer" then "customers"
     when "Vendor" then "vendors"
@@ -41,7 +41,7 @@ getObjNameByQBName = (name) ->
 getQBObjByObjName = (name) ->
   switch name
     when "products" then ["Item"]
-    when  "financial_txns" then ["Bill", "CreditMemo", "Invoice", "Payment", "Purchase", "SalesReceipt"]
+    when  "financial_transactions" then ["Bill", "CreditMemo", "Invoice", "Payment", "Purchase", "SalesReceipt"]
     when "accounts" then ["Account"]
     when "customers" then ["Customer"]
     when "vendors" then ["Vendor"]

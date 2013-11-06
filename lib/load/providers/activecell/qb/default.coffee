@@ -8,6 +8,7 @@ class Default
       activeCell: "name"
       qbd: "DisplayName"
     ]
+    @requiredFields []
 
   # transform  QBD object to ActiveCell object
   transform: (qbdObj, extractData, loadData, loadResultData) =>
@@ -26,4 +27,12 @@ class Default
     if _.isArray(newFields) then @_transformFields = newFields
     else @_transformFields
 
+  requiredFields: (newFields) ->
+    if _.isArray(newFields) then @_requiredFields = newFields
+    else @_requiredFields
+
+  _checkRequiredFields: (obj) ->
+    requiredFields = @requiredFields()
+    _.all requiredFields, (field) ->
+      obj[field]
 exports.Default = Default

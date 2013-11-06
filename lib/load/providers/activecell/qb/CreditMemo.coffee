@@ -20,6 +20,11 @@ class CreditMemo extends Default
       activeCell: "amount_cents"
       qbd: "TotalAmt"
     ]
+    @requiredFields [
+      "account_id"
+    ,
+      "amount_cents"
+    ]
 
   transform: (qbdObj, extractData, loadData, loadResultData, cb) =>
     messages = []
@@ -44,10 +49,19 @@ class CreditMemo extends Default
       result.push newObj
       totalAmountCents -= newObj.amount_cents
 
+    unless _.all(result, (obj) => @_checkRequiredFields(obj))
+      messages.push
+        type: "error"
+        message: "required fields does not exist"
+        obj: qbdObj
+      cb messages if cb
+      return []
+
     if totalAmountCents
       messages.push
         type: "warning"
         message: "total amount does not equal the sum of line amounts"
+        obj: qbdObj
 
     cb messages if cb
     result
