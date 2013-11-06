@@ -29,17 +29,21 @@ class Payment extends Default
   transform: (qbdObj, extractData, loadData, loadResultData, cb) =>
     messages = []
     result = []
+    totalAmountCents = 0
     unless qbdObj.ARAccountRef
       messages.push
         type: "warning"
         message: "CustomerRef is not defined"
+        objType: "Payment"
+        obj: qbdObj
 
     if qbdObj.DepositToAccountRef
       creditObj = _.clone qbdObj
       delete creditObj.DepositToAccountRef
       utils.transromRefs creditObj, extractData, loadData, loadResultData
       creditObj = super creditObj, extractData, loadData, loadResultData
-      creditObj.amount_cents *= 100
+      totalAmountCents = creditObj.amount_cents
+      creditObj.amount_cents = Math.floor(creditObj.amount_cents * 100)
       creditObj.source = "QB:Payment"
       creditObj.is_credit = true
       creditObj.period_id = creditObj.transaction_date
@@ -50,7 +54,7 @@ class Payment extends Default
       utils.transromRefs qbdObj, extractData, loadData, loadResultData
       qbdObj.account_id = qbdObj.deposit_account_id
       debitObj = super qbdObj, extractData, loadData, loadResultData
-      debitObj.amount_cents *= 100
+      debitObj.amount_cents = Math.floor(debitObj.amount_cents * 100)
       debitObj.source = "QB:Payment"
       debitObj.is_credit = false
       debitObj.period_id = debitObj.transaction_date
@@ -60,36 +64,39 @@ class Payment extends Default
     else
       utils.transromRefs qbdObj, extractData, loadData, loadResultData
       obj = super qbdObj, extractData, loadData, loadResultData
-      obj.amount_cents *= 100
+      totalAmountCents = obj.amount_cents
+      obj.amount_cents = Math.floor(obj.amount_cents * 100)
       obj.source = "QB:Payment"
       obj.is_credit = true
       obj.period_id = obj.transaction_date
       utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
       result.push obj
-    totalAmountCents = result[0].amount_cents
     obj = result[0]
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
+      totalAmountCents -= newObj.amount_cents
+      newObj.amount_cents = Math.floor(newObj.amount_cents * 100)
       newObj = _.defaults(newObj, obj)
       newObj.qbd_id = newObj.Id
       delete newObj.Id
       newObj.is_credit = false
       utils.satisfyDependencies(newObj, extractData, loadData, loadResultData)
       result.push newObj
-      totalAmountCents -= newObj.amount_cents
 
     unless _.all(result, (obj) => @_checkRequiredFields(obj))
       messages.push
         type: "error"
         message: "required fields does not exist"
+        objType: "Payment"
         obj: qbdObj
       cb messages if cb
       return []
 
-    if totalAmountCents
+    if Math.floor(totalAmountCents)
       messages.push
         type: "warning"
         message: "total amount does not equal the sum of line amounts"
+        objType: "Payment"
         obj: qbdObj
 
     cb messages if cb

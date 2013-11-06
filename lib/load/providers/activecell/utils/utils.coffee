@@ -18,8 +18,8 @@ getIdByQBOId = (qboId, list)->
 getIdByQBId = (qbId, list)->
   return qbId unless list
   id = getIdByQBDId qbId, list
-  return id unless id is qbId
-  getIdByQBOId qbId, list
+#  return id unless id is qbId
+#  getIdByQBOId qbId, list
 
 getIdByDate = (date, list)->
   dateObj = moment date
@@ -151,22 +151,22 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
     when "AccountBasedExpenseLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       newObj.account_id = obj.AccountBasedExpenseLineDetail.AccountRef.value
     when "DepositLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       newObj.account_id = obj.DepositLineDetail.AccountRef.value
     when "DiscountLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       newObj.account_id = obj.DiscountLineDetail.Discount.DiscountAccountRef.value
     when "ItemBasedExpenseLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       newObj.product_id = obj.ItemBasedExpenseLineDetail.ItemRef.value
       if obj.ItemBasedExpenseLineDetail.ItemAccountRef
         newObj.account_id = obj.ItemBasedExpenseLineDetail.ItemAccountRef.value
@@ -177,7 +177,7 @@ lineTranform = (obj, extractData, loadData, loadResultData) ->
     when "JournalEntryLineDetail"
       newObj = {}
       newObj.Id = obj.Id
-      newObj.amount_cents = obj.Amount * 100
+      newObj.amount_cents = obj.Amount
       newObj.PostingType = obj.JournalEntryLineDetail.PostingType
       newObj.account_id = obj.JournalEntryLineDetail.AccountRef.value
       if obj.JournalEntryLineDetail.Entity.Type is "Vendor"

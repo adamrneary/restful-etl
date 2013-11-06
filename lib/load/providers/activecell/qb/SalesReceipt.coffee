@@ -31,7 +31,7 @@ class SalesReceipt extends Default
     utils.transromRefs qbdObj, extractData, loadData, loadResultData
     qbdObj.account_id = qbdObj.deposit_account_id
     obj = super qbdObj, extractData, loadData, loadResultData
-    obj.amount_cents *= 100
+    obj.amount_cents = Math.floor(obj.amount_cents * 100)
     obj.source = "QB:SalesReceipt"
     obj.is_credit = false
     obj.period_id = obj.transaction_date
@@ -39,6 +39,7 @@ class SalesReceipt extends Default
     result.push obj
     _.each qbdObj.Line, (line) ->
       newObj = utils.lineTranform(line)
+      newObj.amount_cents = Math.floor(newObj.amount_cents * 100)
       newObj = _.defaults(newObj, obj)
       newObj.qbd_id = newObj.Id
       delete newObj.Id
@@ -50,6 +51,7 @@ class SalesReceipt extends Default
       messages.push
         type: "error"
         message: "required fields does not exist"
+        objType: "SalesReceipt"
         obj: qbdObj
       cb messages if cb
       return []

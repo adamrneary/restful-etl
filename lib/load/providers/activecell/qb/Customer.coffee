@@ -14,6 +14,7 @@ class Customer extends Default
       messages.push
         type: "error"
         message: "required fields does not exist"
+        objType: "Customer"
         obj: qbdObj
       cb messages if cb
       return []

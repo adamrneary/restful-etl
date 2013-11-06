@@ -44,6 +44,7 @@ class Account extends Default
       messages.push
         type: "error"
         message: "required fields does not exist"
+        objType: "Account"
         obj: qbdObj
 
       cb messages if cb

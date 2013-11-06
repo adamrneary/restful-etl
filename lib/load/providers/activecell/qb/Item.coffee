@@ -45,6 +45,7 @@ class Item extends Default
       messages.push
         type: "error"
         message: "required fields does not exist"
+        objType: "Item"
         obj: qbdObj
       cb messages if cb
       return []

@@ -78,9 +78,9 @@ exports.load = (options = {}, cb) ->
         _.each messages, (message) ->
           switch message.type
             when "error"
-              console.error "error: #{message.message}, qb object: #{JSON.stringify(message.obj)}"
+              console.error "error: #{message.message}, qb object type: #{message.objType}, qb object: #{JSON.stringify(message.obj)}"
             when "warning"
-              console.warn "warning: #{message.message}, qb object: #{JSON.stringify(message.obj)}"
+              console.warn "warning: #{message.message}, qb object type: #{message.objType}, qb object: #{JSON.stringify(message.obj)}"
 
       if options.object is "periods"
         cb()
@@ -132,6 +132,11 @@ exports.load = (options = {}, cb) ->
               _.each resultData, (object, i) ->
                 resultData[i] = null if deletedObject is object
             resultData = _.compact resultData
+
+#            if options.object is "financial_transactions"
+#              console.log "createList", createList
+#              console.log "deleteList", deleteList
+#              console.log "updateList", updateList
 
             async.parallel [
               (cb)->
@@ -194,7 +199,8 @@ exports.load = (options = {}, cb) ->
             tmpLoadResultData[options.object] = resultData
             _.each resultData, (obj) ->
               updateList.push obj if utils.satisfyDependencies(obj, extractData, loadData, tmpLoadResultData)
-
+#            if options.object is "financial_transactions"
+#              console.log "updateList", updateList
             async.each updateList, (obj, cb) ->
               request
                 method: "PUT"

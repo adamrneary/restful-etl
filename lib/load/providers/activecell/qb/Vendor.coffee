@@ -14,6 +14,7 @@ class Vendor extends Default
       messages.push
         type: "error"
         message: "required fields does not exist"
+        objType: "Vendor"
         obj: qbdObj
       cb messages if cb
       return []
