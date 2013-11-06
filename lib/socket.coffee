@@ -1,3 +1,4 @@
+#schedule = require "./schedule"
 socketio = require "socket.io"
 
 io = null
@@ -7,7 +8,13 @@ listen = (server) ->
     io.set('log level', 1);
 
   io.sockets.on "connection", (socket) ->
-    socket.on "subscribe", (data) -> socket.join data.tenant_id
+    socket.on "subscribe", (data) ->
+      socket.join data.tenant_id
+      obj = schedule.findByTenantId(data.tenant_id)
+      status = ""
+      if obj then status = obj.status()
+      else status = "doesn't exist"
+      io.sockets.in(room).emit("schedule status", status)
     socket.on "unsubscribe", (data) -> socket.leave data.tenant_id
 
 emit = (room, eventName, data) ->

@@ -9,6 +9,10 @@ findById = (id) ->
   _.find schedules, (schedule) ->
     schedule.id() is id
 
+findByTenantId = (id) ->
+  _.find schedules, (schedule) ->
+    schedule.tenant_id() is id
+
 deleteById = (id) ->
   index = -1
   obj = _.find schedules, (schedule, i) ->
@@ -25,6 +29,7 @@ class Schedule
   _createJob: () ->
     CronJob = require("cron").CronJob
     @cronJob = new CronJob @options.cron_time, () =>
+#      @status("runs")
       @startCb() if @startCb
       message @options.tenant_id, "schedule start", {id: @options.id} if @options.tenant_id
       unless @options.batches?.length
@@ -35,6 +40,7 @@ class Schedule
         newBatch = new Batch(batchOptions)
         finishCb = _.after @options.batches.length - 1, () =>
           message @options.tenant_id, "schedule finish", {id: @options.id, err: errors} if @options.tenant_id
+#          @status("queue")
           @finishCb() if @finishCb
         newBatch.run (err) =>
           finishCb()
@@ -42,6 +48,7 @@ class Schedule
     , null, false, @options.timezone
 
   constructor: (@options, startCb, finishCb) ->
+    @status("queue")
     @startCb = startCb if startCb
     @finishCb = finishCb if finishCb
     @_createJob()
@@ -53,6 +60,13 @@ class Schedule
   id: () ->
     @options._id.toString()
 
+  tenant_id: () ->
+    @options.tenant_id
+
+  status: (status) ->
+    if _.isUndefined(status) then @_status
+    else @_status = status
+
   start: () ->
     @cronJob.start()
 
@@ -61,5 +75,6 @@ class Schedule
 
 exports.Schedule = Schedule
 exports.findById = findById
+exports.findByTenantId = findByTenantId
 exports.deleteById = deleteById
 exports.addSchedule = addSchedule

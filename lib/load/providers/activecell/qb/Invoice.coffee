@@ -47,7 +47,6 @@ class Invoice extends Default
     obj = super qbdObj, extractData, loadData, loadResultData
     totalAmountCents = obj.amount_cents
     obj.amount_cents = Math.floor(obj.amount_cents * 100)
-    obj.amount_cents *= 100
     obj.source = "QB:Invoice"
     obj.is_credit = true
     obj.period_id = obj.transaction_date
