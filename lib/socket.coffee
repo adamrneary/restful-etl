@@ -1,4 +1,4 @@
-#schedule = require "./schedule"
+schedule = require "./schedule"
 socketio = require "socket.io"
 
 io = null
@@ -14,7 +14,7 @@ listen = (server) ->
       status = ""
       if obj then status = obj.status()
       else status = "doesn't exist"
-      io.sockets.in(room).emit("schedule status", status)
+      io.sockets.in(data.tenant_id).emit("schedule status", status)
     socket.on "unsubscribe", (data) -> socket.leave data.tenant_id
 
 emit = (room, eventName, data) ->
