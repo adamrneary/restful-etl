@@ -1,7 +1,7 @@
-http = require "http"
 request = require "request"
 async = require "async"
 _ = require "underscore"
+config = require '../../../../config'
 Errors = require "../../../Errors"
 utils = require "./utils/utils"
 
@@ -12,7 +12,7 @@ exports.load = (options = {}, cb) ->
     (cb) ->
       request
         method: "GET"
-        uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
+        uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
       , (err, res, data) ->
         if err
           cb new Errors.IntuitLoadError("Get objects #{options.object} error.", err)
@@ -143,7 +143,7 @@ exports.load = (options = {}, cb) ->
                 async.each updateList, (obj, cb) ->
                   request
                     method: "PUT"
-                    uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
+                    uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
                     json: obj
                   , (err, res, body) ->
                     if err
@@ -160,7 +160,7 @@ exports.load = (options = {}, cb) ->
                 async.each createList, (obj, cb) ->
                   request
                     method: "POST"
-                    uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
+                    uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
                     json: obj
                   , (err, res, body) ->
                     if err
@@ -178,7 +178,7 @@ exports.load = (options = {}, cb) ->
                 async.each deleteList, (obj, cb) ->
                   request
                     method: "DELETE"
-                    uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
+                    uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
                   , (err, res, body) ->
                     if err
                       cb new Errors.IntuitLoadError("Delete object error.", err)
@@ -204,7 +204,7 @@ exports.load = (options = {}, cb) ->
             async.each updateList, (obj, cb) ->
               request
                 method: "PUT"
-                uri: "http://#{options.subdomain}.activecell.dev:3000/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
+                uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
                 json: obj
               , (err, res, body) ->
                 if err

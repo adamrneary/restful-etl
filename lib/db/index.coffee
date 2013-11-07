@@ -5,8 +5,7 @@ config = require '../../config'
 scheduleModel = require "./models/schedule"
 schedule = require "../schedule"
 
-path = "mongodb://localhost:27017/#{config.db_path}"
-
+path = config.db_path
 
 conn = mongoose.connect path, (err, res) ->
   if err
