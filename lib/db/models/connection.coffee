@@ -4,6 +4,7 @@ message = require("../../message").message
 __proto = require "./__proto"
 
 connectionSchema = new Schema
+  company_id: String
   tenant_id: String
   name: String
   provider: String
