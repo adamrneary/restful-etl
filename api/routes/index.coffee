@@ -6,13 +6,14 @@ module.exports =
   get: (req, res, next) ->
     id = req.params.id
     modelName = req.params.model[0].toUpperCase() + req.params.model.substring(1)
-
+    conditions = req.query?.conditions
+    conditions = JSON.parse(conditions) if conditions
     if id
       models[modelName]::show id, (err, doc) ->
         return next err if err?
         res.json doc
     else
-      models[modelName]::index (err, docs) ->
+      models[modelName]::index conditions, (err, docs) ->
         return next err if err?
         res.json docs
 

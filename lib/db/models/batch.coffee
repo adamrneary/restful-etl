@@ -13,6 +13,7 @@ jobSchema = new Schema
   grain: String
   since: String
   updated_since: String
+  company_id: String
   required_objects:
     extract: [String]
     load: [String]
@@ -24,10 +25,13 @@ batchSchema = new Schema
   destination_connection_id: String
   since: String
   updated_since: String
+  created_at: Date
+  finished_at: Date
   jobs: [jobSchema]
 
 class Batch extends __proto("Batch", batchSchema)
   create: (doc, cb, finishCb) =>
+    doc.created_at = new Date().toISOString()
     super doc, (err, model) =>
       message model?.tenant_id, "batch", {id: model?.id, err: err, status: "create"}
       if err
@@ -42,6 +46,8 @@ class Batch extends __proto("Batch", batchSchema)
         message model?.tenant_id, "batch", {id: model?.id, jobs_names: jobsNames, err: err, status: "start"}
         newBatch.run (err) =>
           message model?.tenant_id, "batch", {id: model?.id, err: err, status: "finish"}
+          model.finished_at = new Date().toISOString()
+          model.save()
           finishCb() if finishCb
 
   update: (id, doc, cb) ->

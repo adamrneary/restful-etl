@@ -7,8 +7,9 @@ module.exports = (name, schema)->
 
   class __proto
 # Return a list of all the instances the model can find
-    index: (cb) ->
-      Model.find {}, (err, docs) ->
+    index: (conditions, cb) ->
+      conditions = {} unless conditions
+      Model.find conditions, (err, docs) ->
         cb err, docs if cb
 
 # Creates a new instance in the database
