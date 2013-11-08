@@ -45,9 +45,9 @@ class Batch extends __proto("Batch", batchSchema)
           jobsNames.push job.object
         message model?.tenant_id, "batch", {id: model?.id, jobs_names: jobsNames, err: err, status: "start"}
         newBatch.run (err) =>
-          message model?.tenant_id, "batch", {id: model?.id, err: err, status: "finish"}
           model.finished_at = new Date().toISOString()
           model.save()
+          message model?.tenant_id, "batch", {id: model?.id, err: err, status: "finish", finished_at: model.finished_at, created_at: model.create_at}
           finishCb() if finishCb
 
   update: (id, doc, cb) ->
