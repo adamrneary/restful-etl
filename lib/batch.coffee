@@ -76,6 +76,7 @@ class Batch
 
   _buildJobOptions: (job, connection, type) ->
     jobOptions = {batch: @}
+    jobOptions.tenant_id = @options.tenant_id
     jobOptions.provider = connection.provider
     switch jobOptions.provider.toUpperCase()
       when "QB"

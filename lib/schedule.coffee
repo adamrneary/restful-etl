@@ -1,7 +1,7 @@
 _ = require "underscore"
 async = require "async"
 message = require("./message").message
-Batch = require("./batch").Batch
+Batch = require("./db/models/batch")
 schedules = []
 
 
@@ -29,25 +29,30 @@ class Schedule
   _createJob: () ->
     CronJob = require("cron").CronJob
     @cronJob = new CronJob @options.cron_time, () =>
-#      @status("runs")
+      @status("runs")
       @startCb() if @startCb
       message @options.tenant_id, "schedule start", {id: @options.id} if @options.tenant_id
       unless @options.batches?.length
         @finishCb() if @finishCb
         return
       errors = []
-      _.each @options.batches, (batchOptions) =>
-        newBatch = new Batch(batchOptions)
+      _.each @options.batches, (batch) =>
         finishCb = _.after @options.batches.length - 1, () =>
           message @options.tenant_id, "schedule finish", {id: @options.id, err: errors} if @options.tenant_id
-#          @status("queue")
+          @status("queue")
           @finishCb() if @finishCb
-        newBatch.run (err) =>
-          finishCb()
-          errors.push err if err
+        Batch::create(batch, (err) ->
+          errors.push if err
+        ,finishCb)
     , null, false, @options.timezone
 
   constructor: (@options, startCb, finishCb) ->
+    _.each @options.batches, (batch) =>
+      delete batch._id
+      batch.tenant_id = @options.tenant_id
+      _.each batch.jobs, (job) =>
+        delete job._id
+        job.tenant_id = @options.tenant_id
     @status("queue")
     @startCb = startCb if startCb
     @finishCb = finishCb if finishCb

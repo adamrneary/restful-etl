@@ -18,6 +18,7 @@ jobSchema = new Schema
     load_result: [String]
 
 batchSchema = new Schema
+  tenant_id: String
   source_connection_id: String
   destination_connection_id: String
   since: String

@@ -1,6 +1,7 @@
 async = require "async"
 OAuth = require "oauth"
 _ = require "underscore"
+message = require("../../message").message
 Errors = require "../../Errors"
 
 maxResults = 500
@@ -10,6 +11,7 @@ exports.maxResults = (val) ->
   maxResults = val
 
 exports.extract = (options = {}, cb) ->
+  message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "in process"} if options.tenant_id
   oauth = new OAuth.OAuth(
     "get_request_token url",
     "get_access_token url",

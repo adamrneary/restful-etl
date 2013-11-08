@@ -1,6 +1,7 @@
 request = require "request"
 async = require "async"
 _ = require "underscore"
+message = require("../../../message").message
 config = require '../../../../config'
 Errors = require "../../../Errors"
 utils = require "./utils/utils"
@@ -10,6 +11,7 @@ exports.load = (options = {}, cb) ->
   async.series [
     # load data
     (cb) ->
+      message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "in process"} if options.tenant_id
       request
         method: "GET"
         uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
@@ -27,6 +29,7 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for extract required objects
     (cb) ->
+      message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "pending"} if options.tenant_id
       if options.object is "periods"
         cb()
         return
@@ -43,6 +46,7 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for load required objects
     (cb) ->
+      message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "pending"} if options.tenant_id
       if options.object is "periods"
         cb()
         return
@@ -59,6 +63,7 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for load result required objects
     (cb) ->
+      message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "pending"} if options.tenant_id
       if options.object is "periods"
         cb()
         return
@@ -74,6 +79,7 @@ exports.load = (options = {}, cb) ->
       waitObjects()
   ,
     (cb) ->
+      message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "in process"} if options.tenant_id
       printMessages = (messages)->
         _.each messages, (message) ->
           switch message.type
@@ -194,6 +200,7 @@ exports.load = (options = {}, cb) ->
         ,
           #satisfy dependencies if needed
           (cb) ->
+            message options.tenant_id, "job status", {type: options.type, batch_id: options.batch.options._id, name: options.object, err: null, status: "in process"} if options.tenant_id
             updateList = []
             tmpLoadResultData = _.clone loadResultData
             tmpLoadResultData[options.object] = resultData
