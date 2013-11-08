@@ -21,6 +21,7 @@ jobSchema = new Schema
 
 batchSchema = new Schema
   tenant_id: String
+  company_id: String
   source_connection_id: String
   destination_connection_id: String
   since: String
