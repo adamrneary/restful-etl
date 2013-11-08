@@ -35,7 +35,7 @@ scheduleSchema = new Schema
 class Schedule extends __proto("Schedule", scheduleSchema)
   create: (doc, cb) ->
     super doc, (err, model) ->
-      message model.tenant_id, "schedule create", {id: model?.id, err: err}
+      message model.tenant_id, "schedule", {id: model?.id, err: err, status: "create"}
       unless err
         newSchedule = new schedule.Schedule(model)
         schedule.addSchedule newSchedule
@@ -43,13 +43,13 @@ class Schedule extends __proto("Schedule", scheduleSchema)
       cb err, model if cb
   destroy: (id, cb)->
     super id, (err, model) ->
-      message model.tenant_id, "schedule destroy", {id: model?.id, err: err}
+      message model.tenant_id, "schedule", {id: model?.id, err: err, status: "destroy"}
       schedule.deleteById(id) unless err
       cb err, model if cb
 
   update: (id, doc, cb)->
     super id, doc, (err, model) ->
-      message model.tenant_id, "schedule update", {id: model?.id, err: err}
+      message model.tenant_id, "schedule", {id: model?.id, err: err, status: "update"}
       if err
         cb err, model if cb
       else

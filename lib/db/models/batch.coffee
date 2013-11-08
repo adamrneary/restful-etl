@@ -29,7 +29,7 @@ batchSchema = new Schema
 class Batch extends __proto("Batch", batchSchema)
   create: (doc, cb, finishCb) =>
     super doc, (err, model) =>
-      message model.tenant_id, "batch create", {id: model?.id, err: err}
+      message model.tenant_id, "batch", {id: model?.id, err: err, status: "create"}
       if err
         cb err, model if cb
       else
@@ -39,19 +39,19 @@ class Batch extends __proto("Batch", batchSchema)
         jobsNames = []
         _.each model.jobs, (job) ->
           jobsNames.push job.object
-        message model.tenant_id, "batch start", {id: model?.id, jobs_names: jobsNames, err: err}
+        message model.tenant_id, "batch", {id: model?.id, jobs_names: jobsNames, err: err, status: "start"}
         newBatch.run (err) =>
-          message model.tenant_id, "batch finish", {id: model?.id, err: err}
+          message model.tenant_id, "batch", {id: model?.id, err: err, status: "finish"}
           finishCb() if finishCb
 
   update: (id, doc, cb) ->
     super id, doc, (err, model) ->
-      message model.tenant_id, "batch update", {id: model?.id, err: err}
+      message model.tenant_id, "batch", {id: model?.id, err: err, status: "update"}
       cb err, model if cb
 
   destroy: (id, cb) ->
     super id, (err, model) ->
-      message model.tenant_id, "batch destroy", {id: model?.id, err: err}
+      message model.tenant_id, "batch", {id: model?.id, err: err, status: "destroy"}
       cb err, model if cb
 
 module.exports = Batch

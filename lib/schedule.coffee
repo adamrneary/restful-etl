@@ -31,14 +31,14 @@ class Schedule
     @cronJob = new CronJob @options.cron_time, () =>
       @status("runs")
       @startCb() if @startCb
-      message @options.tenant_id, "schedule start", {id: @options.id} if @options.tenant_id
+      message @options.tenant_id, "schedule", {id: @options.id, status: "start"} if @options.tenant_id
       unless @options.batches?.length
         @finishCb() if @finishCb
         return
       errors = []
       _.each @options.batches, (batch) =>
         finishCb = _.after @options.batches.length - 1, () =>
-          message @options.tenant_id, "schedule finish", {id: @options.id, err: errors} if @options.tenant_id
+          message @options.tenant_id, "schedule", {id: @options.id, err: errors, status: "finish"} if @options.tenant_id
           @status("queue")
           @finishCb() if @finishCb
         Batch::create(batch, (err) ->
