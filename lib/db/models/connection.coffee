@@ -20,17 +20,17 @@ connectionSchema = new Schema
 class Connection extends __proto("Connection", connectionSchema)
   create: (doc, cb) ->
     super doc, (err, model) ->
-      message model.tenant_id, "connnection", {id: model?.id, err: err, status: "create"}
+      message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "create"}
       cb err, model if cb
 
   update: (id, doc, cb)->
     super id, doc, (err, model) ->
-      message model.tenant_id, "connnection", {id: model?.id, err: err, status: "update"}
+      message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "update"}
       cb err, model if cb
 
   destroy: (id, cb)->
     super id, (err, model) ->
-      message model.tenant_id, "connnection", {id: model?.id, err: err, status: "destroy"}
+      message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "destroy"}
       cb err, model if cb
 
 module.exports = Connection
