@@ -27,6 +27,7 @@ batchSchema = new Schema
   jobs: [jobSchema]
 
 scheduleSchema = new Schema
+  company_id: String
   tenant_id: String
   name: String
   cron_time: {type: String, required: true}
