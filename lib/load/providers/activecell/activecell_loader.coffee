@@ -83,17 +83,10 @@ exports.load = (options = {}, cb) ->
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
       printMessages = (messages)->
         _.each messages, (message) ->
-          errorModel::create(
-            message: "error: #{message.message}"
-            qb_object_type: message.objType
-            qb_object: JSON.stringify(message.obj)
-          )
-#
-#          switch message.type
-#            when "error"
-#              console.error "error: #{message.message}, qb object type: #{message.objType}, qb object: #{JSON.stringify(message.obj)}"
-#            when "warning"
-#              console.warn "warning: #{message.message}, qb object type: #{message.objType}, qb object: #{JSON.stringify(message.obj)}"
+          message.source_obj = JSON.stringify(message.source_obj)
+          _.each message.result_obj, (obj) ->
+            obj.obj = JSON.stringify(obj.obj)
+          errorModel::create(message)
 
       if options.object is "periods"
         cb()

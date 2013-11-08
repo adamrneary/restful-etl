@@ -3,9 +3,14 @@ mongoose = require "mongoose"
 Schema = mongoose.Schema
 
 errorSchema = new Schema
+  type: String
   message: String
-  qb_object_type: String
-  qb_object: String
+  objType: String
+  source_obj: String
+  result_obj: [
+    obj: String
+    missing_fields: [String]
+  ]
 
 class Tenant extends __proto("Error", errorSchema)
 

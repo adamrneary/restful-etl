@@ -41,12 +41,15 @@ class Item extends Default
     utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
     result.push obj
 
-    unless _.all(result, (obj) => @_checkRequiredFields(obj))
+    unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
         type: "error"
         message: "required fields does not exist"
         objType: "Item"
-        obj: qbdObj
+        source_obj: qbdObj
+        result_obj: _.map result, (obj) =>
+          obj: obj
+          missing_fields: @_checkRequiredFields(obj)
       cb messages if cb
       return []
 

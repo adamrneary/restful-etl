@@ -51,12 +51,16 @@ class Bill extends Default
       utils.satisfyDependencies(newObj, extractData, loadData, loadResultData)
       result.push newObj
 
-    unless _.all(result, (obj) => @_checkRequiredFields(obj))
+    unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
         type: "error"
         message: "required fields does not exist"
         objType: "Bill"
-        obj: qbdObj
+        source_obj: qbdObj
+        result_obj: _.map result, (obj) =>
+          obj: obj
+          missing_fields: @_checkRequiredFields(obj)
+
       cb messages if cb
       return []
 
@@ -65,7 +69,10 @@ class Bill extends Default
         type: "warning"
         message: "total amount does not equal the sum of line amounts"
         objType: "Bill"
-        obj: qbdObj
+        source_obj: qbdObj
+        result_obj: _.map result, (obj) =>
+          obj: obj
+          missing_fields: @_checkRequiredFields(obj)
 
     cb messages if cb
     result

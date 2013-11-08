@@ -31,8 +31,12 @@ class Default
     if _.isArray(newFields) then @_requiredFields = newFields
     else @_requiredFields
 
+  # return null if all required fields exists, otherwise list of fields
   _checkRequiredFields: (obj) ->
     requiredFields = @requiredFields()
-    _.all requiredFields, (field) ->
-      obj[field]
+    missingFields = _.filter requiredFields, (field) ->
+      !obj[field]
+    if missingFields.length then missingFields
+    else null
+
 exports.Default = Default
