@@ -28,11 +28,13 @@ server.use restify.gzipResponse()
 server.use restify.bodyParser()
 
 # ROUTES
+server.del "/stop_batch/:id", routes.stopBatch
 server.get "/:model/:id", routes.get
 server.get "/:model", routes.get
 server.post "/:model", routes.post
 server.put "/:model/:id", routes.put
 server.del "/:model/:id", routes.del
+
 
 # Generate docco documenation
 # TODO: This should be built into a deploy rake task of some sort rather than built when the server start up

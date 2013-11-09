@@ -39,3 +39,8 @@ module.exports =
     models[modelName]::destroy id,  (err, doc) ->
       return next err if err?
       res.json doc
+
+  stopBatch: (req, res, next) ->
+    id = req.params.id
+    console.log "id", id
+    res.end()
