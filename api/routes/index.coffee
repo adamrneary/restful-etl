@@ -1,5 +1,6 @@
-restify = require 'restify'
-models = require('../../lib/db').models
+restify = require "restify"
+models = require("../../lib/db").models
+batch = require "../../lib/batch"
 
 module.exports =
 
@@ -42,5 +43,5 @@ module.exports =
 
   stopBatch: (req, res, next) ->
     id = req.params.id
-    console.log "id", id
+    batch.deleteById id
     res.end()

@@ -34,6 +34,7 @@ exports.extract = (options = {}, cb) ->
     (cb) ->
       oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select count(*) from #{options.object} #{filter}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
         if err
+          options.batch.stopped = true
           cb new Errors.IntuitExtractError("Response error", err)
           return
         data = JSON.parse(data)
@@ -41,6 +42,7 @@ exports.extract = (options = {}, cb) ->
           count = data.QueryResponse.totalCount
           cb null, count
         else
+          options.batch.stopped = true
           cb new Errors.IntuitExtractError("Response error", data)
     ,
     (count, cb) ->
@@ -53,6 +55,7 @@ exports.extract = (options = {}, cb) ->
         async.each startPositions, (startPosition, cb)->
           oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select *, MetaData.CreateTime from #{options.object} #{filter} startposition #{startPosition} maxresults #{maxResults}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
             if err
+              options.batch.stopped = true
               cb new Errors.IntuitExtractError("Response error", err)
             else
               data = JSON.parse(data)
@@ -60,6 +63,7 @@ exports.extract = (options = {}, cb) ->
                 resultData = resultData.concat data.QueryResponse["#{options.object}"]
                 cb()
               else
+                options.batch.stopped = true
                 cb new Errors.IntuitExtractError("Response error", data)
         , (err)->
           cb err, resultData

@@ -11,11 +11,17 @@ class Job
     switch @options.type
       when "extract"
         extract @options, (err, data) =>
-          message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: err, status: "complete"}
+          if @options.batch.stopped and not err
+            message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: err, status: "stopped"}
+          else
+            message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: err, status: "complete"}
           cb(err, data) if cb
       when "load"
         load @options, (err) =>
-          message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: err, status: "complete"}
+          if @options.batch.stopped and not err
+            message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: err, status: "stopped"}
+          else
+            message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: err, status: "complete"}
           cb(err) if cb
 
 exports.Job = Job

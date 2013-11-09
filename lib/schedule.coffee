@@ -6,14 +6,17 @@ schedules = []
 
 
 findById = (id) ->
+  return null unless id
   _.find schedules, (schedule) ->
     schedule.id() is id
 
 findByTenantId = (id) ->
+  return null unless id
   _.find schedules, (schedule) ->
     schedule.tenant_id() is id
 
 deleteById = (id) ->
+  return unless id
   index = -1
   obj = _.find schedules, (schedule, i) ->
     index = i
@@ -23,6 +26,7 @@ deleteById = (id) ->
     delete schedules[index]
 
 addSchedule = (schedule) ->
+  return unless schedule
   schedules.push schedule
 
 class Schedule

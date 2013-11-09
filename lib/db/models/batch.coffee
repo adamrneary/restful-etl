@@ -2,6 +2,7 @@ mongoose = require "mongoose"
 _ = require "underscore"
 message = require("../../message").message
 __proto = require "./__proto"
+batch = require "../../batch"
 
 Schema = mongoose.Schema
 
@@ -39,15 +40,16 @@ class Batch extends __proto("Batch", batchSchema)
         cb err, model if cb
       else
         cb err, model if cb
-        ETLBatch = require("../../batch").Batch
-        newBatch = new ETLBatch model.toObject()
+        newBatch = new batch.Batch model.toObject()
         jobsNames = []
         _.each model.jobs, (job) ->
           jobsNames.push job.object
         message model?.tenant_id, "batch", {id: model?.id, jobs_names: jobsNames, err: err, status: "start"}
-        newBatch.run (err) =>
+        batch.addBatch newBatch
+        newBatch.start (err) =>
           model.finished_at = new Date().toISOString()
           model.save()
+          batch.deleteById model?.id
           message model?.tenant_id, "batch", {id: model?.id, err: err, status: "finish", finished_at: model.finished_at, created_at: model.create_at}
           finishCb() if finishCb
 

@@ -12,15 +12,20 @@ exports.load = (options = {}, cb) ->
   async.series [
     # load data
     (cb) ->
+      if options.batch.stopped
+        cb()
+        return
       message options?.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
       request
         method: "GET"
         uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
       , (err, res, data) ->
         if err
+          options.batch.stopped = true
           cb new Errors.IntuitLoadError("Get objects #{options.object} error.", err)
 
         unless res.statusCode is 200
+          options.batch.stopped = true
           cb new Errors.IntuitLoadError("Get objects #{options.object} invalid status code: #{res.statusCode}", err)
         else
           activeCellData = JSON.parse(data)
@@ -30,6 +35,9 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for extract required objects
     (cb) ->
+      if options.batch.stopped
+        cb()
+        return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
       if options.object is "periods"
         cb()
@@ -38,6 +46,9 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       waitObjects = () ->
+        if options.batch.stopped
+          cb()
+          return
         if (_.any options.required_objects.extract, (object) ->
           _.isUndefined(options.batch.extractData[object]))
           setTimeout(waitObjects, 100)
@@ -47,6 +58,9 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for load required objects
     (cb) ->
+      if options.batch.stopped
+        cb()
+        return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
       if options.object is "periods"
         cb()
@@ -55,6 +69,9 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       waitObjects = () ->
+        if options.batch.stopped
+          cb()
+          return
         if (_.any options.required_objects.load, (object) ->
           _.isUndefined(options.batch.loadData[object]))
           setTimeout(waitObjects, 100)
@@ -64,6 +81,9 @@ exports.load = (options = {}, cb) ->
     ,
     # waiting for load result required objects
     (cb) ->
+      if options.batch.stopped
+        cb()
+        return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
       if options.object is "periods"
         cb()
@@ -72,6 +92,9 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       waitObjects = () ->
+        if options.batch.stopped
+          cb()
+          return
         if (_.any options.required_objects.load_result, (object) ->
           _.isUndefined(options.batch.loadResultData[object]))
           setTimeout(waitObjects, 100)
@@ -80,6 +103,9 @@ exports.load = (options = {}, cb) ->
       waitObjects()
   ,
     (cb) ->
+      if options.batch.stopped
+        cb()
+        return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
       printMessages = (messages)->
         _.each messages, (message) ->
@@ -139,23 +165,23 @@ exports.load = (options = {}, cb) ->
                 resultData[i] = null if deletedObject is object
             resultData = _.compact resultData
 
-#            if options.object is "financial_transactions"
-#              console.log "createList", createList
-#              console.log "deleteList", deleteList
-#              console.log "updateList", updateList
-
             async.parallel [
               (cb)->
                 async.each updateList, (obj, cb) ->
+                  if options.batch.stopped
+                    cb()
+                    return
                   request
                     method: "PUT"
                     uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
                     json: obj
                   , (err, res, body) ->
                     if err
+                      options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Update object error.", err)
 
                     unless res.statusCode is 200
+                      options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
                     else
                       cb()
@@ -164,15 +190,20 @@ exports.load = (options = {}, cb) ->
             ,
               (cb)->
                 async.each createList, (obj, cb) ->
+                  if options.batch.stopped
+                    cb()
+                    return
                   request
                     method: "POST"
                     uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
                     json: obj
                   , (err, res, body) ->
                     if err
+                      options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Create object error.", err)
 
                     unless res.statusCode is 200
+                      options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Create invalid status code: #{res.statusCode}", err)
                     else
                       resultData.push body
@@ -182,14 +213,19 @@ exports.load = (options = {}, cb) ->
             ,
               (cb)->
                 async.each deleteList, (obj, cb) ->
+                  if options.batch.stopped
+                    cb()
+                    return
                   request
                     method: "DELETE"
                     uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
                   , (err, res, body) ->
                     if err
+                      options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Delete object error.", err)
 
                     unless res.statusCode is 200
+                      options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Delete invalid status code: #{res.statusCode}", err)
                     else
                       cb()
@@ -200,24 +236,30 @@ exports.load = (options = {}, cb) ->
         ,
           #satisfy dependencies if needed
           (cb) ->
+            if options.batch.stopped
+              cb()
+              return
             message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
             updateList = []
             tmpLoadResultData = _.clone loadResultData
             tmpLoadResultData[options.object] = resultData
             _.each resultData, (obj) ->
               updateList.push obj if utils.satisfyDependencies(obj, extractData, loadData, tmpLoadResultData)
-#            if options.object is "financial_transactions"
-#              console.log "updateList", updateList
             async.each updateList, (obj, cb) ->
+              if options.batch.stopped
+                cb()
+                return
               request
                 method: "PUT"
                 uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}/#{obj.id}.json?token=#{options.token}"
                 json: obj
               , (err, res, body) ->
                 if err
+                  options.batch.stopped = true
                   cb new Errors.IntuitLoadError("Update object error.", err)
 
                 unless res.statusCode is 200
+                  options.batch.stopped = true
                   cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
                 else
                   cb()
