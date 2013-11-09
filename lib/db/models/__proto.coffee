@@ -34,7 +34,10 @@ module.exports = (name, schema)->
         if err
           cb err, doc if cb
         else
-          doc.remove (err) ->
+          if doc
+            doc.remove (err) ->
+              cb err, doc if cb
+          else
             cb err, doc if cb
 
     findOne: ->
