@@ -24,9 +24,9 @@ exports.load = (options = {}, cb) ->
           options.batch.stopped = true
           cb new Errors.IntuitLoadError("Get objects #{options.object} error.", err)
 
-        unless res.statusCode is 200
+        unless res?.statusCode is 200
           options.batch.stopped = true
-          cb new Errors.IntuitLoadError("Get objects #{options.object} invalid status code: #{res.statusCode}", err)
+          cb new Errors.IntuitLoadError("Get objects #{options.object} invalid status code: #{res?.statusCode}", err)
         else
           activeCellData = JSON.parse(data)
           options.batch.loadData[options.object] = activeCellData.slice(0)
@@ -186,9 +186,9 @@ exports.load = (options = {}, cb) ->
                       options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Update object error.", err)
 
-                    unless res.statusCode is 200
+                    unless res?.statusCode is 200
                       options.batch.stopped = true
-                      cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
+                      cb new Errors.IntuitLoadError("Update invalid status code: #{res?.statusCode}", err)
                     else
                       cb()
                 , (err) ->
@@ -208,9 +208,9 @@ exports.load = (options = {}, cb) ->
                       options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Create object error.", err)
 
-                    unless res.statusCode is 200
+                    unless res?.statusCode is 200
                       options.batch.stopped = true
-                      cb new Errors.IntuitLoadError("Create invalid status code: #{res.statusCode}", err)
+                      cb new Errors.IntuitLoadError("Create invalid status code: #{res?.statusCode}", err)
                     else
                       resultData.push body
                       cb()
@@ -230,9 +230,9 @@ exports.load = (options = {}, cb) ->
                       options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Delete object error.", err)
 
-                    unless res.statusCode is 200
+                    unless res?.statusCode is 200
                       options.batch.stopped = true
-                      cb new Errors.IntuitLoadError("Delete invalid status code: #{res.statusCode}", err)
+                      cb new Errors.IntuitLoadError("Delete invalid status code: #{res?.statusCode}", err)
                     else
                       cb()
                 , (err) ->
@@ -264,9 +264,9 @@ exports.load = (options = {}, cb) ->
                   options.batch.stopped = true
                   cb new Errors.IntuitLoadError("Update object error.", err)
 
-                unless res.statusCode is 200
+                unless res?.statusCode is 200
                   options.batch.stopped = true
-                  cb new Errors.IntuitLoadError("Update invalid status code: #{res.statusCode}", err)
+                  cb new Errors.IntuitLoadError("Update invalid status code: #{res?statusCode}", err)
                 else
                   cb()
             , (err) ->
