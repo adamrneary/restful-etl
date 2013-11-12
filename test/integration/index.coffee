@@ -45,7 +45,7 @@ describe "Check intuit extractor", ->
         .reply(200, '{"QueryResponse":{"Account":[{"name":"tempName"}]},"time":"2013-10-03T05:10:07.823-07:00"}');
 
       batch = new Batch(options)
-      batch.run (err) ->
+      batch.start (err) ->
         if err then done(err)
         else done()
 
@@ -86,7 +86,7 @@ describe "Check intuit extractor", ->
         .reply(200, '{"QueryResponse":{"Account":[{"name":"tempName2"}]},"time":"2013-10-03T05:10:07.823-07:00"}');
 
       batch = new Batch(options)
-      batch.run (err, jobs) ->
+      batch.start (err, jobs) ->
         if err then done(err)
         else
           find = (list, item) ->
@@ -529,7 +529,7 @@ describe "Extract data from intuit and load it to ActiveCell", ->
     ,
       (cb) ->
         batch = new Batch(options)
-        batch.run (err) ->
+        batch.start (err) ->
           cb(err)
     ], (err) ->
       done(err)
