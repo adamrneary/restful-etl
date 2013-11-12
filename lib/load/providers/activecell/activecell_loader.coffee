@@ -185,6 +185,7 @@ exports.load = (options = {}, cb) ->
                     if err
                       options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Update object error.", err)
+                      return
 
                     unless res?.statusCode is 200
                       options.batch.stopped = true
@@ -207,6 +208,7 @@ exports.load = (options = {}, cb) ->
                     if err
                       options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Create object error.", err)
+                      return
 
                     unless res?.statusCode is 200
                       options.batch.stopped = true
@@ -229,6 +231,7 @@ exports.load = (options = {}, cb) ->
                     if err
                       options.batch.stopped = true
                       cb new Errors.IntuitLoadError("Delete object error.", err)
+                      return
 
                     unless res?.statusCode is 200
                       options.batch.stopped = true
@@ -263,6 +266,7 @@ exports.load = (options = {}, cb) ->
                 if err
                   options.batch.stopped = true
                   cb new Errors.IntuitLoadError("Update object error.", err)
+                  return
 
                 unless res?.statusCode is 200
                   options.batch.stopped = true
