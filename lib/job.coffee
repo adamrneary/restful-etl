@@ -8,6 +8,7 @@ class Job
 
   run: (cb) ->
     message @options?.tenant_id, "job status", {type: @options?.type, batch_id: @options?.batch?.options?._id, name: @options?.object, err: null, status: "in process"}
+
     switch @options.type
       when "extract"
         extract @options, (err, data) =>

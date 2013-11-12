@@ -1,5 +1,6 @@
 util = require "util"
 
+#create classes for different errors
 AbstractError = (msg, constr) ->
   Error.captureStackTrace this, constr || this
   this.message = msg || "Error"
@@ -41,8 +42,6 @@ IntuitLoadError = (msg) ->
   IntuitLoadError.super_.call this, msg, this.constructor
 util.inherits(IntuitLoadError, AbstractError)
 IntuitLoadError.prototype.name = "Intuit Load Error"
-
-
 
 exports.AbstractError = AbstractError
 exports.DatabaseError = DatabaseError

@@ -14,4 +14,9 @@ module.exports = {
     when "production" then  "activecell.dev:3000"
     when 'test' then "activecell.dev:3000"
     else  "activecell.dev:3000"
+  app_port: switch process.env.NODE_ENV
+    when "development" then 7171
+    when "production" then  7171
+    when 'test' then 7171
+    else  7171
 }

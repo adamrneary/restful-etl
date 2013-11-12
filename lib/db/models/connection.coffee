@@ -19,16 +19,19 @@ connectionSchema = new Schema
   token: String
 
 class Connection extends __proto("Connection", connectionSchema)
+  # Creates a new connection
   create: (doc, cb) ->
     super doc, (err, model) ->
       message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "create"}
       cb err, model if cb
 
+  # Update connection with changes passed to doc
   update: (id, doc, cb)->
     super id, doc, (err, model) ->
       message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "update"}
       cb err, model if cb
 
+  # Remove a connection
   destroy: (id, cb)->
     super id, (err, model) ->
       message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "destroy"}

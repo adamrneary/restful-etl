@@ -6,13 +6,15 @@ intuitBatchExtractor = require("./extract/providers/intuit_batch_extractor").ext
 Job = require("./job").Job
 Errors = require "./Errors"
 
-batches = []
+batches = [] #the list of running batches
 
+# find batch by id
 findById = (id) ->
   return null unless id
   _.find batches, (batch) ->
     batch.id() is id
 
+# delete batch by id
 deleteById = (id) ->
   return unless id
   index = -1
@@ -23,6 +25,7 @@ deleteById = (id) ->
     obj.stop()
     delete batches[index]
 
+# add batch to the "batches" list
 addBatch = (batch) ->
   return unless batch
   batches.push batch
@@ -34,12 +37,12 @@ class Batch
     @loadResultData = {}
     @stopped = true
 
+  # stop a batch
   stop: () ->
     @stopped = true
 
   start: (cb) =>
-    @stopped = false
-    cb_success = _.after 2, cb
+    cb_success = _.after 2, cb # call callback after extract and load jobs finished
     @stopped = false
     connection::findOne {_id: @options.source_connection_id}, (err, connection) =>
       return if @stopped
@@ -52,11 +55,12 @@ class Batch
           cb new Errors.ConnectionError "source connection not found", @options.source_connection_id  if cb
         else
           connectionObj = connection.toObject()
-          @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract"
-          jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract"
+          @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract" # get extract jobs
+          jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract" # create options for each extract job
           if connectionObj.provider is "QB_BATCH" or connectionObj.provider is "QBD_BATCH"
             intuitBatchExtractor @, connectionObj, jobOptions, cb
           else
+            # run extract jobs
             async.each jobOptions, (jobOpt, cb) =>
               if @_stopped
                 cb()
@@ -85,8 +89,9 @@ class Batch
           cb new Error("destination connection not found")  if cb
         else
           connectionObj = connection.toObject()
-          @loadJobs = _.filter @options.jobs, (job) -> job.type is "load"
-          jobOptions = _.map @loadJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "load"
+          @loadJobs = _.filter @options.jobs, (job) -> job.type is "load" # get load jobs
+          jobOptions = _.map @loadJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "load" # create options for each load job
+          # run load jobs
           async.each jobOptions, (jobOpt, cb) =>
             if @_stopped
               cb()
@@ -103,9 +108,11 @@ class Batch
             else
               cb_success()
 
+  # get batch id
   id: () ->
     @options._id.toString()
 
+  #buld options for given job
   _buildJobOptions: (job, connection, type) ->
     jobOptions = {batch: @}
     jobOptions.tenant_id = @options.tenant_id

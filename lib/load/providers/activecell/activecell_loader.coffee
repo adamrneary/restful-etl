@@ -10,7 +10,7 @@ utils = require "./utils/utils"
 exports.load = (options = {}, cb) ->
   activeCellData = []
   async.series [
-    # load data
+    # get objects from ActiveCell
     (cb) ->
       if options.batch.stopped
         cb()
@@ -107,6 +107,12 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+
+      if options.object is "periods"
+        cb()
+        return
+
+      # create a function that registers a transformation errors in the database
       printMessages = (messages)->
         _.each messages, (message) ->
           message.source_obj = JSON.stringify(message.source_obj)
@@ -114,9 +120,6 @@ exports.load = (options = {}, cb) ->
             obj.obj = JSON.stringify(obj.obj)
           errorModel::create(message)
 
-      if options.object is "periods"
-        cb()
-        return
       extractData = options.batch.extractData
       loadData = options.batch.loadData
       loadResultData = options.batch.loadResultData
@@ -124,6 +127,7 @@ exports.load = (options = {}, cb) ->
       async.series [
         # compare objects
           (cb) ->
+            # transform objects from QB
             objNames = utils.getQBObjByObjName options.object
             sourseData = []
             _.each objNames, (objName) ->
@@ -142,6 +146,7 @@ exports.load = (options = {}, cb) ->
             deleteList = []
             updateList = []
 
+            # fill create, delete, update lists
             _.each sourseData, (sourceObject) ->
               foundIndex = 0
               foundObj = _.find activeCellData, (activeCellObject, i) ->
@@ -165,6 +170,7 @@ exports.load = (options = {}, cb) ->
                 resultData[i] = null if deletedObject is object
             resultData = _.compact resultData
 
+            # update ActiveCell objects
             async.parallel [
               (cb)->
                 async.each updateList, (obj, cb) ->

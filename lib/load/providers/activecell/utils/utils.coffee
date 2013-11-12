@@ -1,6 +1,7 @@
 moment = require "moment"
 _ = require "underscore"
 
+# get object id by QBD id
 getIdByQBDId = (qbdId, list)->
   return qbdId unless list
   obj = _.find list, (d) ->
@@ -8,6 +9,7 @@ getIdByQBDId = (qbdId, list)->
   if obj then obj.id
   else qbdId
 
+# get object id by QBO id
 getIdByQBOId = (qboId, list)->
   return qboId unless list
   obj = _.find list, (d) ->
@@ -15,12 +17,14 @@ getIdByQBOId = (qboId, list)->
   if obj then obj.id
   else qboId
 
+# get object id by QB id
 getIdByQBId = (qbId, list)->
   return qbId unless list
   id = getIdByQBDId qbId, list
 #  return id unless id is qbId
 #  getIdByQBOId qbId, list
 
+# get object id by date
 getIdByDate = (date, list)->
   dateObj = moment date
   dateObj.date(1)
@@ -30,6 +34,7 @@ getIdByDate = (date, list)->
   if obj then obj.id
   else date
 
+# get list of ActiveCell objects names by QB object name
 getObjNameByQBName = (name) ->
   switch name
     when "Item" then "products"
@@ -38,6 +43,7 @@ getObjNameByQBName = (name) ->
     when "Customer" then "customers"
     when "Vendor" then "vendors"
 
+# get list of QB objects names by ActiveCell object name
 getQBObjByObjName = (name) ->
   switch name
     when "products" then ["Item"]
@@ -47,6 +53,7 @@ getQBObjByObjName = (name) ->
     when "vendors" then ["Vendor"]
     when "periods" then []
 
+# satisfaction id dependency
 satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
   result = false
   keys = _.keys obj
@@ -89,6 +96,7 @@ satisfyDependencies = (obj, extractData, loadData, loadResultData) ->
         obj[key] = newValue
   result
 
+# transform refs
 transromRefs = (obj) ->
   return unless obj
   keys = _.keys obj
@@ -146,6 +154,7 @@ transromRefs = (obj) ->
         delete obj[key]
   obj
 
+# transform line
 lineTranform = (obj, extractData, loadData, loadResultData) ->
   switch obj.DetailType
     when "AccountBasedExpenseLineDetail"

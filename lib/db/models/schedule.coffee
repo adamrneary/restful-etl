@@ -35,6 +35,7 @@ scheduleSchema = new Schema
   batches: [batchSchema]
 
 class Schedule extends __proto("Schedule", scheduleSchema)
+  # Creates a new schedule
   create: (doc, cb) ->
     super doc, (err, model) ->
       message model?.tenant_id, "schedule", {id: model?.id, err: err, status: "create"}
@@ -43,12 +44,15 @@ class Schedule extends __proto("Schedule", scheduleSchema)
         schedule.addSchedule newSchedule
         newSchedule.start()
       cb err, model if cb
+
+  # Remove a schedule
   destroy: (id, cb)->
     super id, (err, model) ->
       message model?.tenant_id, "schedule", {id: model?.id, err: err, status: "destroy"}
       schedule.deleteById(id) unless err
       cb err, model if cb
 
+  # Update schedule with changes passed to doc
   update: (id, doc, cb)->
     super id, doc, (err, model) ->
       message model?.tenant_id, "schedule", {id: model?.id, err: err, status: "update"}

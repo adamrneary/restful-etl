@@ -2,6 +2,7 @@ Error.stackTraceLimit = Infinity
 
 fs = require "fs"
 restify = require "restify"
+config = require "../config"
 socket = require "../lib/socket"
 routes = require "./routes"
 exec = require("child_process").exec
@@ -42,7 +43,7 @@ exec "#{__dirname}/../node_modules/docco/bin/docco --output #{__dirname}/../show
   console.log("docco exec error: " + err || stderr) if err or stderr
 #  console.log stdout.replace(/: ([\w|\/\.]*)/gm, '')
 
-server.listen 7171, ->
+server.listen config.app_port, ->
   console.log "%s listening at %s", server.name, server.url
 
 module.exports = server

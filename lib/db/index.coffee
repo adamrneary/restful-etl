@@ -12,6 +12,8 @@ conn = mongoose.connect path, (err, res) ->
     console.log "error", err
   else
     console.info "Succeeded connected to:", path
+
+    #search and run all schedules
     scheduleModel::find {}, (err, docs) ->
       if err
         console.error "Get shudeles error:", err

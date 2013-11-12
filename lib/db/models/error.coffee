@@ -12,6 +12,6 @@ errorSchema = new Schema
     missing_fields: [String]
   ]
 
-class Tenant extends __proto("Error", errorSchema)
+class Error extends __proto("Error", errorSchema)
 
-module.exports = Tenant
+module.exports = Error

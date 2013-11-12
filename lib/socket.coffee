@@ -9,7 +9,10 @@ listen = (server) ->
 
   io.sockets.on "connection", (socket) ->
     socket.on "subscribe", (data) ->
+      #subscribe to the selected the room
       socket.join data.tenant_id
+
+      #find schedule and send current status
       obj = schedule.findByTenantId(data.tenant_id)
       status = ""
       if obj then status = obj.status()

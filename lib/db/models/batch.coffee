@@ -32,6 +32,7 @@ batchSchema = new Schema
   jobs: [jobSchema]
 
 class Batch extends __proto("Batch", batchSchema)
+  # Creates a new batch
   create: (doc, cb, finishCb) =>
     doc.created_at = new Date().toISOString()
     super doc, (err, model) =>
@@ -39,6 +40,7 @@ class Batch extends __proto("Batch", batchSchema)
       if err
         cb err, model if cb
       else
+        #the creat and run batch if no errors
         cb err, model if cb
         newBatch = new batch.Batch model.toObject()
         jobsNames = []
@@ -53,11 +55,13 @@ class Batch extends __proto("Batch", batchSchema)
           message model?.tenant_id, "batch", {id: model?.id, err: err, status: "finish", finished_at: model.finished_at, created_at: model.create_at}
           finishCb() if finishCb
 
+  # Update batch with changes passed to doc
   update: (id, doc, cb) ->
     super id, doc, (err, model) ->
       message model?.tenant_id, "batch", {id: model?.id, err: err, status: "update"}
       cb err, model if cb
 
+  # Remove a batch
   destroy: (id, cb) ->
     super id, (err, model) ->
       message model?.tenant_id, "batch", {id: model?.id, err: err, status: "destroy"}
