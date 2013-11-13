@@ -34,6 +34,11 @@
               </a>
             
               
+              <a class="source" href="error.html">
+                error.coffee
+              </a>
+            
+              
               <a class="source" href="schedule.html">
                 schedule.coffee
               </a>
@@ -66,32 +71,40 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>mongoose = require <span class="string">"mongoose"</span>
-__proto = require <span class="string">"./__proto"</span>
+            <div class="content"><div class='highlight'><pre>mongoose = <span class="built_in">require</span> <span class="string">"mongoose"</span>
+_ = <span class="built_in">require</span> <span class="string">"underscore"</span>
+message = <span class="built_in">require</span>(<span class="string">"../../message"</span>).message
+__proto = <span class="built_in">require</span> <span class="string">"./__proto"</span>
+batch = <span class="built_in">require</span> <span class="string">"../../batch"</span>
 
 Schema = mongoose.Schema
 
 jobSchema = <span class="keyword">new</span> Schema
-  type: {type: String, required: <span class="literal">true</span>}
-  connection_id: String
-  object: String
-  grain: String
-  since: String
-  updated_since: String
-  allowDelete: Boolean
-  required_object: String
+  <span class="attribute">tenant_id</span>: String
+  <span class="attribute">type</span>: {<span class="attribute">type</span>: String, <span class="attribute">required</span>: <span class="literal">true</span>}
+  <span class="attribute">connection_id</span>: String
+  <span class="attribute">object</span>: String
+  <span class="attribute">grain</span>: String
+  <span class="attribute">since</span>: String
+  <span class="attribute">updated_since</span>: String
+  <span class="attribute">company_id</span>: String
+  <span class="attribute">required_objects</span>:
+    <span class="attribute">extract</span>: [String]
+    <span class="attribute">load</span>: [String]
+    <span class="attribute">load_result</span>: [String]
 
 batchSchema = <span class="keyword">new</span> Schema
-  tenant_id: String
-  source_connection_id: String
-  destination_connection_id: String
-  since: String
-  updated_since: String
-  jobs: [jobSchema]
+  <span class="attribute">tenant_id</span>: String
+  <span class="attribute">company_id</span>: String
+  <span class="attribute">source_connection_id</span>: String
+  <span class="attribute">destination_connection_id</span>: String
+  <span class="attribute">since</span>: String
+  <span class="attribute">updated_since</span>: String
+  <span class="attribute">created_at</span>: Date
+  <span class="attribute">finished_at</span>: Date
+  <span class="attribute">jobs</span>: [jobSchema]
 
-<span class="class"><span class="keyword">class</span> <span class="title">Batch</span> <span class="keyword">extends</span> <span class="title">__proto</span>('<span class="title">Batch</span>', <span class="title">batchSchema</span>)</span>
-  create: (doc, cb) -&gt;
-    <span class="keyword">super</span> doc, (err, model)-&gt;</pre></div></div>
+<span class="class"><span class="keyword">class</span> <span class="title">Batch</span> <span class="keyword">extends</span> <span class="title">__proto</span>("<span class="title">Batch</span>", <span class="title">batchSchema</span>)</span></pre></div></div>
             
         </li>
         
@@ -102,13 +115,17 @@ batchSchema = <span class="keyword">new</span> Schema
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <pre><code> cb err, model</code></pre>
+              <p>Creates a new batch</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      batchConstructor = require(<span class="string">"../../batch"</span>).Batch
-      batch = <span class="keyword">new</span> batchConstructor doc
-      batch.run (err, jobs) -&gt;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">create</span>: <span class="function"><span class="params">(doc, cb, finishCb)</span> =&gt;</span>
+    <span class="keyword">do</span>c.created_at = <span class="keyword">new</span> Date().toISOString()
+    <span class="keyword">super</span> doc, <span class="function"><span class="params">(err, model)</span> =&gt;</span>
+      message model?.tenant_id, <span class="string">"batch"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"create"</span>}
+      <span class="keyword">if</span> err
+        cb err, model <span class="keyword">if</span> cb
+      <span class="keyword">else</span></pre></div></div>
             
         </li>
         
@@ -119,14 +136,61 @@ batchSchema = <span class="keyword">new</span> Schema
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <pre><code>   console.log &quot;batch&quot;, batch</code></pre>
+              <p>the creat and run batch if no errors</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        console.log <span class="string">"done"</span>
-        cb err, model
+            <div class="content"><div class='highlight'><pre>        cb err, model <span class="keyword">if</span> cb
+        newBatch = <span class="keyword">new</span> batch.Batch model.toObject()
+        jobsNames = []
+        _.each model.jobs, <span class="function"><span class="params">(job)</span> -&gt;</span>
+          jobsNames.push job.object
+        message model?.tenant_id, <span class="string">"batch"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">jobs_names</span>: jobsNames, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"start"</span>}
+        batch.addBatch newBatch
+        newBatch.start <span class="function"><span class="params">(err)</span> =&gt;</span>
+          model.finished_at = <span class="keyword">new</span> Date().toISOString()
+          model.save()
+          batch.deleteById model?.id
+          message model?.tenant_id, <span class="string">"batch"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"finish"</span>, <span class="attribute">finished_at</span>: model.finished_at, <span class="attribute">created_at</span>: model.create_at}
+          finishCb() <span class="keyword">if</span> finishCb</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Update batch with changes passed to doc</p>
 
-module.exports = Batch</pre></div></div>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">update</span>: <span class="function"><span class="params">(id, doc, cb)</span> -&gt;</span>
+    <span class="keyword">super</span> id, doc, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"batch"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"update"</span>}
+      cb err, model <span class="keyword">if</span> cb</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Remove a batch</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">destroy</span>: <span class="function"><span class="params">(id, cb)</span> -&gt;</span>
+    <span class="keyword">super</span> id, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"batch"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"destroy"</span>}
+      cb err, model <span class="keyword">if</span> cb
+
+module.<span class="built_in">exports</span> = Batch</pre></div></div>
             
         </li>
         

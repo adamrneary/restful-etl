@@ -34,6 +34,11 @@
               </a>
             
               
+              <a class="source" href="error.html">
+                error.coffee
+              </a>
+            
+              
               <a class="source" href="schedule.html">
                 schedule.coffee
               </a>
@@ -66,22 +71,22 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>__proto = require <span class="string">'./__proto'</span>
-mongoose = require <span class="string">'mongoose'</span>
+            <div class="content"><div class='highlight'><pre>__proto = <span class="built_in">require</span> <span class="string">'./__proto'</span>
+mongoose = <span class="built_in">require</span> <span class="string">'mongoose'</span>
 Schema = mongoose.Schema
 
 tenantSchema = <span class="keyword">new</span> Schema
-  name: {type: String, required: <span class="literal">true</span>}
+  <span class="attribute">name</span>: {<span class="attribute">type</span>: String, <span class="attribute">required</span>: <span class="literal">true</span>}
 
-tenantSchema.pre <span class="string">'save'</span>, (next)-&gt;
-  Tenant::findOne {name: <span class="property">@name</span>}, (err, data)-&gt;
+tenantSchema.pre <span class="string">'save'</span>, <span class="function"><span class="params">(next)</span>-&gt;</span>
+  <span class="attribute">Tenant</span>::findOne {<span class="attribute">name</span>: <span class="property">@name</span>}, <span class="function"><span class="params">(err, data)</span>-&gt;</span>
     <span class="keyword">return</span> next err <span class="keyword">if</span> err
     <span class="keyword">return</span> next <span class="keyword">new</span> Error <span class="string">'fields are not unique'</span> <span class="keyword">if</span> data?
     next()
 
 <span class="class"><span class="keyword">class</span> <span class="title">Tenant</span> <span class="keyword">extends</span> <span class="title">__proto</span>('<span class="title">Tenant</span>', <span class="title">tenantSchema</span>)</span>
 
-module.exports = Tenant</pre></div></div>
+module.<span class="built_in">exports</span> = Tenant</pre></div></div>
             
         </li>
         
