@@ -15,7 +15,7 @@ module.exports = {
     when "development" then "activecell.dev:3000"
     when "production" then  "activecell.dev:3000"
     when 'test' then "activecell.dev:3000"
-    when 'heroku' then "launchpad.activecell.net"
+    when 'heroku' then "activecell.net"
     else  "activecell.dev:3000"
   app_port: switch process.env.NODE_ENV
     when "development" then 7171
