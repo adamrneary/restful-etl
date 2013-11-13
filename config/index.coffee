@@ -9,6 +9,7 @@ module.exports = {
     when "development" then "http"
     when "production" then  "http"
     when 'test' then "http"
+    when 'heroku' then "http"
     else  "http"
   activecell_domain: switch process.env.NODE_ENV
     when "development" then "activecell.dev:3000"
