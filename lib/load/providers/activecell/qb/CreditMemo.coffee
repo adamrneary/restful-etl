@@ -52,7 +52,7 @@ class CreditMemo extends Default
 
     unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
-        type: "error"
+        subtype: "error"
         message: "required fields does not exist"
         objType: "CreditMemo"
         source_obj: qbdObj
@@ -64,7 +64,7 @@ class CreditMemo extends Default
 
     if Math.floor(totalAmountCents)
       messages.push
-        type: "warning"
+        subtype: "warning"
         message: "total amount does not equal the sum of line amounts"
         objType: "CreditMemo"
         source_obj: qbdObj

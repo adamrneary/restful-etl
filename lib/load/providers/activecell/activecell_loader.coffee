@@ -115,6 +115,12 @@ exports.load = (options = {}, cb) ->
       # create a function that registers a transformation errors in the database
       printMessages = (messages)->
         _.each messages, (message) ->
+          message.type = "transformation"
+          message.batch_id = options.batch.options._id
+          message.company_id = options.companyId
+          message.source_connection_id = options.batch.options.source_connection_id
+          message.destination_connection_id = options.batch.options.destination_connection_id
+          message.batch_start = options.batch.options.created_at
           message.source_obj = JSON.stringify(message.source_obj)
           _.each message.result_obj, (obj) ->
             obj.obj = JSON.stringify(obj.obj)

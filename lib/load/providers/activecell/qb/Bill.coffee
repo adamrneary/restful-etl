@@ -53,7 +53,7 @@ class Bill extends Default
 
     unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
-        type: "error"
+        subtype: "error"
         message: "required fields does not exist"
         objType: "Bill"
         source_obj: qbdObj
@@ -66,7 +66,7 @@ class Bill extends Default
 
     if Math.floor(totalAmountCents)
       messages.push
-        type: "warning"
+        subtype: "warning"
         message: "total amount does not equal the sum of line amounts"
         objType: "Bill"
         source_obj: qbdObj

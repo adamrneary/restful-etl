@@ -12,7 +12,7 @@ class Customer extends Default
 
     unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
-        type: "error"
+        subtype: "error"
         message: "required fields does not exist"
         objType: "Customer"
         source_obj: qbdObj

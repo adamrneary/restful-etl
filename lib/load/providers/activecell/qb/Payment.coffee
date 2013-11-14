@@ -32,7 +32,7 @@ class Payment extends Default
     totalAmountCents = 0
     unless qbdObj.ARAccountRef
       messages.push
-        type: "warning"
+        subtype: "warning"
         message: "CustomerRef is not defined"
         objType: "Payment"
         source_obj: qbdObj
@@ -88,7 +88,7 @@ class Payment extends Default
 
     unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
-        type: "error"
+        subtype: "error"
         message: "required fields does not exist"
         objType: "Payment"
         source_obj: qbdObj
@@ -100,7 +100,7 @@ class Payment extends Default
 
     if Math.floor(totalAmountCents)
       messages.push
-        type: "warning"
+        subtype: "warning"
         message: "total amount does not equal the sum of line amounts"
         objType: "Payment"
         source_obj: qbdObj

@@ -44,42 +44,46 @@ class Batch
   start: (cb) =>
     cb_success = _.after 2, cb # call callback after extract and load jobs finished
     @stopped = false
-    connection::findOne {_id: @options.source_connection_id}, (err, connection) =>
-      return if @stopped
-      if err
-        @stopped = true
-        cb err if cb
-      else
-        unless connection
+
+    extractData = () =>
+      connection::findOne {_id: @options.source_connection_id}, (err, connection) =>
+        return if @stopped
+        if err
           @stopped = true
-          cb new Errors.ConnectionError "source connection not found", @options.source_connection_id  if cb
+          cb err if cb
         else
-          connectionObj = connection.toObject()
-          @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract" # get extract jobs
-          jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract" # create options for each extract job
-          if connectionObj.provider is "QB_BATCH" or connectionObj.provider is "QBD_BATCH"
-            intuitBatchExtractor @, connectionObj, jobOptions, cb
+          unless connection
+            @stopped = true
+            cb new Errors.ConnectionError "source connection not found", @options.source_connection_id  if cb
           else
-            # run extract jobs
-            async.each jobOptions, (jobOpt, cb) =>
-              if @_stopped
-                cb()
-                return
-              jobObj = new Job(jobOpt)
-              jobObj.run (err, data) =>
-                if err then cb(err)
-                else
-                  @extractData[jobOpt.object] = data
+            connectionObj = connection.toObject()
+            @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract" # get extract jobs
+            jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract" # create options for each extract job
+            if connectionObj.provider is "QB_BATCH" or connectionObj.provider is "QBD_BATCH"
+              intuitBatchExtractor @, connectionObj, jobOptions, cb
+            else
+              # run extract jobs
+              async.each jobOptions, (jobOpt, cb) =>
+                if @_stopped
                   cb()
-            , (err) =>
-              if err
-                @stopped = true
-                cb(err) if cb
-              else
-                cb_success()
+                  return
+                jobObj = new Job(jobOpt)
+                jobObj.run (err, data) =>
+                  if err then cb(err)
+                  else
+                    @extractData[jobOpt.object] = data
+                    cb()
+              , (err) =>
+                if err
+                  @stopped = true
+                  cb(err) if cb
+                else
+                  cb_success()
 
     connection::findOne {_id: @options.destination_connection_id}, (err, connection) =>
       return if @stopped
+      @companyId = connection.company_id
+      extractData() # We need a company id for error messages, we wait until we get it and run extract jobs
       if err
         cb err if cb
         @stopped = true
@@ -119,18 +123,20 @@ class Batch
     jobOptions.provider = connection.provider
     switch jobOptions.provider.toUpperCase()
       when "QB"
+        jobOptions.companyId = @companyId
         jobOptions.realm = connection.realm
         jobOptions.oauth_consumer_key = connection.oauth_consumer_key
         jobOptions.oauth_consumer_secret = connection.oauth_consumer_secret
         jobOptions.oauth_access_key = connection.oauth_access_key
         jobOptions.oauth_access_secret = connection.oauth_access_secret
       when "XERO"
+        jobOptions.companyId = @companyId
         jobOptions.oauth_consumer_key = connection.oauth_consumer_key
         jobOptions.oauth_consumer_secret = connection.oauth_consumer_secret
         jobOptions.oauth_access_key = connection.oauth_access_key
         jobOptions.oauth_access_secret = connection.oauth_access_secret
       when "ACTIVECELL"
-        jobOptions.companyId = connection.company_id
+        jobOptions.companyId = @companyId
         jobOptions.subdomain = connection.subdomain
         jobOptions.token = connection.token
 

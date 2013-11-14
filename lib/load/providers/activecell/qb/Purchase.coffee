@@ -33,7 +33,7 @@ class Invoice extends Default
 
     unless qbdObj.AccountRef
       messages.push
-        type: "warning"
+        subtype: "warning"
         message: "CustomerRef is not defined"
         objType: "Purchase"
         source_obj: qbdObj
@@ -63,7 +63,7 @@ class Invoice extends Default
 
     unless _.all(result, (obj) => not @_checkRequiredFields(obj))
       messages.push
-        type: "error"
+        subtype: "error"
         message: "required fields does not exist"
         objType: "Purchase"
         source_obj: qbdObj
@@ -75,7 +75,7 @@ class Invoice extends Default
 
     if Math.floor(totalAmountCents)
       messages.push
-        type: "warning"
+        subtype: "warning"
         message: "total amount does not equal the sum of line amounts"
         objType: "Purchase"
         source_obj: qbdObj
