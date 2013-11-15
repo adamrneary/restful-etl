@@ -34,6 +34,11 @@
               </a>
             
               
+              <a class="source" href="error.html">
+                error.coffee
+              </a>
+            
+              
               <a class="source" href="schedule.html">
                 schedule.coffee
               </a>
@@ -66,40 +71,110 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>__proto = require <span class="string">'./__proto'</span>
-mongoose = require <span class="string">'mongoose'</span>
+            <div class="content"><div class='highlight'><pre>mongoose = <span class="built_in">require</span> <span class="string">"mongoose"</span>
+message = <span class="built_in">require</span>(<span class="string">"../../message"</span>).message
+__proto = <span class="built_in">require</span> <span class="string">"./__proto"</span>
 Schema = mongoose.Schema
+schedule = <span class="built_in">require</span> <span class="string">"../../schedule"</span>
+
 
 jobSchema = <span class="keyword">new</span> Schema
-  extract:
-    source_connection_id: String
-    object: String
-    grain: String
-    since: String
-    updated_since: String
-  load:
-    destination_connection_id: String
-    object: String
-    allowDelete: Boolean
-    since: String
+  <span class="attribute">type</span>: {<span class="attribute">type</span>: String, <span class="attribute">required</span>: <span class="literal">true</span>}
+  <span class="attribute">connection_id</span>: String
+  <span class="attribute">object</span>: String
+  <span class="attribute">grain</span>: String
+  <span class="attribute">since</span>: String
+  <span class="attribute">updated_since</span>: String
+  <span class="attribute">required_objects</span>:
+    <span class="attribute">extract</span>: [String]
+    <span class="attribute">load</span>: [String]
+    <span class="attribute">load_result</span>: [String]
 
 batchSchema = <span class="keyword">new</span> Schema
-  tenant_id: String
-  source_connection_id: String
-  destination_connection_id: String
-  since: String
-  updated_since: String
-  jobs: [jobSchema]
+  <span class="attribute">company_id</span>: String
+  <span class="attribute">tenant_id</span>: String
+  <span class="attribute">source_connection_id</span>: String
+  <span class="attribute">destination_connection_id</span>: String
+  <span class="attribute">since</span>: String
+  <span class="attribute">updated_since</span>: String
+  <span class="attribute">jobs</span>: [jobSchema]
 
 scheduleSchema = <span class="keyword">new</span> Schema
-  tenant_id: String
-  name: type: String
-  frequency: String
-  batches: [batchSchema]
+  <span class="attribute">company_id</span>: String
+  <span class="attribute">tenant_id</span>: String
+  <span class="attribute">name</span>: String
+  <span class="attribute">cron_time</span>: {<span class="attribute">type</span>: String, <span class="attribute">required</span>: <span class="literal">true</span>}
+  <span class="attribute">timezone</span>: String
+  <span class="attribute">batches</span>: [batchSchema]
 
-<span class="class"><span class="keyword">class</span> <span class="title">Schedule</span> <span class="keyword">extends</span> <span class="title">__proto</span>('<span class="title">Schedule</span>', <span class="title">scheduleSchema</span>)</span>
+<span class="class"><span class="keyword">class</span> <span class="title">Schedule</span> <span class="keyword">extends</span> <span class="title">__proto</span>("<span class="title">Schedule</span>", <span class="title">scheduleSchema</span>)</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Creates a new schedule</p>
 
-module.exports = Schedule</pre></div></div>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">create</span>: <span class="function"><span class="params">(doc, cb)</span> -&gt;</span>
+    <span class="keyword">super</span> doc, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"schedule"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"create"</span>}
+      <span class="keyword">unless</span> err
+        newSchedule = <span class="keyword">new</span> schedule.Schedule(model)
+        schedule.addSchedule newSchedule
+        newSchedule.start()
+      cb err, model <span class="keyword">if</span> cb</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Remove a schedule</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">destroy</span>: <span class="function"><span class="params">(id, cb)</span>-&gt;</span>
+    <span class="keyword">super</span> id, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"schedule"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"destroy"</span>}
+      schedule.deleteById(id) <span class="keyword">unless</span> err
+      cb err, model <span class="keyword">if</span> cb</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Update schedule with changes passed to doc</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">update</span>: <span class="function"><span class="params">(id, doc, cb)</span>-&gt;</span>
+    <span class="keyword">super</span> id, doc, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"schedule"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"update"</span>}
+      <span class="keyword">if</span> err
+        cb err, model <span class="keyword">if</span> cb
+      <span class="keyword">else</span>
+        updateSchedule = schedule.findById(id)
+        updateSchedule.update model
+        updateSchedule.start()
+        cb err, model <span class="keyword">if</span> cb
+
+module.<span class="built_in">exports</span> = Schedule</pre></div></div>
             
         </li>
         

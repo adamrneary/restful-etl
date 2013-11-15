@@ -1,0 +1,8 @@
+[ { "company_id": "company_id:12345",
+    "qbd_id": "QB:143",
+    "name": "Webhosting",
+    "type": "Expense",
+    "subtype": "Cost of Goods Sold",
+    "account_number": "50010",
+    "current_balance": 1361744,
+    "parent_qb_id": "QB:68" } ]

@@ -1,0 +1,26 @@
+[
+  {
+    "AccountRef":{
+      "value":"QB:144",
+      "name":"Amex Plum Card #1003"
+    },
+    "PaymentType":"CreditCard",
+    "EntityRef":{
+      "value":"QB:262",
+      "name":"HipChat"
+    },
+    "Credit":false,
+    "TotalAmt":9,
+    "Memo":"ADAM NEARY-61003-34PZ54 650-963-9511",
+    "status":"Synchronized",
+    "Id":"QB:9070",
+    "SyncToken":"1",
+    "MetaData":{
+      "CreateTime":"2013-01-24T20:48:24Z",
+      "LastUpdatedTime":"2013-05-20T23:30:05Z"
+    },
+    "TxnDate":"2012-12-03",
+    "ExchangeRate":1,
+    "TxnStatus":"Payable"
+  }
+]

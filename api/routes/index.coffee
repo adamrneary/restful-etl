@@ -1,5 +1,6 @@
-restify = require 'restify'
-models = require('../../lib/db').models
+restify = require "restify"
+models = require("../../lib/db").models
+batch = require "../../lib/batch"
 
 module.exports =
 
@@ -7,12 +8,14 @@ module.exports =
     id = req.params.id
     modelName = req.params.model[0].toUpperCase() + req.params.model.substring(1)
 
+    conditions = {}
+    conditions.company_id = req.query.company_id if req.query.company_id
     if id
       models[modelName]::show id, (err, doc) ->
         return next err if err?
         res.json doc
     else
-      models[modelName]::index (err, docs) ->
+      models[modelName]::index conditions, (err, docs) ->
         return next err if err?
         res.json docs
 
@@ -37,3 +40,8 @@ module.exports =
     models[modelName]::destroy id,  (err, doc) ->
       return next err if err?
       res.json doc
+
+  stopBatch: (req, res, next) ->
+    id = req.params.id
+    batch.deleteById id
+    res.end()

@@ -28,8 +28,6 @@ exports.extract = (batch, connection, jobOptions, cb) ->
     {"content-type": "text/plain", "Accept": "application/json", "Connection" : "close", "User-Agent" : "Node authentication"}
   )
 
-  globalError = false
-
   batchOperationsList = _.map jobOptions, (jobOpt) ->
     batchOperation = {startPosition: 1, _data: []}
     batchOperation.object = jobOpt.object
@@ -49,10 +47,14 @@ exports.extract = (batch, connection, jobOptions, cb) ->
   batchsStartPosition = (num for num in [0..batchOperationsList.length] by maxBatchItems)
   batchsStartPosition.pop() unless batchOperationsList.length % maxBatchItems
 
+  # create a function that will be performed for each batch
   batchsQueue = async.queue (data, cb) ->
     oauth.post "https://qb.sbfinance.intuit.com/v3/company/#{connection.realm}/batch", connection.oauth_access_key, connection.oauth_access_secret, data, "application/xml", (err, data, response) ->
+      if options.batch.stopped
+        cb()
+        return
       if err
-        globalError = true
+        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError "", err
         return
 
@@ -60,7 +62,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
       err = _.find data, (d)->
         d.Fault?.Error
       if err
-        globalError = true
+        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError JSON.stringify(err)
         return
 
@@ -69,7 +71,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
       cb()
 
   batchsQueue.drain = ()->
-    return if globalError
+    return if options.batch.stopped
     if (_.any batchOperationsList, (d)->
       if _.isUndefined d.totalCount
         return false
@@ -83,6 +85,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
         batch.extractData[d.object] = d._data
       cb null if cb
 
+  # create a function that create body of request
   createNewBatch = (last) ->
     resultsCount = 0
     itemsCount = 0
@@ -105,15 +108,22 @@ exports.extract = (batch, connection, jobOptions, cb) ->
     else
       result
 
+  # get the number of objects
   async.each batchsStartPosition, (batchStartPosition, cb)->
+    if options.batch.stopped
+      cb()
+      return
     data = "<IntuitBatchRequest xmlns='http://schema.intuit.com/finance/v3'>"
     for position in [batchStartPosition..Math.min(maxBatchItems + batchStartPosition - 1, batchOperationsList.length - 1)]
       data += "<BatchItemRequest bId='#{position}'><Query>select count(*) from #{batchOperationsList[position].object} #{batchOperationsList[position].filter}</Query></BatchItemRequest>"
     data += "</IntuitBatchRequest>"
 
     oauth.post "https://qb.sbfinance.intuit.com/v3/company/#{connection.realm}/batch", connection.oauth_access_key, connection.oauth_access_secret, data, "application/xml", (err, data, response) ->
+      if options.batch.stopped
+        cb()
+        return
       if err
-        globalError = true
+        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError "", err
         return
 
@@ -121,14 +131,14 @@ exports.extract = (batch, connection, jobOptions, cb) ->
       err = _.find data, (d)->
         d.Fault?.Error
       if err
-        globalError = true
+        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError JSON.stringify(err)
         return
 
       _.each data, (d)->
         batchOperationsList[d.bId].totalCount = d.QueryResponse.totalCount
-      unless globalError
-        batchsQueue.push newBatch while newBatch = createNewBatch()
+      unless options.batch.stopped
+        batchsQueue.push newBatch while newBatch = createNewBatch() # add a new batch to queue
       cb()
   ,
   (err)->

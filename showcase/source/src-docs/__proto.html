@@ -34,6 +34,11 @@
               </a>
             
               
+              <a class="source" href="error.html">
+                error.coffee
+              </a>
+            
+              
               <a class="source" href="schedule.html">
                 schedule.coffee
               </a>
@@ -66,10 +71,10 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>mongoose = require <span class="string">'mongoose'</span>
+            <div class="content"><div class='highlight'><pre>mongoose = <span class="built_in">require</span> <span class="string">'mongoose'</span>
 
 
-module.<span class="function"><span class="title">exports</span></span> = (name, schema)-&gt;
+module.<span class="function"><span class="title">exports</span> = <span class="params">(name, schema)</span>-&gt;</span>
 
   Model = mongoose.model name, schema
 
@@ -88,9 +93,10 @@ module.<span class="function"><span class="title">exports</span></span> = (name,
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    index: (cb) -&gt;
-      Model.find {}, (err, docs) -&gt;
-        cb(err, docs)</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="attribute">index</span>: <span class="function"><span class="params">(conditions, cb)</span> -&gt;</span>
+      conditions = {} <span class="keyword">unless</span> conditions
+      Model.find conditions, <span class="function"><span class="params">(err, docs)</span> -&gt;</span>
+        cb err, docs <span class="keyword">if</span> cb</pre></div></div>
             
         </li>
         
@@ -105,10 +111,10 @@ module.<span class="function"><span class="title">exports</span></span> = (name,
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    create: (doc, cb) -&gt;
+            <div class="content"><div class='highlight'><pre>    <span class="attribute">create</span>: <span class="function"><span class="params">(doc, cb)</span> -&gt;</span>
       model = <span class="keyword">new</span> Model doc
-      model.save (err)-&gt;
-        cb(err, model)</pre></div></div>
+      model.save <span class="function"><span class="params">(err)</span>-&gt;</span>
+        cb err, model <span class="keyword">if</span> cb</pre></div></div>
             
         </li>
         
@@ -123,9 +129,9 @@ module.<span class="function"><span class="title">exports</span></span> = (name,
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    show: (id, cb)-&gt;
-      Model.findById id, (err, doc) -&gt;
-        cb(err, doc)</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="attribute">show</span>: <span class="function"><span class="params">(id, cb)</span>-&gt;</span>
+      Model.findById id, <span class="function"><span class="params">(err, doc)</span> -&gt;</span>
+        cb err, doc <span class="keyword">if</span> cb</pre></div></div>
             
         </li>
         
@@ -140,9 +146,9 @@ module.<span class="function"><span class="title">exports</span></span> = (name,
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    update: (id, doc, cb)-&gt;
-      Model.findByIdAndUpdate id, doc, (err, doc) -&gt;
-        cb(err, doc)</pre></div></div>
+            <div class="content"><div class='highlight'><pre>    <span class="attribute">update</span>: <span class="function"><span class="params">(id, doc, cb)</span>-&gt;</span>
+      Model.findByIdAndUpdate id, doc, <span class="function"><span class="params">(err, doc)</span> -&gt;</span>
+        cb err, doc <span class="keyword">if</span> cb</pre></div></div>
             
         </li>
         
@@ -157,16 +163,22 @@ module.<span class="function"><span class="title">exports</span></span> = (name,
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    destroy: (id, cb)-&gt;
-      Model.findById id, (err, doc) -&gt;
+            <div class="content"><div class='highlight'><pre>    <span class="attribute">destroy</span>: <span class="function"><span class="params">(id, cb)</span>-&gt;</span>
+      Model.findById id, <span class="function"><span class="params">(err, doc)</span> -&gt;</span>
         <span class="keyword">if</span> err
-          cb(err, doc)
+          cb err, doc <span class="keyword">if</span> cb
         <span class="keyword">else</span>
-          doc.remove (err) -&gt;
-            cb(err, doc)
+          <span class="keyword">if</span> doc
+            <span class="keyword">do</span>c.remove <span class="function"><span class="params">(err)</span> -&gt;</span>
+              cb err, doc <span class="keyword">if</span> cb
+          <span class="keyword">else</span>
+            cb err, doc <span class="keyword">if</span> cb
 
-    findOne: -&gt;
-      Model.findOne.apply Model, arguments</pre></div></div>
+    <span class="attribute">findOne</span>:<span class="function"> -&gt;</span>
+      Model.findOne.apply Model, arguments
+
+    <span class="attribute">find</span>:<span class="function"> -&gt;</span>
+      Model.find.apply Model, arguments</pre></div></div>
             
         </li>
         

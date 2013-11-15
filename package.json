@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node index.js",
-    "test": "mocha test/unit/activecell_qb && mocha test/api/ && mocha test/integration/"
+    "test": "mocha test/unit && mocha test/unit/activecell_obj && mocha test/unit/qb_obj && mocha test/unit/qb_obj/data_types  && mocha test/api/ && mocha test/integration/"
   },
   "engines": {
     "node": "0.10.x"
@@ -20,7 +20,11 @@
     "xml2js": "~0.2.8",
     "nock": "~0.22.1",
     "async": "~0.2.9",
-    "moment": "~2.2.1"
+    "moment": "~2.2.1",
+    "cron": "~1.0.1",
+    "requester": "~0.1.20",
+    "request": "~2.27.0",
+    "socket.io": "~0.9.16"
   },
   "devDependencies": {
     "supertest": "*",

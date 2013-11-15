@@ -1,0 +1,39 @@
+[
+    {
+        "SalesTermRef":{
+            "value":"QB:6",
+            "name":"Net 30"
+        },
+        "DueDate":"2013-06-07",
+        "ShipAddr":{
+            "Line1":"Wilson Sonsini Goodrich & Rosati",
+            "Line2":"File No. 73672",
+            "Line3":"P.O. Box 60000",
+            "City":"San Francisco",
+            "CountrySubDivisionCode":"CA",
+            "PostalCode":"94160-3672"
+        },
+        "Balance":0,
+        "status":"Synchronized",
+        "Id":"QB:11238",
+        "SyncToken":"1",
+        "MetaData":{
+            "CreateTime":"2013-05-22T19:27:35Z",
+            "LastUpdatedTime":"2013-05-22T19:29:54Z"
+        },
+        "TxnDate":"2013-05-08",
+        "ExchangeRate":1,
+        "TxnStatus":"Paid",
+        "Line":{
+        },
+        "VendorRef":{
+            "value":"QB:401",
+            "name":"Wilson Sonsini Goodrich Rosati"
+        },
+        "APAccountRef":{
+            "value":"QB:147",
+            "name":"Accounts Payable"
+        },
+        "TotalAmt":534.15
+    }
+]

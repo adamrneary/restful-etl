@@ -1,0 +1,68 @@
+[
+  {
+    "domain": "QBO",
+    "Id": "276",
+    "SyncToken": "0",
+    "MetaData": {
+      "CreateTime": "2013-04-29T17:30:30-07:00",
+      "LastUpdatedTime": "2013-04-29T17:30:30-07:00"
+    },
+    "DocNumber": "1139",
+    "TxnDate": "2013-04-29",
+    "Line": [
+      {
+        "Id": "QB:123",
+        "Amount": 8898,
+        "DetailType": "ItemBasedExpenseLineDetail",
+        "ItemBasedExpenseLineDetail": {
+          "ItemRef": {
+            "value": "QB:5"
+          },
+          "ItemAccountRef": {
+            "value": "QB:147"
+          }
+        }
+      }, {
+        "Id": "QB:5",
+        "Amount": 1600,
+        "DetailType": "AccountBasedExpenseLineDetail",
+        "AccountBasedExpenseLineDetail": {
+          "AccountRef": {
+            "value": "QB:146"
+          }
+        }
+      }
+    ],
+    "TxnTaxDetail": {
+      "TxnTaxCodeRef": {
+        "value": "9"
+      }
+    },
+    "TotalTax": 1499.85,
+    "TaxLine": [
+      {
+        "Amount": 1499.85,
+        "DetailType": "TaxLineDetail",
+        "TaxLineDetail": {
+          "TaxRateRef": {
+            "value": "8"
+          },
+          "PercentBased": true,
+          "TaxPercent": 15,
+          "NetAmountTaxable": 9999.00
+        }
+      }
+    ],
+    "CustomerRef": {
+      "value": "QB:499",
+      "name": "yOvUlsnhx6 AOGcYnY5TI"
+    },
+    "DepositToAccountRef": {
+      "value": "QB:144",
+      "name": "checking"
+    },
+    "TotalAmt": 10498,
+    "ApplyTaxAfterDiscount": false,
+    "Balance": 10498
+  }
+]

@@ -1,0 +1,95 @@
+[
+    {
+        "Name":"Chase Operating",
+        "SubAccount":false,
+        "Active":true,
+        "Classification":"Asset",
+        "AccountType":"Bank",
+        "AcctNum":"10400",
+        "CurrentBalance":12823.22,
+        "OnlineBankingEnabled":true,
+        "status":"Synchronized",
+        "Id":"QB:147",
+        "SyncToken":"1",
+        "MetaData":{
+            "CreateTime":"2013-05-22T19:46:46Z",
+            "LastUpdatedTime":"2013-09-20T20:29:09Z"
+        }
+    },
+    {
+        "Name":"Pre-paid Capital Stock",
+        "SubAccount":true,
+        "ParentRef":{
+            "value":"QB:37",
+            "name":"Capital Stock"
+        },
+        "Active":true,
+        "Classification":"Equity",
+        "AccountType":"Equity",
+        "AcctNum":"30400",
+        "CurrentBalance":-3037.75,
+        "OnlineBankingEnabled":false,
+        "status":"Synchronized",
+        "Id":"QB:146",
+        "SyncToken":"1",
+        "MetaData":{
+            "CreateTime":"2013-05-20T17:20:16Z",
+            "LastUpdatedTime":"2013-05-20T23:30:07Z"
+        }
+    },
+    {
+        "Name":"Other COGS Services",
+        "SubAccount":false,
+        "Active":true,
+        "Classification":"Expense",
+        "AccountType":"Cost of Goods Sold",
+        "AcctNum":"50020",
+        "CurrentBalance":0.22,
+        "OnlineBankingEnabled":false,
+        "status":"Synchronized",
+        "Id":"QB:145",
+        "SyncToken":"1",
+        "MetaData":{
+            "CreateTime":"2013-05-17T17:25:00Z",
+            "LastUpdatedTime":"2013-05-20T23:30:07Z"
+        }
+    },
+    {
+        "Name":"Owner's Equity",
+        "SubAccount":false,
+        "Active":true,
+        "Classification":"Equity",
+        "AccountType":"Equity",
+        "AcctNum":"31500",
+        "CurrentBalance":-11165.6,
+        "OnlineBankingEnabled":false,
+        "status":"Synchronized",
+        "Id":"QB:144",
+        "SyncToken":"1",
+        "MetaData":{
+            "CreateTime":"2013-05-16T15:53:47Z",
+            "LastUpdatedTime":"2013-05-20T23:30:07Z"
+        }
+    },
+    {
+        "Name":"Webhosting",
+        "SubAccount":true,
+        "ParentRef":{
+            "value":"QB:68",
+            "name":"Cost of Goods Sold"
+        },
+        "Active":true,
+        "Classification":"Expense",
+        "AccountType":"Cost of Goods Sold",
+        "AcctNum":"50010",
+        "CurrentBalance":13617.44,
+        "OnlineBankingEnabled":false,
+        "status":"Synchronized",
+        "Id":"QB:143",
+        "SyncToken":"1",
+        "MetaData":{
+            "CreateTime":"2013-01-29T01:54:52Z",
+            "LastUpdatedTime":"2013-05-20T23:30:07Z"
+        }
+    }
+]

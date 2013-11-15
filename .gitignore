@@ -26,3 +26,5 @@ octopress/source/_stash
 octopress/source/stylesheets/screen.css
 octopress/vendor
 octopress/node_modules
+
+showcase/source/src-docs/

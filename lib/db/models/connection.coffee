@@ -1,9 +1,12 @@
-__proto = require './__proto'
-mongoose = require 'mongoose'
+mongoose = require "mongoose"
 Schema = mongoose.Schema
+message = require("../../message").message
+__proto = require "./__proto"
 
 connectionSchema = new Schema
-  name: {type: String, required: true}
+  company_id: String
+  tenant_id: String
+  name: String
   provider: String
   realm: String
   oauth_consumer_key: String
@@ -13,15 +16,25 @@ connectionSchema = new Schema
 
   subdomain: String
   company_id: String
-  username: String
-  password: String
+  token: String
 
-connectionSchema.pre 'save', (next)->
-  Connection::findOne {name: @name}, (err, data)->
-    return next err if err
-    return next new Error 'fields are not unique' if data?
-    next()
+class Connection extends __proto("Connection", connectionSchema)
+  # Creates a new connection
+  create: (doc, cb) ->
+    super doc, (err, model) ->
+      message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "create"}
+      cb err, model if cb
 
-class Connection extends __proto('Connection', connectionSchema)
+  # Update connection with changes passed to doc
+  update: (id, doc, cb)->
+    super id, doc, (err, model) ->
+      message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "update"}
+      cb err, model if cb
+
+  # Remove a connection
+  destroy: (id, cb)->
+    super id, (err, model) ->
+      message model?.tenant_id, "connnection", {id: model?.id, err: err, status: "destroy"}
+      cb err, model if cb
 
 module.exports = Connection

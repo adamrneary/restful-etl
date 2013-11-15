@@ -34,6 +34,11 @@
               </a>
             
               
+              <a class="source" href="error.html">
+                error.coffee
+              </a>
+            
+              
               <a class="source" href="schedule.html">
                 schedule.coffee
               </a>
@@ -66,33 +71,83 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre>__proto = require <span class="string">'./__proto'</span>
-mongoose = require <span class="string">'mongoose'</span>
+            <div class="content"><div class='highlight'><pre>mongoose = <span class="built_in">require</span> <span class="string">"mongoose"</span>
 Schema = mongoose.Schema
+message = <span class="built_in">require</span>(<span class="string">"../../message"</span>).message
+__proto = <span class="built_in">require</span> <span class="string">"./__proto"</span>
 
 connectionSchema = <span class="keyword">new</span> Schema
-  name: {type: String, required: <span class="literal">true</span>}
-  provider: String
-  realm: String
-  oauth_consumer_key: String
-  oauth_consumer_secret: String
-  oauth_access_key: String
-  oauth_access_secret: String
+  <span class="attribute">company_id</span>: String
+  <span class="attribute">tenant_id</span>: String
+  <span class="attribute">name</span>: String
+  <span class="attribute">provider</span>: String
+  <span class="attribute">realm</span>: String
+  <span class="attribute">oauth_consumer_key</span>: String
+  <span class="attribute">oauth_consumer_secret</span>: String
+  <span class="attribute">oauth_access_key</span>: String
+  <span class="attribute">oauth_access_secret</span>: String
 
-  subdomain: String
-  company_id: String
-  username: String
-  password: String
+  <span class="attribute">subdomain</span>: String
+  <span class="attribute">company_id</span>: String
+  <span class="attribute">token</span>: String
 
-connectionSchema.pre <span class="string">'save'</span>, (next)-&gt;
-  Connection::findOne {name: <span class="property">@name</span>}, (err, data)-&gt;
-    <span class="keyword">return</span> next err <span class="keyword">if</span> err
-    <span class="keyword">return</span> next <span class="keyword">new</span> Error <span class="string">'fields are not unique'</span> <span class="keyword">if</span> data?
-    next()
+<span class="class"><span class="keyword">class</span> <span class="title">Connection</span> <span class="keyword">extends</span> <span class="title">__proto</span>("<span class="title">Connection</span>", <span class="title">connectionSchema</span>)</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Creates a new connection</p>
 
-<span class="class"><span class="keyword">class</span> <span class="title">Connection</span> <span class="keyword">extends</span> <span class="title">__proto</span>('<span class="title">Connection</span>', <span class="title">connectionSchema</span>)</span>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">create</span>: <span class="function"><span class="params">(doc, cb)</span> -&gt;</span>
+    <span class="keyword">super</span> doc, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"connnection"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"create"</span>}
+      cb err, model <span class="keyword">if</span> cb</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Update connection with changes passed to doc</p>
 
-module.exports = Connection</pre></div></div>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">update</span>: <span class="function"><span class="params">(id, doc, cb)</span>-&gt;</span>
+    <span class="keyword">super</span> id, doc, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"connnection"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"update"</span>}
+      cb err, model <span class="keyword">if</span> cb</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Remove a connection</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="attribute">destroy</span>: <span class="function"><span class="params">(id, cb)</span>-&gt;</span>
+    <span class="keyword">super</span> id, <span class="function"><span class="params">(err, model)</span> -&gt;</span>
+      message model?.tenant_id, <span class="string">"connnection"</span>, {<span class="attribute">id</span>: model?.id, <span class="attribute">err</span>: err, <span class="attribute">status</span>: <span class="string">"destroy"</span>}
+      cb err, model <span class="keyword">if</span> cb
+
+module.<span class="built_in">exports</span> = Connection</pre></div></div>
             
         </li>
         

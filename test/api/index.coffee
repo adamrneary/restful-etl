@@ -24,15 +24,6 @@ describe 'ETL connection api', ->
       .expect(200)
       .end (done)
 
-  it 'should raise an error when trying to create connection with existing name', (done)->
-    request(app)
-      .post('/connection')
-      .send({ name: 'NAME1' })
-      .set('Accept', 'application/json')
-      .set('Content-type', 'application/json')
-      .expect(500)
-      .end (done)
-
   it 'create and get connection', (done)->
     request(app)
       .post('/connection')
@@ -103,36 +94,6 @@ describe 'ETL batch api', ->
         id = req.body._id
         request(app)
           .get("/batch/#{id}")
-          .expect(200)
-          .end(done)
-
-  it 'create and change batch', (done)->
-    request(app)
-      .post('/batch')
-      .send({source:{connection:{id:"connection_id_1"}}})
-      .set('Accept', 'application/json')
-      .set('Content-type', 'application/json')
-      .expect(200)
-      .end (err, req)->
-        return done err if err?
-        id = req.body._id
-        request(app)
-          .put("/batch/#{id}")
-          .send({source:{connection:{id:"connection_id_1_1"}}})
-          .set('Accept', 'application/json')
-          .set('Content-type', 'application/json')
-          .expect(200)
-          .end(done)
-
-  it 'create and delete batch', (done)->
-    request(app)
-      .post('/batch')
-      .expect(200)
-      .end (err, req)->
-        return done err if err?
-        id = req.body._id
-        request(app)
-          .del("/batch/#{id}")
           .expect(200)
           .end(done)
 
@@ -211,7 +172,7 @@ describe 'ETL schedule api', ->
   it 'create schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME1"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)
@@ -220,7 +181,7 @@ describe 'ETL schedule api', ->
   it 'create and get schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME2"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)
@@ -235,7 +196,7 @@ describe 'ETL schedule api', ->
   it 'create and change schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME3"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)
@@ -244,7 +205,7 @@ describe 'ETL schedule api', ->
         id = req.body._id
         request(app)
           .put("/schedule/#{id}")
-          .send({name: "NAME3_1"})
+          .send({cron_time: "1 * * * *"})
           .set('Accept', 'application/json')
           .set('Content-type', 'application/json')
           .expect(200)
@@ -253,7 +214,7 @@ describe 'ETL schedule api', ->
   it 'create and delete schedule', (done)->
     request(app)
       .post('/schedule')
-      .send({name: "NAME4"})
+      .send({cron_time: "* * * * *"})
       .set('Accept', 'application/json')
       .set('Content-type', 'application/json')
       .expect(200)

@@ -1,1 +1,6194 @@
-[{"Name":"Profitably Basic Monthly","Active":true,"Taxable":true,"UnitPrice":49.99,"Type":"Service","IncomeAccountRef":{"value":"QB:9","name":"Subscription Income"},"PurchaseCost":0,"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"status":"Synchronized","Id":"QB:9","SyncToken":"1","MetaData":{"CreateTime":"2010-11-06T20:32:06Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"MacBook Pro 15\"","Active":true,"Taxable":true,"UnitPrice":1958.66,"Type":"NonInventory","PurchaseCost":1717.99,"ExpenseAccountRef":{"value":"QB:58","name":"IT Hardware"},"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"SpecialItem":false,"status":"Synchronized","Id":"QB:8","SyncToken":"1","MetaData":{"CreateTime":"2010-07-12T19:49:24Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"External development","Active":true,"Taxable":false,"UnitPrice":0,"Type":"Service","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:92","name":"Engineering contractors"},"SalesTaxCodeRef":{"value":"QB:2","name":"Non"},"status":"Synchronized","Id":"QB:7","SyncToken":"1","MetaData":{"CreateTime":"2010-06-25T18:15:34Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Google Apps User (annual)","Active":true,"Taxable":false,"UnitPrice":45.83,"Type":"Service","PurchaseCost":45.76,"ExpenseAccountRef":{"value":"QB:59","name":"IT Software"},"SalesTaxCodeRef":{"value":"QB:2","name":"Non"},"status":"Synchronized","Id":"QB:5","SyncToken":"1","MetaData":{"CreateTime":"2010-04-29T15:05:55Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"SSL certificate","Active":true,"Taxable":true,"UnitPrice":0,"Type":"NonInventory","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:21","name":"Permits/licenses/certs"},"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"SpecialItem":false,"status":"Synchronized","Id":"QB:4","SyncToken":"1","MetaData":{"CreateTime":"2010-04-29T14:38:02Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Market research surve\"complete\"","Active":true,"Taxable":false,"UnitPrice":67.5,"Type":"Service","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:70","name":"Market research and lead gen"},"SalesTaxCodeRef":{"value":"QB:2","name":"Non"},"status":"Synchronized","Id":"QB:3","SyncToken":"1","MetaData":{"CreateTime":"2010-04-29T14:17:36Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Highrise Basic","Active":true,"Taxable":false,"UnitPrice":24,"Type":"Service","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:59","name":"IT Software"},"SalesTaxCodeRef":{"value":"QB:2","name":"Non"},"status":"Synchronized","Id":"QB:2","SyncToken":"1","MetaData":{"CreateTime":"2010-04-28T23:21:44Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"chair","Active":true,"Taxable":true,"UnitPrice":400,"Type":"Other Charge","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:30","name":"Office Supplies"},"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"SpecialItem":false,"status":"Synchronized","Id":"QB:18","SyncToken":"1","MetaData":{"CreateTime":"2013-05-17T17:31:11Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Monitor (expensed)","Active":true,"Taxable":true,"UnitPrice":0,"Type":"NonInventory","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:64","name":"Office"},"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"SpecialItem":false,"status":"Synchronized","Id":"QB:16","SyncToken":"1","MetaData":{"CreateTime":"2012-01-27T01:04:28Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Profitably Discount","Active":true,"Taxable":true,"RatePercent":0,"Type":"Discount","IncomeAccountRef":{"value":"QB:12","name":"Discounts & rebates"},"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"status":"Synchronized","Id":"QB:14","SyncToken":"1","MetaData":{"CreateTime":"2011-02-05T19:29:47Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Discount","Active":true,"Taxable":true,"RatePercent":0,"Type":"Discount","IncomeAccountRef":{"value":"QB:12","name":"Discounts & rebates"},"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"status":"Synchronized","Id":"QB:13","SyncToken":"1","MetaData":{"CreateTime":"2011-02-05T19:28:39Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Profitably Basic Annual","Description":"Annual Plan (Deferred over 12 months)","Active":true,"Taxable":true,"UnitPrice":99.99,"Type":"Service","IncomeAccountRef":{"value":"QB:136","name":"Deferred Income (Annual Plans)"},"PurchaseCost":0,"SalesTaxCodeRef":{"value":"QB:1","name":"Tax"},"status":"Synchronized","Id":"QB:12","SyncToken":"1","MetaData":{"CreateTime":"2011-02-05T19:25:57Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Intuit fees","Active":true,"Taxable":false,"UnitPrice":0,"Type":"Service","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:98","name":"Commissions"},"SalesTaxCodeRef":{"value":"QB:2","name":"Non"},"status":"Synchronized","Id":"QB:10","SyncToken":"1","MetaData":{"CreateTime":"2010-11-06T20:34:36Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}},{"Name":"Basecamp Personal","Active":true,"Taxable":false,"UnitPrice":12,"Type":"Service","PurchaseCost":0,"ExpenseAccountRef":{"value":"QB:59","name":"IT Software"},"SalesTaxCodeRef":{"value":"QB:2","name":"Non"},"status":"Synchronized","Id":"QB:1","SyncToken":"1","MetaData":{"CreateTime":"2010-04-28T23:20:15Z","LastUpdatedTime":"2013-05-20T23:29:51Z"}}]
+[
+{
+"Name":"eBillity Discount",
+"Active":true,
+"Taxable":false,
+"RatePercent":0,
+"Type":"Discount",
+"ExpenseAccountRef":{
+"name":"eBillity Income"
+},
+"status":"SyncError",
+"Id":"NG:3375324",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-14T10:38:14Z",
+"LastUpdatedTime":"2013-03-21T18:56:58Z"
+}
+},
+{
+"Name":"Upfront Deposit",
+"Description":"Customer up front deposit",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:88",
+"name":"Customer Deposits"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:99",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Karen delete",
+"Active":false,
+"Taxable":false,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:98",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:23Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Installation Repair",
+"Description":"Installation, Repair Labor",
+"Active":true,
+"Taxable":false,
+"UnitPrice":35,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:97",
+"name":"Revenue - Repair Service"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:97",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:23Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Installation Labor",
+"Description":"Installation, Initial Labor",
+"Active":true,
+"Taxable":false,
+"UnitPrice":400,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:96",
+"name":"Revenue - Installation Service"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:96",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:23Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Room Addition/Remodel",
+"Description":"Project Total",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":true,
+"ItemGroupDetail":{
+"ItemGroupLine":[
+{
+"ItemRef":{
+"value":"QB:9",
+"name":"Floor Plans"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:8",
+"name":"Concrete Slab"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:10",
+"name":"Framing"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:36",
+"name":"Exterior"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:51",
+"name":"Window"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:19",
+"name":"Duct Work"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:21",
+"name":"Insulating"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:20",
+"name":"Electrical"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:18",
+"name":"Drywall"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:46",
+"name":"Flooring"
+},
+"Qty":0
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:94",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Reimb Group",
+"Description":"Time and materials",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":false,
+"status":"Synchronized",
+"Id":"QB:93",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Door set",
+"Description":"Exterior door and hardware set",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":false,
+"ItemGroupDetail":{
+"ItemGroupLine":[
+{
+"ItemRef":{
+"value":"QB:33",
+"name":"Doorknobs Std"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:36",
+"name":"Exterior"
+},
+"Qty":1
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:92",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"A3 Custom Storage Shed",
+"Description":"Custom Storage Building - model A3",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":false,
+"ItemGroupDetail":{
+"ItemGroupLine":[
+{
+"ItemRef":{
+"value":"QB:41",
+"name":"Rough"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":0
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:91",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"A2 Custom Storage Shed",
+"Description":"Custom Storage Building - Model A2",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":false,
+"ItemGroupDetail":{
+"ItemGroupLine":[
+{
+"ItemRef":{
+"value":"QB:41",
+"name":"Rough"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":0
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:90",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Floor Plans",
+"Description":"Floor plans",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:43",
+"name":"Design Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:9",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"A1 Custom Storage Shed",
+"Description":"Custom Storage Building - Model A1",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":false,
+"ItemGroupDetail":{
+"ItemGroupLine":[
+{
+"ItemRef":{
+"value":"QB:41",
+"name":"Rough"
+},
+"Qty":0
+},
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":0
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:89",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"BOM",
+"Active":true,
+"Type":"Group",
+"PrintGroupedItems":false,
+"ItemGroupDetail":{
+"ItemGroupLine":[
+{
+"ItemRef":{
+"value":"QB:28",
+"name":"Cabinet Pulls"
+},
+"Qty":24
+},
+{
+"ItemRef":{
+"value":"QB:29",
+"name":"Light Pine"
+},
+"Qty":1
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:88",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Interior Door kit",
+"Description":"complete Interior door",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Assembly",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"complete Interior door",
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"AvgCost":0,
+"QtyOnHand":6,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"BuildPoint":0,
+"ItemAssemblyDetail":{
+"ItemAssemblyLine":[
+{
+"ItemRef":{
+"value":"QB:33",
+"name":"Doorknobs Std"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:37",
+"name":"Interior"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:32",
+"name":"Brass hinges"
+},
+"Qty":3
+},
+{
+"ItemRef":{
+"value":"QB:30",
+"name":"Door Frame"
+},
+"Qty":1
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:87",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Payment",
+"Description":"Down payment received",
+"Active":true,
+"Type":"Payment",
+"PaymentMethodRef":{
+"value":"QB:2",
+"name":"Check"
+},
+"DepositToAccountRef":{
+"value":"QB:65",
+"name":"Undeposited Funds"
+},
+"status":"Synchronized",
+"Id":"QB:82",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Pre-Payment",
+"Active":true,
+"Type":"Payment",
+"PaymentMethodRef":{
+"value":"QB:2",
+"name":"Check"
+},
+"DepositToAccountRef":{
+"value":"QB:65",
+"name":"Undeposited Funds"
+},
+"status":"Synchronized",
+"Id":"QB:81",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Discount",
+"Description":"10% Discount",
+"Active":true,
+"Taxable":true,
+"RatePercent":10,
+"Type":"Discount",
+"IncomeAccountRef":{
+"value":"QB:64",
+"name":"Less Discounts given"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:80",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Concrete Slab",
+"Description":"Foundation slab - prep and pouring",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:44",
+"name":"Labor Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:8",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Subtotal",
+"Description":"Subtotal",
+"Active":true,
+"Type":"Subtotal",
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:79",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Reimb Subt",
+"Description":"Subtotal of Reimbursable Expenses",
+"Active":true,
+"Type":"Subtotal",
+"SpecialItem":true,
+"SpecialItemType":"ReimbursableExpenseSubtotal",
+"status":"Synchronized",
+"Id":"QB:78",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Retainage 2",
+"Description":"Final billing for 10% retainage",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:63",
+"name":"Retainage Receivable"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:77",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Retainage 1",
+"Description":"10% retainage to be billed after job is complete and approved.",
+"Active":true,
+"Taxable":false,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:63",
+"name":"Retainage Receivable"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:76",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Permit",
+"Description":"Building permit",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:61",
+"name":"Permit Reimbursement Income"
+},
+"PurchaseDesc":"Building permit",
+"PurchaseCost":1,
+"ExpenseAccountRef":{
+"value":"QB:62",
+"name":"Permits and Licenses"
+},
+"PrefVendorRef":{
+"value":"QB:65",
+"name":"City of Bayshore"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:75",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Fin Chg",
+"Description":"Finance Charges on Overdue Balance",
+"Active":true,
+"Taxable":false,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:156",
+"name":"Interest Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:74",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Equip Rental",
+"Description":"Equipment Rental",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:44",
+"name":"Labor Income"
+},
+"PurchaseDesc":"Equipment Rental",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:59",
+"name":"Equipment Rental"
+},
+"PrefVendorRef":{
+"value":"QB:64",
+"name":"Hopkins Construction Rentals"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:73",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:04Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Delivery Charges",
+"Description":"Freight & Delivery",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:56",
+"name":"Reimbursed Freight & Delivery"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:58",
+"name":"Freight & Delivery"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:72",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Bad debt",
+"Description":"Bad debt or write-off amounts",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:57",
+"name":"Bad debt"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:71",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Deposit",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:42",
+"name":"Construction Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:70",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Blueprints",
+"Description":"Blueprints",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:43",
+"name":"Design Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:7",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Freight Reimbursement",
+"Description":"Freight and Delivery Reimbursement",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:56",
+"name":"Reimbursed Freight & Delivery"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:69",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Blueprint changes",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:43",
+"name":"Design Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:6",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Window",
+"Description":"Window",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Window",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:51",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Plumb Fixtrs",
+"Description":"Plumbing fixtures",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Plumbing fixtures",
+"PurchaseCost":1,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:58",
+"name":"Thomas Kitchen & Bath"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:50",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"welding",
+"Active":true,
+"Taxable":false,
+"UnitPrice":13.5,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:6",
+"name":"Consulting Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:5",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-08-31T18:50:54Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Patio Door",
+"Active":true,
+"Taxable":true,
+"UnitPrice":200,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseCost":124.75,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:49",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Lighting",
+"Description":"Lighting",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseCost":52,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:63",
+"name":"Daigle Lighting"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:48",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Fluorescent Ceiling Lighting",
+"Description":"Fluorescent Lights",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseCost":45,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:63",
+"name":"Daigle Lighting"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:47",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Flooring",
+"Description":"Flooring",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Flooring",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:59",
+"name":"Patton Hardware Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:46",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Electrical Materials",
+"Description":"Electrical Materials",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Electrical Materials",
+"PurchaseCost":2000,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:51",
+"name":"C.U. Electric"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:45",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Counter",
+"Description":"Custom made counter top",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1899.98,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Custom made counter top",
+"PurchaseCost":1750,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:58",
+"name":"Thomas Kitchen & Bath"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:44",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Cabinets - Custom",
+"Description":"Custom counters",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseCost":2100,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:58",
+"name":"Thomas Kitchen & Bath"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:43",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Appliance",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Appliance",
+"PurchaseCost":75,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:62",
+"name":"McClain Appliances"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:42",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Rough",
+"Description":"Rough lumber",
+"Active":true,
+"ParentRef":{
+"value":"QB:38",
+"name":"Lumber"
+},
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Rough lumber",
+"PurchaseCost":475,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:61",
+"name":"Timberloft Lumber"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:41",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Decking",
+"Description":"Decking lumber",
+"Active":true,
+"ParentRef":{
+"value":"QB:38",
+"name":"Lumber"
+},
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Decking lumber",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:61",
+"name":"Timberloft Lumber"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:40",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Business Trip Meals",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:17",
+"name":"Meals and Entertainment"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:4",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-05-25T17:57:22Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Trim",
+"Description":"Trim lumber",
+"Active":true,
+"ParentRef":{
+"value":"QB:38",
+"name":"Lumber"
+},
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Trim lumber",
+"PurchaseCost":95,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:61",
+"name":"Timberloft Lumber"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:39",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Lumber",
+"Description":"Lumber",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Lumber",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:51",
+"name":"Job Materials"
+},
+"PrefVendorRef":{
+"value":"QB:61",
+"name":"Timberloft Lumber"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:38",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Interior",
+"Description":"Interior wood door",
+"Active":true,
+"ParentRef":{
+"value":"QB:35",
+"name":"Wood Door"
+},
+"Taxable":true,
+"UnitPrice":72,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Interior door - P-187055T",
+"PurchaseCost":35,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"AvgCost":35,
+"QtyOnHand":67,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:37",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Exterior",
+"Description":"Exterior wood door",
+"Active":true,
+"ParentRef":{
+"value":"QB:35",
+"name":"Wood Door"
+},
+"Taxable":true,
+"UnitPrice":120,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Exterior door - #P-10981",
+"PurchaseCost":590.39,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"AvgCost":590.39,
+"QtyOnHand":34,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:36",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Wood Door",
+"Description":"Doors",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:59",
+"name":"Patton Hardware Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:35",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Lk Doorknobs",
+"Description":"Locking interior doorknobs",
+"Active":true,
+"ParentRef":{
+"value":"QB:31",
+"name":"Hardware"
+},
+"Taxable":true,
+"UnitPrice":38,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Locking interior doorknobs Part # DK415",
+"PurchaseCost":34.95,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"AvgCost":34.95,
+"QtyOnHand":24,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:34",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Training",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3384044",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Other",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3384043",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Review",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3383688",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Meeting",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3383687",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Documentation",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3383686",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Correspondence",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3383685",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"BuilderTREND Invoice Item",
+"Description":"BuilderTREND Invoice Item",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:130131",
+"name":"BuilderTREND Income Account"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3380868",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2013-01-19T15:57:48Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Research",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3375322",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Phone Call",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3375321",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Draft",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3375320",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Consulting",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"NG:3375319",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Doorknobs Std",
+"Description":"Standard Doorknobs",
+"Active":true,
+"ParentRef":{
+"value":"QB:31",
+"name":"Hardware"
+},
+"Taxable":true,
+"UnitPrice":30,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Doorknobs Part # DK 3704",
+"PurchaseCost":15,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"AvgCost":15,
+"QtyOnHand":145,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:33",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"897-1069-3-ND digikey.com",
+"Description":"Led White Round Clear 5Mm",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0.22,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"NG:116023",
+"name":"WhatWeOrder Resale"
+},
+"PurchaseCost":0.22,
+"ExpenseAccountRef":{
+"value":"NG:112172",
+"name":"WhatWeOrder Purchases"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3275929",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-21T22:53:35Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"480-2482-ND digikey.com",
+"Description":"Bracket Mount Adj For Lrg Switch",
+"Active":true,
+"Taxable":true,
+"UnitPrice":17.55,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"NG:116023",
+"name":"WhatWeOrder Resale"
+},
+"PurchaseCost":17.55,
+"ExpenseAccountRef":{
+"value":"NG:112172",
+"name":"WhatWeOrder Purchases"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3275928",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-21T22:53:35Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SLMD481H08-ND digikey.com",
+"Description":"Solar Cell",
+"Active":true,
+"Taxable":true,
+"UnitPrice":24.11,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"NG:116023",
+"name":"WhatWeOrder Resale"
+},
+"PurchaseCost":24.11,
+"ExpenseAccountRef":{
+"value":"NG:112172",
+"name":"WhatWeOrder Purchases"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3275927",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-21T22:53:35Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Z1648-ND digikey.com",
+"Description":"Control Box 1 Hole Emergency Yel",
+"Active":true,
+"Taxable":true,
+"UnitPrice":30.09,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"NG:116023",
+"name":"WhatWeOrder Resale"
+},
+"PurchaseCost":30.09,
+"ExpenseAccountRef":{
+"value":"NG:112172",
+"name":"WhatWeOrder Purchases"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3275926",
+"SyncToken":"2",
+"MetaData":{
+"CreateTime":"2012-12-21T22:53:35Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Z2680-ND digikey.com",
+"Description":"Control Relay Led 10I/O 120Vac",
+"Active":true,
+"Taxable":true,
+"UnitPrice":127.41,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"NG:116023",
+"name":"WhatWeOrder Resale"
+},
+"PurchaseCost":127.41,
+"ExpenseAccountRef":{
+"value":"NG:112172",
+"name":"WhatWeOrder Purchases"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3275925",
+"SyncToken":"3",
+"MetaData":{
+"CreateTime":"2012-12-21T22:53:35Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00010",
+"Description":"Windstop Parka",
+"Active":true,
+"Taxable":true,
+"UnitPrice":35,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3259929",
+"SyncToken":"6",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:13Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00004",
+"Description":"Red Zipup Fleece",
+"Active":true,
+"Taxable":true,
+"UnitPrice":25.99,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3259928",
+"SyncToken":"17",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:13Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00009",
+"Description":"Uniform",
+"Active":true,
+"Taxable":true,
+"UnitPrice":15,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3259927",
+"SyncToken":"5",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:13Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00003",
+"Description":"Suitcase",
+"Active":true,
+"Taxable":true,
+"UnitPrice":79.99,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3259926",
+"SyncToken":"14",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:13Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00007",
+"Description":"Dress Shirt",
+"Active":true,
+"Taxable":true,
+"UnitPrice":24.99,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3259925",
+"SyncToken":"6",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:13Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00005",
+"Description":"Long Sleeve T-Shirt",
+"Active":true,
+"Taxable":true,
+"UnitPrice":31.99,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3256131",
+"SyncToken":"5",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:13Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00006",
+"Description":"Contemporary Coffee Mug",
+"Active":true,
+"Taxable":true,
+"UnitPrice":5.99,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3256130",
+"SyncToken":"8",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:12Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00001",
+"Description":"Canvis Hat",
+"Active":true,
+"Taxable":true,
+"UnitPrice":12.99,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3256129",
+"SyncToken":"17",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:12Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00008",
+"Description":"Pivot USB Drive 2GB",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3256128",
+"SyncToken":"4",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:12Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"-S",
+"Description":"Dress Shirt (Small)",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3256127",
+"SyncToken":"4",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:12Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"-SBLK",
+"Description":"Long Sleeve T-Shirt (Small,Black)",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3256126",
+"SyncToken":"4",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:12Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PRO00002",
+"Description":"Beach Tote",
+"Active":true,
+"Taxable":true,
+"UnitPrice":32,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:60",
+"name":"Other Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:142",
+"name":"Supplies"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"NG:3254359",
+"SyncToken":"21",
+"MetaData":{
+"CreateTime":"2012-12-19T23:31:12Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Brass hinges",
+"Description":"standard interior brass hinge",
+"Active":true,
+"ParentRef":{
+"value":"QB:31",
+"name":"Hardware"
+},
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"standard interior brass hinge",
+"PurchaseCost":3,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:60",
+"name":"Perry Windows & Doors"
+},
+"AvgCost":3,
+"QtyOnHand":200,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:32",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:03Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Hardware",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:59",
+"name":"Patton Hardware Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:31",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Door Frame",
+"Description":"standard interior door frame",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"standard interior door frame",
+"PurchaseCost":12,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:59",
+"name":"Patton Hardware Supplies"
+},
+"AvgCost":12,
+"QtyOnHand":12,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:30",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Travel",
+"Description":"Travel to clients site",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:6",
+"name":"Consulting Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:23",
+"name":"Travel Expense"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:3",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-04-23T17:20:08Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Light Pine",
+"Description":"Light pine kitchen cabinet wall unit",
+"Active":true,
+"ParentRef":{
+"value":"QB:27",
+"name":"Cabinets"
+},
+"Taxable":true,
+"UnitPrice":1799,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Light pine kitchen cabinet wall unit \r\n#CLD- 1235-p",
+"PurchaseCost":1500,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:59",
+"name":"Patton Hardware Supplies"
+},
+"AvgCost":1500,
+"QtyOnHand":34,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"ReorderPoint":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:29",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Cabinet Pulls",
+"Description":"Cabinet Pulls",
+"Active":true,
+"ParentRef":{
+"value":"QB:27",
+"name":"Cabinets"
+},
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Cabinet Pulls",
+"PurchaseCost":3,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:59",
+"name":"Patton Hardware Supplies"
+},
+"AvgCost":3,
+"QtyOnHand":67,
+"QtyOnPurchaseOrder":0,
+"QtyOnSalesOrder":0,
+"ReorderPoint":15,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:28",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Cabinets",
+"Description":"Cabinets",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:50",
+"name":"Materials Income"
+},
+"PurchaseDesc":"Cabinets",
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:29",
+"name":"Inventory Asset"
+},
+"PrefVendorRef":{
+"value":"QB:58",
+"name":"Thomas Kitchen & Bath"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":15,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:27",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Tile &Counter",
+"Description":"Install tile or counter",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Install tile or counter",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:57",
+"name":"Wheeler's Tile Etc."
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:26",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Roofing",
+"Description":"Roofing",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Roofing",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:56",
+"name":"Sloan Roofing"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:25",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Plumbing",
+"Description":"Plumbing",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Plumbing",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:55",
+"name":"Lew Plumbing"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:24",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Painting",
+"Description":"Painting",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Painting",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:54",
+"name":"Washuta & Son Painting"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:23",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:42Z"
+}
+},
+{
+"Name":"Metal Wrk",
+"Description":"Metal Work",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Metal Work",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:53",
+"name":"Hamlin Metal"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:22",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Insulating",
+"Description":"Install insulation",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Install insulation",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:52",
+"name":"Keswick Insulation"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:21",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Electrical",
+"Description":"Electrical work",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Electrical work",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:51",
+"name":"C.U. Electric"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:20",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"domanin purchase",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:28",
+"name":"Sales Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:36",
+"name":"General Client Expenses"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:2",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-04-20T23:20:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Duct Work",
+"Description":"Heating & Air Conditioning Duct Work",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Heating & Air Condition Duct Work",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:48",
+"name":"Vu Contracting"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:19",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"eBillity Discount",
+"Active":true,
+"Taxable":true,
+"RatePercent":0,
+"Type":"Discount",
+"IncomeAccountRef":{
+"value":"NG:132026",
+"name":"eBillity Income"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:180",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2013-02-18T20:56:21Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Drywall",
+"Description":"Install drywall",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Install drywall",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:50",
+"name":"Middlefield Drywall"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:18",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Carpet",
+"Description":"Install carpeting",
+"Active":true,
+"ParentRef":{
+"value":"QB:16",
+"name":"Subs"
+},
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Install carpeting",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:49",
+"name":"Larson Flooring"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:17",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Subs",
+"Description":"Subcontracted services",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:47",
+"name":"Subcontracted Labor Income"
+},
+"PurchaseDesc":"Subcontracted services",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:49",
+"name":"Subcontractors"
+},
+"PrefVendorRef":{
+"value":"QB:48",
+"name":"Vu Contracting"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:16",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:02Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"3000-UL",
+"Description":"ULTIMATE 3000",
+"Active":true,
+"Taxable":true,
+"UnitPrice":7500,
+"Type":"Assembly",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"ULTIMATE 3000",
+"PurchaseCost":4774.65,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:75",
+"name":"Finished Goods Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"BuildPoint":10,
+"ItemAssemblyDetail":{
+"ItemAssemblyLine":[
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":2
+},
+{
+"ItemRef":{
+"value":"QB:153",
+"name":"Utilities"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:151",
+"name":"Grease"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:142",
+"name":"TRGU"
+},
+"Qty":2
+},
+{
+"ItemRef":{
+"value":"QB:109",
+"name":"DR-4-AL"
+},
+"Qty":22
+},
+{
+"ItemRef":{
+"value":"QB:141",
+"name":"STRE-1/2"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:105",
+"name":"BO-1/2x4-J"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:148",
+"name":"WINU-OR"
+},
+"Qty":3
+},
+{
+"ItemRef":{
+"value":"QB:145",
+"name":"URCO"
+},
+"Qty":8
+},
+{
+"ItemRef":{
+"value":"QB:149",
+"name":"WINU-YE"
+},
+"Qty":3
+},
+{
+"ItemRef":{
+"value":"QB:125",
+"name":"PUBP"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:129",
+"name":"REUN-1/2HP"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:103",
+"name":"ANPI-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:113",
+"name":"HETO"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:135",
+"name":"SC-10x.5-SS"
+},
+"Qty":25
+},
+{
+"ItemRef":{
+"value":"QB:127",
+"name":"PUKH"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:124",
+"name":"PU-1800"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:126",
+"name":"PUHC"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:102",
+"name":"ANBA-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:141",
+"name":"STRE-1/2"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:140",
+"name":"SPRI"
+},
+"Qty":1
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:157",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"2000-PT",
+"Description":"POWERTRAK-2000",
+"Active":true,
+"Taxable":true,
+"UnitPrice":6000,
+"Type":"Assembly",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Reduced Labor from 2 to 1 (Qty)",
+"PurchaseCost":3957.01,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:75",
+"name":"Finished Goods Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"BuildPoint":10,
+"ItemAssemblyDetail":{
+"ItemAssemblyLine":[
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:153",
+"name":"Utilities"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:151",
+"name":"Grease"
+},
+"Qty":2
+},
+{
+"ItemRef":{
+"value":"QB:142",
+"name":"TRGU"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:109",
+"name":"DR-4-AL"
+},
+"Qty":22
+},
+{
+"ItemRef":{
+"value":"QB:148",
+"name":"WINU-OR"
+},
+"Qty":3
+},
+{
+"ItemRef":{
+"value":"QB:145",
+"name":"URCO"
+},
+"Qty":8
+},
+{
+"ItemRef":{
+"value":"QB:149",
+"name":"WINU-YE"
+},
+"Qty":3
+},
+{
+"ItemRef":{
+"value":"QB:125",
+"name":"PUBP"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:103",
+"name":"ANPI-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:113",
+"name":"HETO"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:135",
+"name":"SC-10x.5-SS"
+},
+"Qty":25
+},
+{
+"ItemRef":{
+"value":"QB:127",
+"name":"PUKH"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:115",
+"name":"MOST"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:124",
+"name":"PU-1800"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:126",
+"name":"PUHC"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:108",
+"name":"DE-R12"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:102",
+"name":"ANBA-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:111",
+"name":"ELCO-12G"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:140",
+"name":"SPRI"
+},
+"Qty":1
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:156",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"1500-PM",
+"Description":"POWER MANUAL 1500",
+"Active":true,
+"Taxable":true,
+"UnitPrice":4250,
+"Type":"Assembly",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"POWER MANUAL 1500",
+"PurchaseCost":3411,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:75",
+"name":"Finished Goods Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"BuildPoint":25,
+"ItemAssemblyDetail":{
+"ItemAssemblyLine":[
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":1.5
+},
+{
+"ItemRef":{
+"value":"QB:153",
+"name":"Utilities"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:151",
+"name":"Grease"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:143",
+"name":"TRTO-CL"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:142",
+"name":"TRGU"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:114",
+"name":"LEED-CL"
+},
+"Qty":22
+},
+{
+"ItemRef":{
+"value":"QB:109",
+"name":"DR-4-AL"
+},
+"Qty":22
+},
+{
+"ItemRef":{
+"value":"QB:125",
+"name":"PUBP"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:147",
+"name":"WHAS"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:122",
+"name":"PUEN"
+},
+"Qty":2
+},
+{
+"ItemRef":{
+"value":"QB:103",
+"name":"ANPI-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:140",
+"name":"SPRI"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:113",
+"name":"HETO"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:133",
+"name":"RORO-4"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:135",
+"name":"SC-10x.5-SS"
+},
+"Qty":25
+},
+{
+"ItemRef":{
+"value":"QB:138",
+"name":"SC-12x3in-SS"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:100",
+"name":"AN-12x1"
+},
+"Qty":50
+},
+{
+"ItemRef":{
+"value":"QB:137",
+"name":"SC-12x1.75-SS"
+},
+"Qty":50
+},
+{
+"ItemRef":{
+"value":"QB:127",
+"name":"PUKH"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:130",
+"name":"RO-1/4in"
+},
+"Qty":100
+},
+{
+"ItemRef":{
+"value":"QB:102",
+"name":"ANBA-BL"
+},
+"Qty":1
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:155",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"1000-MC",
+"Description":"MANUAL COVER 1000",
+"Active":true,
+"Taxable":true,
+"UnitPrice":3000,
+"Type":"Assembly",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"MANUAL COVER 1000",
+"PurchaseCost":2408.65,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:75",
+"name":"Finished Goods Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"BuildPoint":150,
+"ItemAssemblyDetail":{
+"ItemAssemblyLine":[
+{
+"ItemRef":{
+"value":"QB:12",
+"name":"Labor"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:153",
+"name":"Utilities"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:151",
+"name":"Grease"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:125",
+"name":"PUBP"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:112",
+"name":"GR-#4-BR"
+},
+"Qty":50
+},
+{
+"ItemRef":{
+"value":"QB:103",
+"name":"ANPI-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:104",
+"name":"ANSP"
+},
+"Qty":50
+},
+{
+"ItemRef":{
+"value":"QB:113",
+"name":"HETO"
+},
+"Qty":2
+},
+{
+"ItemRef":{
+"value":"QB:135",
+"name":"SC-10x.5-SS"
+},
+"Qty":8
+},
+{
+"ItemRef":{
+"value":"QB:101",
+"name":"ANAD"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:127",
+"name":"PUKH"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:124",
+"name":"PU-1800"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:126",
+"name":"PUHC"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:136",
+"name":"SC-12"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:102",
+"name":"ANBA-BL"
+},
+"Qty":1
+},
+{
+"ItemRef":{
+"value":"QB:128",
+"name":"REHO"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:139",
+"name":"SNHO"
+},
+"Qty":4
+},
+{
+"ItemRef":{
+"value":"QB:146",
+"name":"WA-RU"
+},
+"Qty":50
+},
+{
+"ItemRef":{
+"value":"QB:131",
+"name":"ROPE"
+},
+"Qty":100
+}
+]
+},
+"status":"Synchronized",
+"Id":"QB:154",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Utilities",
+"Description":"Utility charge per build",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Utility charge per build $709/29 builds=$25 per build",
+"PurchaseCost":25,
+"ExpenseAccountRef":{
+"value":"QB:73",
+"name":"Work in Progress-Utilities"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:153",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Freight",
+"Description":"Freight Charged to Customers",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Other Charge",
+"IncomeAccountRef":{
+"value":"QB:98",
+"name":"Freight Income"
+},
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:106",
+"name":"Freight"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:152",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Grease",
+"Description":"Grease per build",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Bucket\r\n$20 per bucket $20/80= 0.25 per build",
+"PurchaseCost":0.25,
+"ExpenseAccountRef":{
+"value":"QB:74",
+"name":"Work in Progress-Indirect Mater"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:151",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:28Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Custom Work",
+"Description":"Custom Work",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"NonInventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Custom Work",
+"PurchaseCost":0,
+"ExpenseAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"SpecialItem":false,
+"status":"Synchronized",
+"Id":"QB:150",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Repairs",
+"Description":"Repair work",
+"Active":true,
+"Taxable":false,
+"UnitPrice":35,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:44",
+"name":"Labor Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:15",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"WINU-YE",
+"Description":"Wire Nuts, Yellow",
+"Active":true,
+"Taxable":true,
+"UnitPrice":7.8,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Wire Nuts, Yellow",
+"PurchaseCost":3.8,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:276",
+"name":"Caylor's Hardware & Adhesives"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:149",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"WINU-OR",
+"Description":"Wire Nuts, Orange",
+"Active":true,
+"Taxable":true,
+"UnitPrice":6.5,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Wire Nuts, Orange",
+"PurchaseCost":3,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:276",
+"name":"Caylor's Hardware & Adhesives"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:148",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"WHAS",
+"Description":"Wheel Assembly",
+"Active":true,
+"Taxable":true,
+"UnitPrice":30,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Wheel Assembly",
+"PurchaseCost":15,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":15,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:147",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"WA-RU",
+"Description":"Washer, Rubber",
+"Active":true,
+"Taxable":true,
+"UnitPrice":6,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Washer, Rubber",
+"PurchaseCost":3,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:276",
+"name":"Caylor's Hardware & Adhesives"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:146",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"URCO",
+"Description":"UR- Connectors",
+"Active":true,
+"Taxable":true,
+"UnitPrice":75,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"UR- Connectors",
+"PurchaseCost":35,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:145",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"TUCA-4x2",
+"Description":"PowerTrak, Tube Castings 4'x2'",
+"Active":true,
+"Taxable":true,
+"UnitPrice":175,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"PowerTrak, Tube Castings 4'x2'",
+"PurchaseCost":90,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:144",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"TRTO-CL",
+"Description":"Track Top Clear",
+"Active":true,
+"Taxable":true,
+"UnitPrice":130,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Track Top Clear",
+"PurchaseCost":65,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:143",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"TRGU",
+"Description":"Track Guides, TT (Pair)",
+"Active":true,
+"Taxable":true,
+"UnitPrice":100,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Track Guides, TT (Pair)",
+"PurchaseCost":50,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:142",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"STRE-1/2",
+"Description":"Strain Relief, 1/2' lg",
+"Active":true,
+"Taxable":true,
+"UnitPrice":90,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"52-2298\r\nStrain Relief, 1/2' lg",
+"PurchaseCost":45,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:141",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SPRI",
+"Description":"Spring",
+"Active":true,
+"Taxable":true,
+"UnitPrice":3,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Spring",
+"PurchaseCost":0.5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:140",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Removal",
+"Description":"Removal labor",
+"Active":true,
+"Taxable":false,
+"UnitPrice":35,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:44",
+"name":"Labor Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:14",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SNHO",
+"Description":"Snap Hook, Manual Strap",
+"Active":true,
+"Taxable":true,
+"UnitPrice":112,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Snap Hook, Manual Strap",
+"PurchaseCost":49,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:139",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SC-12x3in-SS",
+"Description":"Screw, Track #12x3' POH SS",
+"Active":true,
+"ParentRef":{
+"value":"QB:134",
+"name":"Screws"
+},
+"Taxable":true,
+"UnitPrice":2.5,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Screw, Track #12x3' POH SS",
+"PurchaseCost":1.25,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:275",
+"name":"Fran's Fasteners"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:138",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SC-12x1.75-SS",
+"Description":"Screw, Track 12x1 3/4' Oval SS",
+"Active":true,
+"ParentRef":{
+"value":"QB:134",
+"name":"Screws"
+},
+"Taxable":true,
+"UnitPrice":15,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Screw, Track 12x1 3/4' Oval SS",
+"PurchaseCost":5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:275",
+"name":"Fran's Fasteners"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:137",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SC-12",
+"Description":"Screw, #12 Drill Flex HWH #3 Tek",
+"Active":true,
+"ParentRef":{
+"value":"QB:134",
+"name":"Screws"
+},
+"Taxable":true,
+"UnitPrice":25.75,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Screw, #12 Drill Flex HWH #3 Tek",
+"PurchaseCost":11,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:275",
+"name":"Fran's Fasteners"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:136",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:27Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"SC-10x.5-SS",
+"Description":"Screw, 10x1/2 phil pan SS",
+"Active":true,
+"ParentRef":{
+"value":"QB:134",
+"name":"Screws"
+},
+"Taxable":true,
+"UnitPrice":22.5,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Screw, 10x1/2 phil pan SS",
+"PurchaseCost":9.75,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:135",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Screws",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:134",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"RORO-4",
+"Description":"Rocky Roller #4",
+"Active":true,
+"Taxable":true,
+"UnitPrice":20,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"0034-210\r\nRocky Roller #4\r\n\r\ndsaf\r\nsdf\r\ndsf\r\nds\r\nf\r\nds\r\nfdsa\r\nfdsf\r\ndasf\r\nds\r\nf\r\ndsf\r\nds",
+"PurchaseCost":10,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:133",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"RORE",
+"Description":"Single Rope Reel",
+"Active":true,
+"Taxable":true,
+"UnitPrice":550,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Single Rope Reel",
+"PurchaseCost":285,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:132",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"ROPE",
+"Description":"Rope",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Rope",
+"PurchaseCost":0.5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:275",
+"name":"Fran's Fasteners"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":500,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:131",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"RO-1/4in",
+"Description":"Rope w/Core 1/4' - Per Foot",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Rope w/Core 1/4' - Per Foot",
+"PurchaseCost":0.5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":500,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:130",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Mileage",
+"Active":false,
+"Taxable":false,
+"UnitPrice":0.365,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:46",
+"name":"Mileage Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:13",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"REUN-1/2HP",
+"Description":"Inf Recessed Unit 1/2 HP Baldor",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1650,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Inf Recessed Unit 1/2 HP Baldor",
+"PurchaseCost":790,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:129",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"REHO",
+"Description":"Retainer Hook, Manual Strap",
+"Active":true,
+"Taxable":true,
+"UnitPrice":112,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Retainer Hook, Manual Strap",
+"PurchaseCost":49.6,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:128",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PUKH",
+"Description":"Pump, Key Hole Panel River",
+"Active":true,
+"ParentRef":{
+"value":"QB:123",
+"name":"Pumps"
+},
+"Taxable":true,
+"UnitPrice":75,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Rule Pump, Key Hole Panel Rivet",
+"PurchaseCost":35,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:277",
+"name":"Philip Pump Manufacturing"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":25,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:127",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PUHC",
+"Description":"Rule Pump, House Clamps",
+"Active":true,
+"ParentRef":{
+"value":"QB:123",
+"name":"Pumps"
+},
+"Taxable":true,
+"UnitPrice":45,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Rule Pump, House Clamps",
+"PurchaseCost":25,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:277",
+"name":"Philip Pump Manufacturing"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":25,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:126",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PUBP",
+"Description":"Rule Pump, Base Plate",
+"Active":true,
+"ParentRef":{
+"value":"QB:123",
+"name":"Pumps"
+},
+"Taxable":true,
+"UnitPrice":85,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Rule Pump, Base Plate",
+"PurchaseCost":50,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:277",
+"name":"Philip Pump Manufacturing"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":25,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:125",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PU-1800",
+"Description":"Rule Pump 1800",
+"Active":true,
+"ParentRef":{
+"value":"QB:123",
+"name":"Pumps"
+},
+"Taxable":true,
+"UnitPrice":500,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Rule Pump 1800",
+"PurchaseCost":175,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:277",
+"name":"Philip Pump Manufacturing"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":25,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:124",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Pumps",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:123",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PUEN",
+"Description":"Pulley End Casting TT w/pulley",
+"Active":true,
+"Taxable":true,
+"UnitPrice":20,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Pulley End Casting TT w/pulley",
+"PurchaseCost":10,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:122",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:26Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"PUBR",
+"Description":"Pulley Bracket",
+"Active":true,
+"Taxable":true,
+"UnitPrice":178.5,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Pulley Bracket",
+"PurchaseCost":93,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:121",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"POCO-LB",
+"Description":"Light Blue",
+"Active":true,
+"ParentRef":{
+"value":"QB:116",
+"name":"Pool Covers"
+},
+"Taxable":true,
+"UnitPrice":2499.77,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Pool Cover, Light Blue",
+"PurchaseCost":750,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:120",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Labor",
+"Description":"Direct Labor per build",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Wages - Assembly $47876.98/29 builds=$1650 per build/2=$825 round down $800. Increase labor from $800 to $1000 7/07.",
+"PurchaseCost":1000,
+"ExpenseAccountRef":{
+"value":"QB:72",
+"name":"Work in Progress-Direct Labor"
+},
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:12",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"POCO-FG",
+"Description":"Forest Green",
+"Active":true,
+"ParentRef":{
+"value":"QB:116",
+"name":"Pool Covers"
+},
+"Taxable":true,
+"UnitPrice":2999.77,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Pool Cover, Forest Green",
+"PurchaseCost":850,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:119",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"POCO-DB",
+"Description":"Dark Blue",
+"Active":true,
+"ParentRef":{
+"value":"QB:116",
+"name":"Pool Covers"
+},
+"Taxable":true,
+"UnitPrice":2499.77,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Pool Cover - Dark Blue",
+"PurchaseCost":750,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:118",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"POCO-AQ",
+"Description":"Aqua",
+"Active":true,
+"ParentRef":{
+"value":"QB:116",
+"name":"Pool Covers"
+},
+"Taxable":true,
+"UnitPrice":2499.77,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Pool Cover, Aqua",
+"PurchaseCost":750,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":5,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:117",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Pool Covers",
+"Active":true,
+"Taxable":true,
+"UnitPrice":0,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseCost":0,
+"COGSAccountRef":{
+"value":"QB:30",
+"name":"Cost of Goods Sold"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:116",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"MOST",
+"Description":"Motor Stickers",
+"Active":true,
+"Taxable":true,
+"UnitPrice":50,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"ST-89078-34\r\nMotor Stickers",
+"PurchaseCost":20,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:282",
+"name":"Vin's Diner"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:115",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"LEED-CL",
+"Description":"Leading Edge, Clear",
+"Active":true,
+"Taxable":true,
+"UnitPrice":10,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Leading Edge, Clear",
+"PurchaseCost":5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:114",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"HETO",
+"Description":"T Style Hex Tool",
+"Active":true,
+"Taxable":true,
+"UnitPrice":175,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"T Style Hex Tool",
+"PurchaseCost":75,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:277",
+"name":"Philip Pump Manufacturing"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:113",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"GR-#4-BR",
+"Description":"Grommet, #4 Brass",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Grommet, #4 Brass",
+"PurchaseCost":0.5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:112",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"ELCO-12G",
+"Description":"Electrical Cord, 12 Gauge",
+"Active":true,
+"Taxable":true,
+"UnitPrice":90,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Electrical Cord, 12 Gauge",
+"PurchaseCost":45,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:281",
+"name":"Perry Cutting Company"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:111",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"DRPE",
+"Description":"PowerTrak, Drive Pedestal",
+"Active":true,
+"Taxable":true,
+"UnitPrice":193,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"PowerTrak, Drive Pedestal",
+"PurchaseCost":92.35,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:110",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Installation",
+"Description":"Installation labor",
+"Active":true,
+"Taxable":false,
+"UnitPrice":35,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:44",
+"name":"Labor Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:11",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"DR-4-AL",
+"Description":"Drum, 4', Aluminum",
+"Active":true,
+"Taxable":true,
+"UnitPrice":50,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Drum, 4', Aluminum",
+"PurchaseCost":22,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:276",
+"name":"Caylor's Hardware & Adhesives"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:109",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"DE-R12",
+"Description":"Inf Deckmount, R1/2 Baldor Motor",
+"Active":true,
+"Taxable":true,
+"UnitPrice":550,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Inf Deckmount, R1/2 Baldor Motor",
+"PurchaseCost":222.86,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:280",
+"name":"Lipps Pool Supplies"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:108",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"CODR",
+"Description":"Cordless Drill",
+"Active":true,
+"Taxable":true,
+"UnitPrice":300,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"0034-121\r\nCordless Drill",
+"PurchaseCost":145.5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":10,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:107",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:25Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"CEPE",
+"Description":"Center Pedestal",
+"Active":true,
+"Taxable":true,
+"UnitPrice":500,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"PED-09-3487\r\nCenter Pedestal",
+"PurchaseCost":250,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:279",
+"name":"Price Pedestal Makers"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:106",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"BO-1/2x4-J",
+"Description":"Box, 1/2'x4 Single J Box",
+"Active":true,
+"Taxable":true,
+"UnitPrice":300,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Box, 1/2'x4 Single J Box",
+"PurchaseCost":175,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:275",
+"name":"Fran's Fasteners"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:105",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"ANSP",
+"Description":"Anchor Spring",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Anchor Spring",
+"PurchaseCost":0.5,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:104",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"ANPI-BL",
+"Description":"Anchor Pin, Black",
+"Active":true,
+"Taxable":true,
+"UnitPrice":50,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Anchor Pin, Black",
+"PurchaseCost":25,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:278",
+"name":"Anderson's Hardware & Tools Supply"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:103",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"ANBA-BL",
+"Description":"Anchor Base, Black",
+"Active":true,
+"Taxable":true,
+"UnitPrice":150,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Anchor Base, Black",
+"PurchaseCost":75,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:277",
+"name":"Philip Pump Manufacturing"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:102",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"ANAD",
+"Description":"Adhesive, Anchor",
+"Active":true,
+"Taxable":true,
+"UnitPrice":20,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Adhesive, Anchor",
+"PurchaseCost":10,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:276",
+"name":"Caylor's Hardware & Adhesives"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":50,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:101",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"AN-12x1",
+"Description":"Anchor, 12x1 RedCap",
+"Active":true,
+"Taxable":true,
+"UnitPrice":1,
+"Type":"Inventory",
+"IncomeAccountRef":{
+"value":"QB:95",
+"name":"Pool Cover & Equipment Sales"
+},
+"PurchaseDesc":"Anchor, 12x1 RedCap",
+"PurchaseCost":0.45,
+"COGSAccountRef":{
+"value":"QB:101",
+"name":"Materials"
+},
+"AssetAccountRef":{
+"value":"QB:67",
+"name":"Materials Inventory"
+},
+"PrefVendorRef":{
+"value":"QB:275",
+"name":"Fran's Fasteners"
+},
+"AvgCost":0,
+"QtyOnHand":0,
+"QtyOnPurchaseOrder":0,
+"ReorderPoint":100,
+"SalesTaxCodeRef":{
+"value":"QB:1",
+"name":"Tax"
+},
+"status":"Synchronized",
+"Id":"QB:100",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-10-26T21:36:24Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"Framing",
+"Description":"Framing labor",
+"Active":true,
+"Taxable":false,
+"UnitPrice":55,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:44",
+"name":"Labor Income"
+},
+"PurchaseCost":0,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:10",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-09-20T17:42:01Z",
+"LastUpdatedTime":"2013-03-21T18:56:43Z"
+}
+},
+{
+"Name":"website design",
+"Active":true,
+"Taxable":false,
+"UnitPrice":0,
+"Type":"Service",
+"IncomeAccountRef":{
+"value":"QB:28",
+"name":"Sales Income"
+},
+"PurchaseCost":-33,
+"SalesTaxCodeRef":{
+"value":"QB:2",
+"name":"Non"
+},
+"status":"Synchronized",
+"Id":"QB:1",
+"SyncToken":"1",
+"MetaData":{
+"CreateTime":"2012-04-20T22:34:03Z",
+"LastUpdatedTime":"2013-04-23T18:21:31Z"
+}
+}
+]

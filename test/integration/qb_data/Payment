@@ -1,0 +1,54 @@
+[{
+  "CustomerRef": {
+    "value": "QB:39911",
+    "name": "Google"
+  },
+  "RemitToRef": {
+    "value": "QB:284",
+    "name": "Google"
+  },
+  "ARAccountRef": {
+    "value": "QB:147",
+    "name": "Accounts Receivable"
+  },
+  "DepositToAccountRef": {
+    "value": "QB:144",
+    "name": "Checking"
+  },
+  "PaymentMethodRef": {
+    "value": "QB:9",
+    "name": "Home Depot Gift Card"
+  },
+  "PaymentRefNum": "Cash#003",
+  "TotalAmt": 4000,
+  "status": "Synchronized",
+  "Id": "NG:3410926",
+  "SyncToken": "6",
+  "MetaData": {
+    "CreateTime": "2013-05-21T11:38:46Z",
+    "LastUpdatedTime": "2013-05-21T11:40:35Z"
+  },
+  "TxnDate": "2013-05-21",
+  "PrivateNote": "Testing with Cash and all fields mod",
+  "Line": [
+    {
+      "Id": "QB:213",
+      "Amount": 1600,
+      "DetailType": "AccountBasedExpenseLineDetail",
+      "AccountBasedExpenseLineDetail": {
+        "AccountRef": {
+          "value": "QB:147"
+        }
+      }
+    }, {
+      "Id": "QB:212",
+      "Amount": 2400,
+      "DetailType": "AccountBasedExpenseLineDetail",
+      "AccountBasedExpenseLineDetail": {
+        "AccountRef": {
+          "value": "QB:146"
+        }
+      }
+    }
+  ]
+}]
