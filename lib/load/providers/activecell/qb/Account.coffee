@@ -38,7 +38,7 @@ class Account extends Default
     obj.current_balance = Math.floor(obj.current_balance * 100) if obj.current_balance
     utils.transromRefs obj, extractData, loadData, loadResultData
     utils.satisfyDependencies(obj, extractData, loadData, loadResultData)
-    obj.type = "non-posting" if obj.sub_type.toLowerCase() is "non-posting"
+    obj.type = "Non-Posting" if obj.sub_type.toLowerCase() is "non-posting"
     result.push obj
 
     unless _.all(result, (obj) => not @_checkRequiredFields(obj))

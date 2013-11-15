@@ -11,7 +11,7 @@ exports.maxResults = (val) ->
   maxResults = val
 
 exports.extract = (options = {}, cb) ->
-  message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+  message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "Retrieving #{options.object} data"}
   oauth = new OAuth.OAuth(
     "get_request_token url",
     "get_access_token url",

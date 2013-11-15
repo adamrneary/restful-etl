@@ -45,7 +45,7 @@ class Batch extends __proto("Batch", batchSchema)
         newBatch = new batch.Batch model.toObject()
         jobsNames = []
         _.each model.jobs, (job) ->
-          jobsNames.push job.object
+          jobsNames.push job.object unless job.object is "periods"
         message model?.tenant_id, "batch", {id: model?.id, jobs_names: jobsNames, err: err, status: "start"}
         batch.addBatch newBatch
         newBatch.start (err) =>

@@ -15,7 +15,8 @@ exports.load = (options = {}, cb) ->
       if options.batch.stopped
         cb()
         return
-      message options?.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+      if options.object isnt "periods"
+        message options?.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "Loading #{options.object.replace("_", " ")}"}
       console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "load objects"})}"
       request
         method: "GET"
@@ -39,20 +40,26 @@ exports.load = (options = {}, cb) ->
       if options.batch.stopped
         cb()
         return
-      message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
-      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait extract objects"})}"
       if options.object is "periods"
         cb()
         return
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait extract objects"})}"
       unless options.required_objects?.extract
         cb()
         return
+      oldWaitingObjects = []
       waitObjects = () ->
         if options.batch.stopped
           cb()
           return
         if (_.any options.required_objects.extract, (object) ->
           _.isUndefined(options.batch.extractData[object]))
+          waitingObjects = []
+          _.each options.required_objects.extract, (object) ->
+            waitingObjects.push object if _.isUndefined(options.batch.extractData[object])
+          unless _.isEqual oldWaitingObjects, waitingObjects # send a message if the object list was changed
+            message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "Waiting for #{waitingObjects.join(", ")}"}
+          oldWaitingObjects = waitingObjects
           setTimeout(waitObjects, 100)
         else
           cb()
@@ -63,20 +70,26 @@ exports.load = (options = {}, cb) ->
       if options.batch.stopped
         cb()
         return
-      message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
-      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait load objects"})}"
       if options.object is "periods"
         cb()
         return
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait load objects"})}"
       unless options.required_objects?.load
         cb()
         return
+      oldWaitingObjects = []
       waitObjects = () ->
         if options.batch.stopped
           cb()
           return
         if (_.any options.required_objects.load, (object) ->
           _.isUndefined(options.batch.loadData[object]))
+          waitingObjects = []
+          _.each options.required_objects.extract, (object) ->
+            waitingObjects.push object if _.isUndefined(options.batch.extractData[object])
+          unless _.isEqual oldWaitingObjects, waitingObjects # send a message if the object list was changed
+            message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "Waiting for #{waitingObjects.join(", ")}"}
+          oldWaitingObjects = waitingObjects
           setTimeout(waitObjects, 100)
         else
           cb()
@@ -87,20 +100,26 @@ exports.load = (options = {}, cb) ->
       if options.batch.stopped
         cb()
         return
-      message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
-      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait load result objects"})}"
       if options.object is "periods"
         cb()
         return
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait load result objects"})}"
       unless options.required_objects?.load_result
         cb()
         return
+      oldWaitingObjects = []
       waitObjects = () ->
         if options.batch.stopped
           cb()
           return
         if (_.any options.required_objects.load_result, (object) ->
           _.isUndefined(options.batch.loadResultData[object]))
+          waitingObjects = []
+          _.each options.required_objects.extract, (object) ->
+            waitingObjects.push object if _.isUndefined(options.batch.extractData[object])
+          unless _.isEqual oldWaitingObjects, waitingObjects # send a message if the object list was changed
+            message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "Waiting for #{waitingObjects.join(", ")}"}
+          oldWaitingObjects = waitingObjects
           setTimeout(waitObjects, 100)
         else
           cb()
@@ -110,12 +129,11 @@ exports.load = (options = {}, cb) ->
       if options.batch.stopped
         cb()
         return
-      message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
-      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "transform and update objects"})}"
-
       if options.object is "periods"
         cb()
         return
+      message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "transform and update objects"})}"
 
       # create a function that registers a transformation errors in the database
       printMessages = (messages)->
@@ -257,6 +275,9 @@ exports.load = (options = {}, cb) ->
           #satisfy dependencies if needed
           (cb) ->
             if options.batch.stopped
+              cb()
+              return
+            if options.object is "periods"
               cb()
               return
             message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
