@@ -5,7 +5,10 @@ io = null
 listen = (server) ->
   io = socketio.listen server
   io.configure "production", () ->
-    io.set('log level', 1);
+    io.set("log level", 1);
+
+  io.configure "heroku", () ->
+    io.set("log level", 1);
 
   io.sockets.on "connection", (socket) ->
     socket.on "subscribe", (data) ->

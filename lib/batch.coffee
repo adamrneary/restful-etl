@@ -82,7 +82,7 @@ class Batch
 
     connection::findOne {_id: @options.destination_connection_id}, (err, connection) =>
       return if @stopped
-      @companyId = connection.company_id
+      @companyId = connection?.company_id
       extractData() # We need a company id for error messages, we wait until we get it and run extract jobs
       if err
         cb err if cb

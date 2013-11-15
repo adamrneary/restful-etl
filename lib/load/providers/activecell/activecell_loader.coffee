@@ -16,6 +16,7 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       message options?.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "load objects"})}"
       request
         method: "GET"
         uri: "#{config.activecell_protocol}://#{options.subdomain}.#{config.activecell_domain}/api/v1/#{options.object.toLowerCase()}.json?token=#{options.token}"
@@ -39,6 +40,7 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait extract objects"})}"
       if options.object is "periods"
         cb()
         return
@@ -62,6 +64,7 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait load objects"})}"
       if options.object is "periods"
         cb()
         return
@@ -85,6 +88,7 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "pending"}
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "wait load result objects"})}"
       if options.object is "periods"
         cb()
         return
@@ -107,6 +111,7 @@ exports.load = (options = {}, cb) ->
         cb()
         return
       message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+      console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "transform and update objects"})}"
 
       if options.object is "periods"
         cb()
@@ -255,6 +260,7 @@ exports.load = (options = {}, cb) ->
               cb()
               return
             message options.tenant_id, "job status", {type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "in process"}
+            console.log "tenantId: #{options?.tenant_id}, message: job status, obj: #{JSON.stringify({type: options?.type, batch_id: options?.batch?.options?._id, name: options?.object, err: null, status: "satisfy dependencies"})}"
             updateList = []
             tmpLoadResultData = _.clone loadResultData
             tmpLoadResultData[options.object] = resultData

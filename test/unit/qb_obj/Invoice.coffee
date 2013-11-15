@@ -152,7 +152,7 @@ describe "qb ActiveCell", ->
       @qbdObj.TotalAmt = 0
       @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 2
-        assert.equal messages[0].type, "warning"
+        assert.equal messages[0].subtype, "warning"
         done()
       )
 
@@ -160,7 +160,7 @@ describe "qb ActiveCell", ->
       delete @qbdObj.CustomerRef
       @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
-        assert.equal messages[0].type, "warning"
+        assert.equal messages[0].subtype, "warning"
         done()
       )
 
@@ -168,7 +168,7 @@ describe "qb ActiveCell", ->
       @qbdObj.TotalAmt = 32412
       @invoice.transform(@qbdObj, {}, @loadData, {}, (messages) ->
         assert.equal messages.length, 1
-        assert.equal messages[0].type, "warning"
+        assert.equal messages[0].subtype, "warning"
         done()
       )
 
