@@ -54,7 +54,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
         cb()
         return
       if err
-        options.batch.stopped = true
+#        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError "", err
         return
 
@@ -62,7 +62,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
       err = _.find data, (d)->
         d.Fault?.Error
       if err
-        options.batch.stopped = true
+#        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError JSON.stringify(err)
         return
 
@@ -123,7 +123,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
         cb()
         return
       if err
-        options.batch.stopped = true
+#        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError "", err
         return
 
@@ -131,7 +131,7 @@ exports.extract = (batch, connection, jobOptions, cb) ->
       err = _.find data, (d)->
         d.Fault?.Error
       if err
-        options.batch.stopped = true
+#        options.batch.stopped = true
         cb new Errors.IntuitBatchExtractError JSON.stringify(err)
         return
 

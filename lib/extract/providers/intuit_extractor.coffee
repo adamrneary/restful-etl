@@ -34,11 +34,11 @@ exports.extract = (options = {}, cb) ->
     # get the number of object
     (cb) ->
       if options.batch.stopped
+        options.stopped = true
         cb()
         return
       oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select count(*) from #{options.object} #{filter}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
         if err
-          options.batch.stopped = true
           cb new Errors.IntuitExtractError("Response error", err)
           return
         data = JSON.parse(data)
@@ -46,12 +46,12 @@ exports.extract = (options = {}, cb) ->
           count = data.QueryResponse.totalCount
           cb null, count
         else
-          options.batch.stopped = true
           cb new Errors.IntuitExtractError("Response error", data)
     ,
     # get objects
     (count, cb) ->
       if options.batch.stopped
+        options.stopped = true
         cb()
         return
       if count is 0
@@ -63,11 +63,11 @@ exports.extract = (options = {}, cb) ->
         resultData = []
         async.each startPositions, (startPosition, cb)->
           if options.batch.stopped
+            options.stopped = true
             cb()
             return
           oauth.getProtectedResource "https://qb.sbfinance.intuit.com/v3/company/#{options.realm}/query?query= select *, MetaData.CreateTime from #{options.object} #{filter} startposition #{startPosition} maxresults #{maxResults}", "GET", options.oauth_access_key, options. oauth_access_secret,  (err, data, response) ->
             if err
-              options.batch.stopped = true
               cb new Errors.IntuitExtractError("Response error", err)
             else
               data = JSON.parse(data)
@@ -75,7 +75,6 @@ exports.extract = (options = {}, cb) ->
                 resultData = resultData.concat data.QueryResponse["#{options.object}"]
                 cb()
               else
-                options.batch.stopped = true
                 cb new Errors.IntuitExtractError("Response error", data)
         , (err)->
           cb err, resultData

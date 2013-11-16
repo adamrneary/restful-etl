@@ -36,6 +36,7 @@ class Batch
     @loadData = {}
     @loadResultData = {}
     @stopped = true
+    @errors = {}
 
   # stop a batch
   stop: () ->
@@ -45,45 +46,39 @@ class Batch
     cb_success = _.after 2, cb # call callback after extract and load jobs finished
     @stopped = false
 
-    extractData = () =>
-      connection::findOne {_id: @options.source_connection_id}, (err, connection) =>
-        return if @stopped
-        if err
+    connection::findOne {_id: @options.source_connection_id}, (err, connection) =>
+      return if @stopped
+      if err
+        @stopped = true
+        cb err if cb
+      else
+        unless connection
           @stopped = true
-          cb err if cb
+          cb new Errors.ConnectionError "source connection not found", @options.source_connection_id  if cb
         else
-          unless connection
-            @stopped = true
-            cb new Errors.ConnectionError "source connection not found", @options.source_connection_id  if cb
+          connectionObj = connection.toObject()
+          @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract" # get extract jobs
+          jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract" # create options for each extract job
+          if connectionObj.provider is "QB_BATCH" or connectionObj.provider is "QBD_BATCH"
+            intuitBatchExtractor @, connectionObj, jobOptions, cb
           else
-            connectionObj = connection.toObject()
-            @extractJobs = _.filter @options.jobs, (job) -> job.type is "extract" # get extract jobs
-            jobOptions = _.map @extractJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "extract" # create options for each extract job
-            if connectionObj.provider is "QB_BATCH" or connectionObj.provider is "QBD_BATCH"
-              intuitBatchExtractor @, connectionObj, jobOptions, cb
-            else
-              # run extract jobs
-              async.each jobOptions, (jobOpt, cb) =>
-                if @_stopped
-                  cb()
-                  return
-                jobObj = new Job(jobOpt)
-                jobObj.run (err, data) =>
-                  if err then cb(err)
-                  else
-                    @extractData[jobOpt.object] = data
-                    cb()
-              , (err) =>
-                if err
-                  @stopped = true
-                  cb(err) if cb
+            # run extract jobs
+            async.each jobOptions, (jobOpt, cb) =>
+              if @stopped
+                cb()
+                return
+              jobObj = new Job(jobOpt)
+              jobObj.run (err, data) =>
+                if err then cb(err)
                 else
-                  cb_success()
+                  @extractData[jobOpt.object] = data
+                  cb()
+            , (err) =>
+                cb_success()
 
     connection::findOne {_id: @options.destination_connection_id}, (err, connection) =>
       return if @stopped
       @companyId = connection?.company_id
-      extractData() # We need a company id for error messages, we wait until we get it and run extract jobs
       if err
         cb err if cb
         @stopped = true
@@ -97,7 +92,7 @@ class Batch
           jobOptions = _.map @loadJobs, (job) => @_buildJobOptions _.clone(job), connectionObj, "load" # create options for each load job
           # run load jobs
           async.each jobOptions, (jobOpt, cb) =>
-            if @_stopped
+            if @stopped
               cb()
               return
             jobObj = new Job(jobOpt)
@@ -106,10 +101,6 @@ class Batch
               else
                 cb()
           , (err) =>
-            if err
-              @stopped = true
-              cb(err) if cb
-            else
               cb_success()
 
   # get batch id

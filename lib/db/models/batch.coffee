@@ -1,5 +1,6 @@
 mongoose = require "mongoose"
 _ = require "underscore"
+errorsModel = require "./errors"
 message = require("../../message").message
 __proto = require "./__proto"
 batch = require "../../batch"
@@ -40,7 +41,7 @@ class Batch extends __proto("Batch", batchSchema)
       if err
         cb err, model if cb
       else
-        #the creat and run batch if no errors
+        #creat and run batch if no errors
         cb err, model if cb
         newBatch = new batch.Batch model.toObject()
         jobsNames = []
@@ -53,6 +54,19 @@ class Batch extends __proto("Batch", batchSchema)
           model.save()
           batch.deleteById model?.id
           message model?.tenant_id, "batch", {id: model?.id, err: err, status: "finish", finished_at: model.finished_at, created_at: model.create_at}
+          if (_.keys newBatch.errors).length
+            errors = []
+            _.each _.values(newBatch.errors), (obj) ->
+              errors = errors.concat obj.messages if obj.messages
+            errorsModel::create
+              batch_id: newBatch.id()
+              company_id: newBatch.companyId
+              source_connection_id: model.source_connection_id
+              destination_connection_id: model.destination_connection_id
+              batch_start: model.created_at
+              errors_count: errors.length
+              errors_list: errors
+
           finishCb() if finishCb
 
   # Update batch with changes passed to doc
