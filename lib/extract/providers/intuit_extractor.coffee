@@ -26,9 +26,10 @@ exports.extract = (options = {}, cb) ->
 
   filter = ""
   if options.since
-    filter = "where MetaData.CreateTime >= '#{options.since.format("YYYY-MM-DDTHH:MM:SSZ")}'"
-    filter = filter.replace /\+/g, "%2B"
-    filter = filter.replace /\=/g, "%3D"
+    if _.indexOf(["Bill", "CreditMemo", "Invoice", "Payment", "Purchase", "SalesReceipt"], options.object) isnt -1
+      filter = "where TxnDate >= '#{options.since.format("YYYY-MM-DDTHH:MM:SSZ")}'"
+      filter = filter.replace /\+/g, "%2B"
+      filter = filter.replace /\=/g, "%3D"
 
   async.waterfall [
     # get the number of object

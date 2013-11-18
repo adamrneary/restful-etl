@@ -26,7 +26,8 @@ class SalesReceipt extends Default
       "amount_cents"
     ]
 
-  transform: (qbdObj, extractData, loadData, loadResultData) =>
+  transform: (qbdObj, extractData, loadData, loadResultData, cb) =>
+    messages = []
     result = []
     utils.transromRefs qbdObj, extractData, loadData, loadResultData
     qbdObj.account_id = qbdObj.deposit_account_id
