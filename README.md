@@ -28,7 +28,7 @@ A user or application sends `POST`s to the connection endpoint to establish conn
 
 Example JSON request:
 
-```json
+```javascript
 
 {
   name: 'Quickbooks Desktop',
@@ -44,7 +44,7 @@ A valid connection will return a connection object that can be used for future b
 
 Example JSON response:
 
-```json
+```javascript
 
 {
   id: '51b4ac524c9bfd8f2d000002'
@@ -60,7 +60,7 @@ Example JSON response:
 A user or application may then send a `POST` to the batch endpoint with the configuration required.
 Example JSON request:
 
-```json
+```javascript
 
 {
   source: {
@@ -105,7 +105,7 @@ In addition, the above case presumes that valid connection objects have been est
 A new ETL "batch" is created based on the template specified in the batch type.
 
 Example JSON response:
-```json
+```javascript
 
 {
   name: 'Daily QBD to Activecell refresh',
@@ -132,7 +132,7 @@ status feed.
 If the user or app wants to set up a recurring schedule for batches, a simple `POST` can manage this:
 
 Example JSON request:
-```json
+```javascript
 
 
 ```
@@ -159,7 +159,7 @@ As endpoints for webhooks are added to this library, the user will be able to pr
 
 Example real time JSON request:
 
-```json
+```javascript
 
 {
   source: {
